@@ -1,5 +1,5 @@
 import { DIB_KITS } from './dibCreatures';
-import { EXPANSION_ROOMS, WAYSTONE_EXITS } from './expansion';
+import { EXPANSION_ROOMS, WAYSTONE_EXITS, WAYSTONE_SPAWNS } from './expansion';
 
 // Overworld rooms. Every coordinate is in the source painting's pixel space,
 // so the painting is drawn 1:1 and these polygons describe where feet can go.
@@ -300,6 +300,7 @@ export const ROOMS: Record<string, RoomDef> = {
 
 // The world beyond the Waystone (generated rooms; see tools/gen_expansion.py).
 for (const r of EXPANSION_ROOMS) ROOMS[r.id] = r;
+Object.assign(ROOMS.waystone.spawns, WAYSTONE_SPAWNS);
 if (WAYSTONE_EXITS) {
   const ex = ROOMS.waystone.exits;
   ex[1] = { rect: [100, 50, 150, 12], to: WAYSTONE_EXITS.topLeft, spawn: WAYSTONE_EXITS.topLeftSpawn, locked: 'orochiDone', lockedText: ['* The northern road is choked with grey ash and the coils of something vast.', '* Not while the Waystone is guarded.'] };

@@ -4,6 +4,7 @@ import type { StoryLine } from './storyTypes';
 
 export const EXPANSION_ROOMS: RoomDef[] = [];
 export const WAYSTONE_EXITS: { topLeft: string; topRight: string; topLeftSpawn: string; topRightSpawn: string } | null = null;
+export const WAYSTONE_SPAWNS: RoomDef['spawns'] = {};
 export const EXPANSION_STORY: {
   after_orochi_peace: StoryLine[];
   after_orochi_won: StoryLine[];
