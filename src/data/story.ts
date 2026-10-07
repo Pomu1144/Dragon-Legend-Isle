@@ -67,7 +67,7 @@ export const STORY: StoryData = {
     },
     {
      "heading": "Capture",
-     "text": "A wild creature can be taken into your company only once it is weakened or willing. Wear it down, or win its trust, before you try. A creature at full strength will not be held."
+     "text": "Capture cards take a wild creature into your company. The more damaged it is, the higher the chance; a calmed creature yields more easily. A regular card rarely holds a creature at full strength. A Silver Card holds far better, and a Gold Card never fails. Cards can be bought even in the middle of a fight."
     },
     {
      "heading": "Candle Rest Points",

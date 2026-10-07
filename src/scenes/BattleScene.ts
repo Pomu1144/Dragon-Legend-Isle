@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
 import { Sound } from '../audio/Sound';
 import { BulletField, PATTERNS, BASE_PATTERNS, Box } from '../battle/patterns';
-import { AttackDef, ITEMS, MONSTERS, MonsterDef, SkillDef, skillFrom } from '../data/monsters';
+import { AttackDef, CAPTURE_CARDS, CaptureCard, captureChance, ITEMS, MONSTERS, MonsterDef, SkillDef, skillFrom } from '../data/monsters';
 import { STARTERS } from '../data/starters';
 import { ROOMS } from '../data/rooms';
 import { gainExp, State } from '../state';
@@ -10,7 +10,7 @@ import { dustify, fireflies, lightPool, popNumber, sparkleBurst } from '../ui/fx
 import { Bar, body, label, panel, starRow, COLORS, FONT_BODY } from '../ui/widgets';
 import type { BattleResult } from './WorldScene';
 
-type Phase = 'busy' | 'menu' | 'cards' | 'timing' | 'list' | 'text' | 'talk' | 'dodge' | 'end';
+type Phase = 'busy' | 'menu' | 'cards' | 'timing' | 'list' | 'capture' | 'text' | 'talk' | 'dodge' | 'end';
 
 interface ListItem {
   text: string;
@@ -73,6 +73,10 @@ export class BattleScene extends Phaser.Scene {
   private field?: BulletField;
   private dodge?: { t: number; dur: number; run: (t: number, dt: number) => void; inv: number; atk: AttackDef; tag: Phaser.GameObjects.Text; blind?: Phaser.GameObjects.Image };
   private dot?: { left: number; acc: number; kind: string };
+  private captureCards: { c: Phaser.GameObjects.Container; card: CaptureCard; owned: number; canBuy: boolean; usable: boolean; pct: number }[] = [];
+  private captureSel = 0;
+  private captureInfo?: Phaser.GameObjects.Text;
+  private captureTitle?: Phaser.GameObjects.Text;
 
   constructor() {
     super('Battle');
@@ -136,6 +140,7 @@ export class BattleScene extends Phaser.Scene {
     const nStars = Math.ceil(this.m.stars);
     starRow(this, this.nameText.x + this.nameText.width + 4 + (nStars * 24) / 2, 50, this.m.stars, nStars * 24, 24).setDepth(20);
     if (this.m.boss) label(this, 44, 120, 'GUARDIAN', 18, COLORS.gold, 5).setDepth(20);
+    else if (this.m.rare) label(this, 44, 120, 'RARE SIGHTING', 18, '#9fd8ff', 5).setDepth(20);
 
     // Bullet board / text box
     this.boxFrame = panel(this, this.box.x - 14, this.box.y - 14, this.box.w + 28, this.box.h + 28, 'blue').setDepth(10);
@@ -419,7 +424,7 @@ export class BattleScene extends Phaser.Scene {
   private openItems() {
     const inv = State.get().inventory;
     const items: ListItem[] = Object.entries(inv)
-      .filter(([id, n]) => n > 0 && !ITEMS[id]?.key)
+      .filter(([id, n]) => n > 0 && !ITEMS[id]?.key && !ITEMS[id]?.capture)
       .map(([id, n]) => ({ text: `${ITEMS[id]?.name ?? id}  x${n}`, run: () => this.useItem(id) }));
     if (!items.length) {
       this.boxSay('* Your satchel is empty.', () => this.toMenu());
@@ -432,7 +437,8 @@ export class BattleScene extends Phaser.Scene {
     const ok = this.spareable();
     const items: ListItem[] = [
       { text: 'Spare', color: ok ? COLORS.yellow : COLORS.cream, run: () => this.trySpare() },
-      { text: this.m.boss ? 'Flee' : 'Flee', run: () => this.tryFlee() },
+      { text: 'Capture', run: () => this.openCapture() },
+      { text: 'Flee', run: () => this.tryFlee() },
     ];
     this.openList(items, () => this.toMenu());
   }
@@ -447,7 +453,6 @@ export class BattleScene extends Phaser.Scene {
   }
 
   private useItem(id: string) {
-    if (id === 'orb') return this.tryBind();
     if (!State.useItem(id)) return this.toMenu();
     const amount = id === 'tart' ? 30 : 15;
     this.heal(amount);
@@ -904,36 +909,126 @@ export class BattleScene extends Phaser.Scene {
     this.boxSay('* You retreat into the dark.', () => this.finish('fled'));
   }
 
-  private tryBind() {
-    const s = State.get();
-    if ((s.inventory.orb ?? 0) <= 0) return this.toMenu();
-    if (this.m.role === 'boss') {
-      this.boxSay(['* The Binding Orb shatters against its scales.', '* The Overlord of Norwoods cannot be bound. Only calmed.'], () => this.enemyTurn(100));
-      State.useItem('orb');
+  // ---- MERCY > Capture: the three DIB capture cards ---------------------------
+  // Each card shows its live capture chance like the DIB card face ("34% Chance").
+  // A card you don't carry can be bought on the spot, as in DIB.
+  private openCapture() {
+    this.clearList();
+    this.boxText.setVisible(false);
+    if (this.m.capture <= 0) {
+      this.boxSay(['* No card can hold this one.', this.m.role === 'boss' ? '* The Overlord of Norwoods can only be calmed.' : '* It is beyond capture.'], () => this.toMenu());
       return;
     }
-    State.useItem('orb');
+    this.phase = 'capture';
+    this.captureCards = [];
+    const s = State.get();
+    const calm = this.spareable();
+    const cy = this.box.y + this.box.h / 2;
+    const x0 = this.box.x + 190;
+    CAPTURE_CARDS.forEach((cc, i) => {
+      const owned = s.inventory[cc.item] ?? 0;
+      const canBuy = owned <= 0 && s.gold >= cc.price;
+      const usable = owned > 0 || canBuy;
+      const pct = Math.round(captureChance(this.m, this.hp / this.m.hp, calm, cc) * 100);
+      const c = this.add.container(x0 + i * 172, cy).setDepth(15);
+      const glow = this.add.image(0, 0, 'glow').setBlendMode(Phaser.BlendModes.ADD).setTint(0xffd77a).setScale(1.0, 1.15).setAlpha(0).setName('glow');
+      const card = this.add.image(0, 0, cc.tex).setScale(0.8);
+      if (!usable) card.setTint(0x6a6f78);
+      // the green window spans source rows 30-126, the price plate rows 137-188 (card is 160x200)
+      const big = label(this, 0, -26 * 0.8, `${pct}%`, 40, '#ffffff', 5).setOrigin(0.5);
+      const small = label(this, 0, 6 * 0.8, 'Chance', 22, '#ffffff', 4).setOrigin(0.5);
+      const plate = label(this, 0, 62 * 0.8, owned > 0 ? `x${owned}` : `${cc.price} G`, 22, COLORS.ink, 0).setOrigin(0.5).setStroke('#ffffff', 3).setShadow(0, 0, '#000', 0);
+      c.add([glow, card, big, small, plate]);
+      if (!usable) [big, small, plate].forEach((t) => t.setAlpha(0.55));
+      c.setAlpha(0).setY(cy + 14);
+      this.tweens.add({ targets: c, alpha: 1, y: cy, duration: 180, delay: i * 50, ease: 'Cubic.easeOut' });
+      this.captureCards.push({ c, card: cc, owned, canBuy, usable, pct });
+      this.listObjs.push(c);
+    });
+    const ix = this.box.x + 680;
+    this.captureTitle = label(this, ix, this.box.y + 18, '', 24, COLORS.gold, 4).setDepth(14);
+    this.captureInfo = body(this, ix, this.box.y + 52, '', 20, COLORS.cream, this.box.x + this.box.w - ix - 24).setDepth(14);
+    this.listObjs.push(this.captureTitle, this.captureInfo, label(this, ix, this.box.y + this.box.h - 34, `Gold: ${s.gold} G`, 17, '#c9b98a', 4).setDepth(14));
+    this.captureSel = Math.max(0, this.captureCards.findIndex((x) => x.owned > 0));
+    this.refreshCapture();
+  }
+
+  private refreshCapture() {
+    this.captureCards.forEach((x, i) => {
+      const sel = i === this.captureSel;
+      (x.c.getByName('glow') as Phaser.GameObjects.Image).setAlpha(sel ? 0.45 : 0);
+      this.tweens.killTweensOf(x.c);
+      x.c.setAlpha(1);
+      this.tweens.add({ targets: x.c, scale: sel ? 1.04 : 0.9, duration: 120 });
+    });
+    const x = this.captureCards[this.captureSel];
+    const it = ITEMS[x.card.item];
+    const hint = this.m.rare ? 'A rare sighting. It will fight the card hard.' : this.hp / this.m.hp > 0.6 ? 'Weaken it first: the more damaged it is, the higher the chance.' : 'It is weakened. The chance has risen.';
+    const action = x.owned > 0 ? `Throw one (${x.owned} left).` : x.canBuy ? `Buy one for ${x.card.price} G and throw it.` : `None left. It costs ${x.card.price} G.`;
+    this.captureTitle?.setText(`${it.name} — ${x.pct}%`);
+    this.captureInfo?.setText(`${action}\n${x.card.mult === Infinity ? 'A guaranteed capture.' : hint}`);
+    this.cursorSoul.setVisible(true).setPosition(x.c.x - 80, x.c.y);
+  }
+
+  private captureUpdate() {
+    const c = this.controls;
+    const l = c.pressed('left');
+    const r = c.pressed('right');
+    if (l || r) {
+      this.captureSel = (this.captureSel + (l ? this.captureCards.length - 1 : 1)) % this.captureCards.length;
+      Sound.move();
+      this.refreshCapture();
+    }
+    if (c.pressed('cancel')) {
+      Sound.cancel();
+      this.clearList();
+      this.openMercy();
+      return;
+    }
+    if (c.pressed('confirm')) {
+      const x = this.captureCards[this.captureSel];
+      if (!x.usable) {
+        Sound.cancel();
+        this.cameras.main.shake(80, 0.002);
+        return;
+      }
+      Sound.confirm();
+      const s = State.get();
+      if (x.owned <= 0) {
+        s.gold -= x.card.price;
+        State.addItem(x.card.item, 1);
+      }
+      this.clearList();
+      this.throwCard(x.card);
+    }
+  }
+
+  private throwCard(cc: CaptureCard) {
+    State.useItem(cc.item);
     this.phase = 'busy';
     Sound.bind();
-    const orb = this.add.image(640, 600, 'ui_orb_web').setScale(0.3).setDepth(55);
+    const card = this.add.image(640, 600, cc.tex).setScale(0.32).setDepth(55);
     const mx = this.monster.x;
     const my = this.monsterBaseY - this.monster.displayHeight * 0.45;
-    const lowHp = this.hp / this.m.hp < 0.4;
-    const chance = this.spareable() ? Math.min(0.95, this.m.bindChance + 0.3) : lowHp ? this.m.bindChance : this.m.bindChance * 0.25;
+    const chance = captureChance(this.m, this.hp / this.m.hp, this.spareable(), cc);
     const ok = Math.random() < chance;
+    const name = ITEMS[cc.item].name;
     this.tweens.add({
-      targets: orb,
+      targets: card,
       x: mx,
       y: my,
       angle: 720,
       duration: 520,
       ease: 'Quad.easeOut',
       onComplete: () => {
+        card.setAngle(0);
         this.tweens.killTweensOf(this.monster);
         const sx = this.monster.scaleX;
         const sy = this.monster.scaleY;
         this.tweens.add({ targets: this.monster, scaleX: 0.02, scaleY: 0.02, x: mx, y: my + 20, alpha: 0.4, duration: 420, ease: 'Cubic.easeIn' });
-        this.tweens.add({ targets: orb, y: 330, duration: 400, delay: 420, ease: 'Quad.easeOut' });
+        this.tweens.add({ targets: card, y: 330, scale: 0.42, duration: 400, delay: 420, ease: 'Quad.easeOut' });
+        const glow = this.add.image(mx, 330, 'glow').setBlendMode(Phaser.BlendModes.ADD).setTint(cc.item === 'gold_card' ? 0xffd04a : cc.item === 'silver_card' ? 0xdfe8f0 : 0x7dff9a).setAlpha(0).setScale(0.9).setDepth(54);
+        this.tweens.add({ targets: glow, alpha: 0.55, duration: 300, delay: 600, yoyo: true, repeat: 2 });
         let wob = 0;
         this.time.addEvent({
           delay: 520,
@@ -942,26 +1037,29 @@ export class BattleScene extends Phaser.Scene {
           callback: () => {
             wob++;
             Sound.move();
-            this.tweens.add({ targets: orb, angle: { from: -25, to: 25 }, duration: 110, yoyo: true });
+            this.tweens.add({ targets: card, angle: { from: -14, to: 14 }, duration: 110, yoyo: true });
             if (wob === 3 || (!ok && wob === 2)) {
               this.time.delayedCall(450, () => {
+                glow.destroy();
                 if (ok) {
                   this.phase = 'end';
                   Sound.save();
-                  const crown = this.add.image(orb.x, orb.y - 60, 'ui_crown').setScale(0.1).setDepth(56);
-                  this.tweens.add({ targets: crown, scale: 0.45, y: orb.y - 80, duration: 400, ease: 'Cubic.easeOut' });
-                  sparkleBurst(this, orb.x, orb.y, 18, 57, 120);
+                  const crown = this.add.image(card.x, card.y - 90, 'ui_crown').setScale(0.1).setDepth(56);
+                  this.tweens.add({ targets: crown, scale: 0.45, y: card.y - 110, duration: 400, ease: 'Cubic.easeOut' });
+                  sparkleBurst(this, card.x, card.y, 18, 57, 120);
                   const rec = State.record(this.m.id);
                   rec.bound = true;
                   State.get().spares++;
-                  this.boxSay([`* ${this.m.name} was bound!`, `* It is bound to you now. (See "My Monsters" in the C menu.)`], () => this.finish('bound'));
+                  this.boxSay([`* Captured! ${this.m.name} is yours.`, `* (See "My Monsters" in the C menu.)`], () => this.finish('bound'));
                 } else {
                   Sound.shatter();
-                  sparkleBurst(this, orb.x, orb.y, 12, 57, 90);
-                  orb.destroy();
+                  sparkleBurst(this, card.x, card.y, 12, 57, 90);
+                  card.destroy();
                   this.monster.setPosition(640, this.monsterBaseY).setScale(sx, sy).setAlpha(1);
                   this.idleMonster();
-                  this.boxSay([`* ${this.m.name} broke free!`, this.spareable() || lowHp ? '* It nearly held.' : '* It is too wary. Calm it or wear it down first.'], () => this.enemyTurn(100));
+                  const fail = this.m.captureFail?.length ? this.m.captureFail : [`* ${this.m.name} broke free of the ${name}.`];
+                  const why = chance >= 0.5 ? '* It nearly held.' : this.hp / this.m.hp > 0.6 ? '* It is too strong yet. Wear it down first.' : '* Not this time.';
+                  this.boxSay([...fail, `${why} (${Math.round(chance * 100)}% chance)`], () => this.enemyTurn(100));
                 }
               });
             }
@@ -1031,6 +1129,8 @@ export class BattleScene extends Phaser.Scene {
         return this.updateTyping(dt);
       case 'list':
         return this.listUpdate();
+      case 'capture':
+        return this.captureUpdate();
       case 'cards':
         return this.cardsUpdate();
       case 'timing':

@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
 import { Sound } from '../audio/Sound';
-import { ROOMS, RoomDef, Dir, Pt } from '../data/rooms';
+import { ROOMS, RoomDef, Dir, Pt, rollEncounter } from '../data/rooms';
 import { State } from '../state';
 import { Dialogue, Line } from '../ui/Dialogue';
 import { Controls } from '../ui/input';
@@ -223,6 +223,7 @@ export class WorldScene extends Phaser.Scene {
     State.addItem('guide', 1);
     State.addItem('map', 1);
     State.addItem('orb', 3);
+    State.addItem('silver_card', 1);
     this.controls.reset();
     // Hatchling appears beside the hero right away.
     const key = this.starterKey()!;
@@ -232,7 +233,7 @@ export class WorldScene extends Phaser.Scene {
     this.ySortedObjs.push({ obj: this.follower, base: 0 });
     sparkleBurst(this, this.follower.x, this.follower.y - 30, 16, 3600, 70);
     this.cameras.main.fadeIn(500);
-    this.say([...scene('after_choice'), ...scene('items_handover'), { text: '* (You also received 3 Binding Orbs.)' }]);
+    this.say([...scene('after_choice'), ...scene('items_handover'), { text: '* (You also received 3 Capture Cards and a Silver Card. Use them from MERCY > Capture.)' }]);
   }
 
   private showRoomName() {
@@ -457,7 +458,9 @@ export class WorldScene extends Phaser.Scene {
     if (left <= 0) return false;
     if (this.stepAcc < this.nextEncounter) return false;
     s.encountersLeft[this.room.id] = left - 1;
-    const id = enc.table[Phaser.Math.Between(0, enc.table.length - 1)];
+    const depth = 1 - Phaser.Math.Clamp(this.player.y / this.room.size[1], 0, 1);
+    const id = rollEncounter(enc.table, depth);
+    if (!id) return false;
     this.startBattle(id);
     return true;
   }

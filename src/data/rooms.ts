@@ -46,6 +46,13 @@ export interface Trigger {
   requires?: string;
 }
 
+/** One encounter-table entry. depth is how far into the room (0 = the south edge you enter by, 1 = the far north edge) it can appear. */
+export interface Encounter {
+  id: string;
+  w: number;
+  depth?: [number, number];
+}
+
 export interface RoomDef {
   id: string;
   name: string;
@@ -60,7 +67,7 @@ export interface RoomDef {
   things?: Interactable[];
   candles?: { id: string; at: Pt; kind: 'candle_double' | 'candle_tall' | 'candle_small' }[];
   lights?: Light[];
-  encounters?: { table: string[]; budget: number };
+  encounters?: { table: Encounter[]; budget: number };
   triggers?: Trigger[];
   music: string;
   fireflies?: number;
@@ -307,16 +314,51 @@ if (WAYSTONE_EXITS) {
   ex[2] = { rect: [1450, 60, 110, 12], to: WAYSTONE_EXITS.topRight, spawn: WAYSTONE_EXITS.topRightSpawn, locked: 'orochiDone', lockedText: ['* The eastern road is blocked by eight great coils of scale.', '* Not while the Waystone is guarded.'] };
 }
 
-// Encounter tables come from the roster: each DIB creature appears in the rooms
-// its wiki location data places it in (see tools/dib_kits.json).
-const BUDGET: Record<string, number> = { outskirts: 4, forest: 4, mosswood: 4, waystone: 1 };
+// The western forest, by depth: the entrance holds Bitewings, Goblins, Sludges and Bat
+// Squirrels (with a very rare Snow Cub or Fire Cub); Giant Wasps take over deeper in,
+// and Giant Ants hold the deepest woods. Depth counts rooms and how far north you are.
+const FOREST: Record<string, Encounter[]> = {
+  forest: [
+    { id: 'bitewing', w: 26 }, { id: 'goblin', w: 24 }, { id: 'sludge', w: 24 }, { id: 'bat_squirrel', w: 24 },
+    { id: 'snow_cub', w: 1 }, { id: 'fire_cub', w: 1 },
+    { id: 'giant_wasp', w: 14, depth: [0.6, 1] },
+  ],
+  mosswood: [
+    { id: 'bitewing', w: 10 }, { id: 'goblin', w: 10 }, { id: 'sludge', w: 8 }, { id: 'bat_squirrel', w: 10 },
+    { id: 'snow_cub', w: 0.6 }, { id: 'fire_cub', w: 0.6 },
+    { id: 'giant_wasp', w: 34 },
+    { id: 'giant_ant', w: 30, depth: [0.45, 1] },
+  ],
+  waystone: [{ id: 'giant_ant', w: 60 }, { id: 'giant_wasp', w: 30 }],
+};
+
+// Everywhere else, encounter tables come from the roster: each DIB creature appears in
+// the rooms its wiki location data places it in (see tools/dib_kits.json).
+const BUDGET: Record<string, number> = { outskirts: 4, forest: 5, mosswood: 5, waystone: 2 };
+const KIT_IDS = new Set(DIB_KITS.map((k) => k.id as string));
+for (const [room, table] of Object.entries(FOREST)) {
+  const t = table.filter((e) => KIT_IDS.has(e.id));
+  if (t.length && ROOMS[room]) ROOMS[room].encounters = { table: t, budget: BUDGET[room] };
+}
 for (const k of DIB_KITS) {
   if (k.role !== 'encounter') continue;
   for (const room of k.rooms) {
     const r = ROOMS[room];
-    if (!r) continue;
+    if (!r || FOREST[room]) continue;
     r.encounters ??= { table: [], budget: BUDGET[room] ?? 2 };
     r.encounters.budget = BUDGET[room] ?? r.encounters.budget;
-    if (!r.encounters.table.includes(k.id)) r.encounters.table.push(k.id);
+    if (!r.encounters.table.some((e) => e.id === k.id)) r.encounters.table.push({ id: k.id, w: 10 });
   }
+}
+
+/** Weighted pick from a room's table, given how deep (0-1) into the room the player is. */
+export function rollEncounter(table: Encounter[], depth: number, r = Math.random()) {
+  const ok = table.filter((e) => !e.depth || (depth >= e.depth[0] && depth <= e.depth[1]));
+  const total = ok.reduce((a, e) => a + e.w, 0);
+  let x = r * total;
+  for (const e of ok) {
+    x -= e.w;
+    if (x < 0) return e.id;
+  }
+  return ok[ok.length - 1]?.id;
 }

@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { State } from './state';
 import '@fontsource/cinzel/700.css';
 import '@fontsource/cinzel/900.css';
 import '@fontsource/cormorant-garamond/600.css';
@@ -34,7 +35,8 @@ async function start() {
     fps: { target: 60, smoothStep: false },
     scene: [BootScene, TitleScene, IntroScene, WorldScene, BattleScene, MenuScene, GameOverScene, HatchlingScene, ReaderScene],
   });
-  (window as unknown as { __game: Phaser.Game }).__game = game;
+  (window as unknown as { __game: Phaser.Game; __state: typeof State }).__game = game;
+  (window as unknown as { __state: typeof State }).__state = State; // for headless tests
 }
 
 start();

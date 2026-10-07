@@ -44,7 +44,9 @@ export interface MonsterDef {
   affinity: string;
   boss?: boolean;
   music: string;
-  bindChance: number;
+  capture: number; // base capture rate with a regular Capture Card at 0 HP (0 = cannot be captured)
+  rare?: boolean; // a rare sighting: harder to capture
+  captureFail?: string[];
   check: string;
   intro: string;
   idle: string[];
@@ -59,6 +61,7 @@ interface Kit {
   id: string;
   name: string;
   role: string;
+  rarity?: string;
   rooms: readonly string[];
   wiki: { number: string; stars: number; element: string; lv1: { hp: number; attack: number; magic: number; defense: number } };
   sprite: { dominant_color_hex: string; faces: string; flier: boolean };
@@ -69,6 +72,7 @@ interface Kit {
     talk: readonly string[];
     spare_text: string;
     lore: string;
+    capture_fail?: readonly string[];
     acts: readonly { name: string; text: readonly string[]; mercy: number; once: boolean; calm: number }[];
     attacks: readonly { ability: string; tu: number; base_pattern: string; projectile: string; tint_hex: string; twist: string; box: readonly number[]; intensity: number; flavor: string }[];
   };
@@ -80,6 +84,16 @@ function nameColor(hex: string) {
   const ch = (v: number) => Math.round(v + (255 - v) * 0.55);
   const [r, g, b] = [ch((n >> 16) & 255), ch((n >> 8) & 255), ch(n & 255)];
   return '#' + ((r << 16) | (g << 8) | b).toString(16).padStart(6, '0');
+}
+
+// DIB: "The more damaged a monster is, the higher the capture chance." Rarer (higher-star)
+// creatures resist more; rare sightings and guardians resist far more; Dragon Overlords never yield.
+function baseCapture(k: Kit) {
+  if (k.role === 'boss' || k.role === 'ending') return 0;
+  let c = Math.max(0.12, Math.min(0.65, 0.78 - 0.11 * k.wiki.stars));
+  if (k.role === 'miniboss') c *= 0.35;
+  if (k.rarity === 'rare') c *= 0.45;
+  return c;
 }
 
 // Real DIB level-1 stats are converted into Undertale-scale numbers, keeping their ratios.
@@ -105,7 +119,9 @@ function fromKit(k: Kit): MonsterDef {
     affinity: k.wiki.element,
     boss,
     music: boss ? 'boss' : 'battle',
-    bindChance: k.role === 'boss' ? 0 : boss ? 0.3 : 0.65,
+    capture: baseCapture(k),
+    rare: k.rarity === 'rare',
+    captureFail: k.battle.capture_fail ? [...k.battle.capture_fail] : undefined,
     check: k.battle.check,
     intro: k.battle.intro,
     idle: [...k.battle.idle],
@@ -145,11 +161,37 @@ export interface ItemDef {
   name: string;
   desc: string;
   key?: boolean; // key items are read from the Satchel and never consumed
+  capture?: boolean; // capture cards are thrown from MERCY > Capture
+}
+
+export interface CaptureCard {
+  item: string;
+  tex: string;
+  mult: number; // multiplies the capture chance; Infinity = guaranteed
+  price: number; // DIB lets you buy cards mid-fight
+}
+
+export const CAPTURE_CARDS: CaptureCard[] = [
+  { item: 'orb', tex: 'ui_capture_normal', mult: 1, price: 25 },
+  { item: 'silver_card', tex: 'ui_capture_silver', mult: 1.75, price: 120 },
+  { item: 'gold_card', tex: 'ui_capture_gold', mult: Infinity, price: 480 },
+];
+
+/** Chance (0-1) that a card holds the monster: at full HP a card rarely works, near 0 HP it nears the base rate. */
+export function captureChance(m: MonsterDef, hpFrac: number, calm: boolean, card: CaptureCard) {
+  if (m.capture <= 0) return 0;
+  if (card.mult === Infinity) return 1;
+  const worn = 1 - Math.max(0, Math.min(1, hpFrac));
+  const p = m.capture * (0.3 + 0.7 * Math.pow(worn, 0.9)) + (calm ? 0.15 * (m.capture / 0.5) : 0);
+  return Math.max(0.03, Math.min(0.95, p * card.mult));
 }
 
 export const ITEMS: Record<string, ItemDef> = {
   tonic: { id: 'tonic', name: 'Restoration Tonic', desc: 'Restores 15 HP. Tastes like blue.' },
-  orb: { id: 'orb', name: 'Binding Orb', desc: 'Binds a calm or weakened monster as your companion.' },
+  // The three DIB capture cards. ('orb' keeps old saves working.)
+  orb: { id: 'orb', name: 'Capture Card', desc: 'Captures a wild monster. Weaken it first: the more damaged it is, the higher the chance.', capture: true },
+  silver_card: { id: 'silver_card', name: 'Silver Card', desc: 'A capture card with a much higher capture chance than a regular card.', capture: true },
+  gold_card: { id: 'gold_card', name: 'Gold Card', desc: 'A capture card with a guaranteed capture chance.', capture: true },
   manual: { id: 'manual', name: "Tamer's Manual", desc: 'Training, capturing and the old ways of the Guild.', key: true },
   guide: { id: 'guide', name: 'Translation Guide', desc: 'Greetings and warnings in the tongues of the villages.', key: true },
   map: { id: 'map', name: 'Map of the Near Villages', desc: 'The roads beyond Azurelake.', key: true },

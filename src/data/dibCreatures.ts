@@ -5,8 +5,7 @@ export const DIB_KITS = [
  {
   "role": "encounter",
   "rooms": [
-   "outskirts",
-   "forest"
+   "outskirts"
   ],
   "name": "Bat Fiend",
   "id": "bat_fiend",
@@ -268,8 +267,7 @@ export const DIB_KITS = [
  {
   "role": "encounter",
   "rooms": [
-   "outskirts",
-   "mosswood"
+   "outskirts"
   ],
   "name": "Bones",
   "id": "bones",
@@ -420,7 +418,7 @@ export const DIB_KITS = [
  {
   "role": "encounter",
   "rooms": [
-   "forest"
+   "outskirts"
   ],
   "name": "Dark Priest",
   "id": "dark_priest",
@@ -548,10 +546,7 @@ export const DIB_KITS = [
  },
  {
   "role": "encounter",
-  "rooms": [
-   "forest",
-   "mosswood"
-  ],
+  "rooms": [],
   "name": "Scale Knight",
   "id": "scale_knight",
   "wiki": {
@@ -680,10 +675,7 @@ export const DIB_KITS = [
  },
  {
   "role": "encounter",
-  "rooms": [
-   "forest",
-   "mosswood"
-  ],
+  "rooms": [],
   "name": "Devil Worm",
   "id": "devil_worm",
   "wiki": {
@@ -1458,8 +1450,7 @@ export const DIB_KITS = [
  {
   "role": "encounter",
   "rooms": [
-   "outskirts",
-   "forest"
+   "outskirts"
   ],
   "name": "Slime",
   "id": "slime",
@@ -1749,7 +1740,7 @@ export const DIB_KITS = [
  {
   "role": "encounter",
   "rooms": [
-   "forest"
+   "outskirts"
   ],
   "name": "Evil Eye",
   "id": "evil_eye",
@@ -1857,9 +1848,7 @@ export const DIB_KITS = [
  },
  {
   "role": "encounter",
-  "rooms": [
-   "forest"
-  ],
+  "rooms": [],
   "name": "Cockatrice",
   "id": "cockatrice",
   "wiki": {
@@ -2012,10 +2001,7 @@ export const DIB_KITS = [
  },
  {
   "role": "encounter",
-  "rooms": [
-   "forest",
-   "mosswood"
-  ],
+  "rooms": [],
   "name": "Beast Knight",
   "id": "beast_knight",
   "wiki": {
@@ -2122,9 +2108,7 @@ export const DIB_KITS = [
  },
  {
   "role": "encounter",
-  "rooms": [
-   "mosswood"
-  ],
+  "rooms": [],
   "name": "Cult Warrior",
   "id": "cult_warrior",
   "wiki": {
@@ -2272,7 +2256,7 @@ export const DIB_KITS = [
  {
   "role": "encounter",
   "rooms": [
-   "mosswood"
+   "outskirts"
   ],
   "name": "Dream Eater",
   "id": "dream_eater",
@@ -2380,9 +2364,7 @@ export const DIB_KITS = [
  },
  {
   "role": "encounter",
-  "rooms": [
-   "mosswood"
-  ],
+  "rooms": [],
   "name": "Mutation",
   "id": "mutation",
   "wiki": {
@@ -2529,9 +2511,7 @@ export const DIB_KITS = [
  },
  {
   "role": "encounter",
-  "rooms": [
-   "mosswood"
-  ],
+  "rooms": [],
   "name": "Wasp Queen",
   "id": "wasp_queen",
   "wiki": {
@@ -2701,10 +2681,7 @@ export const DIB_KITS = [
  },
  {
   "role": "encounter",
-  "rooms": [
-   "mosswood",
-   "waystone"
-  ],
+  "rooms": [],
   "name": "Manticore",
   "id": "manticore",
   "wiki": {
@@ -2871,9 +2848,7 @@ export const DIB_KITS = [
  },
  {
   "role": "encounter",
-  "rooms": [
-   "waystone"
-  ],
+  "rooms": [],
   "name": "Yeti",
   "id": "yeti",
   "wiki": {
@@ -3026,9 +3001,7 @@ export const DIB_KITS = [
  },
  {
   "role": "encounter",
-  "rooms": [
-   "waystone"
-  ],
+  "rooms": [],
   "name": "Imp",
   "id": "imp",
   "wiki": {
@@ -3169,6 +3142,1053 @@ export const DIB_KITS = [
      ],
      "intensity": 1,
      "flavor": "* A sick green rot opens in the ground and spreads."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "forest",
+   "mosswood"
+  ],
+  "name": "Bitewing",
+  "id": "bitewing",
+  "wiki": {
+   "number": "035",
+   "stars": 1.5,
+   "element": "Air",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/5/5f/Bitewing.png",
+   "image_size": [
+    90,
+    61
+   ],
+   "lv1": {
+    "hp": 28,
+    "attack": 8,
+    "magic": 8,
+    "speed": 31,
+    "defense": 2,
+    "resist": 2
+   },
+   "abilities": [
+    {
+     "name": "Peck",
+     "tu": "70",
+     "target": "1 Foe",
+     "effect": "5-6 Physical Damage"
+    },
+    {
+     "name": "Tailwind",
+     "tu": "100",
+     "target": "Self",
+     "effect": "Speeds up Actions by 38%"
+    }
+   ],
+   "evolution": "Bitewing (1st Form, evolves at level 10) → Flame Wing (2nd Form, evolves at level 34) → Angelic Bird (3rd Form)",
+   "obtain": "Found in Southern Alvalon and in Northern Alvalon (locations shown on wiki maps), and in the North Cave on all floors."
+  },
+  "sprite": {
+   "description": "Small dark-grey and white bird in mid-flight, flying toward the left: head and short pointed beak at the upper left, wings spread wide with grey-black flight feathers, white underwing and belly patches, tail feathers trailing to the right; clean transparent sprite.",
+   "dominant_color_hex": "#3a3a3a",
+   "faces": "left",
+   "flier": true
+  },
+  "battle": {
+   "check": "* BITEWING - AIR - 1.5 STARS.\n* Fast on the wing. It pecks in short, sharp strikes.\n* Given time, it rides the wind and moves quicker still.",
+   "intro": "* A Bitewing drops from the canopy and circles low.",
+   "idle": [
+    "* The Bitewing wheels overhead, waiting for an opening.",
+    "* Grey feathers rasp against the air as it banks.",
+    "* The Bitewing settles on a waystone, then lifts again.",
+    "* A thin wind gathers beneath its wings."
+   ],
+   "talk": [
+    "Kreee.",
+    "Kek.\nKek-kek.",
+    "...tk.\ntk tk.",
+    "Wind.\nRises.",
+    "Kraa.\nMine.\nMy branch."
+   ],
+   "spare_text": "* The Bitewing climbs into the branches and does not return.",
+   "lore": "Bitewing is DIB monster number 035, a 1.5-star Air creature found in Southern and Northern Alvalon and on every floor of the North Cave. It strikes a single foe with Peck and uses Tailwind to speed up its own actions by 38%. At level 10 it evolves into Flame Wing, which becomes Angelic Bird at level 34. Stats are its level-1 values.",
+   "capture_fail": [
+    "* The Bitewing twists out of the card's light.",
+    "* It shakes its feathers and turns back toward you."
+   ],
+   "acts": [
+    {
+     "name": "Hold Still",
+     "text": [
+      "* You stand motionless beneath its circling path.",
+      "* The Bitewing's strikes slow. It watches you instead."
+     ],
+     "mercy": 40,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Offer Seed",
+     "text": [
+      "* You scatter a handful of trail seed on the stone.",
+      "* The Bitewing drops down and pecks at it, wary but hungry."
+     ],
+     "mercy": 60,
+     "once": true,
+     "calm": 2
+    },
+    {
+     "name": "Lower Gaze",
+     "text": [
+      "* You look away from its nest branch.",
+      "* The Bitewing stops screeching, though it does not land."
+     ],
+     "mercy": 30,
+     "once": false,
+     "calm": 1
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Peck",
+     "tu": 70,
+     "base_pattern": "swoop",
+     "projectile": "fx_silverring",
+     "tint_hex": "#b8b8b8",
+     "twist": "none",
+     "box": [
+      360,
+      230
+     ],
+     "intensity": 0.8,
+     "flavor": "* The Bitewing folds its wings and dives, beak first."
+    },
+    {
+     "ability": "Tailwind",
+     "tu": 100,
+     "base_pattern": "tornado_sweep",
+     "projectile": "fx_tornado",
+     "tint_hex": "#8a8f94",
+     "twist": "none",
+     "box": [
+      460,
+      240
+     ],
+     "intensity": 0.75,
+     "flavor": "* Wind gathers under its wings. It moves faster now."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "forest",
+   "mosswood"
+  ],
+  "name": "Goblin",
+  "id": "goblin",
+  "wiki": {
+   "number": "059",
+   "stars": 2,
+   "element": "Death",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/d/d2/Goblin.png",
+   "image_size": [
+    73,
+    90
+   ],
+   "lv1": {
+    "hp": 28,
+    "attack": 8,
+    "magic": 8,
+    "speed": 16,
+    "defense": 5,
+    "resist": 5
+   },
+   "abilities": [
+    {
+     "name": "Escape",
+     "tu": "130",
+     "target": "-",
+     "effect": "Escape from the battle."
+    },
+    {
+     "name": "Spear",
+     "tu": "130",
+     "target": "1 Foe",
+     "effect": "9-11 Physical Damage (Death)"
+    }
+   ],
+   "evolution": "Goblin (1st Form) → Gnoll (2nd Form), evolves at level 15",
+   "obtain": "Found in Southern Alvalon at the following locations: [Goblinlocation map]. And in Northern Alvalon at the following locations: [Assassinlocation2 map]. And in Pirate's Cave (all floors) in Northern Alvalon. Goblin can also be found in the lower part of Ringfeld (Ringfield)."
+  },
+  "sprite": {
+   "description": "Squat, round dark-brown body bound with a black strap and a small gold medallion, ringed at the neck by a ragged yellow collar like sunflower petals. Its head is a long grey-silver beaked helm with a single green eye, and it stands on pale clawed feet with a dark spiked tail. In its red-gloved left hand it holds a tall thin trident-spear topped with a small skull. Head and beak point to the right.",
+   "dominant_color_hex": "#3a2a22",
+   "faces": "right",
+   "flier": false
+  },
+  "battle": {
+   "check": "* GOBLIN - DEATH - 2 STARS.\n* Carries a skull-tipped spear. Each thrust lands where it was aimed.\n* It keeps one eye on the way out.",
+   "intro": "* A Goblin steps out between the waystones, spear lowered.",
+   "idle": [
+    "* The Goblin shifts its weight from foot to foot, spear never wavering.",
+    "* The small skull on the spear's tip turns in the wind.",
+    "* The Goblin's green eye flicks toward the treeline behind it.",
+    "* The grass around the waystone is trampled flat. The Goblin has waited here before."
+   ],
+   "talk": [
+    "Krrk.",
+    "Hhss...\nkrrk.",
+    "*clicks beak*",
+    "Back.\nBack.",
+    "Krr...\n*glances\nat trees*"
+   ],
+   "spare_text": "* The Goblin lowers its spear and backs into the undergrowth.",
+   "lore": "Goblin is monster number 59, a 2-star creature of the Death element. It fights with Spear, a single-target strike dealing 9-11 physical Death damage, and can use Escape to flee the battle. It evolves into Gnoll at level 15 and is found in Southern Alvalon, Northern Alvalon, every floor of Pirate's Cave and the lower part of Ringfeld. Stats are its level-1 values.",
+   "capture_fail": [
+    "* The card flares and goes dark. The Goblin tears free of the light.",
+    "* It levels its spear again, warier than before."
+   ],
+   "acts": [
+    {
+     "name": "Hold Ground",
+     "text": [
+      "* You plant your feet and do not step back.",
+      "* The Goblin measures the distance and does not advance."
+     ],
+     "mercy": 35,
+     "once": false,
+     "calm": 20
+    },
+    {
+     "name": "Lower Gaze",
+     "text": [
+      "* You look away from its eye and let your arms hang loose.",
+      "* The Goblin's grip on the spear slackens."
+     ],
+     "mercy": 40,
+     "once": false,
+     "calm": 30
+    },
+    {
+     "name": "Clear Path",
+     "text": [
+      "* You step aside, leaving the trail behind it open.",
+      "* The Goblin glances at the gap. It has a way out now."
+     ],
+     "mercy": 60,
+     "once": true,
+     "calm": 40
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Spear",
+     "tu": 130,
+     "base_pattern": "telegraph_lines",
+     "projectile": "fx_silverring",
+     "tint_hex": "#c8c8c8",
+     "twist": "none",
+     "box": [
+      360,
+      230
+     ],
+     "intensity": 0.8,
+     "flavor": "* Thin lines mark the air. The spear follows them exactly."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "forest",
+   "mosswood"
+  ],
+  "name": "Sludge",
+  "id": "sludge",
+  "wiki": {
+   "number": "044",
+   "stars": 1,
+   "element": "Earth",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/d/d1/Sludge.png",
+   "image_size": [
+    71,
+    89
+   ],
+   "lv1": {
+    "hp": 27,
+    "attack": 5,
+    "magic": 5,
+    "speed": 27,
+    "defense": 5,
+    "resist": 5
+   },
+   "abilities": [
+    {
+     "name": "Ooze",
+     "tu": "70",
+     "target": "1 Foe",
+     "effect": "3-4 Physical Damage (Earth)"
+    },
+    {
+     "name": "Split",
+     "tu": "250",
+     "target": "Self",
+     "effect": "Creates a copy of this monster. HP is shared with the copy."
+    }
+   ],
+   "evolution": "Sludge → Slime (evolves at level 8) → King Slime (evolves at level 25)",
+   "obtain": "Found in Southern Alvalon in the following locations: [location map]. And in Northern Alvalon in this location: [location map]. And in the North Cave in Southern Alvalon on all floors."
+  },
+  "sprite": {
+   "description": "A pale cyan-blue translucent droplet-shaped blob with a small pointed tip on top, a glossy highlight, a thin dark slit of a mouth and a wider gelatinous base pooling on the ground. Clean transparent PNG, front view.",
+   "dominant_color_hex": "#90E2E7",
+   "faces": "front",
+   "flier": false
+  },
+  "battle": {
+   "check": "* SLUDGE - EARTH - 1 STAR.\n* Strikes with heavy ooze. Can split itself in two, but the copy draws on the same life.",
+   "intro": "* A Sludge seeps out from under a waystone.",
+   "idle": [
+    "* The Sludge settles lower into the moss.",
+    "* A slow ripple runs through the Sludge's body.",
+    "* Something small and dark drifts inside the Sludge.",
+    "* The ground beneath the Sludge is wet and cold."
+   ],
+   "talk": [
+    "blub...",
+    "*drip*\n*drip*",
+    "...glk.",
+    "wet ground.\nstay.",
+    "*squelch*"
+   ],
+   "spare_text": "* The Sludge loses interest and sinks back into the damp earth.",
+   "lore": "Sludge is DIB monster number 44, a 1-star Earth creature found in Southern and Northern Alvalon and on every floor of the North Cave. It strikes a single foe with Ooze for 3-4 physical Earth damage, and its Split ability creates a copy of itself that shares its HP. It evolves into Slime at level 8, which becomes King Slime at level 25. Stats are its level-1 values.",
+   "capture_fail": [
+    "* The card's light slides off the Sludge's wet body.",
+    "* The Sludge reforms where it stood, unbound."
+   ],
+   "acts": [
+    {
+     "name": "Keep Still",
+     "text": [
+      "* You stop moving and let the Sludge sense you.",
+      "* Its surface stops trembling."
+     ],
+     "mercy": 40,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Wet Soil",
+     "text": [
+      "* You pour water over the soil beside the Sludge.",
+      "* It slowly spreads into the damp patch."
+     ],
+     "mercy": 60,
+     "once": true,
+     "calm": 2
+    },
+    {
+     "name": "Step Back",
+     "text": [
+      "* You give the Sludge more ground.",
+      "* It pulls itself into a tighter mound."
+     ],
+     "mercy": 30,
+     "once": false,
+     "calm": 1
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Ooze",
+     "tu": 70,
+     "base_pattern": "bounce_orbs",
+     "projectile": "orb_moss",
+     "tint_hex": "#6CC4D8",
+     "twist": "none",
+     "box": [
+      340,
+      230
+     ],
+     "intensity": 0.8,
+     "flavor": "* Heavy globs of ooze slap down and roll across the ground."
+    },
+    {
+     "ability": "Split",
+     "tu": 250,
+     "base_pattern": "orbit_ring",
+     "projectile": "orb_moss",
+     "tint_hex": "#90E2E7",
+     "twist": "multi_hit",
+     "box": [
+      420,
+      240
+     ],
+     "intensity": 0.9,
+     "flavor": "* The Sludge tears into two. Both halves move as one body."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "forest",
+   "mosswood"
+  ],
+  "name": "Bat Squirrel",
+  "id": "bat_squirrel",
+  "wiki": {
+   "number": "017",
+   "stars": 1,
+   "element": "Air",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/c/ce/Bat_Squirrel.png",
+   "image_size": [
+    88,
+    120
+   ],
+   "lv1": {
+    "hp": 21,
+    "attack": 3,
+    "magic": 8,
+    "speed": 32,
+    "defense": 0,
+    "resist": 5
+   },
+   "abilities": [
+    {
+     "name": "Feed",
+     "tu": "70",
+     "target": "1 Foe",
+     "effect": "1-2 Physical Damage (Air), heals for 50% of damage dealt"
+    },
+    {
+     "name": "Tailwind",
+     "tu": "100",
+     "target": "Self",
+     "effect": "Speeds up Actions by 38%"
+    }
+   ],
+   "evolution": "Bat Squirrel → Giant Bat (evolves at level 10) → Doombat (evolves at level 22) → Bat King (evolves at level 33)",
+   "obtain": "Found in Southern Alvalon in the following locations: [location map]. And in North Cave (floors 1 & 2) in Southern Alvalon and Pirate's Cave (floors 1-4) in Northern Alvalon."
+  },
+  "sprite": {
+   "description": "Dark charcoal-grey bat with shaggy grey fur and dark maroon-mauve leathery wings spread wide, a bushy grey squirrel-like tail trailing down to the lower left, and a fanged red mouth and cyan eye, diving down toward the viewer and slightly right. Clean transparent PNG, 88x120.",
+   "dominant_color_hex": "#464646",
+   "faces": "right",
+   "flier": true
+  },
+  "battle": {
+   "check": "* BAT SQUIRREL - AIR - 1 STAR.\n* It drinks from what it bites, and its wounds close as it feeds.\n* It rides its own tailwind and quickens.",
+   "intro": "* A Bat Squirrel drops from the canopy without a sound.",
+   "idle": [
+    "* The Bat Squirrel hangs in the air on slow, leathery strokes.",
+    "* Its cyan eye follows the pulse at your throat.",
+    "* Wingbeats stir the dead leaves around the waystones.",
+    "* The air around it moves before it does."
+   ],
+   "talk": [
+    "Skree.",
+    "...tk tk tk...",
+    "Warm.\nWarm blood.",
+    "Hhhss.",
+    "Feed.\nFeed."
+   ],
+   "spare_text": "* The Bat Squirrel loses interest and folds back into the dark branches.",
+   "lore": "Bat Squirrel is monster No. 17, a 1-star Air monster that evolves into Giant Bat at level 10, Doombat at level 22 and Bat King at level 33. The wiki records it in Southern Alvalon, in North Cave (floors 1 and 2) and in Pirate's Cave (floors 1-4). Its Feed bite deals Air damage and heals it for half the damage dealt, and Tailwind speeds up its actions by 38%. Stats are its level-1 values.",
+   "capture_fail": [
+    "* The card flares. The Bat Squirrel twists free on a gust of air.",
+    "* It circles once, wary, and keeps its distance."
+   ],
+   "acts": [
+    {
+     "name": "Stand Still",
+     "text": [
+      "* You hold your breath and stay motionless.",
+      "* The Bat Squirrel circles lower, uncertain what you are."
+     ],
+     "mercy": 35,
+     "once": false,
+     "calm": 20
+    },
+    {
+     "name": "Shade Eyes",
+     "text": [
+      "* You shield your face and turn from its gaze.",
+      "* Without a target to fix on, its wingbeats slow."
+     ],
+     "mercy": 30,
+     "once": false,
+     "calm": 15
+    },
+    {
+     "name": "Offer Berries",
+     "text": [
+      "* You set crushed forest berries on a waystone.",
+      "* It drops to the stone and laps at the juice instead of you."
+     ],
+     "mercy": 50,
+     "once": true,
+     "calm": 30
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Feed",
+     "tu": 70,
+     "base_pattern": "swoop",
+     "projectile": "orb_blood",
+     "tint_hex": "#7a3a4a",
+     "twist": "lifesteal",
+     "box": [
+      380,
+      230
+     ],
+     "intensity": 0.8,
+     "flavor": "* It dives for an open vein. What it takes, it keeps."
+    },
+    {
+     "ability": "Tailwind",
+     "tu": 100,
+     "base_pattern": "tornado_sweep",
+     "projectile": "fx_tornado",
+     "tint_hex": "#6e5a78",
+     "twist": "none",
+     "box": [
+      460,
+      240
+     ],
+     "intensity": 0.75,
+     "flavor": "* Air gathers under its wings. Its movements quicken."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "forest",
+   "mosswood"
+  ],
+  "rarity": "rare",
+  "name": "Snow Cub",
+  "id": "snow_cub",
+  "wiki": {
+   "number": "025",
+   "stars": 3,
+   "element": "Water",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/7/70/Snow_Cub.png",
+   "image_size": [
+    153,
+    140
+   ],
+   "lv1": {
+    "hp": 31,
+    "attack": 9,
+    "magic": 9,
+    "speed": 19,
+    "defense": 13,
+    "resist": 13
+   },
+   "abilities": [
+    {
+     "name": "Claw",
+     "tu": "160",
+     "target": "1 Foe",
+     "effect": "11-14 Physical Damage (Water)"
+    },
+    {
+     "name": "Hail",
+     "tu": "130",
+     "target": "1 Foe",
+     "effect": "9-12 Magical Damage (Water)"
+    }
+   ],
+   "evolution": "Snow Cub (1st Form) evolves into Snow Panther (2nd Form) at level 28.",
+   "obtain": "Found rarely in the North Cave on all floors; should have around 77 Hp."
+  },
+  "sprite": {
+   "description": "A snow leopard cub sitting low, body turned to the right and head facing the viewer: white fur covered in dark navy rosettes, pale blue-green eyes, pink nose, and a long ringed tail curled in front of its paws. Clean transparent PNG.",
+   "dominant_color_hex": "#E6ECF2",
+   "faces": "front",
+   "flier": false
+  },
+  "battle": {
+   "check": "* SNOW CUB - Water, 3 stars.\n* Its claws carry a cold edge. It can also call hail down on a single foe.",
+   "intro": "* Something pale moves between the waystones. A Snow Cub, far from any snow.",
+   "idle": [
+    "* The Snow Cub keeps low. Its breath leaves a faint mist.",
+    "* Frost gathers on the moss where it stands.",
+    "* The Snow Cub's ringed tail sweeps slowly from side to side.",
+    "* Somewhere above the canopy, the air turns cold."
+   ],
+   "talk": [
+    "Hhhff.",
+    "Rrrr...\nCold here.\nNot enough.",
+    "Krrh.\nStay back.",
+    "Mother?\n...no.",
+    "Hssss."
+   ],
+   "spare_text": "* The Snow Cub stops watching you. It turns and pads off into the trees, leaving a thin line of frost behind it.",
+   "lore": "Snow Cub is monster number 25, a 3-star Water creature that evolves into Snow Panther at level 28. The wiki records it as found rarely in the North Cave on all floors, so a sighting this far into the Western Forest is unusual. It fights with Claw, which deals 11-14 physical Water damage to one foe, and Hail, which deals 9-12 magical Water damage to one foe. Stats are its level-1 values.",
+   "capture_fail": [
+    "* The card frosts over and cracks free of the Snow Cub.",
+    "* It shakes the cold light from its fur and crouches again."
+   ],
+   "acts": [
+    {
+     "name": "Stay Low",
+     "text": [
+      "* You lower yourself to the cub's height and keep still.",
+      "* Its ears turn toward you. The frost at its paws stops spreading."
+     ],
+     "mercy": 35,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Offer Scent",
+     "text": [
+      "* You hold out an open hand and let it take your scent.",
+      "* The Snow Cub sniffs the air for a long moment. Its tail goes still."
+     ],
+     "mercy": 45,
+     "once": true,
+     "calm": 2
+    },
+    {
+     "name": "Look Away",
+     "text": [
+      "* You turn your eyes from it, the way a larger cat would to show no challenge.",
+      "* The Snow Cub's crouch loosens a little."
+     ],
+     "mercy": 30,
+     "once": false,
+     "calm": 1
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Claw",
+     "tu": 160,
+     "base_pattern": "telegraph_lines",
+     "projectile": "fx_silverring",
+     "tint_hex": "#BFD3E8",
+     "twist": "slow",
+     "box": [
+      360,
+      230
+     ],
+     "intensity": 0.85,
+     "flavor": "* Pale lines mark the ground. The Snow Cub lunges along them, claws rimed with frost."
+    },
+    {
+     "ability": "Hail",
+     "tu": 130,
+     "base_pattern": "diagonal_rain",
+     "projectile": "fx_sparkle",
+     "tint_hex": "#2E4A78",
+     "twist": "slow",
+     "box": [
+      440,
+      240
+     ],
+     "intensity": 0.8,
+     "flavor": "* The air above you goes cold. Hail falls slanted through the branches."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "forest",
+   "mosswood"
+  ],
+  "rarity": "rare",
+  "name": "Fire Cub",
+  "id": "fire_cub",
+  "wiki": {
+   "number": "027",
+   "stars": 3,
+   "element": "Fire",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/e/ed/Fire_Cub.png",
+   "image_size": [
+    153,
+    140
+   ],
+   "lv1": {
+    "hp": 31,
+    "attack": 9,
+    "magic": 9,
+    "speed": 19,
+    "defense": 13,
+    "resist": 13
+   },
+   "abilities": [
+    {
+     "name": "Claw",
+     "tu": "160",
+     "target": "1 Foe",
+     "effect": "11-14 Physical Damage (Fire)"
+    },
+    {
+     "name": "Flame",
+     "tu": "130",
+     "target": "1 Foe",
+     "effect": "9-12 Magical Damage (Fire)"
+    }
+   ],
+   "evolution": "Fire Cub (1st Form) evolves at level 28 into Fire Tiger (2nd Form).",
+   "obtain": "Found in the North Cave in Southern Alvalon on floor 1 and floor 4."
+  },
+  "sprite": {
+   "description": "Clean transparent sprite of a tiger cub lying down: orange fur with black stripes, white chest, muzzle and paws, large olive-gold eyes looking at the viewer, head on the left, black-and-white ringed tail curled at the lower right.",
+   "dominant_color_hex": "#d79f49",
+   "faces": "left",
+   "flier": false
+  },
+  "battle": {
+   "check": "* FIRE CUB - FIRE - 3 STARS.\n* Its claws carry heat as well as edge.\n* It breathes flame faster than it strikes.",
+   "intro": "* A striped shape lies low between the waystones. The air around it is warm.",
+   "idle": [
+    "* The Fire Cub watches you without blinking.",
+    "* Heat rises from its fur in a thin shimmer.",
+    "* Its ringed tail sweeps once across the moss.",
+    "* The leaves beneath it have begun to curl."
+   ],
+   "talk": [
+    "Hhhff.",
+    "Rrrrr...\nlow.",
+    "*sniff*\nsmoke.\nstranger.",
+    "Hhhaaa...",
+    "...\nwarm\nhere."
+   ],
+   "spare_text": "* The Fire Cub rises, turns, and pads away into the trees. The warmth lingers, then fades.",
+   "lore": "Fire Cub is DIB monster number 27, a 3-star creature of the Fire element. It strikes a single foe with Claw for 11-14 physical fire damage, or with Flame for 9-12 magical fire damage. It is found in the North Cave in Southern Alvalon on floors 1 and 4, and evolves at level 28 into Fire Tiger. Stats are its level-1 values.",
+   "capture_fail": [
+    "* The Fire Cub twists free, fur smoldering.",
+    "* The card blackens at its edges. The cub is not ready to yield."
+   ],
+   "acts": [
+    {
+     "name": "Crouch Low",
+     "text": [
+      "* You lower yourself until your eyes are level with its own.",
+      "* The Fire Cub's ears turn toward you. The heat around it eases."
+     ],
+     "mercy": 40,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Offer Scent",
+     "text": [
+      "* You hold out an open hand and keep it still.",
+      "* The cub stretches forward, breathes in once, and does not bite."
+     ],
+     "mercy": 60,
+     "once": true,
+     "calm": 2
+    },
+    {
+     "name": "Keep Distance",
+     "text": [
+      "* You step back and leave the path between you open.",
+      "* The cub's tail settles. It no longer measures the gap."
+     ],
+     "mercy": 35,
+     "once": false,
+     "calm": 1
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Claw",
+     "tu": 160,
+     "base_pattern": "swoop",
+     "projectile": "orb_blood",
+     "tint_hex": "#e07a2a",
+     "twist": "burn",
+     "box": [
+      380,
+      230
+     ],
+     "intensity": 0.85,
+     "flavor": "* The cub lunges. Its claws trail heat through the air."
+    },
+    {
+     "ability": "Flame",
+     "tu": 130,
+     "base_pattern": "aimed_volley",
+     "projectile": "fx_sparkle",
+     "tint_hex": "#ff8a1e",
+     "twist": "burn",
+     "box": [
+      420,
+      240
+     ],
+     "intensity": 0.9,
+     "flavor": "* It opens its jaws. Small tongues of fire spill toward you."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "forest",
+   "mosswood",
+   "waystone"
+  ],
+  "name": "Giant Wasp",
+  "id": "giant_wasp",
+  "wiki": {
+   "number": "029",
+   "stars": 1,
+   "element": "Air",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/3/35/Giant_Wasp.png",
+   "image_size": [
+    93,
+    90
+   ],
+   "lv1": {
+    "hp": 27,
+    "attack": 8,
+    "magic": 3,
+    "speed": 32,
+    "defense": 15,
+    "resist": 1
+   },
+   "abilities": [
+    {
+     "name": "Analyze",
+     "tu": "160",
+     "target": "-",
+     "effect": "Allows you to see incoming monsters on the enemy's team and look at the active monsters."
+    },
+    {
+     "name": "Venom Sting",
+     "tu": "130",
+     "target": "1 Foe",
+     "effect": "9-11 Physical Damage (Air), poisons target for 500 TUs (9-11 additional damage)."
+    }
+   ],
+   "evolution": "Giant Wasp → Wasp Queen (evolves at level 14)",
+   "obtain": "Found in Southern Alvalon at the following locations. And in Northern Alvalon at this location. And in the North Cave and Pirate's Cave on all floors."
+  },
+  "sprite": {
+   "description": "Giant_Wasp.png, the infobox sprite on the wiki's Giant Wasp page: a lean charcoal-black winged insect with olive-yellow banding, a segmented ribbed abdomen bulging at the lower right, long hooked scythe-like limbs curving down, and a narrow horned head at the upper left. Transparent background (about 61 percent fully transparent pixels; the head touches the top-left edge).",
+   "dominant_color_hex": "#383733",
+   "faces": "left",
+   "flier": true
+  },
+  "battle": {
+   "check": "* GIANT WASP - AIR - 1 STAR.\n* Its stinger leaves a venom that keeps working long after the strike.\n* It watches what comes next before it moves.",
+   "intro": "* A Giant Wasp drops out of the canopy, wings droning.",
+   "idle": [
+    "* The drone of wings fills the trail.",
+    "* The Giant Wasp hangs in the air, stinger curled forward.",
+    "* Its abdomen pulses in slow, ribbed beats.",
+    "* The wasp circles once and studies the ground behind you."
+   ],
+   "talk": [
+    "Bzzzzz.",
+    "Zzz...\nzzt.",
+    "Nest.\nNest.",
+    "*clicks*\n*clicks*",
+    "Sting.\nStay away."
+   ],
+   "spare_text": "* The Giant Wasp lifts away into the canopy.\n* The droning fades.",
+   "lore": "Giant Wasp is Dragon Island Blue monster number 29, a one-star Air creature that evolves into the Wasp Queen at level 14. It is found in Southern and Northern Alvalon, and on every floor of the North Cave and Pirate's Cave. Its Venom Sting deals Air damage and poisons its target for 500 TUs, and its Analyze lets it see incoming enemy monsters and study those already in the fight. Stats are its level-1 values.",
+   "capture_fail": [
+    "* The Giant Wasp tears free of the card and climbs out of reach.",
+    "* Its wings never stopped moving."
+   ],
+   "acts": [
+    {
+     "name": "Hold Still",
+     "text": [
+      "* You stop moving and let the wasp pass close.",
+      "* Its drone wavers. It is no longer sure you are a threat."
+     ],
+     "mercy": 40,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Back Away",
+     "text": [
+      "* You step slowly back from its line of flight.",
+      "* The Giant Wasp follows a little, then holds its distance."
+     ],
+     "mercy": 35,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Show Nest",
+     "text": [
+      "* You point toward the old hollow tree off the trail.",
+      "* The wasp's head turns. It drifts that way, then returns, calmer."
+     ],
+     "mercy": 60,
+     "once": true,
+     "calm": 2
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Venom Sting",
+     "tu": 130,
+     "base_pattern": "swoop",
+     "projectile": "orb_moss",
+     "tint_hex": "#afaa5f",
+     "twist": "poison",
+     "box": [
+      380,
+      230
+     ],
+     "intensity": 0.85,
+     "flavor": "* The Giant Wasp dives, stinger first. The wound burns long after."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "mosswood",
+   "waystone"
+  ],
+  "name": "Giant Ant",
+  "id": "giant_ant",
+  "wiki": {
+   "number": "041",
+   "stars": 2,
+   "element": "Earth",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/8/8f/Giant_Ant.png",
+   "image_size": [
+    116,
+    110
+   ],
+   "lv1": {
+    "hp": 29,
+    "attack": 8,
+    "magic": 5,
+    "speed": 19,
+    "defense": 13,
+    "resist": 6
+   },
+   "abilities": [
+    {
+     "name": "Adhesive Fluid",
+     "tu": "130",
+     "target": "1 Foe",
+     "effect": "Slows actions by 30%"
+    },
+    {
+     "name": "Venom Shot",
+     "tu": "100",
+     "target": "1 Foe",
+     "effect": "7-8 Physical Damage (Earth), posions for 500 TUs (7-8 additional damage)"
+    }
+   ],
+   "evolution": "Giant Ant (evolves at level 20) → Mutation (evolves at level 55) → Chimera Ant",
+   "obtain": "Found in Northern Alvalon at these locations: [location map]. And in Pirate's Cave (floors 1 & 2) in Northern Alvalon."
+  },
+  "sprite": {
+   "description": "Giant Ant's own transparent sprite: a dark charcoal-black armored ant with a large rounded abdomen, long hooked spiny legs and antennae edged in crimson-pink, head and mandibles raised toward the left.",
+   "dominant_color_hex": "#463D3F",
+   "faces": "left",
+   "flier": false
+  },
+  "battle": {
+   "check": "* GIANT ANT - EARTH - 2 STARS.\n* Spits a clinging fluid that slows its prey. Its shot carries venom.",
+   "intro": "* A Giant Ant drags itself out from under the roots.",
+   "idle": [
+    "* The Giant Ant's mandibles open and close without a sound.",
+    "* Its antennae sweep the air, tasting for your trail.",
+    "* A thin thread of fluid hangs from its jaws.",
+    "* The black plates of its body click against the stones."
+   ],
+   "talk": [
+    "Click.\nClick.",
+    "Scent.\nForeign.",
+    "...tch\ntch...",
+    "Hold.\nBind.\nBite.",
+    "Nest...\nnear."
+   ],
+   "spare_text": "* The Giant Ant lowers its antennae and backs into the roots.",
+   "lore": "Giant Ant is monster number 41, a 2-star Earth creature found in Northern Alvalon and on floors 1 and 2 of Pirate's Cave. It binds a single foe with Adhesive Fluid, slowing its actions by 30%, and strikes with Venom Shot, an Earth attack that poisons for 500 TUs. At level 20 it evolves into Mutation, which becomes Chimera Ant at level 55. Stats are its level-1 values.",
+   "capture_fail": [
+    "* The card's light closes around the Giant Ant, then cracks apart.",
+    "* It shakes free and sets its legs against the earth again."
+   ],
+   "acts": [
+    {
+     "name": "Hold Still",
+     "text": [
+      "* You stop moving and let your breathing slow.",
+      "* The Giant Ant's antennae drift toward you, then settle."
+     ],
+     "mercy": 35,
+     "once": false,
+     "calm": 20
+    },
+    {
+     "name": "Step Off Trail",
+     "text": [
+      "* You step away from the line of its path.",
+      "* The Giant Ant no longer has to go through you. Its jaws loosen."
+     ],
+     "mercy": 45,
+     "once": true,
+     "calm": 30
+    },
+    {
+     "name": "Offer Scent",
+     "text": [
+      "* You hold out a hand smeared with crushed moss and soil.",
+      "* It tastes the air for a long moment. Earth. Nothing foreign."
+     ],
+     "mercy": 30,
+     "once": false,
+     "calm": 20
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Adhesive Fluid",
+     "tu": 130,
+     "base_pattern": "aimed_volley",
+     "projectile": "orb_web",
+     "tint_hex": "#B8B0A4",
+     "twist": "slow",
+     "box": [
+      380,
+      230
+     ],
+     "intensity": 0.8,
+     "flavor": "* Strings of sticky fluid arc toward you and cling where they land."
+    },
+    {
+     "ability": "Venom Shot",
+     "tu": 100,
+     "base_pattern": "diagonal_rain",
+     "projectile": "orb_moss",
+     "tint_hex": "#C2405A",
+     "twist": "poison",
+     "box": [
+      420,
+      240
+     ],
+     "intensity": 0.95,
+     "flavor": "* The Giant Ant spits venom. The droplets hiss into the moss."
     }
    ]
   }

@@ -166,3 +166,15 @@ export function starRow(scene: Phaser.Scene, x: number, y: number, stars: number
   }
   return c;
 }
+
+// Parchment nameplate on ui_monster_card_blank (320x396 source): rows 23-50, columns 21-298.
+const CARD_PLATE = { cy: 36.5 - 198, w: 277 };
+
+/** A creature name centred on the card's parchment nameplate, shrunk to fit inside its border. */
+export function cardName(scene: Phaser.Scene, cardScale: number, text: string, size: number) {
+  const t = label(scene, 0, 0, text, size, COLORS.ink, 0).setStroke('#fff4dc', 2).setShadow(0, 0, '#000', 0);
+  const room = CARD_PLATE.w * cardScale - 14;
+  if (t.width > room) t.setScale(room / t.width);
+  // Padding is 4 above / 6 below the glyphs, so centre on the glyph box rather than the frame.
+  return t.setOrigin(0.5, (t.height / 2 + 1) / t.height).setPosition(0, CARD_PLATE.cy * cardScale);
+}

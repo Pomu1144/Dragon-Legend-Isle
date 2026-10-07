@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
 import { Sound } from '../audio/Sound';
-import { BESTIARY_ORDER, ITEMS, MONSTERS } from '../data/monsters';
+import { BESTIARY_ORDER, CAPTURE_CARDS, ITEMS, MONSTERS } from '../data/monsters';
 import { STARTERS } from '../data/starters';
 import { EXPANSION_STORY } from '../data/expansion';
 import { STORY } from '../data/story';
@@ -9,8 +9,10 @@ import type { ReaderPage } from './ReaderScene';
 const PER_PAGE = 10;
 
 /** First sentences of the bestiary entry that fit in the two lines under the cards. */
-function shortLore(lore: string, max = 150) {
-  const parts = lore.replace(/^No\. \d+[^.]*\.\s*/, '').split(/(?<=\.)\s+/);
+function shortLore(lore: string, max = 130) {
+  // The header line already gives number / element / stars, so drop a lore opener that repeats them.
+  const parts = lore.replace(/^No\. \d+[^.]*\.\s*/, '').split(/(?<=\.)\s+(?=[A-Z])/).filter((p, i) => i > 0 || !/\b(No\.|number)\s*\d+/i.test(p));
+  if (!parts.length) return '';
   let out = '';
   for (const p of parts) {
     if ((out + ' ' + p).trim().length > max) break;
@@ -20,7 +22,7 @@ function shortLore(lore: string, max = 150) {
 }
 import { EXP_TABLE, State } from '../state';
 import { Controls } from '../ui/input';
-import { Bar, body, label, panel, starRow, title, COLORS } from '../ui/widgets';
+import { Bar, body, cardName, label, panel, starRow, title, COLORS } from '../ui/widgets';
 
 const TABS = [
   { key: 'ui_tab_party', name: 'Party' },
@@ -129,7 +131,7 @@ export class MenuScene extends Phaser.Scene {
     }
     const bound = BESTIARY_ORDER.filter((id) => State.get().bestiary[id]?.bound);
     this.ink(130, 440, 'Companions', 28);
-    if (!bound.length) this.ink(130, 486, 'No monsters bound yet. Calm one down, then use a Binding Orb.', 22, 820);
+    if (!bound.length) this.ink(130, 486, 'No monsters captured yet. Wear one down, then use a Capture Card (MERCY > Capture).', 22, 820);
     bound.forEach((id, i) => {
       const x = 150 + i * 150;
       const mc = this.add.image(x + 60, 560, 'ui_minicard').setScale(0.95);
@@ -160,7 +162,7 @@ export class MenuScene extends Phaser.Scene {
       const art = this.add.image(0, -20, m.art);
       art.setScale(Math.min(118 / art.width, 88 / art.height));
       if (!rec?.seen) art.setTintFill(0x0b1a2a).setAlpha(0.85);
-      const nm = label(this, 0, -73, rec?.seen ? m.name : '???', 15, COLORS.ink, 0).setOrigin(0.5).setStroke('#fff4dc', 2);
+      const nm = cardName(this, 0.42, rec?.seen ? m.name : '???', 15);
       c.add([card, art, nm]);
       if (rec?.seen) c.add(starRow(this, -1, 36, m.stars, 60, 13));
       if (rec?.bound) {
@@ -175,7 +177,7 @@ export class MenuScene extends Phaser.Scene {
       this.content.add(c);
       this.cardObjs.push(c);
     });
-    this.detail = this.ink(130, 592, '', 19, 860);
+    this.detail = this.ink(130, 580, '', 19, 860);
     this.sel = Phaser.Math.Clamp(this.sel, 0, BESTIARY_ORDER.length - 1);
     this.refreshCards();
   }
@@ -193,7 +195,7 @@ export class MenuScene extends Phaser.Scene {
     if (this.detail) {
       this.detail.setText(
         rec?.seen
-          ? `No. ${m.number} ${m.name} · ${m.affinity} · ${m.stars}★   Spared ${rec.spared} · Defeated ${rec.defeated}${rec.bound ? ' · BOUND' : ''}\n${shortLore(m.lore)}`
+          ? `No. ${m.number} ${m.name} · ${m.affinity} · ${m.stars}★   Spared ${rec.spared} · Defeated ${rec.defeated}${rec.bound ? ' · CAPTURED' : ''}\n${shortLore(m.lore)}`
           : 'Not yet encountered. Keep exploring the western roads.',
       );
     }
@@ -206,16 +208,19 @@ export class MenuScene extends Phaser.Scene {
       this.ink(130, 170, 'Your satchel is empty.', 28);
       return;
     }
+    const gap = Math.min(110, 380 / Math.max(1, this.itemIds.length - 1));
     this.itemIds.forEach((id, i) => {
-      const y = 170 + i * 110;
-      const slot = this.add.image(170, y + 30, 'ui_slot_round').setScale(0.7);
-      const icon = this.add.image(170, y + 30, id === 'orb' ? 'ui_orb_web' : id === 'tart' ? 'ui_star' : 'ui_fx_waterring').setScale(id === 'orb' ? 0.42 : 0.5);
+      const y = 158 + i * gap;
+      const k = Math.min(1, gap / 100);
+      const cc = CAPTURE_CARDS.find((c) => c.item === id);
+      const slot = this.add.image(170, y + 28 * k, 'ui_slot_round').setScale(0.7 * k);
+      const icon = cc ? this.add.image(170, y + 28 * k, cc.tex).setScale(0.3 * k) : this.add.image(170, y + 28 * k, id === 'tart' ? 'ui_star' : ITEMS[id]?.key ? 'ui_med_book' : 'ui_fx_waterring').setScale((ITEMS[id]?.key ? 0.3 : 0.5) * k);
       this.content.add([slot, icon]);
-      const t = this.ink(240, y, `${ITEMS[id].name}  ×${inv[id]}`, 28);
-      this.ink(240, y + 38, ITEMS[id].desc, 20, 760);
+      const t = this.ink(240, y, `${ITEMS[id].name}  ×${inv[id]}`, gap < 90 ? 24 : 28);
+      this.ink(240, y + (gap < 90 ? 30 : 38), ITEMS[id].desc, gap < 90 ? 17 : 20, 760);
       this.itemTexts.push(t);
     });
-    this.ink(130, 610, 'Z  use selected item', 20);
+    this.ink(130, 622, 'Z  use selected item', 20);
     this.sel = Phaser.Math.Clamp(this.sel, 0, this.itemIds.length - 1);
     this.refreshItems();
   }
