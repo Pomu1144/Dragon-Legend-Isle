@@ -3,7 +3,7 @@ import { Sound } from '../audio/Sound';
 import { STARTERS } from '../data/starters';
 import { Controls } from '../ui/input';
 import { fireflies, lightPool, sparkleBurst } from '../ui/fx';
-import { body, cursor, label, panel, title, COLORS } from '../ui/widgets';
+import { body, cursor, label, panel, starRow, title, COLORS } from '../ui/widgets';
 
 const ELEMENT_COLOR: Record<string, number> = { Earth: 0xc9a96a, Air: 0xd8e6f0, Water: 0x7fb4d8, Fire: 0xd8844a };
 const CHOICE_LABEL: Record<string, string> = { earth: 'Earth', wind: 'Wind', water: 'Water', fire: 'Fire' };
@@ -44,7 +44,7 @@ export class HatchlingScene extends Phaser.Scene {
       const x = 205 + i * 290;
       const c = this.add.container(x, 330);
       const glow = this.add.image(0, 0, 'glow').setBlendMode(Phaser.BlendModes.ADD).setTint(ELEMENT_COLOR[s.element] ?? 0xffffff).setScale(1.6).setAlpha(0).setName('glow');
-      const card = this.add.image(0, 0, 'ui_monster_card').setScale(0.62).setTint(0xb4b8bc);
+      const card = this.add.image(0, 0, 'ui_monster_card_blank').setScale(0.62).setTint(0xb4b8bc);
       const key = 'starter_' + s.id;
       const art = this.add.image(0, -36, key);
       art.texture.setFilter(Phaser.Textures.FilterMode.NEAREST);
@@ -53,7 +53,7 @@ export class HatchlingScene extends Phaser.Scene {
       const nm = label(this, 0, -110, s.name, 16, COLORS.ink, 0).setOrigin(0.5).setStroke('#fff4dc', 2);
       const el = label(this, 0, 150, CHOICE_LABEL[s.choice], 26, COLORS.cream, 4).setOrigin(0.5);
       const no = label(this, 0, 182, `No. ${s.number}  ·  ${s.element}`, 15, '#a8a090', 3).setOrigin(0.5);
-      c.add([glow, card, art, nm, el, no]);
+      c.add([glow, card, art, nm, el, no, starRow(this, -1, 54, s.stars, 80, 18)]);
       c.setData('starter', s);
       c.setAlpha(0).setY(350);
       this.tweens.add({ targets: c, alpha: 1, y: 330, duration: 400, delay: i * 90, ease: 'Cubic.easeOut' });

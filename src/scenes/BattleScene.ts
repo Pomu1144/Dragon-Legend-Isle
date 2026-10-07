@@ -7,7 +7,7 @@ import { ROOMS } from '../data/rooms';
 import { gainExp, State } from '../state';
 import { Controls } from '../ui/input';
 import { dustify, fireflies, lightPool, popNumber, sparkleBurst } from '../ui/fx';
-import { Bar, body, label, panel, COLORS, FONT_BODY } from '../ui/widgets';
+import { Bar, body, label, panel, starRow, COLORS, FONT_BODY } from '../ui/widgets';
 import type { BattleResult } from './WorldScene';
 
 type Phase = 'busy' | 'menu' | 'cards' | 'timing' | 'list' | 'text' | 'talk' | 'dodge' | 'end';
@@ -133,9 +133,8 @@ export class BattleScene extends Phaser.Scene {
     // Enemy nameplate (top-left), styled after the "Bat Fiend" plate in the UI sheet.
     this.nameText = label(this, 44, 26, this.m.name, 38, this.m.color, 8).setDepth(20);
     this.enemyBar = new Bar(this, 44, 92, 300, 'red', 34).setDepth(20);
-    const stars = this.add.container(this.nameText.x + this.nameText.width + 10, 50).setDepth(20);
-    for (let i = 0; i < Math.floor(this.m.stars); i++) stars.add(this.add.image(i * 26, 0, 'ui_star').setScale(0.34));
-    if (this.m.stars % 1) stars.add(this.add.image(Math.floor(this.m.stars) * 26 - 4, 0, 'ui_star').setScale(0.2).setAlpha(0.8)); // DIB half star
+    const nStars = Math.ceil(this.m.stars);
+    starRow(this, this.nameText.x + this.nameText.width + 4 + (nStars * 24) / 2, 50, this.m.stars, nStars * 24, 24).setDepth(20);
     if (this.m.boss) label(this, 44, 120, 'GUARDIAN', 18, COLORS.gold, 5).setDepth(20);
 
     // Bullet board / text box

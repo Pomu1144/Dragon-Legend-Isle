@@ -149,3 +149,20 @@ export function cursor(scene: Phaser.Scene, key: string, scale: number, dx = 6, 
   scene.tweens.add({ targets: img, x: dx, yoyo: true, repeat: -1, duration: ms, ease: 'Sine.easeInOut' });
   return c;
 }
+
+/** A row of rating stars as on the DIB wiki: full stars plus a half star, centred on (x, y). */
+export function starRow(scene: Phaser.Scene, x: number, y: number, stars: number, maxWidth: number, size = 18) {
+  const full = Math.floor(stars);
+  const half = stars - full >= 0.5;
+  const n = full + (half ? 1 : 0);
+  const s = Math.min(size, maxWidth / Math.max(1, n));
+  const c = scene.add.container(x, y);
+  const x0 = (-(n - 1) * s) / 2;
+  for (let i = 0; i < n; i++) {
+    const img = scene.add.image(x0 + i * s, 0, 'ui_star');
+    img.setScale((s * 1.05) / img.width);
+    if (half && i === n - 1) img.setCrop(0, 0, img.width / 2, img.height);
+    c.add(img);
+  }
+  return c;
+}

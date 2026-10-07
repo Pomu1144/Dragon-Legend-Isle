@@ -103,6 +103,11 @@ def main():
         if name == 'panel_page':
             im = erase_text(im)
         im.save(os.path.join(out, 'ui', f), optimize=True)
+        if name == 'monster_card':
+            # The card art has two stars painted in; ship a blank copy so each card can show the creature's real rating.
+            arr = np.array(im)
+            arr[273:297, 132:186] = arr[273:297, 196:250]  # patch with the neighbouring green panel texture
+            Image.fromarray(arr).save(os.path.join(out, 'ui', 'monster_card_blank.png'), optimize=True)
 
     # Rooms -------------------------------------------------------------------
     rooms = {

@@ -19,6 +19,7 @@ export const MONSTER_ART = DIB_KITS.map((k) => k.id).filter((id) => id !== 'divi
 export function queueAll(load: Phaser.Loader.LoaderPlugin) {
   for (const k of UI_SPRITES) load.image('ui_' + k, `assets/ui/${k}.png`);
   load.image('logo', 'assets/ui/logo.webp');
+  load.image('ui_monster_card_blank', 'assets/ui/monster_card_blank.png');
   for (const k of ROOM_BGS) load.image('bg_' + k, `assets/bg/${k}.jpg`);
   for (const k of MONSTER_ART) load.image('mon_' + k, `assets/monsters/${k}.png`);
   load.image('mon_divine', 'assets/monsters/divine.webp');

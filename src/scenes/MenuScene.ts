@@ -6,9 +6,20 @@ import { STORY } from '../data/story';
 import type { ReaderPage } from './ReaderScene';
 
 const PER_PAGE = 10;
+
+/** First sentences of the bestiary entry that fit in the two lines under the cards. */
+function shortLore(lore: string, max = 150) {
+  const parts = lore.replace(/^No\. \d+[^.]*\.\s*/, '').split(/(?<=\.)\s+/);
+  let out = '';
+  for (const p of parts) {
+    if ((out + ' ' + p).trim().length > max) break;
+    out = (out + ' ' + p).trim();
+  }
+  return out || parts[0].slice(0, max);
+}
 import { EXP_TABLE, State } from '../state';
 import { Controls } from '../ui/input';
-import { Bar, body, label, panel, title, COLORS } from '../ui/widgets';
+import { Bar, body, label, panel, starRow, title, COLORS } from '../ui/widgets';
 
 const TABS = [
   { key: 'ui_tab_party', name: 'Party' },
@@ -144,12 +155,13 @@ export class MenuScene extends Phaser.Scene {
       const col = i % 5;
       const row = Math.floor(i / 5);
       const c = this.add.container(200 + col * 172, 262 + row * 196);
-      const card = this.add.image(0, 0, 'ui_monster_card').setScale(0.42).setTint(0xb4b8bc);
+      const card = this.add.image(0, 0, 'ui_monster_card_blank').setScale(0.42).setTint(0xb4b8bc);
       const art = this.add.image(0, -20, m.art);
       art.setScale(Math.min(118 / art.width, 88 / art.height));
       if (!rec?.seen) art.setTintFill(0x0b1a2a).setAlpha(0.85);
       const nm = label(this, 0, -73, rec?.seen ? m.name : '???', 15, COLORS.ink, 0).setOrigin(0.5).setStroke('#fff4dc', 2);
       c.add([card, art, nm]);
+      if (rec?.seen) c.add(starRow(this, -1, 36, m.stars, 60, 13));
       if (rec?.bound) {
         const crown = this.add.image(-46, 53, 'ui_crown').setScale(0.22);
         c.add(crown);
@@ -162,7 +174,7 @@ export class MenuScene extends Phaser.Scene {
       this.content.add(c);
       this.cardObjs.push(c);
     });
-    this.detail = this.ink(130, 610, '', 20, 900);
+    this.detail = this.ink(130, 592, '', 19, 860);
     this.sel = Phaser.Math.Clamp(this.sel, 0, BESTIARY_ORDER.length - 1);
     this.refreshCards();
   }
@@ -180,7 +192,7 @@ export class MenuScene extends Phaser.Scene {
     if (this.detail) {
       this.detail.setText(
         rec?.seen
-          ? `No. ${m.number} ${m.name} · ${m.affinity} · ${m.stars}★   Spared ${rec.spared} · Defeated ${rec.defeated}${rec.bound ? ' · BOUND' : ''}\n${m.lore}`
+          ? `No. ${m.number} ${m.name} · ${m.affinity} · ${m.stars}★   Spared ${rec.spared} · Defeated ${rec.defeated}${rec.bound ? ' · BOUND' : ''}\n${shortLore(m.lore)}`
           : 'Not yet encountered. Keep exploring the western roads.',
       );
     }
