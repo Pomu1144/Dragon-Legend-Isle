@@ -9,6 +9,7 @@ import { label, title, COLORS } from '../ui/widgets';
 import { scene } from '../data/script';
 import { STARTERS } from '../data/starters';
 import { STORY } from '../data/story';
+import { EXPANSION_STORY } from '../data/expansion';
 
 interface WorldData {
   room?: string;
@@ -174,6 +175,13 @@ export class WorldScene extends Phaser.Scene {
 
     this.events.off('starterChosen');
     this.events.on('starterChosen', (id: string) => this.onStarter(id));
+
+    const entry = EXPANSION_STORY.room_entries[R.id];
+    if (entry?.length && !State.flag('entered_' + R.id)) {
+      State.setFlag('entered_' + R.id);
+      this.busy = true;
+      this.time.delayedCall(700, () => this.say(this.toLines(entry)));
+    }
 
     if (data.fresh) {
       this.busy = true;
@@ -512,10 +520,42 @@ export class WorldScene extends Phaser.Scene {
       this.say(scene(result.outcome === 'won' ? 'after_lich_won' : 'after_lich_peace'));
     }
     if (result.monster === 'orochi') {
+      // Not an ending: the Waystone falls quiet and the roads beyond open.
       State.setFlag('orochiDone');
+      const peaceful = result.outcome !== 'won';
+      State.setFlag(peaceful ? 'orochiSpared' : 'orochiSlain');
       this.busy = true;
-      this.time.delayedCall(400, () => this.scene.start('Ending', { peaceful: result.outcome !== 'won' }));
+      this.time.delayedCall(500, () => this.afterOrochi(peaceful));
     }
+  }
+
+  private toLines(lines: { speaker: string; portrait: string; text: string }[]): Line[] {
+    return lines.map((l) => ({
+      text: l.text.replace(/\{HERO\}/g, State.get().name),
+      speaker: l.speaker || undefined,
+      portrait: l.portrait && l.portrait !== 'none' ? l.portrait : undefined,
+      voice: l.portrait === 'mon_divine' ? 0.6 : l.portrait === 'hero_portrait' ? 0.95 : 0.85,
+    }));
+  }
+
+  private afterOrochi(peaceful: boolean) {
+    const W = this.scale.width;
+    const lines = this.toLines(peaceful ? EXPANSION_STORY.after_orochi_peace : EXPANSION_STORY.after_orochi_won);
+    const fallback: Line[] = [{ text: '* The Waystone falls silent. Both roads beyond the fork lie open.' }];
+    if (!peaceful) return this.say(lines.length ? lines : fallback);
+    // Divine descends over the fork for a moment, then is gone.
+    const divine = this.add.image(W / 2, 40, 'mon_divine').setScrollFactor(0).setDepth(4600).setBlendMode(Phaser.BlendModes.SCREEN).setAlpha(0);
+    divine.setScale(360 / divine.height);
+    const halo = this.add.image(W / 2, 150, 'glow').setScrollFactor(0).setDepth(4599).setBlendMode(Phaser.BlendModes.ADD).setTint(0xfff4dc).setScale(3).setAlpha(0);
+    this.tweens.add({ targets: divine, alpha: 0.95, y: 230, duration: 2200, ease: 'Sine.easeOut' });
+    this.tweens.add({ targets: halo, alpha: 0.35, duration: 2200 });
+    Sound.chime();
+    this.time.delayedCall(2300, () =>
+      this.say(lines.length ? lines : fallback, () => {
+        this.tweens.add({ targets: [divine, halo], alpha: 0, y: '-=60', duration: 1600, onComplete: () => { divine.destroy(); halo.destroy(); } });
+        sparkleBurst(this, this.player.x, this.player.y - 60, 20, 3600, 120);
+      }),
+    );
   }
 
   private runTrigger(id: string) {
@@ -574,6 +614,16 @@ export class WorldScene extends Phaser.Scene {
       if (!State.flag('briefed')) return this.say([{ text: 'Not now, Kael. Stay by the fountain.', speaker: STORY.names.guild_master, portrait: 'guildmaster_portrait', voice: 0.7 }]);
       if (!State.flag('hasStarter')) return this.openHatchery();
       return this.say([{ text: 'The West Gate is open. Read the manual. And send word.', speaker: STORY.names.guild_master, portrait: 'guildmaster_portrait', voice: 0.7 }]);
+    }
+    const ex = EXPANSION_STORY.npc_dialogue[id];
+    if (ex) {
+      const flag = 'met_' + id;
+      if (!State.flag(flag)) {
+        State.setFlag(flag);
+        return this.say(this.toLines(ex.first));
+      }
+      const line = ex.repeat[Phaser.Math.Between(0, Math.max(0, ex.repeat.length - 1))] ?? '...';
+      return this.say([{ text: line, speaker: ex.name, portrait: ex.portrait, voice: 0.85 }]);
     }
     if (id !== 'wren') return;
     spr.anims.stop();

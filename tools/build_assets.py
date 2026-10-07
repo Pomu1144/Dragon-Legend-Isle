@@ -134,6 +134,13 @@ def main():
                            os.path.join(args.gen, 'g9.png'), '1', '3', '128', '176',
                            os.path.join(out, 'chars', 'wren_idle.png')])
 
+    # Frontier villagers (Dundean): idle sheets and portraits
+    for who in ('innkeeper', 'hunter'):
+        subprocess.check_call([sys.executable, '-I', os.path.join(HERE, 'slice_sheet.py'),
+                               os.path.join(args.gen, who + '_sheet.png'), '1', '3', '128', '176',
+                               os.path.join(out, 'chars', who + '_idle.png')])
+        pim = Image.open(os.path.join(args.gen, who + '_portrait.png')).convert('RGBA')
+        save_webp(fit(pim.crop(pim.getbbox()), 640), os.path.join(out, 'chars', who + '_portrait.webp'))
     # Guild master: idle sheet (1x3) and portrait
     subprocess.check_call([sys.executable, '-I', os.path.join(HERE, 'slice_sheet.py'),
                            os.path.join(args.gen, 'gm_sheet.png'), '1', '3', '128', '176',

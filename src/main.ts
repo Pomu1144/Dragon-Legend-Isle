@@ -10,7 +10,6 @@ import { IntroScene } from './scenes/IntroScene';
 import { WorldScene } from './scenes/WorldScene';
 import { BattleScene } from './scenes/BattleScene';
 import { MenuScene } from './scenes/MenuScene';
-import { EndingScene } from './scenes/EndingScene';
 import { GameOverScene } from './scenes/GameOverScene';
 import { HatchlingScene } from './scenes/HatchlingScene';
 import { ReaderScene } from './scenes/ReaderScene';
@@ -33,7 +32,7 @@ async function start() {
     scale: { mode: Phaser.Scale.FIT, autoCenter: Phaser.Scale.CENTER_BOTH },
     render: { antialias: true, pixelArt: false, roundPixels: false },
     fps: { target: 60, smoothStep: false },
-    scene: [BootScene, TitleScene, IntroScene, WorldScene, BattleScene, MenuScene, EndingScene, GameOverScene, HatchlingScene, ReaderScene],
+    scene: [BootScene, TitleScene, IntroScene, WorldScene, BattleScene, MenuScene, GameOverScene, HatchlingScene, ReaderScene],
   });
   (window as unknown as { __game: Phaser.Game }).__game = game;
 }

@@ -1,4 +1,5 @@
 import { DIB_KITS } from './dibCreatures';
+import { EXPANSION_ROOMS, WAYSTONE_EXITS } from './expansion';
 
 // Overworld rooms. Every coordinate is in the source painting's pixel space,
 // so the painting is drawn 1:1 and these polygons describe where feet can go.
@@ -296,6 +297,14 @@ export const ROOMS: Record<string, RoomDef> = {
     triggers: [{ id: 'orochi', rect: [640, 420, 380, 120], once: 'orochiDone' }],
   },
 };
+
+// The world beyond the Waystone (generated rooms; see tools/gen_expansion.py).
+for (const r of EXPANSION_ROOMS) ROOMS[r.id] = r;
+if (WAYSTONE_EXITS) {
+  const ex = ROOMS.waystone.exits;
+  ex[1] = { rect: [100, 50, 150, 12], to: WAYSTONE_EXITS.topLeft, spawn: WAYSTONE_EXITS.topLeftSpawn, locked: 'orochiDone', lockedText: ['* The northern road is choked with grey ash and the coils of something vast.', '* Not while the Waystone is guarded.'] };
+  ex[2] = { rect: [1450, 60, 110, 12], to: WAYSTONE_EXITS.topRight, spawn: WAYSTONE_EXITS.topRightSpawn, locked: 'orochiDone', lockedText: ['* The eastern road is blocked by eight great coils of scale.', '* Not while the Waystone is guarded.'] };
+}
 
 // Encounter tables come from the roster: each DIB creature appears in the rooms
 // its wiki location data places it in (see tools/dib_kits.json).

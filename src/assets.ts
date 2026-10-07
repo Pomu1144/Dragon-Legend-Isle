@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import { DIB_KITS } from './data/dibCreatures';
+import { EXPANSION_NPC_SHEETS, EXPANSION_ROOMS } from './data/expansion';
 
 export const UI_SPRITES = [
   'arrow_down', 'arrow_up', 'banner_header', 'bar_empty', 'bar_orange', 'bar_red', 'btn_ff', 'btn_fff', 'btn_hex',
@@ -12,7 +13,7 @@ export const UI_SPRITES = [
   'tab_trophy', 'tab_world', 'tag_blue',
 ];
 
-export const ROOM_BGS = ['plaza', 'gate', 'outskirts', 'forest', 'mosswood', 'waystone', 'gate_talk'];
+export const ROOM_BGS = ['plaza', 'gate', 'outskirts', 'forest', 'mosswood', 'waystone', 'gate_talk', ...EXPANSION_ROOMS.map((r) => r.id)];
 // Original Dragon Island Blue sprites, unaltered (tools/fetch_dib_sprites.py).
 export const MONSTER_ART = DIB_KITS.map((k) => k.id).filter((id) => id !== 'divine');
 
@@ -32,6 +33,10 @@ export function queueAll(load: Phaser.Loader.LoaderPlugin) {
   load.spritesheet('wren_idle', 'assets/chars/wren_idle.png', { frameWidth: 128, frameHeight: 176 });
   load.spritesheet('guildmaster_idle', 'assets/chars/guildmaster_idle.png', { frameWidth: 128, frameHeight: 176 });
   load.image('guildmaster_portrait', 'assets/chars/guildmaster_portrait.webp');
+  for (const k of EXPANSION_NPC_SHEETS) {
+    load.spritesheet(k + '_idle', `assets/chars/${k}_idle.png`, { frameWidth: 128, frameHeight: 176 });
+    load.image(k + '_portrait', `assets/chars/${k}_portrait.webp`);
+  }
   load.image('hero_portrait', 'assets/chars/hero_portrait.webp');
   load.image('wren_portrait', 'assets/chars/wren_portrait.webp');
 }
