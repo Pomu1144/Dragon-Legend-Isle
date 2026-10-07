@@ -19,6 +19,8 @@ camel = lambda s: ''.join(w[:1].upper() + w[1:] for w in s.split('_'))
 
 def npc_sheet(role: str) -> str:
     r = role.lower()
+    if 'innkeep' in r or 'elder' in r:
+        return 'innkeeper'
     return 'hunter' if any(k in r for k in ('hunt', 'guard', 'scout', 'ranger', 'watch', 'warden')) else 'innkeeper'
 
 

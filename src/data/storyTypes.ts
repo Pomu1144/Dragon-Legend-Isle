@@ -1,6 +1,6 @@
 export interface StoryLine {
   speaker: string;
-  portrait: 'none' | 'hero_portrait' | 'wren_portrait' | 'guildmaster_portrait' | 'mon_divine';
+  portrait: string; // 'none' or a portrait texture key (hero_portrait, wren_portrait, guildmaster_portrait, innkeeper_portrait, hunter_portrait, mon_divine)
   text: string;
   choices?: string[];
 }

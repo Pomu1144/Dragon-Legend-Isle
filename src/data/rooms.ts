@@ -345,7 +345,7 @@ for (const k of DIB_KITS) {
   for (const room of k.rooms) {
     const r = ROOMS[room];
     if (!r || FOREST[room]) continue;
-    r.encounters ??= { table: [], budget: BUDGET[room] ?? 2 };
+    r.encounters ??= { table: [], budget: BUDGET[room] ?? 3 };
     r.encounters.budget = BUDGET[room] ?? r.encounters.budget;
     if (!r.encounters.table.some((e) => e.id === k.id)) r.encounters.table.push({ id: k.id, w: 10 });
   }

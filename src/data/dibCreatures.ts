@@ -137,7 +137,8 @@ export const DIB_KITS = [
  {
   "role": "encounter",
   "rooms": [
-   "outskirts"
+   "outskirts",
+   "safaris_grassland"
   ],
   "name": "Blood Priest",
   "id": "blood_priest",
@@ -267,7 +268,10 @@ export const DIB_KITS = [
  {
   "role": "encounter",
   "rooms": [
-   "outskirts"
+   "outskirts",
+   "norwoods_scorched_road",
+   "norwoods_serpent_hollow",
+   "mangal_east_road"
   ],
   "name": "Bones",
   "id": "bones",
@@ -546,7 +550,10 @@ export const DIB_KITS = [
  },
  {
   "role": "encounter",
-  "rooms": [],
+  "rooms": [
+   "norwoods_scorched_road",
+   "norwoods_mangal_roots"
+  ],
   "name": "Scale Knight",
   "id": "scale_knight",
   "wiki": {
@@ -675,11 +682,14 @@ export const DIB_KITS = [
  },
  {
   "role": "encounter",
-  "rooms": [],
+  "rooms": [
+   "norwoods_scorched_road",
+   "norwoods_mangal_roots"
+  ],
   "name": "Devil Worm",
   "id": "devil_worm",
   "wiki": {
-   "number": "98",
+   "number": "098",
    "stars": 2.5,
    "element": "Earth",
    "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/1/16/Devil_Worm.png",
@@ -1321,12 +1331,13 @@ export const DIB_KITS = [
  {
   "role": "encounter",
   "rooms": [
-   "outskirts"
+   "outskirts",
+   "safaris_grassland"
   ],
   "name": "Cult Priest",
   "id": "cult_priest",
   "wiki": {
-   "number": "#087",
+   "number": "087",
    "stars": 2,
    "element": "Air",
    "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/4/4d/Cult_Priest.png",
@@ -1450,7 +1461,9 @@ export const DIB_KITS = [
  {
   "role": "encounter",
   "rooms": [
-   "outskirts"
+   "outskirts",
+   "mangal_east_road",
+   "safaris_riverbank"
   ],
   "name": "Slime",
   "id": "slime",
@@ -1848,7 +1861,9 @@ export const DIB_KITS = [
  },
  {
   "role": "encounter",
-  "rooms": [],
+  "rooms": [
+   "safaris_grassland"
+  ],
   "name": "Cockatrice",
   "id": "cockatrice",
   "wiki": {
@@ -2001,11 +2016,15 @@ export const DIB_KITS = [
  },
  {
   "role": "encounter",
-  "rooms": [],
+  "rooms": [
+   "norwoods_scorched_road",
+   "norwoods_mangal_roots",
+   "safaris_grassland"
+  ],
   "name": "Beast Knight",
   "id": "beast_knight",
   "wiki": {
-   "number": "#061",
+   "number": "061",
    "stars": 3,
    "element": "Earth",
    "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/b/b5/Beast_Knight.png",
@@ -2108,7 +2127,11 @@ export const DIB_KITS = [
  },
  {
   "role": "encounter",
-  "rooms": [],
+  "rooms": [
+   "giant_mangal_f1",
+   "mangal_crossroads",
+   "mangal_building_site"
+  ],
   "name": "Cult Warrior",
   "id": "cult_warrior",
   "wiki": {
@@ -2364,7 +2387,10 @@ export const DIB_KITS = [
  },
  {
   "role": "encounter",
-  "rooms": [],
+  "rooms": [
+   "giant_mangal_f1",
+   "mangal_crossroads"
+  ],
   "name": "Mutation",
   "id": "mutation",
   "wiki": {
@@ -2511,7 +2537,10 @@ export const DIB_KITS = [
  },
  {
   "role": "encounter",
-  "rooms": [],
+  "rooms": [
+   "mangal_east_road",
+   "mangal_building_site"
+  ],
   "name": "Wasp Queen",
   "id": "wasp_queen",
   "wiki": {
@@ -2681,7 +2710,10 @@ export const DIB_KITS = [
  },
  {
   "role": "encounter",
-  "rooms": [],
+  "rooms": [
+   "norwoods_serpent_hollow",
+   "norwoods_mangal_roots"
+  ],
   "name": "Manticore",
   "id": "manticore",
   "wiki": {
@@ -2848,7 +2880,10 @@ export const DIB_KITS = [
  },
  {
   "role": "encounter",
-  "rooms": [],
+  "rooms": [
+   "norwoods_serpent_hollow",
+   "safaris_grassland"
+  ],
   "name": "Yeti",
   "id": "yeti",
   "wiki": {
@@ -3001,7 +3036,11 @@ export const DIB_KITS = [
  },
  {
   "role": "encounter",
-  "rooms": [],
+  "rooms": [
+   "norwoods_serpent_hollow",
+   "norwoods_mangal_roots",
+   "mangal_crossroads"
+  ],
   "name": "Imp",
   "id": "imp",
   "wiki": {
@@ -4189,6 +4228,2245 @@ export const DIB_KITS = [
      ],
      "intensity": 0.95,
      "flavor": "* The Giant Ant spits venom. The droplets hiss into the moss."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "norwoods_scorched_road",
+   "norwoods_serpent_hollow",
+   "norwoods_mangal_roots"
+  ],
+  "name": "Kingpen",
+  "id": "kingpen",
+  "wiki": {
+   "number": "058",
+   "stars": 4,
+   "element": "Air",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/9/91/Kingpen.png",
+   "image_size": [
+    72,
+    110
+   ],
+   "lv1": {
+    "hp": 34,
+    "attack": 12,
+    "magic": 12,
+    "speed": 16,
+    "defense": 14,
+    "resist": 14
+   },
+   "abilities": [
+    {
+     "name": "Analyze",
+     "tu": "100",
+     "target": "-",
+     "effect": "Allows you to see incoming enemy monsters and their stats"
+    },
+    {
+     "name": "Baggins",
+     "tu": "160",
+     "target": "1 Foe",
+     "effect": "14-17 Physical Damage (Air), +200% Damage vs. Dragon"
+    },
+    {
+     "name": "Last Stand",
+     "tu": "70",
+     "target": "1 Foe",
+     "effect": "8-9 Physical Damage (Air), +500% Damage if alone in battle"
+    },
+    {
+     "name": "Luca Brasi",
+     "tu": "160",
+     "target": "1 Foe",
+     "effect": "14-17 Physical Damage (Air), +100% Damage vs. Humanoid"
+    }
+   ],
+   "evolution": "Penguin (evolves at level 14) -> Kingpen (evolves at level 35) -> Don Penguini",
+   "obtain": "Found in Swinedene."
+  },
+  "sprite": {
+   "description": "Upright king-penguin-style bird with dark grey back, head and flippers, white belly, yellow throat and chest patch, orange streak on the beak, and a small gold-and-red crown on its head; body turned three-quarters with the beak pointing to the right. Clean transparent RGBA PNG, 72x110.",
+   "dominant_color_hex": "#5c5f66",
+   "faces": "right",
+   "flier": false
+  },
+  "battle": {
+   "check": "* KINGPEN - AIR - 4 STARS.\n* Wears a crown no one gave it.\n* Strikes hardest when it stands alone.",
+   "intro": "* A Kingpen steps out of the cold wind.\n* It does not bow.",
+   "idle": [
+    "* Kingpen straightens its crown with one flipper.",
+    "* The wind dies around Kingpen. It waits for you to move.",
+    "* Kingpen watches the road behind you, counting who follows.",
+    "* Smells of salt and frost. The crown is dented, but clean."
+   ],
+   "talk": [
+    "Kneel.",
+    "No one comes\nfor me. No one\nneeds to.",
+    "The crown stays.\nThe rest of me\ncan break.",
+    "Your dragon\nwill not save\nyou here.",
+    "...Go. Before\nI change my\nmind."
+   ],
+   "spare_text": "* Kingpen lowers its head, just slightly.\n* It walks back into the wind without turning.",
+   "lore": "Kingpen (No. 58) is the second form of Penguin, evolving at level 14, and becomes Don Penguini at level 35. Air element, 4 stars. Stats are the wiki's level-1 values. Its Analyze ability (100 TU, no target) only reveals incoming monsters and their stats, so it has no battle pattern; it is reflected in the CHECK act. Last Stand deals +500% damage if it is alone in battle, which is always the case in this encounter.",
+   "acts": [
+    {
+     "name": "Bow",
+     "text": [
+      "* You lower your head before the crown.",
+      "* Kingpen regards you for a long moment.",
+      "* Its stance eases."
+     ],
+     "mercy": 40,
+     "once": true,
+     "calm": 1
+    },
+    {
+     "name": "Stand Beside",
+     "text": [
+      "* You step to its side instead of facing it.",
+      "* It is not alone in battle anymore.",
+      "* Kingpen's grip on the fight loosens."
+     ],
+     "mercy": 45,
+     "once": true,
+     "calm": 2
+    },
+    {
+     "name": "Threaten",
+     "text": [
+      "* You raise your voice at the crowned bird.",
+      "* Kingpen does not flinch.",
+      "* Its eyes go colder."
+     ],
+     "mercy": 0,
+     "once": false,
+     "calm": -1
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Baggins",
+     "tu": 160,
+     "base_pattern": "swoop",
+     "projectile": "fx_tornado",
+     "tint_hex": "#9fb8c8",
+     "twist": "none",
+     "box": [
+      460,
+      240
+     ],
+     "intensity": 1.1,
+     "flavor": "* Kingpen drives a gust of frozen air through the box. Dragons are hit three times as hard."
+    },
+    {
+     "ability": "Last Stand",
+     "tu": 70,
+     "base_pattern": "homing",
+     "projectile": "fx_silverring",
+     "tint_hex": "#d8c46a",
+     "twist": "multi_hit",
+     "box": [
+      340,
+      240
+     ],
+     "intensity": 1.3,
+     "flavor": "* Alone, with nothing left behind it, Kingpen strikes as if it has nothing to lose."
+    },
+    {
+     "ability": "Luca Brasi",
+     "tu": 160,
+     "base_pattern": "telegraph_lines",
+     "projectile": "fx_sparkle",
+     "tint_hex": "#c9d6de",
+     "twist": "none",
+     "box": [
+      420,
+      230
+     ],
+     "intensity": 1,
+     "flavor": "* Lines of cold wind mark where it will strike. They are aimed at you, not your monster."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "giant_mangal_f1"
+  ],
+  "name": "Kemet King",
+  "id": "kemet_king",
+  "wiki": {
+   "number": "163",
+   "stars": 3,
+   "element": "Air",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/d/df/Kemet_King.png",
+   "image_size": [
+    73,
+    117
+   ],
+   "lv1": {
+    "hp": 31,
+    "attack": 7,
+    "magic": 9,
+    "speed": 11,
+    "defense": 11,
+    "resist": 16
+   },
+   "abilities": [
+    {
+     "name": "Awaken",
+     "tu": "100",
+     "target": "All Allies",
+     "effect": "Removes effect: Sleep"
+    },
+    {
+     "name": "Pharaoh's Curse",
+     "tu": "",
+     "target": "",
+     "effect": ""
+    },
+    {
+     "name": "Tempest",
+     "tu": "160",
+     "target": "1 Foe",
+     "effect": "11-14 Magical Damage (Air)"
+    },
+    {
+     "name": "Whip",
+     "tu": "70",
+     "target": "1 Foe",
+     "effect": "4-5 Physical Damage (Air)"
+    }
+   ],
+   "evolution": "Evolves into Kemet God at level 35.",
+   "obtain": "Found in Giant Mangal"
+  },
+  "sprite": {
+   "description": "A tall robed humanoid seen from the front: a red-and-black striped headdress and high collar hide the face in shadow, arms crossed over the chest holding a flail in one hand and a crook in the other, long charcoal-gray robes with a red sash falling to sandaled feet. Clean transparent 73x117 PNG.",
+   "dominant_color_hex": "#4D4D4D",
+   "faces": "front",
+   "flier": false
+  },
+  "battle": {
+   "check": "* KEMET KING - AIR - 3 STARS.\n* A crowned figure from the Giant Mangal. Its face is never seen.",
+   "intro": "* Kemet King steps out from between the great roots, crook and flail crossed over its chest.",
+   "idle": [
+    "* Kemet King stands motionless. The wind moves only its robes.",
+    "* The red bands of its headdress catch what little light there is.",
+    "* Somewhere under the collar, something breathes slowly.",
+    "* The air around Kemet King is dry, like the inside of a sealed room."
+   ],
+   "talk": [
+    "Kneel.",
+    "This wood was\nmine before the\nroots grew.",
+    "Who sent you\ninto my halls?",
+    "Those who wrong\nme carry it\nwith them.",
+    "The wind keeps\nmy name. You\nwill not."
+   ],
+   "spare_text": "* Kemet King uncrosses its arms and lowers the flail. It turns back toward the roots without a sound.",
+   "lore": "Kemet King (#163) is an Air monster rated 3 stars (three StarIcons; category 3 Stars Monsters), found in the Giant Mangal. Stats are from the wiki's level-1 column. Its page lists Pharaoh's Curse with no TU, target or effect; on Kemet God's page the same ability is a passive revenge effect (Air damage over 500 TUs), so it gets no attack pattern here. It evolves into Kemet God at level 35. The wiki tags its category as Humanoid, marked unconfirmed.",
+   "acts": [
+    {
+     "name": "Kneel",
+     "text": [
+      "* You lower yourself to one knee before Kemet King.",
+      "* The crook dips once, slowly. It seems to accept the gesture."
+     ],
+     "mercy": 40,
+     "once": true,
+     "calm": 1
+    },
+    {
+     "name": "Avert Eyes",
+     "text": [
+      "* You keep your gaze on the ground and away from the shadow under its crown.",
+      "* The wind around it settles a little."
+     ],
+     "mercy": 35,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Offer Passage",
+     "text": [
+      "* You step aside from the path between the roots and leave the way open.",
+      "* Kemet King watches the gap for a long moment."
+     ],
+     "mercy": 40,
+     "once": true,
+     "calm": 1
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Whip",
+     "tu": 70,
+     "base_pattern": "telegraph_lines",
+     "projectile": "fx_silverring",
+     "tint_hex": "#B8323A",
+     "twist": "none",
+     "box": [
+      420,
+      230
+     ],
+     "intensity": 0.8,
+     "flavor": "* Kemet King lashes out with the flail. The cord cracks across the box in straight lines."
+    },
+    {
+     "ability": "Tempest",
+     "tu": 160,
+     "base_pattern": "tornado_sweep",
+     "projectile": "fx_tornado",
+     "tint_hex": "#A89F8A",
+     "twist": "none",
+     "box": [
+      480,
+      240
+     ],
+     "intensity": 1.1,
+     "flavor": "* Kemet King raises the crook. A dry tempest rises from nowhere and tears toward you."
+    },
+    {
+     "ability": "Awaken",
+     "tu": 100,
+     "base_pattern": "radial_burst",
+     "projectile": "fx_sparkle",
+     "tint_hex": "#D9B95A",
+     "twist": "neutralize",
+     "box": [
+      340,
+      230
+     ],
+     "intensity": 0.7,
+     "flavor": "* Kemet King strikes the crook against the ground. Whatever slept around it is awake now."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "giant_mangal_f1"
+  ],
+  "name": "Dark Mage",
+  "id": "dark_mage",
+  "wiki": {
+   "number": "150",
+   "stars": 3.5,
+   "element": "Fire",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/3/33/Dark_Mage.png",
+   "image_size": [
+    120,
+    128
+   ],
+   "lv1": {
+    "hp": 31,
+    "attack": 6,
+    "magic": 12,
+    "speed": 10,
+    "defense": 10,
+    "resist": 10
+   },
+   "abilities": [
+    {
+     "name": "Dark Mist",
+     "tu": "200",
+     "target": "All Foes",
+     "effect": "9-12 Fire Damage over the duration, Slows actions by 30%, Poisons enemies, Duration: 500"
+    },
+    {
+     "name": "Flame",
+     "tu": "130",
+     "target": "1 Foe",
+     "effect": "13-16 Magical Damage (Fire)"
+    },
+    {
+     "name": "Flare",
+     "tu": "200",
+     "target": "1 Foe",
+     "effect": "19-24 Magical Damage (Fire)"
+    },
+    {
+     "name": "Ignite",
+     "tu": "70",
+     "target": "1 Foe",
+     "effect": "8-9 Magical Damage (Fire)"
+    }
+   ],
+   "evolution": "Dark Priest (1st Form) -> Dark Mage (evolves at level 22; 2nd and final form)",
+   "obtain": "Can be found in the Great Mangal."
+  },
+  "sprite": {
+   "description": "A tall, gaunt humanoid sorcerer in a long charcoal-black greatcoat. The coat is veined with dark blood-red patterns and its hem flares into ragged, tattered tails. A pale white mask covers its face. One gloved hand is raised to the mask, and a long white scarf trails from its neck. The other arm reaches out toward the viewer's right, holding a small crimson orb of fire that glows with a red aura. Its legs are crossed mid-stride and its body leans to the right, so it seems to drift rather than stand. It has no wings. The sprite is clean, on a fully transparent background.",
+   "dominant_color_hex": "#1A1B1B",
+   "faces": "right",
+   "flier": false
+  },
+  "battle": {
+   "check": "* DARK MAGE - No. 150 - FIRE - 3.5 STARS.\n* MAG 12, DEF 10, RES 10. Knows Dark Mist, Flame, Flare and Ignite.\n* The Dark Priest it once was is gone. Only the mask remained.",
+   "intro": "* A masked figure steps out from between the trees.\n* Dark Mage opens its hand. A red flame is already waiting there.",
+   "idle": [
+    "* Dark Mage turns the small flame over in its palm, studying you through it.",
+    "* The tails of its coat stir, though the air is still.",
+    "* A thin black haze seeps from its sleeves and settles along the ground.",
+    "* The mask does not move. You cannot tell if it is breathing."
+   ],
+   "talk": [
+    "You walk\ninto the\nMangal alone.",
+    "I wore a\npriest's\nrobe once.",
+    "The prayers\ndid not\nwarm me.",
+    "This fire\ndoes.",
+    "Leave, and\nkeep your\nshadow."
+   ],
+   "spare_text": "* Dark Mage closes its hand. The flame goes out.\n* It turns away and is lost in the dark of the Great Mangal.",
+   "lore": "No. 150 - Dark Mage. Fire element, 3.5 stars. Lv1: HP 31, ATK 6, MAG 12, SPD 10, DEF 10, RES 10. Abilities: Dark Mist (200 TU, all foes, 9-12 Fire damage over the duration, slows actions by 30%, poisons, duration 500), Flame (130 TU, 1 foe, 13-16 magical Fire damage), Flare (200 TU, 1 foe, 19-24 magical Fire damage) and Ignite (70 TU, 1 foe, 8-9 magical Fire damage). It is the second and final form of Dark Priest, which evolves into it at level 22. It can be found in the Great Mangal. It keeps the priest's patience and none of the priest's faith.",
+   "acts": [
+    {
+     "name": "Hold Still",
+     "text": [
+      "* You lower your guard and stand still before the flame.",
+      "* Dark Mage watches you a long while. The fire in its hand burns lower."
+     ],
+     "mercy": 35,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Speak of Rites",
+     "text": [
+      "* You recite the few temple words Master Halvard taught you.",
+      "* The masked head tilts. Its hand closes halfway around the flame.",
+      "* Something in it remembers the robe."
+     ],
+     "mercy": 40,
+     "once": true,
+     "calm": 1
+    },
+    {
+     "name": "Show the Ribbon",
+     "text": [
+      "* You hold up Lira's blue ribbon and ask if it has seen her.",
+      "* Dark Mage says nothing. Then it looks west, toward the deeper trees.",
+      "* The haze around its feet thins away."
+     ],
+     "mercy": 45,
+     "once": true,
+     "calm": 2
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Dark Mist",
+     "tu": 200,
+     "base_pattern": "rift_bursts",
+     "projectile": "orb_web",
+     "tint_hex": "#3A1A2A",
+     "twist": "poison",
+     "box": [
+      520,
+      240
+     ],
+     "intensity": 1,
+     "flavor": "* Dark Mage exhales. A black mist rolls over everyone. It burns, and your limbs grow heavy."
+    },
+    {
+     "ability": "Flame",
+     "tu": 130,
+     "base_pattern": "aimed_volley",
+     "projectile": "orb_blood",
+     "tint_hex": "#E0301E",
+     "twist": "none",
+     "box": [
+      340,
+      240
+     ],
+     "intensity": 1,
+     "flavor": "* Dark Mage flicks its wrist. The flame in its palm leaps toward you."
+    },
+    {
+     "ability": "Flare",
+     "tu": 200,
+     "base_pattern": "radial_burst",
+     "projectile": "fx_sparkle",
+     "tint_hex": "#FF4A12",
+     "twist": "none",
+     "box": [
+      400,
+      250
+     ],
+     "intensity": 1.25,
+     "flavor": "* The orb in its hand swells red, then bursts open."
+    },
+    {
+     "ability": "Ignite",
+     "tu": 70,
+     "base_pattern": "homing",
+     "projectile": "fx_sparkle",
+     "tint_hex": "#FF7A2A",
+     "twist": "none",
+     "box": [
+      300,
+      220
+     ],
+     "intensity": 0.8,
+     "flavor": "* Dark Mage snaps its fingers. A spark catches at your feet."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "giant_mangal_f1",
+   "mangal_east_road",
+   "mangal_building_site"
+  ],
+  "name": "Pincer",
+  "id": "pincer",
+  "wiki": {
+   "number": "066",
+   "stars": 2,
+   "element": "Fire",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/b/bd/Pincer.png",
+   "image_size": [
+    94,
+    105
+   ],
+   "lv1": {
+    "hp": 29,
+    "attack": 10,
+    "magic": 3,
+    "speed": 13,
+    "defense": 3,
+    "resist": 3
+   },
+   "abilities": [
+    {
+     "name": "Hypnotic Shot",
+     "tu": "130",
+     "target": "One Foe",
+     "effect": "Puts the target to sleep for 195 TUs. Any damage will wake it."
+    },
+    {
+     "name": "Venom Spray",
+     "tu": "130",
+     "target": "All Foes",
+     "effect": "Poison: Duration 500 Deals 11 - 14 Fire damage"
+    },
+    {
+     "name": "Venom Sting",
+     "tu": "130",
+     "target": "One Foe",
+     "effect": "11 - 14 Physical damage (Fire) Poison: Duration 500 Deals 11 - 14 Fire damage"
+    }
+   ],
+   "evolution": "Stinger (1st Form, evolves at level 16) -> Pincer (2nd Form, evolves at level 33) -> Terror Claw (3rd Form; final form)",
+   "obtain": "Its own page gives no capture info. The Forest of Mangal page lists it among its monsters (066 - Pincer), and the Giant Mangal dungeon page shows it in its Monsters table."
+  },
+  "sprite": {
+   "description": "A front-facing armored arachnid-scorpion creature. A broad dark slate-grey carapace hood covers its head, with a cluster of six small glowing red eyes beneath it. Jagged steel-blue claw blades, tipped with amber, fan out from both sides of the head and from its lower flanks like spread legs. Its body below is a segmented, ridged amber-orange abdomen framed by grey plating.",
+   "dominant_color_hex": "#28425F",
+   "faces": "front",
+   "flier": false
+  },
+  "battle": {
+   "check": "* PINCER - No. 66 - FIRE - 2 STARS.\n* Hits hard for its size (ATK 10), but its shell is thin (DEF 3).\n* Six red eyes. None of them blink.",
+   "intro": "* Something heavy shifts beneath the leaf litter.\n* Pincer rises on its blades, eyes burning red.",
+   "idle": [
+    "* Pincer's blades tick against one another, slow and patient.",
+    "* A thin smoke curls from the joints of its shell. It smells of scorched sap.",
+    "* Its six eyes track you together, never apart.",
+    "* Pincer lowers its body to the ground, as a thing does before it springs."
+   ],
+   "talk": [
+    "...tk. tk.",
+    "Sleep.\nIt is\neasier.",
+    "The root\nwas\nours.",
+    "Hot. All\nof it\nhot.",
+    "Lie down.\nLie still."
+   ],
+   "spare_text": "* Pincer's blades fold in against its shell.\n* It backs into the undergrowth, eyes dimming one by one.",
+   "lore": "No. 66 - Pincer. Fire element, 2 stars (2nd form). Its wiki stats table has a single unlabeled column with no level given; those values are used here as its lowest-level stats: HP 29, ATK 10, MAG 3, SPD 13, DEF 3, RES 3. Abilities: Hypnotic Shot (130 TU, one foe, puts the target to sleep for 195 TUs; any damage wakes it), Venom Spray (130 TU, all foes, poison for 500 TUs dealing 11-14 Fire damage) and Venom Sting (130 TU, one foe, 11-14 physical Fire damage plus poison for 500 TUs dealing 11-14 Fire damage). Evolves from Stinger at level 16 and into Terror Claw at level 33. Listed among the monsters of the Forest of Mangal and the Giant Mangal dungeon.",
+   "acts": [
+    {
+     "name": "Hold Gaze",
+     "text": [
+      "* You meet all six of its eyes and do not look away.",
+      "* Pincer's red stare flickers. You do not grow drowsy.",
+      "* Its lure has failed. It seems less certain now."
+     ],
+     "mercy": 35,
+     "once": true,
+     "calm": 1
+    },
+    {
+     "name": "Step Back",
+     "text": [
+      "* You step back slowly, leaving it the ground it guards.",
+      "* Pincer's blades stop ticking.",
+      "* It does not follow."
+     ],
+     "mercy": 35,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Douse Embers",
+     "text": [
+      "* You kick damp earth over the smoldering leaves around it.",
+      "* The heat in the air thins. Pincer's shell stops smoking.",
+      "* It settles low, no longer coiled to strike."
+     ],
+     "mercy": 40,
+     "once": true,
+     "calm": 1
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Hypnotic Shot",
+     "tu": 130,
+     "base_pattern": "telegraph_lines",
+     "projectile": "fx_sparkle",
+     "tint_hex": "#E0303A",
+     "twist": "slow",
+     "box": [
+      340,
+      230
+     ],
+     "intensity": 0.8,
+     "flavor": "* Six red eyes pulse in unison. Your limbs grow heavy."
+    },
+    {
+     "ability": "Venom Spray",
+     "tu": 130,
+     "base_pattern": "diagonal_rain",
+     "projectile": "orb_blood",
+     "tint_hex": "#E08A2A",
+     "twist": "poison",
+     "box": [
+      500,
+      240
+     ],
+     "intensity": 1,
+     "flavor": "* Pincer arches and sprays a hissing, burning mist over everything."
+    },
+    {
+     "ability": "Venom Sting",
+     "tu": 130,
+     "base_pattern": "aimed_volley",
+     "projectile": "fx_tornado",
+     "tint_hex": "#D9662B",
+     "twist": "poison",
+     "box": [
+      380,
+      230
+     ],
+     "intensity": 1.1,
+     "flavor": "* Its blades lunge for you. Where they graze, the skin burns."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "giant_mangal_f1",
+   "mangal_east_road",
+   "safaris_grassland"
+  ],
+  "name": "Spark",
+  "id": "spark",
+  "wiki": {
+   "number": "109",
+   "stars": 2.5,
+   "element": "Air",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/c/cd/Spark.png",
+   "image_size": [
+    56,
+    92
+   ],
+   "lv1": {
+    "hp": 30,
+    "attack": 4,
+    "magic": 10,
+    "speed": 14,
+    "defense": 6,
+    "resist": 6
+   },
+   "abilities": [
+    {
+     "name": "Spark",
+     "tu": "50",
+     "target": "1 Foe",
+     "effect": "5-6 Magical Damage (Air)"
+    },
+    {
+     "name": "Thunderbolt",
+     "tu": "130",
+     "target": "1 Foe",
+     "effect": "11-14 Magical Damage (Air)"
+    }
+   ],
+   "evolution": "Spark (1st Form) -> Thunder Mage (evolves at level 28; final form)",
+   "obtain": "Found near the lake in the Safaris, in Giant Mangal, and in the Forest of Mangal."
+  },
+  "sprite": {
+   "description": "A tall, stooped humanoid figure wrapped in a long, frayed brown robe that pools at the ground. A heavy charcoal-grey hood with a long drooping point hides its face in shadow, and two long braids of silver-white hair hang down over its chest. No hands or feet are visible.",
+   "dominant_color_hex": "#6B4F3E",
+   "faces": "right",
+   "flier": false
+  },
+  "battle": {
+   "check": "* SPARK - No. 109 - AIR - 2.5 STARS.\n* High magic for its kind (MAG 10), but frail (DEF 6, RES 6). Knows Spark and Thunderbolt.\n* Under the hood there is only shadow, and the smell of struck iron.",
+   "intro": "* The air goes tight and dry.\n* A hooded figure stands where no one stood a moment ago.",
+   "idle": [
+    "* Spark does not move. The hem of its robe stirs anyway.",
+    "* Static crawls along its silver braids, then fades.",
+    "* Somewhere far off, thunder answers a question you did not hear.",
+    "* The hood turns west, toward the Mangal, and stays there a long while."
+   ],
+   "talk": [
+    "...",
+    "The storm\nremembers\nthe lake.",
+    "Do not\nstand on\nhigh ground.",
+    "She passed\nunder the\ncloud.",
+    "Go back.\nThe sky is\nlistening."
+   ],
+   "spare_text": "* The tightness leaves the air.\n* When you look again, there is only a scorched ring in the grass where Spark stood.",
+   "lore": "No. 109 - Spark. Air element, 2.5 stars, Humanoid. Lv1: HP 30, ATK 4, MAG 10, SPD 14, DEF 6, RES 6. Abilities (as at level 1): Spark (50 TU, 1 foe, 5-6 magical Air damage) and Thunderbolt (130 TU, 1 foe, 11-14 magical Air damage). Evolves into Thunder Mage at level 28. Found near the lake in the Safaris, in Giant Mangal, and in the Forest of Mangal. Travelers along the lake say the hooded ones gather before a storm and are gone when it breaks.",
+   "acts": [
+    {
+     "name": "Lower Gaze",
+     "text": [
+      "* You lower your eyes and do not look into the hood.",
+      "* The charge in the air eases, slightly.",
+      "* Spark's braids settle against its robe."
+     ],
+     "mercy": 40,
+     "once": true,
+     "calm": 1
+    },
+    {
+     "name": "Ground Self",
+     "text": [
+      "* You kneel and press your palm flat to the earth.",
+      "* The next crackle of static runs past you into the soil.",
+      "* Spark tilts its hood, as if reconsidering you."
+     ],
+     "mercy": 35,
+     "once": true,
+     "calm": 1
+    },
+    {
+     "name": "Wait Out",
+     "text": [
+      "* You stand in silence and let the storm in it pass.",
+      "* Thunder rolls once, farther away than before.",
+      "* Spark is no longer looking at you. It is looking at the sky."
+     ],
+     "mercy": 30,
+     "once": false,
+     "calm": 1
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Spark",
+     "tu": 50,
+     "base_pattern": "aimed_volley",
+     "projectile": "fx_sparkle",
+     "tint_hex": "#CFE6FF",
+     "twist": "none",
+     "box": [
+      340,
+      230
+     ],
+     "intensity": 0.8,
+     "flavor": "* Spark lifts a hidden hand. Small, quick sparks snap toward you."
+    },
+    {
+     "ability": "Thunderbolt",
+     "tu": 130,
+     "base_pattern": "telegraph_lines",
+     "projectile": "fx_silverring",
+     "tint_hex": "#8FB8FF",
+     "twist": "none",
+     "box": [
+      460,
+      245
+     ],
+     "intensity": 1.15,
+     "flavor": "* The hood goes dark. The air above you whitens. Then the bolt comes down."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "giant_mangal_f1",
+   "mangal_east_road"
+  ],
+  "name": "Doombat",
+  "id": "doombat",
+  "wiki": {
+   "number": "019",
+   "stars": 2.5,
+   "element": "Air",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/8/8e/Doombat.png",
+   "image_size": [
+    228,
+    108
+   ],
+   "lv1": {
+    "hp": 31,
+    "attack": 6,
+    "magic": 9,
+    "speed": 20,
+    "defense": 9,
+    "resist": 14
+   },
+   "abilities": [
+    {
+     "name": "Confusion",
+     "tu": "250",
+     "target": "One Foe",
+     "effect": "Confuses the Target for 437 TUs, causing it to sometimes do nothing."
+    },
+    {
+     "name": "Feed",
+     "tu": "70",
+     "target": "One Foe",
+     "effect": "3 - 4 Physical Damage (Air), Heals for 50% of Damage dealt"
+    },
+    {
+     "name": "Tailwind",
+     "tu": "100",
+     "target": "Self",
+     "effect": "Speeds up Actions by -38%"
+    },
+    {
+     "name": "Ultrasonic",
+     "tu": "130",
+     "target": "All Foes",
+     "effect": "Decreases Defense by 2"
+    }
+   ],
+   "evolution": "Bat Squirrel (1st Form, evolves at level 10) -> Giant Bat (2nd Form, evolves at level 22) -> Doombat (3rd Form, evolves at level 33) -> Bat King (4th Form)",
+   "obtain": "Level 4+ in Giant Mangal dungeon. Evolve from Giant Bat."
+  },
+  "sprite": {
+   "description": "A large front-facing bat with huge spread wings, the membranes charcoal-grey mottled with blood red, ribbed by long black finger bones with hooked claw tips. Its armored black head has two upswept horn-like ears, a small crown of red points on the brow and two glowing red eyes; a segmented dark body hangs beneath, ending in clutching, spindly talons. Clean transparent sprite, 228x108.",
+   "dominant_color_hex": "#2B2B2B",
+   "faces": "front",
+   "flier": true
+  },
+  "battle": {
+   "check": "* DOOMBAT - No. 19 - AIR - 2.5 STARS.\n* Fast (SPD 20). Knows Feed, Ultrasonic, Tailwind and Confusion.\n* It feeds on what it wounds, and grows stronger for it.",
+   "intro": "* The canopy shudders. Red eyes open in the dark above.\n* Doombat drops from the branches.",
+   "idle": [
+    "* Doombat hangs in the air, wings wide. It barely needs to beat them.",
+    "* Red veins run through its wings like old bloodstains.",
+    "* A thin, high sound comes from it. You feel it in your teeth.",
+    "* Its talons flex slowly, as if gripping something that is not there."
+   ],
+   "talk": [
+    "...",
+    "Warm.\nYou are\nwarm.",
+    "The great\ntree is\nours.",
+    "Your blood\nsings.",
+    "Bleed.\nOnly a\nlittle."
+   ],
+   "spare_text": "* Doombat's eyes dim to embers.\n* It turns, and climbs back into the high branches of the Mangal.",
+   "lore": "No. 19 - Doombat. Air element, 2.5 stars. Lv1: HP 31, ATK 6, MAG 9, SPD 20, DEF 9, RES 14. Abilities (as at level 1): Feed (70 TU, one foe, 3-4 physical Air damage, heals for 50% of damage dealt), Ultrasonic (130 TU, all foes, decreases Defense by 2), Tailwind (100 TU, self, speeds up actions by -38%), Confusion (250 TU, one foe, confuses for 437 TUs so it sometimes does nothing). Third form of the line: Bat Squirrel evolves at 10 into Giant Bat, Giant Bat at 22 into Doombat, and Doombat at 33 into Bat King. Found at level 4+ in the Giant Mangal dungeon. They roost high in the great tree and come down only to feed.",
+   "acts": [
+    {
+     "name": "Cover Ears",
+     "text": [
+      "* You press your hands over your ears.",
+      "* The shrill note dulls. Your head clears.",
+      "* Doombat's cry no longer finds its mark."
+     ],
+     "mercy": 35,
+     "once": true,
+     "calm": 1
+    },
+    {
+     "name": "Stay Low",
+     "text": [
+      "* You crouch and keep your pulse slow.",
+      "* Doombat circles lower, then higher.",
+      "* There is no fear on you for it to feed on."
+     ],
+     "mercy": 35,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Offer Shade",
+     "text": [
+      "* You step back under the deepest shadow of the branches.",
+      "* Doombat follows, then settles on a bough beside you.",
+      "* In the dark, it is no longer hunting."
+     ],
+     "mercy": 50,
+     "once": true,
+     "calm": 2
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Feed",
+     "tu": 70,
+     "base_pattern": "homing",
+     "projectile": "orb_blood",
+     "tint_hex": "#B3202A",
+     "twist": "lifesteal",
+     "box": [
+      360,
+      230
+     ],
+     "intensity": 0.9,
+     "flavor": "* Doombat dives with its talons open. It wants your blood."
+    },
+    {
+     "ability": "Ultrasonic",
+     "tu": 130,
+     "base_pattern": "rings_sweep",
+     "projectile": "fx_silverring",
+     "tint_hex": "#C9C9D6",
+     "twist": "all_foes_wide",
+     "box": [
+      500,
+      240
+     ],
+     "intensity": 1,
+     "flavor": "* A shriek too high to hear. Your guard feels thinner."
+    },
+    {
+     "ability": "Tailwind",
+     "tu": 100,
+     "base_pattern": "swoop",
+     "projectile": "fx_tornado",
+     "tint_hex": "#7A7F8C",
+     "twist": "none",
+     "box": [
+      460,
+      230
+     ],
+     "intensity": 1.2,
+     "flavor": "* Doombat rides a cold current. It moves faster now."
+    },
+    {
+     "ability": "Confusion",
+     "tu": 250,
+     "base_pattern": "spiral",
+     "projectile": "fx_sparkle",
+     "tint_hex": "#8E1B2E",
+     "twist": "confuse",
+     "box": [
+      340,
+      240
+     ],
+     "intensity": 0.8,
+     "flavor": "* Its red eyes pulse. The branches seem to turn around you."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "mangal_crossroads",
+   "mangal_building_site"
+  ],
+  "name": "Sasuke",
+  "id": "sasuke",
+  "wiki": {
+   "number": "077",
+   "stars": 3,
+   "element": "Air",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/f/ff/Sasuke.png",
+   "image_size": [
+    70,
+    107
+   ],
+   "lv1": {
+    "hp": 30,
+    "attack": 11,
+    "magic": 6,
+    "speed": 27,
+    "defense": 8,
+    "resist": 8
+   },
+   "abilities": [
+    {
+     "name": "Metal Slash",
+     "tu": "100",
+     "target": "1 Foe",
+     "effect": "9-11 Physical Damage (Air), 300% Damage vs. Metal"
+    },
+    {
+     "name": "Slay",
+     "tu": "100",
+     "target": "1 Foe",
+     "effect": "9-11 Physical Damage (Air), 100% Damage vs. Humanoid"
+    }
+   ],
+   "evolution": "Assassin (1st Form, evolves at level 15) -> Sasuke (2nd Form, evolves at level 32) -> Ninja (3rd Form, evolves at level 84) -> Goemon (4th Form; final form)",
+   "obtain": "Found in the Forest of Mangal and in Giant Mangal or get it in a golden egg. Evolve an Assassin to Lv.15."
+  },
+  "sprite": {
+   "description": "A tall, lean humanoid swordsman in a long pale grey-white coat with sharp angular shoulders, worn over a crimson-red tunic and trousers with gold studs. A red cloth masks the lower face beneath a pale helm crowned with a gold crest and a black plume. He holds a long thin katana extended out to his right, with a dark scabbard slung behind him, and stands on long dark boots.",
+   "dominant_color_hex": "#B9B9BE",
+   "faces": "right",
+   "flier": false
+  },
+  "battle": {
+   "check": "* SASUKE - No. 77 - AIR - 3 STARS.\n* Very fast (SPD 27). Knows Metal Slash and Slay.\n* It does not waste a single movement. Neither should you.",
+   "intro": "* The mangroves fall silent.\n* Sasuke steps out of the shade with its blade already drawn.",
+   "idle": [
+    "* Sasuke holds its blade level with your throat. It has not blinked.",
+    "* The red cloth over its face does not move. You cannot hear it breathe.",
+    "* Sasuke shifts its weight without a sound. Its boots leave no mark in the mud.",
+    "* Somewhere behind it, a branch sways. Sasuke was standing there a moment ago."
+   ],
+   "talk": [
+    "...",
+    "State your\nbusiness.",
+    "One cut\nis\nenough.",
+    "You walk\nlike prey.",
+    "I do not\nmiss."
+   ],
+   "spare_text": "* Sasuke lowers its blade and slides it into the scabbard.\n* When you look up again, the path ahead is empty.",
+   "lore": "No. 77 - Sasuke. Air element, 3 stars. Lv1: HP 30, ATK 11, MAG 6, SPD 27, DEF 8, RES 8. Abilities: Metal Slash (100 TU, 1 foe, 9-11 physical Air damage, 300% damage vs. Metal) and Slay (100 TU, 1 foe, 9-11 physical Air damage, 100% damage vs. Humanoid). The second form of the Assassin line: Assassin evolves into Sasuke at level 15, Sasuke into Ninja at level 32, and Ninja into Goemon at level 84. Found in the Forest of Mangal and in Giant Mangal, or hatched from a golden egg. Travellers through the mangroves speak of a cut felt before any blade was seen.",
+   "acts": [
+    {
+     "name": "Hold Ground",
+     "text": [
+      "* You plant your feet and do not flinch.",
+      "* Sasuke's eyes narrow above the red cloth.",
+      "* It circles you once, measuring."
+     ],
+     "mercy": 35,
+     "once": true,
+     "calm": 1
+    },
+    {
+     "name": "Lower Arms",
+     "text": [
+      "* You let your hands fall open at your sides.",
+      "* Sasuke's blade dips a finger's width.",
+      "* It does not strike at an open guard."
+     ],
+     "mercy": 35,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Bow",
+     "text": [
+      "* You bow your head, slowly, and keep it there.",
+      "* A long silence.",
+      "* Sasuke answers with the smallest nod."
+     ],
+     "mercy": 50,
+     "once": true,
+     "calm": 2
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Metal Slash",
+     "tu": 100,
+     "base_pattern": "telegraph_lines",
+     "projectile": "fx_silverring",
+     "tint_hex": "#D8DCE6",
+     "twist": "none",
+     "box": [
+      460,
+      230
+     ],
+     "intensity": 1,
+     "flavor": "* Sasuke's blade flashes. Thin silver lines open across the air, then close."
+    },
+    {
+     "ability": "Slay",
+     "tu": 100,
+     "base_pattern": "swoop",
+     "projectile": "fx_tornado",
+     "tint_hex": "#B3242E",
+     "twist": "none",
+     "box": [
+      380,
+      240
+     ],
+     "intensity": 1.1,
+     "flavor": "* Sasuke vanishes into the wind. It comes for you, and only you."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "mangal_crossroads",
+   "mangal_building_site"
+  ],
+  "name": "Drake",
+  "id": "drake",
+  "wiki": {
+   "number": "052",
+   "stars": 3.5,
+   "element": "Fire",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/d/da/Drake.png",
+   "image_size": [
+    124,
+    115
+   ],
+   "lv1": {
+    "hp": 31,
+    "attack": 9,
+    "magic": 9,
+    "speed": 18,
+    "defense": 16,
+    "resist": 16
+   },
+   "abilities": [
+    {
+     "name": "Attack Break",
+     "tu": "130",
+     "target": "One Foe",
+     "effect": "9 - 11 Physical Damage (Fire)"
+    },
+    {
+     "name": "Drop Kick",
+     "tu": "130",
+     "target": "Two Foe",
+     "effect": "6 - 7 Physical Damage (Fire)"
+    },
+    {
+     "name": "Flame",
+     "tu": "130",
+     "target": "One Foe",
+     "effect": "9 - 12 Magical Damage (Fire)"
+    }
+   ],
+   "evolution": "No evolution is listed on Drake's wiki page. The Arashi page states: \"The real identity of Arashi is Drake\" (Arashi, a dragon overlord, is met on the bridge in Southern Alvalon on the first visit).",
+   "obtain": "Obtained in Eastern Gracia and Holy Cave. Can also be found at Ringfeld, in the middle of the forest."
+  },
+  "sprite": {
+   "description": "A lean slate-black dragon reared up in mid-leap, its long serpentine neck curved back and its head turned left, crowned with swept-back pale gold horns. Huge ragged bat-like wings of dark blue-grey membrane spread behind it, ribbed with bone. Its belly and limbs are thin and sinewed, ending in hooked gold-tipped talons, with one hind leg kicked forward and a whip-like tail trailing behind.",
+   "dominant_color_hex": "#26303A",
+   "faces": "left",
+   "flier": true
+  },
+  "battle": {
+   "check": "* DRAKE - No. 52 - FIRE - 3.5 STARS.\n* Quick (SPD 18), hard to wound (DEF 16, RES 16). Knows Attack Break, Drop Kick and Flame.\n* Its scales are black as old soot. The heat lives underneath them.",
+   "intro": "* The trees give way to a black shape with open wings.\n* Drake lands across the road and does not let you pass.",
+   "idle": [
+    "* Drake folds and unfolds its wings. Ash drifts from the membranes.",
+    "* A low heat rolls off its scales, though they look cold as slate.",
+    "* Drake's gold talons scrape the stone. It has done this many times before.",
+    "* Drake keeps glancing west, toward the dark beyond the forest."
+   ],
+   "talk": [
+    "...hhrrh.",
+    "The forest\nis ours.",
+    "He passed\nhere. He\ndid not stop.",
+    "Bridges\nremember\nfire.",
+    "Go back\nwhile the\nroad holds."
+   ],
+   "spare_text": "* Drake lowers its horns, almost to the ground.\n* Then it beats its wings once and rises into the trees, leaving only warm ash behind.",
+   "lore": "No. 52 - Drake. Fire element, 3.5 stars (3 full stars + 1 half star; category 3.5 Stars Monsters). Lv1: HP 31, ATK 9, MAG 9, SPD 18, DEF 16, RES 16. Abilities (all 130 TU): Attack Break (one foe, 9-11 physical Fire damage), Drop Kick (two foes, 6-7 physical Fire damage), Flame (one foe, 9-12 magical Fire damage). The wiki calls it a dragon monster, useful against offensive monsters like Dragon Overlord and Wolf God because Drake can reduce their attack value. Found in Eastern Gracia and Holy Cave, and at Ringfeld in the middle of the forest. The Arashi page says the real identity of Arashi, the dragon overlord on the bridge in Southern Alvalon, is Drake. No evolution is listed.",
+   "acts": [
+    {
+     "name": "Stand Still",
+     "text": [
+      "* You plant your feet and do not raise your hands.",
+      "* Drake's wings stay spread. But it does not strike.",
+      "* It watches you the way a sentry watches a lone traveler."
+     ],
+     "mercy": 35,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Show Ribbon",
+     "text": [
+      "* You hold out Lira's blue ribbon.",
+      "* Drake lowers its head and breathes on it. The cloth does not burn.",
+      "* Something in its eyes shifts. It has smelled the one who carried her."
+     ],
+     "mercy": 45,
+     "once": true,
+     "calm": 2
+    },
+    {
+     "name": "Bow Low",
+     "text": [
+      "* You bow your head below its horns.",
+      "* Drake answers with a slow rumble, deep in its chest.",
+      "* The heat around it begins to fade."
+     ],
+     "mercy": 30,
+     "once": false,
+     "calm": 1
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Attack Break",
+     "tu": 130,
+     "base_pattern": "telegraph_lines",
+     "projectile": "fx_sparkle",
+     "tint_hex": "#E8742A",
+     "twist": "neutralize",
+     "box": [
+      380,
+      240
+     ],
+     "intensity": 1,
+     "flavor": "* Drake's talons flare orange and rake the air. Your strength feels blunted."
+    },
+    {
+     "ability": "Drop Kick",
+     "tu": 130,
+     "base_pattern": "swoop",
+     "projectile": "fx_silverring",
+     "tint_hex": "#D9A23A",
+     "twist": "all_foes_wide",
+     "box": [
+      500,
+      230
+     ],
+     "intensity": 0.95,
+     "flavor": "* Drake rises, then drops heel-first across the whole field."
+    },
+    {
+     "ability": "Flame",
+     "tu": 130,
+     "base_pattern": "aimed_volley",
+     "projectile": "orb_blood",
+     "tint_hex": "#FF5A1F",
+     "twist": "none",
+     "box": [
+      340,
+      245
+     ],
+     "intensity": 1.1,
+     "flavor": "* Drake opens its jaws. The fire inside is white at the center."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "mangal_crossroads"
+  ],
+  "name": "Flame Wing",
+  "id": "flame_wing",
+  "wiki": {
+   "number": "036",
+   "stars": 3.5,
+   "element": "Air",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/2/2d/Flame_Wing.png",
+   "image_size": [
+    90,
+    69
+   ],
+   "lv1": {
+    "hp": 31,
+    "attack": 12,
+    "magic": 9,
+    "speed": 26,
+    "defense": 26,
+    "resist": 10
+   },
+   "abilities": [
+    {
+     "name": "Gust",
+     "tu": "100",
+     "target": "1 Foe",
+     "effect": "8-9 Magical Damage (Air)"
+    },
+    {
+     "name": "Peck",
+     "tu": "70",
+     "target": "1 Foe",
+     "effect": "8-9 Magical Damage (Air)"
+    },
+    {
+     "name": "Tailwind",
+     "tu": "100",
+     "target": "Self",
+     "effect": "Speeds up Actions by 38%"
+    },
+    {
+     "name": "Wing Cutter",
+     "tu": "70",
+     "target": "2 Foes",
+     "effect": "4-5 Physical Damage (Air)"
+    }
+   ],
+   "evolution": "Bitewing -> Flame Wing (evolves from Bitewing at level 10) -> Angelic Bird (evolves at level 34)",
+   "obtain": "Found in the Giant Mangal dungeon and deep in No Man's Castle (spotted on floors 5 and 6). Evolves from Bitewing at level 10. Also found in the Forest of Mangal, Lowest level Flame Wings there will be level 18"
+  },
+  "sprite": {
+   "description": "A dark slate-grey bird of prey caught mid-dive, wings flung wide with black-grey flight feathers; its breast, shoulders and crown are wreathed in ragged salmon-red plumage shaped like licking flames. Clean transparent 90x69 sprite, head toward the upper left.",
+   "dominant_color_hex": "#D0645C",
+   "faces": "left",
+   "flier": true
+  },
+  "battle": {
+   "check": "* FLAME WING - AIR - 3.5 STARS.\n* Its feathers look like fire.\n* They give off no heat at all.",
+   "intro": "* Red feathers drop from the canopy.\n* Flame Wing comes down after them.",
+   "idle": [
+    "* Flame Wing circles just above the reach of your arm.",
+    "* The wind under its wings smells of cold ash.",
+    "* A red feather drifts down. It does not burn.",
+    "* Flame Wing's eyes never leave the back of your neck."
+   ],
+   "talk": [
+    "Shhrrk.",
+    "Too slow.\nToo low.",
+    "...kreee...",
+    "The wind is\nmine here.",
+    "Ground-walker.\nGo home."
+   ],
+   "spare_text": "* Flame Wing climbs into the high branches.\n* Its red shape fades between the leaves.",
+   "lore": "Flame Wing, No. 36 in the Dragon Island Blue records, is an Air monster. Its plumage looks like fire but it is wind, not flame, that it commands. It evolves from Bitewing at level 10 and, at level 34, into the Angelic Bird. It hunts the Giant Mangal and the Forest of Mangal, where none are seen below level 18, and it has been sighted deep in No Man's Castle on floors 5 and 6. Listed stats are its level-1 values.",
+   "acts": [
+    {
+     "name": "Hold Still",
+     "text": [
+      "* You stop moving and let the wind pass over you.",
+      "* Flame Wing tilts its head. It cannot read prey that does not run."
+     ],
+     "mercy": 35,
+     "once": true,
+     "calm": 1
+    },
+    {
+     "name": "Offer Feather",
+     "text": [
+      "* You pick up one of its fallen red feathers and hold it out, flat on your palm.",
+      "* Flame Wing drops lower. For a breath it looks almost uncertain."
+     ],
+     "mercy": 35,
+     "once": true,
+     "calm": 1
+    },
+    {
+     "name": "Yield Sky",
+     "text": [
+      "* You lower your eyes and step back under the branches.",
+      "* Flame Wing screams once, a claim on the open air.",
+      "* It no longer sees you as a rival."
+     ],
+     "mercy": 40,
+     "once": false,
+     "calm": 1
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Gust",
+     "tu": 100,
+     "base_pattern": "tornado_sweep",
+     "projectile": "fx_tornado",
+     "tint_hex": "#C9D3D6",
+     "twist": "none",
+     "box": [
+      460,
+      230
+     ],
+     "intensity": 1,
+     "flavor": "* Flame Wing beats its wings once. The air itself shoves you across the box."
+    },
+    {
+     "ability": "Peck",
+     "tu": 70,
+     "base_pattern": "swoop",
+     "projectile": "fx_sparkle",
+     "tint_hex": "#D0645C",
+     "twist": "none",
+     "box": [
+      360,
+      240
+     ],
+     "intensity": 1,
+     "flavor": "* It folds its wings and drops beak-first."
+    },
+    {
+     "ability": "Tailwind",
+     "tu": 100,
+     "base_pattern": "diagonal_rain",
+     "projectile": "fx_silverring",
+     "tint_hex": "#B8C4C8",
+     "twist": "none",
+     "box": [
+      500,
+      220
+     ],
+     "intensity": 1.2,
+     "flavor": "* A tailwind rises behind Flame Wing. Everything it does now comes faster."
+    },
+    {
+     "ability": "Wing Cutter",
+     "tu": 70,
+     "base_pattern": "telegraph_lines",
+     "projectile": "fx_silverring",
+     "tint_hex": "#8A2F2A",
+     "twist": "all_foes_wide",
+     "box": [
+      480,
+      240
+     ],
+     "intensity": 1.1,
+     "flavor": "* Its wing edge goes rigid as a blade and cuts across two paths at once."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "safaris_grassland"
+  ],
+  "name": "Iron Sludge",
+  "id": "iron_sludge",
+  "wiki": {
+   "number": "065",
+   "stars": 4,
+   "element": "Arcane",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/b/bd/Iron_Sludge.png",
+   "image_size": [
+    71,
+    89
+   ],
+   "lv1": {
+    "hp": 57,
+    "attack": 3,
+    "magic": 3,
+    "speed": 52,
+    "defense": 36,
+    "resist": 36
+   },
+   "abilities": [
+    {
+     "name": "Easy Target",
+     "tu": "-",
+     "target": "Enemies",
+     "effect": "Taunts enemies, making them more likely to attack this target"
+    },
+    {
+     "name": "Escape",
+     "tu": "130",
+     "target": "Self",
+     "effect": "Escape from a battle"
+    },
+    {
+     "name": "Ooze",
+     "tu": "70",
+     "target": "1 Foe",
+     "effect": "1-2 Physical Damage (Arcane)"
+    }
+   ],
+   "evolution": "1st Form. Evolves into Iron Slime at level 37.",
+   "obtain": "Found at the map east of Lorensia, specifically just north of the big tree, but probably occurs in other spots too. Found at level 35ish. Found in the small forest West of Dundean (~Level 15); about 5 or so in 30 min of farming."
+  },
+  "sprite": {
+   "description": "Grey metallic teardrop-shaped slime that rises to a thin pointed stalk with a small round bead on top, bright glossy highlights on its right side, a wide dark curved mouth across its middle, and a flattened puddle base. Clean transparent 71x89 sprite, greyscale.",
+   "dominant_color_hex": "#969696",
+   "faces": "front",
+   "flier": false
+  },
+  "battle": {
+   "check": "* IRON SLUDGE - ARCANE - 4 STARS\n* Hard to wound. Harder to hold. It draws blows toward itself.",
+   "intro": "* A mound of grey metal slides out from under the roots.",
+   "idle": [
+    "* Iron Sludge settles. The ground beneath it darkens with damp.",
+    "* Its surface ripples, then goes still as cast iron.",
+    "* It tilts toward you, as if offering itself to your strike.",
+    "* A smell of rust and wet stone hangs in the air."
+   ],
+   "talk": [
+    "...strike\nhere...",
+    "...the blade\nslides off...",
+    "...cold metal\nremembers\nnothing...",
+    "...we keep\nrunning...",
+    "...let the\nroad take\nyou..."
+   ],
+   "spare_text": "* Iron Sludge sinks into the earth and leaves only a grey stain.",
+   "lore": "Iron Sludge (#065) is a 4-star Arcane monster of the Metal category. Its stats are its level-1 values: 57 HP, 3 Attack, 3 Magic, 52 Speed, 36 Defense and 36 Resist. Its passive, Easy Target, draws enemies to attack it. It knows Escape (130 TU, self, flees the battle) and Ooze (70 TU, one foe, 1-2 physical Arcane damage). It is the first form and becomes Iron Slime at level 37. It is found east of Lorensia north of the big tree, and in the small forest west of Dundean.",
+   "acts": [
+    {
+     "name": "Hold Back",
+     "text": [
+      "* You lower your weapon and do not take the opening it gives you.",
+      "* The sludge stops pressing itself toward you."
+     ],
+     "mercy": 40,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Step Aside",
+     "text": [
+      "* You step off its path and leave the way west open.",
+      "* It slides a little closer to the trees, testing the gap."
+     ],
+     "mercy": 35,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Listen",
+     "text": [
+      "* You kneel and listen to the metal settle.",
+      "* It ticks like a cooling forge. The sound slows."
+     ],
+     "mercy": 30,
+     "once": true,
+     "calm": 1
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Ooze",
+     "tu": 70,
+     "base_pattern": "bounce_orbs",
+     "projectile": "orb_moss",
+     "tint_hex": "#8C8C8C",
+     "twist": "slow",
+     "box": [
+      360,
+      230
+     ],
+     "intensity": 0.75,
+     "flavor": "* Grey ooze slops across the ground in heavy, rolling beads."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "safaris_riverbank"
+  ],
+  "name": "Baby Nessie",
+  "id": "baby_nessie",
+  "wiki": {
+   "number": "039",
+   "stars": 3.5,
+   "element": "Water",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/f/f6/Baby_Nessie.png",
+   "image_size": [
+    55,
+    90
+   ],
+   "lv1": {
+    "hp": 23,
+    "attack": 5,
+    "magic": 5,
+    "speed": 16,
+    "defense": 8,
+    "resist": 8
+   },
+   "abilities": [
+    {
+     "name": "Curse",
+     "tu": "-",
+     "target": "-",
+     "effect": "Deals water damage over 500 TUs"
+    },
+    {
+     "name": "Flip Around",
+     "tu": "130",
+     "target": "1 Foe",
+     "effect": "5-6 Physical Damage (Water)"
+    }
+   ],
+   "evolution": "Baby Nessie (1st Form) -> Nessie (evolves at level 24; final form)",
+   "obtain": "Found at the Giant Turtle location in Southern Alvalon, in Pirate's Cave (all floors) in Northern Alvalon, and at the location that looks like a small tower in the Safaris. Capturing one is required for the Westguard quest 'Capture Baby Nessie' (20 gold reward)."
+  },
+  "sprite": {
+   "description": "A small, curled aquatic hatchling shaped like a teardrop. Its arched back is bright cyan covered in white polka dots and topped with a few thin, wavy frond-like spines. The underside and head are a smooth, darker sea-blue with two large glossy black eyes. Pale pink ribbon-like gill fronds trail from its sides, and a long pink tendril hangs down beneath its chin.",
+   "dominant_color_hex": "#00BEEF",
+   "faces": "front",
+   "flier": false
+  },
+  "battle": {
+   "check": "* BABY NESSIE - No. 039 - WATER - 3.5 STARS.\n* Quick for its size (SPD 16). Knows Flip Around. Carries a Curse.\n* Its skin is always wet, even far from any water.",
+   "intro": "* Something small and blue curls out of the shallows.\n* Baby Nessie watches you with wet, black eyes.",
+   "idle": [
+    "* Baby Nessie coils and uncoils. Water drips from its spines and never stops.",
+    "* The pink fronds at its sides open and close, as if breathing air it cannot use.",
+    "* A cold, brackish smell rises off it. Like a cave the tide has left.",
+    "* Baby Nessie keeps one eye on the deep water behind it."
+   ],
+   "talk": [
+    "...plip.",
+    "The water\nremembers.",
+    "Turn.\nTurn again.",
+    "Do not\npull me\nout.",
+    "Deep is\nquiet."
+   ],
+   "spare_text": "* Baby Nessie sinks low, until only its eyes show.\n* Then it slips back beneath the dark water. The ripples close over it.",
+   "lore": "No. 039 - Baby Nessie. Water element, 3.5 stars. Lv1: HP 23, ATK 5, MAG 5, SPD 16, DEF 8, RES 8. Abilities: Curse (passive, deals Water damage over 500 TUs) and Flip Around (130 TU, 1 foe, 5-6 physical Water damage). Evolves into Nessie at level 24. Found at the Giant Turtle location in Southern Alvalon, on every floor of Pirate's Cave in Northern Alvalon, and at the place in the Safaris that looks like a small tower; Westguard pays 20 gold for the capture of one. What it touches stays damp for a long time afterward, and the wet brings sickness.",
+   "acts": [
+    {
+     "name": "Kneel Low",
+     "text": [
+      "* You crouch at the water's edge and make yourself small.",
+      "* Baby Nessie stops coiling. It studies you.",
+      "* You are not as large as it feared."
+     ],
+     "mercy": 40,
+     "once": true,
+     "calm": 1
+    },
+    {
+     "name": "Offer Water",
+     "text": [
+      "* You cup water from your flask and pour it slowly onto the stones.",
+      "* Baby Nessie drifts toward the puddle and lowers its head into it.",
+      "* Its spines stop trembling."
+     ],
+     "mercy": 35,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Look Away",
+     "text": [
+      "* You turn your eyes from it and toward the dark water behind.",
+      "* Baby Nessie follows your gaze. It no longer has to guard its way home.",
+      "* It stops readying itself to flip."
+     ],
+     "mercy": 50,
+     "once": true,
+     "calm": 2
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Flip Around",
+     "tu": 130,
+     "base_pattern": "bounce_orbs",
+     "projectile": "fx_waterring",
+     "tint_hex": "#00BEEF",
+     "twist": "none",
+     "box": [
+      380,
+      240
+     ],
+     "intensity": 0.8,
+     "flavor": "* Baby Nessie flips end over end. Cold water slaps across the ground toward you."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "safaris_riverbank"
+  ],
+  "name": "Blue Seahorse",
+  "id": "blue_seahorse",
+  "wiki": {
+   "number": "081",
+   "stars": 2,
+   "element": "Water",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/5/59/Blue_Seahorse.png",
+   "image_size": [
+    84,
+    100
+   ],
+   "lv1": {
+    "hp": 30,
+    "attack": 10,
+    "magic": 10,
+    "speed": 10,
+    "defense": 3,
+    "resist": 3
+   },
+   "abilities": [
+    {
+     "name": "Protect",
+     "tu": "160",
+     "target": "All Fiends",
+     "effect": "+2 Defense"
+    },
+    {
+     "name": "Rapid Water",
+     "tu": "130",
+     "target": "1 Foe",
+     "effect": "11 - 14 Magical Damage (Water)"
+    }
+   ],
+   "evolution": "Blue Seahorse (1st Form) -> White Seahorse (evolves at level 21) -> Elder Seahorse (evolves at level 39; final form)",
+   "obtain": "Found around the lake in Safaris."
+  },
+  "sprite": {
+   "description": "An upright, serpentine indigo-violet seahorse with a long tapering snout and a small glowing magenta eye. A row of pale finned spines runs down its curved neck and back, a translucent violet fin fans out from its belly, and its long tail coils low and behind it, edged with small square fin-points. Its underbelly is a lighter grey-lilac.",
+   "dominant_color_hex": "#4C43B2",
+   "faces": "right",
+   "flier": false
+  },
+  "battle": {
+   "check": "* BLUE SEAHORSE - No. 81 - WATER - 2 STARS.\n* Thin-skinned (DEF 3, RES 3). Knows Rapid Water and Protect.\n* It is far from the lake it was born in.",
+   "intro": "* Something long and blue rises from the reeds.\n* Blue Seahorse coils its tail and faces you.",
+   "idle": [
+    "* Blue Seahorse sways upright, as if the current still held it.",
+    "* Water drips steadily from its fins. It never seems to run out.",
+    "* Its tail scrapes a slow circle in the dirt, over and over.",
+    "* The magenta eye does not blink. It watches the road behind you."
+   ],
+   "talk": [
+    "...",
+    "The lake\nwas still\nthen.",
+    "Dry air.\nIt cuts.",
+    "The tall\none passed\nthis way.",
+    "We guard\nwhat is\nleft."
+   ],
+   "spare_text": "* Blue Seahorse lowers its spines.\n* It turns and slides back toward the water, leaving a dark wet trail.",
+   "lore": "No. 81 - Blue Seahorse. Water element, 2 stars. Lv1: HP 30, ATK 10, MAG 10, SPD 10, DEF 3, RES 3. Abilities (from the raw wikitext; the parser dropped Protect): Protect (160 TU, All Fiends, +2 Defense) and Rapid Water (130 TU, 1 Foe, 11 - 14 magical Water damage). Evolves into White Seahorse at level 21, then Elder Seahorse at level 39. Found around the lake in Safaris. (The wiki infobox title mistakenly reads 'White Seahorse'; number 81, the image and the 2 Stars Monsters category confirm this page is Blue Seahorse.) Those that leave the lake shore do not survive long in the dry air.",
+   "acts": [
+    {
+     "name": "Offer Water",
+     "text": [
+      "* You uncork your waterskin and pour a little over its fins.",
+      "* Blue Seahorse goes rigid. Then its gills slowly open.",
+      "* It drinks the air around the water."
+     ],
+     "mercy": 40,
+     "once": true,
+     "calm": 1
+    },
+    {
+     "name": "Step Back",
+     "text": [
+      "* You step back, away from the reeds.",
+      "* Blue Seahorse's spines settle a little.",
+      "* It was guarding the shallows, not hunting you."
+     ],
+     "mercy": 35,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Stay Low",
+     "text": [
+      "* You kneel, so your eyes are level with its own.",
+      "* Blue Seahorse studies you for a long moment.",
+      "* Its coiled tail loosens."
+     ],
+     "mercy": 50,
+     "once": true,
+     "calm": 2
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Rapid Water",
+     "tu": 130,
+     "base_pattern": "aimed_volley",
+     "projectile": "fx_waterring",
+     "tint_hex": "#5A6FE0",
+     "twist": "none",
+     "box": [
+      420,
+      240
+     ],
+     "intensity": 1,
+     "flavor": "* Blue Seahorse draws in a breath. Water lances from its snout in quick bursts."
+    },
+    {
+     "ability": "Protect",
+     "tu": 160,
+     "base_pattern": "orbit_ring",
+     "projectile": "fx_waterring",
+     "tint_hex": "#8F9BE8",
+     "twist": "none",
+     "box": [
+      360,
+      230
+     ],
+     "intensity": 0.8,
+     "flavor": "* A ring of cold water closes around Blue Seahorse. Its hide hardens beneath it."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "safaris_riverbank"
+  ],
+  "name": "Reptilo",
+  "id": "reptilo",
+  "wiki": {
+   "number": "084",
+   "stars": 3,
+   "element": "Water",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/a/ad/Reptilo.png",
+   "image_size": [
+    95,
+    100
+   ],
+   "lv1": {
+    "hp": 31,
+    "attack": 8,
+    "magic": 8,
+    "speed": 16,
+    "defense": 13,
+    "resist": 8
+   },
+   "abilities": [
+    {
+     "name": "Grappler",
+     "tu": "100",
+     "target": "1 Foe",
+     "effect": "7-8 Physical Damage"
+    }
+   ],
+   "evolution": "Reptilo -> Reptile Lord (evolves at level 19) -> Yacare (evolves at level 37)",
+   "obtain": "Found in Northern Alvalon, and in Pirate's Cave (all floors) in Northern Alvalon. Also found in the Lighthouse on the 4th and 5th floors."
+  },
+  "sprite": {
+   "description": "Gaunt serpentine reptile-spirit in slate blue-grey: a hunched, hood-like eyeless head bowed forward over a jagged pale-toothed maw, a lean torso rising from a thick coiled serpent tail instead of legs, and two very long thin arms hanging down to the ground ending in hooked black claws. Faces the viewer. Clean transparent 95x100 sprite.",
+   "dominant_color_hex": "#474A58",
+   "faces": "front",
+   "flier": false
+  },
+  "battle": {
+   "check": "* REPTILO - Water - 3 Stars.\n* Quick in the water and quicker out of it.\n* It wants to hold you, not to wound you.",
+   "intro": "* Something long uncoils from the wet stone.\n* REPTILO draws near.",
+   "idle": [
+    "* REPTILO's tail coils and uncoils without a sound.",
+    "* Its long arms trail on the ground. The claws click.",
+    "* Water runs from its hide, though there is no rain.",
+    "* REPTILO tilts its narrow head, as if hearing a tide far off."
+   ],
+   "talk": [
+    "Cold here.\nNo sea.",
+    "Hold...\nhold still.",
+    "The tide\ngoes out.\nWe stay.",
+    "Salt in\nyour blood.\nI smell it.",
+    "Where is\nthe water?"
+   ],
+   "spare_text": "* REPTILO lowers its arms. It slides away over the stones, leaving a wet trail that soon dries.",
+   "lore": "Reptilo, number 84 in the Dragon Island Blue bestiary, is a three-star Water monster. Its level-1 statistics are HP 31, Attack 8, Magic 8, Speed 16, Defense 13, Resist 8. Its only ability is Grappler (100 TU, 1 Foe, 7-8 Physical Damage); the wiki gives no element for the damage. It is found in Northern Alvalon, on every floor of Pirate's Cave in Northern Alvalon, and on the 4th and 5th floors of the Lighthouse. It evolves into Reptile Lord at level 19 and Yacare at level 37. In this telling it is a sea-cave thing, out of place on dry roads, always searching for the water it came from.",
+   "acts": [
+    {
+     "name": "Stand Still",
+     "text": [
+      "* You stop moving and let your arms hang loose.",
+      "* REPTILO's claws hover close. It does not close them."
+     ],
+     "mercy": 35,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Pour Water",
+     "text": [
+      "* You uncork your flask and pour it out over the stones.",
+      "* REPTILO lowers its head to the wet ground. Its tail goes still."
+     ],
+     "mercy": 50,
+     "once": true,
+     "calm": 2
+    },
+    {
+     "name": "Point Seaward",
+     "text": [
+      "* You point toward where the air smells of salt.",
+      "* REPTILO turns its head that way and stays turned."
+     ],
+     "mercy": 40,
+     "once": false,
+     "calm": 1
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Grappler",
+     "tu": 100,
+     "base_pattern": "swoop",
+     "projectile": "fx_waterring",
+     "tint_hex": "#5A6F8C",
+     "twist": "none",
+     "box": [
+      380,
+      240
+     ],
+     "intensity": 1,
+     "flavor": "* REPTILO's long arms sweep in from both sides, claws spread to seize."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "safaris_riverbank"
+  ],
+  "name": "White Dolphin",
+  "id": "white_dolphin",
+  "wiki": {
+   "number": "092",
+   "stars": 3,
+   "element": "Water",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/6/69/White_Dolphin.png",
+   "image_size": [
+    73,
+    64
+   ],
+   "lv1": {
+    "hp": 31,
+    "attack": 8,
+    "magic": 8,
+    "speed": 13,
+    "defense": 13,
+    "resist": 13
+   },
+   "abilities": [
+    {
+     "name": "Escape",
+     "tu": "130",
+     "target": "-",
+     "effect": "Escape from the battle."
+    },
+    {
+     "name": "Wiggle",
+     "tu": "130",
+     "target": "1 Foe",
+     "effect": "9-11 Physical Damage (Water)"
+    }
+   ],
+   "evolution": "White Dolphin -> Leviathan (evolves at level 55)",
+   "obtain": "Found in Northern Alvalon (location shown on the wiki map image). Found in Safaris on the small house just under the lake."
+  },
+  "sprite": {
+   "description": "Pale lavender-white dolphin leaping upright, long beak pointing left, head and back arched at the top, body curving down to forked tail flukes that curl beneath it; grey-violet shading on the back, fins and flukes. Clean transparent 73x64 RGBA PNG.",
+   "dominant_color_hex": "#DDD6ED",
+   "faces": "left",
+   "flier": true
+  },
+  "battle": {
+   "check": "* WHITE DOLPHIN - Water - 3 Stars.\n* Small and frail. It will not stay small.",
+   "intro": "* A White Dolphin rises out of the mist, pale as a drowned moon.",
+   "idle": [
+    "* The White Dolphin circles you without touching the ground.",
+    "* Water drips from its fins and never lands.",
+    "* It smells of lake water from the Safaris.",
+    "* Its eyes follow the road west. Something bigger sleeps in them."
+   ],
+   "talk": [
+    "...cold here.\nno water.",
+    "the lake\nis far.",
+    "you smell\nof roads.",
+    "one day\ni will be\nvast.",
+    "let me\nswim on."
+   ],
+   "spare_text": "* The White Dolphin slips back into the mist, toward water you cannot see.",
+   "lore": "White Dolphin (No. 92), a 3-star Water monster of Dragon Island Blue. Found in Northern Alvalon, and in the Safaris on the small house just under the lake. Weak in this form, it evolves into Leviathan at level 55. Stats are its level-1 values (31 HP, 8 ATK, 8 MAG, 13 SPD, 13 DEF, 13 RES). Its Escape ability (130 TU) lets it flee battle; its only attack is Wiggle.",
+   "acts": [
+    {
+     "name": "Still Water",
+     "text": [
+      "* You stand very still, like the surface of a lake.",
+      "* The White Dolphin's circling slows."
+     ],
+     "mercy": 40,
+     "once": true,
+     "calm": 1
+    },
+    {
+     "name": "Pour Flask",
+     "text": [
+      "* You pour water from your flask into your cupped hands.",
+      "* The White Dolphin drinks. It remembers the lake."
+     ],
+     "mercy": 45,
+     "once": true,
+     "calm": 1
+    },
+    {
+     "name": "Point West",
+     "text": [
+      "* You point down the road, toward open water.",
+      "* The White Dolphin looks where you point. It is listening."
+     ],
+     "mercy": 30,
+     "once": false,
+     "calm": 0
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Wiggle",
+     "tu": 130,
+     "base_pattern": "bounce_orbs",
+     "projectile": "fx_waterring",
+     "tint_hex": "#CFC8E8",
+     "twist": "none",
+     "box": [
+      340,
+      230
+     ],
+     "intensity": 0.8,
+     "flavor": "* The White Dolphin thrashes its body. Rings of water ricochet off the walls."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "safaris_riverbank"
+  ],
+  "name": "Kappa",
+  "id": "kappa",
+  "wiki": {
+   "number": "127",
+   "stars": 2.5,
+   "element": "Air",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/8/81/Kappa.png",
+   "image_size": [
+    45,
+    85
+   ],
+   "lv1": {
+    "hp": 29,
+    "attack": 7,
+    "magic": 7,
+    "speed": 26,
+    "defense": 11,
+    "resist": 11
+   },
+   "abilities": [
+    {
+     "name": "Karate",
+     "tu": "50",
+     "target": "1 Foe",
+     "effect": "3-4 Physical Damage (Air)"
+    },
+    {
+     "name": "Ninjutsu",
+     "tu": "100",
+     "target": "Self",
+     "effect": "Disguises, enemies are less likely to attack this monster"
+    }
+   ],
+   "evolution": "Kappa (1st Form) -> Tengu (evolves at level 33) -> Asura (evolves at level 52; final form)",
+   "obtain": "Found in the Giant Mangal Hole. Kappa can also be found in Norwoods and Safaris."
+  },
+  "sprite": {
+   "description": "A lean, crouching green-skinned humanoid seen in profile, knees drawn up to its chest and long thin limbs folded tight. A ragged fringe of orange-brown hair hangs over its face, and atop its head sits a round green dish patterned with red and white marks. One bare tan leg trails down beneath it.",
+   "dominant_color_hex": "#6FA27A",
+   "faces": "left",
+   "flier": false
+  },
+  "battle": {
+   "check": "* KAPPA - No. 127 - AIR - 2.5 STARS.\n* Very fast (SPD 26). Knows Karate and Ninjutsu.\n* When it hides, the eye slides off it. Watch the place it was.",
+   "intro": "* Something that was a shadow by the roots unfolds its limbs.\n* Kappa crouches in your path.",
+   "idle": [
+    "* Kappa sits folded on itself, perfectly still. Its eyes do not blink.",
+    "* The dish on its head catches the light. It tilts its head to keep it level.",
+    "* Its hair drips. There is no water anywhere near.",
+    "* For a moment you lose sight of Kappa. It was there the whole time."
+   ],
+   "talk": [
+    "...",
+    "Down in\nthe Hole\nit is dark.",
+    "You did\nnot see\nme.",
+    "Keep your\nhead\nlevel.",
+    "Many feet\npassed\nwest."
+   ],
+   "spare_text": "* Kappa unfolds slowly and bows its head, careful not to spill the dish.\n* When you look again, there is only the shadow by the roots.",
+   "lore": "No. 127 - Kappa. Air element, 2.5 stars. Lv1: HP 29, ATK 7, MAG 7, SPD 26, DEF 11, RES 11. Abilities (as at level 1): Karate (50 TU, 1 foe, 3-4 physical Air damage) and Ninjutsu (100 TU, self, disguises itself so enemies are less likely to attack it). Evolves into Tengu at level 33, then Asura at level 52. Found in the Giant Mangal Hole, and also in the Norwoods and the Safaris. It is not part of any recipe. Those living near the forest roads say a Kappa that has been seen once has already let itself be seen.",
+   "acts": [
+    {
+     "name": "Bow",
+     "text": [
+      "* You lower your head slowly and bow, keeping your back straight.",
+      "* Kappa watches. Then, carefully, it bows in return.",
+      "* The dish on its head does not spill."
+     ],
+     "mercy": 35,
+     "once": true,
+     "calm": 1
+    },
+    {
+     "name": "Look Away",
+     "text": [
+      "* You turn your eyes from where Kappa sits.",
+      "* You hear it shift. It does not strike.",
+      "* It seems to prefer not being watched."
+     ],
+     "mercy": 30,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Name It",
+     "text": [
+      "* You say quietly that you see it, wherever it hides.",
+      "* Kappa goes still. Its disguise is useless now.",
+      "* It lowers its hands."
+     ],
+     "mercy": 45,
+     "once": true,
+     "calm": 2
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Karate",
+     "tu": 50,
+     "base_pattern": "aimed_volley",
+     "projectile": "fx_silverring",
+     "tint_hex": "#A9D6B4",
+     "twist": "multi_hit",
+     "box": [
+      360,
+      230
+     ],
+     "intensity": 1,
+     "flavor": "* Kappa uncoils all at once. Its strikes come faster than its shape."
+    },
+    {
+     "ability": "Ninjutsu",
+     "tu": 100,
+     "base_pattern": "rift_bursts",
+     "projectile": "fx_sparkle",
+     "tint_hex": "#5E8A6A",
+     "twist": "blind",
+     "box": [
+      440,
+      240
+     ],
+     "intensity": 0.8,
+     "flavor": "* Kappa folds into the shadows. You are no longer sure where it is."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "safaris_riverbank"
+  ],
+  "name": "Bon",
+  "id": "bon",
+  "wiki": {
+   "number": "219",
+   "stars": 4.5,
+   "element": "Fire",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/2/22/Bon-hd.png",
+   "image_size": [
+    400,
+    400
+   ],
+   "lv1": {
+    "hp": 16,
+    "attack": 10,
+    "magic": 10,
+    "speed": 18,
+    "defense": 16,
+    "resist": 10
+   },
+   "abilities": [
+    {
+     "name": "Explosion",
+     "tu": "160",
+     "target": "1 Foe",
+     "effect": "13-16 Magical Damage"
+    }
+   ],
+   "evolution": "Bon evolves into Ifrit at level 35.",
+   "obtain": "Obtained as a reward for completing the D Class of the Tournament. Rarely found in Safaris one space away from the house near the river (Bons found here will be within the level range of level 16 to level 19)."
+  },
+  "sprite": {
+   "description": "Squatting beast seen from the front, sitting upright on bent haunches, with a smooth round charcoal-grey head that has no eyes, only a wide grin of red teeth. Two very long drooping ear-lobes hang to the ground, banded with molten orange markings; the same lava-orange pattern spreads over its haunches, feet and a short flame-like tail. Clean transparent 400x400 sprite (Bon-hd.png); the small Bon.png is an RGB image with a baked-in background, so it is not used.",
+   "dominant_color_hex": "#4D4D4D",
+   "faces": "front",
+   "flier": false
+  },
+  "battle": {
+   "check": "* BON - Fire. 4.5 stars.\n* No eyes. Only the grin.\n* It holds the heat in, until it cannot.",
+   "intro": "* Something crouches low in the grass.\n* Its long ears smoulder where they touch the ground.",
+   "idle": [
+    "* Bon's grin does not move. The heat behind it does.",
+    "* The orange bands along its ears pulse, slow as breathing.",
+    "* The grass beneath Bon has gone brown and brittle.",
+    "* Bon turns its blank head toward you. It does not need eyes."
+   ],
+   "talk": [
+    "...",
+    "Warm.\nSo warm.",
+    "Hold still.\nIt will be\nquick.",
+    "Too much\ninside.",
+    "Let it\nout."
+   ],
+   "spare_text": "* Bon's markings dim to a dull ember.\n* It lowers its ears and slips back toward the river.",
+   "lore": "Bon is #219 in Dragon Island Blue, a 4.5-star Fire monster (Type: Monster). Level-1 stats from its wiki page: HP 16, Attack 10, Magic 10, Speed 18, Defense 16, Resist 10. Its only ability is Explosion (160 TU, 1 Foe, 13-16 Magical Damage). It is obtained as a reward for completing the D Class of the Tournament, and is rarely found in the Safaris one space away from the house near the river, at levels 16 to 19. It evolves into Ifrit at level 35, a 9.5-star monster.",
+   "acts": [
+    {
+     "name": "Keep Distance",
+     "text": [
+      "* You step back, out of reach of the heat.",
+      "* Bon's grin widens, but it does not follow."
+     ],
+     "mercy": 35,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Douse",
+     "text": [
+      "* You scoop river water from your flask and pour it on the scorched ground between you.",
+      "* Steam rises. The glow along Bon's ears flickers lower."
+     ],
+     "mercy": 45,
+     "once": true,
+     "calm": 2
+    },
+    {
+     "name": "Wait",
+     "text": [
+      "* You stand still and let the silence stretch.",
+      "* The pressure in the air eases. Bon's sides rise and fall, slower now."
+     ],
+     "mercy": 30,
+     "once": false,
+     "calm": 1
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Explosion",
+     "tu": 160,
+     "base_pattern": "rift_bursts",
+     "projectile": "fx_sparkle",
+     "tint_hex": "#F2661E",
+     "twist": "none",
+     "box": [
+      380,
+      235
+     ],
+     "intensity": 1.05,
+     "flavor": "* Bon's whole body swells with light. The air goes tight.\n* Then it bursts."
     }
    ]
   }
