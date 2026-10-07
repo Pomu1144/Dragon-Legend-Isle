@@ -3,6 +3,7 @@ import { Sound } from '../audio/Sound';
 import { BESTIARY_ORDER, CAPTURE_CARDS, ITEMS, MONSTERS } from '../data/monsters';
 import { STARTERS } from '../data/starters';
 import { EXPANSION_STORY } from '../data/expansion';
+import { MISSIONS } from '../data/missions';
 import { STORY } from '../data/story';
 import type { ReaderPage } from './ReaderScene';
 
@@ -20,6 +21,7 @@ function shortLore(lore: string, max = 130) {
   }
   return out || parts[0].slice(0, max);
 }
+import { Quests } from '../quests';
 import { EXP_TABLE, State } from '../state';
 import { Controls } from '../ui/input';
 import { Bar, body, cardName, label, panel, starRow, title, COLORS } from '../ui/widgets';
@@ -28,6 +30,7 @@ const TABS = [
   { key: 'ui_tab_party', name: 'Party' },
   { key: 'ui_tab_bestiary', name: 'My Monsters' },
   { key: 'ui_tab_quests', name: 'Satchel' },
+  { key: 'ui_tab_world', name: 'Quests' },
   { key: 'ui_tab_trophy', name: 'Records' },
 ];
 
@@ -60,7 +63,7 @@ export class MenuScene extends Phaser.Scene {
     const p = panel(this, 70, 50, 1000, 620, 'page');
     root.add(p);
     TABS.forEach((t, i) => {
-      const img = this.add.image(1150, 120 + i * 112, t.key).setScale(0.82);
+      const img = this.add.image(1150, 112 + i * 104, t.key).setScale(0.82);
       this.tabImgs.push(img);
       root.add(img);
     });
@@ -92,7 +95,7 @@ export class MenuScene extends Phaser.Scene {
     const header = title(this, 120, 78, TABS[this.tab].name, 38, '#3a1f08').setStroke('#f6e3b8', 4).setShadow(0, 2, '#000', 2);
     if (this.tab === 1) header.setVisible(false); // the painted plaque already titles this page
     this.content.add(header);
-    [() => this.buildParty(), () => this.buildBestiary(), () => this.buildItems(), () => this.buildRecords()][this.tab]();
+    [() => this.buildParty(), () => this.buildBestiary(), () => this.buildItems(), () => this.buildQuests(), () => this.buildRecords()][this.tab]();
   }
 
   private ink(x: number, y: number, text: string, size = 24, wrap = 0) {
@@ -231,6 +234,20 @@ export class MenuScene extends Phaser.Scene {
 
   private readerFor(id: string): { title: string; pages: ReaderPage[] } {
     const it = STORY.items;
+    if (MISSIONS) {
+      const fr = Object.entries(MISSIONS.fragments).find(([, f]) => f.item === id);
+      if (fr) return { title: fr[1].item_name, pages: [{ heading: fr[1].item_name, text: fr[1].page, image: fr[0] === 'blood' ? 'mon_blood_rogue' : 'mon_cult_rogue' }] };
+      const fo = MISSIONS.formula;
+      if (id === fo.item)
+        return {
+          title: fo.item_name,
+          pages: [
+            { heading: 'Blood Rogue', text: 'The first half, in dried dark ink.', image: 'mon_blood_rogue' },
+            { heading: 'Cult Rogue', text: 'The second half, in a wind-faded hand.', image: 'mon_cult_rogue' },
+            { heading: '= ???', text: fo.page },
+          ],
+        };
+    }
     if (id === 'manual') return { title: it.manual.title, pages: it.manual.pages.map((p) => ({ heading: p.heading, text: p.text })) };
     if (id === 'guide') {
       const g = it.translation_guide;
@@ -254,6 +271,20 @@ export class MenuScene extends Phaser.Scene {
     };
   }
 
+  private buildQuests() {
+    const rows = Quests.log();
+    if (!rows.length) {
+      this.ink(130, 170, 'No quests yet. The people of Dundean may have need of a tamer.', 24, 860);
+      return;
+    }
+    rows.forEach((q, i) => {
+      const y = 160 + i * 128;
+      this.content.add(this.add.image(560, y + 46, 'ui_panel_green').setDisplaySize(880, 112).setAlpha(q.done ? 0.35 : 0.55));
+      this.ink(150, y, (q.done ? '✓  ' : '') + q.title, 26).setColor(q.done ? '#5a5a4a' : COLORS.ink);
+      this.ink(150, y + 38, q.text, 19, 800);
+    });
+  }
+
   private buildRecords() {
     const s = State.get();
     const bound = Object.values(s.bestiary).filter((r) => r.bound).length;
@@ -261,7 +292,7 @@ export class MenuScene extends Phaser.Scene {
     const rows = [
       ['Monsters spared', `${s.spares}`],
       ['Monsters defeated', `${s.kills}`],
-      ['Monsters bound', `${bound}`],
+      ['Monsters captured', `${bound}`],
       ['Gold', `${s.gold}`],
       ['Time on the isle', `${mins} min`],
       ['Promise to Wren', State.flag('promisedMercy') ? (s.kills === 0 ? 'Kept' : 'Strained') : '—'],

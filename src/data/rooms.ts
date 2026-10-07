@@ -1,5 +1,6 @@
 import { DIB_KITS } from './dibCreatures';
 import { EXPANSION_ROOMS, WAYSTONE_EXITS, WAYSTONE_SPAWNS } from './expansion';
+import { MISSION_ENTRANCES, MISSION_ROOMS } from './missions';
 
 // Overworld rooms. Every coordinate is in the source painting's pixel space,
 // so the painting is drawn 1:1 and these polygons describe where feet can go.
@@ -314,6 +315,21 @@ if (WAYSTONE_EXITS) {
   ex[2] = { rect: [1450, 60, 110, 12], to: WAYSTONE_EXITS.topRight, spawn: WAYSTONE_EXITS.topRightSpawn, locked: 'orochiDone', lockedText: ['* The eastern road is blocked by eight great coils of scale.', '* Not while the Waystone is guarded.'] };
 }
 
+// The Dundean missions (graveyard blood rite, wind priests' cult): their rooms, and the
+// exits that lead into them from rooms that already exist (tools/gen_missions.py).
+for (const r of MISSION_ROOMS) ROOMS[r.id] = r;
+for (const e of MISSION_ENTRANCES) {
+  const r = ROOMS[e.room];
+  if (!r) continue;
+  const i = e.replaces ? r.exits.findIndex((x) => x.to === e.replaces) : -1;
+  if (i >= 0) r.exits[i] = e.exit;
+  else r.exits.push(e.exit);
+  r.spawns[e.spawnName] = e.spawn;
+}
+
+// Dark Mage and Dark Priest come later in the story; keep them out of the wild for now.
+const LATER = new Set(['dark_mage', 'dark_priest']);
+
 // The western forest, by depth: the entrance holds Bitewings, Goblins, Sludges and Bat
 // Squirrels (with a very rare Snow Cub or Fire Cub); Giant Wasps take over deeper in,
 // and Giant Ants hold the deepest woods. Depth counts rooms and how far north you are.
@@ -341,7 +357,7 @@ for (const [room, table] of Object.entries(FOREST)) {
   if (t.length && ROOMS[room]) ROOMS[room].encounters = { table: t, budget: BUDGET[room] };
 }
 for (const k of DIB_KITS) {
-  if (k.role !== 'encounter') continue;
+  if (k.role !== 'encounter' || LATER.has(k.id)) continue;
   for (const room of k.rooms) {
     const r = ROOMS[room];
     if (!r || FOREST[room]) continue;

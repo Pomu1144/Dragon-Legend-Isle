@@ -10,6 +10,9 @@ import { scene } from '../data/script';
 import { STARTERS } from '../data/starters';
 import { STORY } from '../data/story';
 import { EXPANSION_STORY } from '../data/expansion';
+import { MISSIONS } from '../data/missions';
+import type { MissionId } from '../data/missionTypes';
+import { Quests } from '../quests';
 
 interface WorldData {
   room?: string;
@@ -22,6 +25,24 @@ interface WorldData {
 export interface BattleResult {
   monster: string;
   outcome: 'won' | 'spared' | 'bound' | 'fled' | 'lost';
+  fight?: string; // set when a whole wave (a ritual group) was fought
+  tally?: WaveTally;
+}
+
+export interface WaveTally {
+  won: number;
+  spared: number;
+  bound: number;
+}
+
+/** A group fought one foe after another in a single battle (e.g. a ritual circle). */
+export interface Wave {
+  fight: string;
+  queue: string[]; // foes still to come after the current one
+  total: number;
+  between: string[]; // "* " lines shown as each next foe steps in; {N} = foes remaining
+  tally: WaveTally;
+  index: number; // 1-based number of the current foe
 }
 
 function inPoly(x: number, y: number, poly: Pt[]) {
@@ -61,6 +82,7 @@ export class WorldScene extends Phaser.Scene {
   private ySortedObjs: { obj: Phaser.GameObjects.Components.Depth & { y: number }; base: number }[] = [];
   private lastSafe: Pt = [0, 0];
   private npcs: Record<string, Phaser.GameObjects.Sprite> = {};
+  private fightReturn?: [number, number];
   private follower?: Phaser.GameObjects.Image;
   private followerShadow?: Phaser.GameObjects.Image;
   private trail: Pt[] = [];
@@ -176,7 +198,7 @@ export class WorldScene extends Phaser.Scene {
     this.events.off('starterChosen');
     this.events.on('starterChosen', (id: string) => this.onStarter(id));
 
-    const entry = EXPANSION_STORY.room_entries[R.id];
+    const entry = EXPANSION_STORY.room_entries[R.id] ?? MISSIONS?.room_entries[R.id];
     if (entry?.length && !State.flag('entered_' + R.id)) {
       State.setFlag('entered_' + R.id);
       this.busy = true;
@@ -413,6 +435,7 @@ export class WorldScene extends Phaser.Scene {
     }
     for (const t of this.room.triggers ?? []) {
       if (State.flag(t.once)) continue;
+      if (t.requires && !State.flag(t.requires)) continue;
       const [x, y, w, h] = t.rect;
       if (p.x >= x && p.x <= x + w && p.y >= y && p.y <= y + h) {
         this.runTrigger(t.id);
@@ -465,7 +488,7 @@ export class WorldScene extends Phaser.Scene {
     return true;
   }
 
-  startBattle(monster: string) {
+  startBattle(monster: string, wave?: Wave) {
     this.busy = true;
     this.player.anims.stop();
     this.player.setFrame(this.frameFor(this.dir));
@@ -501,7 +524,7 @@ export class WorldScene extends Phaser.Scene {
           duration: 520,
           ease: 'Cubic.easeInOut',
           onComplete: () => {
-            this.scene.launch('Battle', { monster, room: this.room.id });
+            this.scene.launch('Battle', { monster, room: this.room.id, wave });
             this.scene.sleep();
             black.destroy();
             soul.destroy();
@@ -518,6 +541,7 @@ export class WorldScene extends Phaser.Scene {
     this.resetEncounter();
     this.busy = false;
     if (!result) return;
+    if (result.fight) return this.afterMissionFight(result);
     if (result.monster === 'lich') {
       State.setFlag('metLich');
       this.say(scene(result.outcome === 'won' ? 'after_lich_won' : 'after_lich_peace'));
@@ -562,6 +586,7 @@ export class WorldScene extends Phaser.Scene {
   }
 
   private runTrigger(id: string) {
+    if (id.startsWith('m:')) return this.missionFight(id.slice(2));
     if (id === 'gm_stop') {
       // Master Halvard crosses the plaza to block the stairs.
       this.busy = true;
@@ -618,6 +643,8 @@ export class WorldScene extends Phaser.Scene {
       if (!State.flag('hasStarter')) return this.openHatchery();
       return this.say([{ text: 'The West Gate is open. Read the manual. And send word.', speaker: STORY.names.guild_master, portrait: 'guildmaster_portrait', voice: 0.7 }]);
     }
+    const mission = Quests.givenBy(id);
+    if (mission && MISSIONS && this.missionTalk(id, mission)) return;
     const ex = EXPANSION_STORY.npc_dialogue[id];
     if (ex) {
       const flag = 'met_' + id;
@@ -638,6 +665,88 @@ export class WorldScene extends Phaser.Scene {
     }
     const hint = scene(`wren_hint_${Phaser.Math.Between(1, 3)}`);
     this.say(hint.length ? hint : scene('wren_hint_1'), after);
+  }
+
+  // ---- missions --------------------------------------------------------------
+  /** Talk to a mission giver. Returns false when the mission has nothing to say (fall back to small talk). */
+  private missionTalk(npc: string, m: MissionId): boolean {
+    const M = MISSIONS!;
+    if (!Quests.accepted(m)) {
+      // first meeting: their greeting, then the request
+      const ex = EXPANSION_STORY.npc_dialogue[npc];
+      const greet = ex && !State.flag('met_' + npc) ? this.toLines(ex.first) : [];
+      State.setFlag('met_' + npc);
+      State.setFlag('quest_' + m);
+      this.say([...greet, ...this.toLines(M.offer[m])], () => this.toast(`Quest: ${M.quests.find((q) => q.id === m)?.title ?? ''}`));
+      return true;
+    }
+    if (!Quests.done(m)) {
+      const w = M.waiting[m];
+      const ex = EXPANSION_STORY.npc_dialogue[npc];
+      this.say([{ text: w[Phaser.Math.Between(0, Math.max(0, w.length - 1))] ?? '...', speaker: ex?.name ?? npc, portrait: ex?.portrait ?? 'none', voice: 0.85 }]);
+      return true;
+    }
+    if (!State.flag('thanked_' + m)) {
+      State.setFlag('thanked_' + m);
+      this.say(this.toLines(M.done[m]));
+      return true;
+    }
+    return false;
+  }
+
+  private missionFight(fid: string) {
+    const f = Quests.fight(fid);
+    if (!f || !f.foes.length) return;
+    this.busy = true;
+    this.player.anims.stop();
+    // where to put Kael back if he breaks off the fight
+    this.fightReturn = this.trail[0] ? [this.trail[0][0], this.trail[0][1]] : [this.lastSafe[0], this.lastSafe[1]];
+    this.cameras.main.shake(260, 0.003);
+    const [first, ...rest] = f.foes;
+    const wave: Wave = { fight: f.id, queue: rest, total: f.foes.length, between: f.between, tally: { won: 0, spared: 0, bound: 0 }, index: 1 };
+    this.say(this.toLines(f.before), () => this.startBattle(first, wave));
+  }
+
+  private afterMissionFight(result: BattleResult) {
+    const f = Quests.fight(result.fight!);
+    if (!f) return;
+    if (result.outcome === 'fled') {
+      if (this.fightReturn) this.player.setPosition(this.fightReturn[0], this.fightReturn[1]);
+      this.applyScale();
+      this.say([{ text: '* You fall back into the dark. They are still there, waiting.' }]);
+      return;
+    }
+    State.setFlag('fight_' + f.id);
+    this.busy = true;
+    const lines = this.toLines(f.after);
+    const m = f.mission;
+    const finished = Quests.done(m);
+    const M = MISSIONS!;
+    this.time.delayedCall(400, () =>
+      this.say(lines, () => {
+        if (!finished) return;
+        // the mission's fragment of the torn formula
+        const fr = M.fragments[m];
+        State.addItem(fr.item, 1);
+        Sound.save();
+        const other = M.fragments[m === 'blood' ? 'wind' : 'blood'];
+        const both = (State.get().inventory[other.item] ?? 0) > 0;
+        this.say([...this.toLines(fr.found), { text: `* (You got the ${fr.item_name}.)` }], () => {
+          if (!both) return;
+          State.useItem(fr.item);
+          State.useItem(other.item);
+          State.addItem(M.formula.item, 1);
+          State.setFlag('formulaJoined');
+          this.say([...this.toLines(M.formula.joined), { text: `* (The two fragments became the ${M.formula.item_name}. Read it from the Satchel.)` }]);
+        });
+      }),
+    );
+  }
+
+  /** A short banner, e.g. when a quest is accepted. */
+  private toast(text: string) {
+    const t = label(this, this.scale.width / 2, 120, text, 26, COLORS.gold, 6).setOrigin(0.5).setScrollFactor(0).setDepth(9000).setAlpha(0);
+    this.tweens.add({ targets: t, alpha: 1, y: 104, duration: 300, yoyo: true, hold: 1800, onComplete: () => t.destroy() });
   }
 
   private useCandle(glow: Phaser.GameObjects.Image, at: Pt) {

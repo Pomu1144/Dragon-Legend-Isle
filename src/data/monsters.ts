@@ -1,6 +1,7 @@
 // Monster roster: the exact creatures from Dragon Island Blue (see dibCreatures.ts).
 // The battle model is Undertale's: talk (ACT) until they can be spared, or fight.
 import { DIB_KITS } from './dibCreatures';
+import { MISSIONS } from './missions';
 
 export interface Act {
   name: string;
@@ -233,4 +234,11 @@ export function skillFrom(a: { name: string; tu: string; effect: string }, minLv
     desc: a.effect.split(/\.\s|:\s/)[0].replace(/\.$/, ''), // the wiki effect, without research notes
     support: !dmg,
   };
+}
+
+// The two halves of the torn formula, and the formula once joined (the Dundean missions).
+if (MISSIONS) {
+  for (const f of Object.values(MISSIONS.fragments)) ITEMS[f.item] = { id: f.item, name: f.item_name, desc: f.desc, key: true };
+  const fo = MISSIONS.formula;
+  ITEMS[fo.item] = { id: fo.item, name: fo.item_name, desc: fo.desc, key: true };
 }

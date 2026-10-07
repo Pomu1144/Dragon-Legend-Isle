@@ -8,7 +8,7 @@ import { gainExp, State } from '../state';
 import { Controls } from '../ui/input';
 import { dustify, fireflies, lightPool, popNumber, sparkleBurst } from '../ui/fx';
 import { Bar, body, label, panel, starRow, COLORS, FONT_BODY } from '../ui/widgets';
-import type { BattleResult } from './WorldScene';
+import type { BattleResult, Wave } from './WorldScene';
 
 type Phase = 'busy' | 'menu' | 'cards' | 'timing' | 'list' | 'capture' | 'text' | 'talk' | 'dodge' | 'end';
 
@@ -75,6 +75,7 @@ export class BattleScene extends Phaser.Scene {
   private dot?: { left: number; acc: number; kind: string };
   private captureCards: { c: Phaser.GameObjects.Container; card: CaptureCard; owned: number; canBuy: boolean; usable: boolean; pct: number }[] = [];
   private captureSel = 0;
+  private wave?: Wave;
   private captureInfo?: Phaser.GameObjects.Text;
   private captureTitle?: Phaser.GameObjects.Text;
 
@@ -82,10 +83,11 @@ export class BattleScene extends Phaser.Scene {
     super('Battle');
   }
 
-  init(data: { monster: string; room?: string; debug?: boolean }) {
+  init(data: { monster: string; room?: string; debug?: boolean; wave?: Wave }) {
     this.m = MONSTERS[data.monster] ?? MONSTERS.bat_fiend;
     this.roomId = data.room ?? 'forest';
     this.debugStart = !!data.debug;
+    this.wave = data.wave;
   }
 
   create() {
@@ -141,6 +143,11 @@ export class BattleScene extends Phaser.Scene {
     starRow(this, this.nameText.x + this.nameText.width + 4 + (nStars * 24) / 2, 50, this.m.stars, nStars * 24, 24).setDepth(20);
     if (this.m.boss) label(this, 44, 120, 'GUARDIAN', 18, COLORS.gold, 5).setDepth(20);
     else if (this.m.rare) label(this, 44, 120, 'RARE SIGHTING', 18, '#9fd8ff', 5).setDepth(20);
+    if (this.wave) {
+      // the ritual group: which foe this is, of how many
+      label(this, this.scale.width - 44, 30, `${this.wave.index} of ${this.wave.total}`, 26, COLORS.cream, 6).setOrigin(1, 0).setDepth(20);
+      label(this, this.scale.width - 44, 66, this.wave.queue.length ? `${this.wave.queue.length} more waiting` : 'the last of them', 17, '#c9b98a', 4).setOrigin(1, 0).setDepth(20);
+    }
 
     // Bullet board / text box
     this.boxFrame = panel(this, this.box.x - 14, this.box.y - 14, this.box.w + 28, this.box.h + 28, 'blue').setDepth(10);
@@ -189,7 +196,9 @@ export class BattleScene extends Phaser.Scene {
     this.monster.setAlpha(0).setY(this.monsterBaseY + 30);
     this.tweens.add({ targets: this.monster, alpha: 1, y: this.monsterBaseY, duration: 600, ease: 'Cubic.easeOut' });
     this.tweens.add({ targets: this.soul, alpha: 0, duration: 400, delay: 200, onComplete: () => this.soul.setVisible(false).setAlpha(1) });
-    this.time.delayedCall(500, () => this.toMenu(this.m.intro));
+    const w = this.wave;
+    const intro = w && w.index > 1 && w.between.length ? w.between[(w.index - 2) % w.between.length].replace('{N}', String(w.queue.length + 1)) : this.m.intro;
+    this.time.delayedCall(500, () => this.toMenu(intro));
   }
 
   // ---- helpers -------------------------------------------------------------
@@ -1107,10 +1116,21 @@ export class BattleScene extends Phaser.Scene {
 
   private finish(outcome: BattleResult['outcome']) {
     this.phase = 'busy';
+    const w = this.wave;
+    if (w && (outcome === 'won' || outcome === 'spared' || outcome === 'bound')) w.tally[outcome]++;
+    if (w && w.queue.length && outcome !== 'fled' && outcome !== 'lost') {
+      // the next of the group steps into the circle
+      this.cameras.main.fadeOut(350, 0, 0, 0);
+      this.cameras.main.once('camerafadeoutcomplete', () => {
+        const [next, ...rest] = w.queue;
+        this.scene.restart({ monster: next, room: this.roomId, debug: this.debugStart, wave: { ...w, queue: rest, index: w.index + 1 } });
+      });
+      return;
+    }
     Sound.stopMusic(0.4);
     this.cameras.main.fadeOut(450, 0, 0, 0);
     this.cameras.main.once('camerafadeoutcomplete', () => {
-      const result: BattleResult = { monster: this.m.id, outcome };
+      const result: BattleResult = { monster: this.m.id, outcome, fight: w?.fight, tally: w?.tally };
       if (this.debugStart || !this.scene.isSleeping('World')) {
         this.scene.start('World', { room: this.roomId, spawn: Object.keys(ROOMS[this.roomId].spawns)[0] });
         return;
