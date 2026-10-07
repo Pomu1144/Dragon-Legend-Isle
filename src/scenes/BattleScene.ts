@@ -121,7 +121,7 @@ export class BattleScene extends Phaser.Scene {
     // Original DIB sprites are small: show them unaltered at a crisp integer scale.
     this.monster.texture.setFilter(Phaser.Textures.FilterMode.NEAREST);
     const fit = Math.min(this.m.height / this.monster.height, 520 / this.monster.width);
-    const sc = fit >= 2 ? Math.floor(fit) : fit;
+    const sc = fit >= 2 ? Math.max(2, Math.min(Math.round(fit), Math.floor(360 / this.monster.height))) : fit;
     if (this.m.faces === 'right') this.monster.setFlipX(false);
     this.monster.setScale(sc);
     this.monsterBaseY = 376;
@@ -131,7 +131,8 @@ export class BattleScene extends Phaser.Scene {
     this.nameText = label(this, 44, 26, this.m.name, 38, this.m.color, 8).setDepth(20);
     this.enemyBar = new Bar(this, 44, 92, 300, 'red', 34).setDepth(20);
     const stars = this.add.container(this.nameText.x + this.nameText.width + 10, 50).setDepth(20);
-    for (let i = 0; i < this.m.stars; i++) stars.add(this.add.image(i * 26, 0, 'ui_star').setScale(0.34));
+    for (let i = 0; i < Math.floor(this.m.stars); i++) stars.add(this.add.image(i * 26, 0, 'ui_star').setScale(0.34));
+    if (this.m.stars % 1) stars.add(this.add.image(Math.floor(this.m.stars) * 26 - 4, 0, 'ui_star').setScale(0.2).setAlpha(0.8)); // DIB half star
     if (this.m.boss) label(this, 44, 120, 'GUARDIAN', 18, COLORS.gold, 5).setDepth(20);
 
     // Bullet board / text box
@@ -174,7 +175,7 @@ export class BattleScene extends Phaser.Scene {
   // ---- helpers -------------------------------------------------------------
   private idleMonster() {
     this.tweens.killTweensOf(this.monster);
-    const flier = this.m.id === 'bat_fiend' || this.m.id === 'rift_drake' || this.m.id === 'nocturne';
+    const flier = !!this.m.flier;
     this.tweens.add({ targets: this.monster, y: this.monsterBaseY - (flier ? 14 : 4), duration: flier ? 900 : 1600, yoyo: true, repeat: -1, ease: 'Sine.easeInOut' });
     const sx = this.monster.scaleX;
     const sy = this.monster.scaleY;
@@ -203,7 +204,7 @@ export class BattleScene extends Phaser.Scene {
   }
 
   private spareable() {
-    return this.mercy >= 100 && (this.m.id !== 'rift_drake' || this.turn >= 3);
+    return this.mercy >= 100 && (this.m.role !== 'boss' || this.turn >= 3);
   }
 
   private updateName() {
@@ -690,6 +691,8 @@ export class BattleScene extends Phaser.Scene {
     const pat = PATTERNS[BASE_PATTERNS[atk.pattern] ?? atk.pattern] ?? PATTERNS.bat_sparkle;
     let [w, h] = atk.box ?? pat.box;
     if (atk.twist === 'all_foes_wide') w = Math.min(560, w + 80);
+    w = Math.min(w, 560);
+    h = Math.min(h, 250); // keep the board clear of the monster and the HP line
     const target: Box = { x: 640 - w / 2, y: 488 - h / 2 + 40, w, h };
     target.y = Math.max(Math.min(target.y, 600 - h), 340);
     // Real DIB Time Units: the ability's own TU plus the TU of the move you just used.
@@ -803,7 +806,7 @@ export class BattleScene extends Phaser.Scene {
   // ---- outcomes ----------------------------------------------------------------
   private trySpare() {
     if (!this.spareable()) {
-      this.boxSay(this.m.id === 'rift_drake' && this.mercy >= 100 ? ['* Rift Drake is calming down... but the rift still burns. Hold on a little longer.'] : [`* You spared ${this.m.name}.`, '* ...It is not ready to yield.'], () => this.enemyTurn(100));
+      this.boxSay(this.m.role === 'boss' && this.mercy >= 100 ? [`* ${this.m.name} is wavering... but it is not finished yet. Hold on a little longer.`] : [`* You spared ${this.m.name}.`, '* ...It is not ready to yield.'], () => this.enemyTurn(100));
       return;
     }
     this.phase = 'end';
@@ -831,8 +834,8 @@ export class BattleScene extends Phaser.Scene {
   private tryBind() {
     const s = State.get();
     if ((s.inventory.orb ?? 0) <= 0) return this.toMenu();
-    if (this.m.id === 'rift_drake') {
-      this.boxSay(['* The Binding Orb shatters against the rift-light.', '* This guardian cannot be bound. Only calmed.'], () => this.enemyTurn(100));
+    if (this.m.role === 'boss') {
+      this.boxSay(['* The Binding Orb shatters against its scales.', '* The Overlord of Norwoods cannot be bound. Only calmed.'], () => this.enemyTurn(100));
       State.useItem('orb');
       return;
     }

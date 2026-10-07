@@ -12,13 +12,15 @@ export const UI_SPRITES = [
 ];
 
 export const ROOM_BGS = ['plaza', 'gate', 'outskirts', 'forest', 'mosswood', 'waystone', 'gate_talk'];
-export const MONSTER_ART = ['bat_fiend', 'bones', 'blood_priest', 'nocturne', 'rift_drake', 'divine'];
+// Original Dragon Island Blue sprites, unaltered (tools/fetch_dib_sprites.py).
+export const MONSTER_ART = ['bat_fiend', 'blood_priest', 'bones', 'dark_priest', 'scale_knight', 'devil_worm', 'lich', 'orochi'];
 
 export function queueAll(load: Phaser.Loader.LoaderPlugin) {
   for (const k of UI_SPRITES) load.image('ui_' + k, `assets/ui/${k}.png`);
   load.image('logo', 'assets/ui/logo.webp');
   for (const k of ROOM_BGS) load.image('bg_' + k, `assets/bg/${k}.jpg`);
-  for (const k of MONSTER_ART) load.image('mon_' + k, `assets/monsters/${k}.webp`);
+  for (const k of MONSTER_ART) load.image('mon_' + k, `assets/monsters/${k}.png`);
+  load.image('mon_divine', 'assets/monsters/divine.webp');
   load.spritesheet('hero_walk', 'assets/chars/hero_walk.png', { frameWidth: 128, frameHeight: 176 });
   load.spritesheet('wren_idle', 'assets/chars/wren_idle.png', { frameWidth: 128, frameHeight: 176 });
   load.image('hero_portrait', 'assets/chars/hero_portrait.webp');

@@ -61,7 +61,7 @@ export class EndingScene extends Phaser.Scene {
           [
             { text: '* A light older than the island descends from the canopy.' },
             D('Little tamer. You walked through fear and answered it with kindness.'),
-            D('The Drake is the stone\'s guardian. You did not break it. You helped it remember.'),
+            D('Orochi guarded this stone long before your people came. You did not break it. You helped it remember.'),
             D('The western Waystone burns again. But four still sleep at the edges of the world.'),
             D(`Rest now, ${name}. Dragon Legend Isle will remember your name.`),
           ],
@@ -72,7 +72,7 @@ export class EndingScene extends Phaser.Scene {
       this.time.delayedCall(2400, () =>
         this.dialogue.show(
           [
-            { text: '* With the Drake\'s last breath, the Waystone sputters back to life.' },
+            { text: '* As the last of Orochi\'s eight heads falls, the Waystone sputters back to life.' },
             { text: '* It is lit. But its light is cold, and no warmth reaches you.' },
             { text: '* Far above, something that was watching turns away.' },
             { text: '* ...Perhaps there was another way.' },

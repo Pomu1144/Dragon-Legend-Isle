@@ -433,17 +433,17 @@ export class WorldScene extends Phaser.Scene {
     this.resetEncounter();
     this.busy = false;
     if (!result) return;
-    if (result.monster === 'nocturne') {
-      State.setFlag('metNocturne');
+    if (result.monster === 'lich') {
+      State.setFlag('metLich');
       const kind = result.outcome === 'won' ? 'won' : 'peace';
       this.say(
         kind === 'peace'
-          ? [{ text: '* The fireflies drift back to the trail.' }, { text: '* Somewhere above, something is keeping watch over you.' }]
+          ? [{ text: '* The fireflies drift back to the trail.' }, { text: '* The Lich\'s crimson robes fade between the trees. It does not follow.' }]
           : [{ text: '* The fireflies do not come back.' }, { text: '* The trail feels colder.' }],
       );
     }
-    if (result.monster === 'rift_drake') {
-      State.setFlag('drakeDone');
+    if (result.monster === 'orochi') {
+      State.setFlag('orochiDone');
       this.busy = true;
       this.time.delayedCall(400, () => {
         this.scene.start('Ending', { peaceful: result.outcome !== 'won' });
@@ -452,29 +452,30 @@ export class WorldScene extends Phaser.Scene {
   }
 
   private runTrigger(id: string) {
-    if (id === 'nocturne') {
+    if (id === 'lich') {
       this.busy = true;
       this.cameras.main.shake(300, 0.004);
       this.say(
         [
           { text: '* All at once, the fireflies go out.' },
           { text: '* A voice comes from everywhere and nowhere.' },
-          { text: '...Turn back, little tamer. The Drake is not for you.', speaker: '???', voice: 0.7 },
+          { text: '* A figure in crimson robes stands in the path, a skull beneath its hood.' },
+          { text: '...Turn back. The Overlord of Norwoods does not wake for the living.', speaker: '???', voice: 0.7 },
         ],
-        () => this.startBattle('nocturne'),
+        () => this.startBattle('lich'),
       );
     }
-    if (id === 'drake') {
+    if (id === 'orochi') {
       this.busy = true;
       Sound.stopMusic(0.5);
       this.cameras.main.shake(900, 0.008);
       this.say(
         [
           { text: '* The Waystone flickers. Once. Twice.' },
-          { text: '* Something enormous uncoils from behind it. Cyan light bleeds through cracked scales.' },
-          { text: 'WHO DISTURBS THE STONE?', speaker: '???', voice: 0.5 },
+          { text: '* Something enormous uncoils from behind it. Eight heads rise, one after another.' },
+          { text: '* Orochi, the Overlord of Norwoods, has awoken.' },
         ],
-        () => this.startBattle('rift_drake'),
+        () => this.startBattle('orochi'),
       );
     }
   }

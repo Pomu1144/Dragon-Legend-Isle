@@ -71,6 +71,7 @@ export class MenuScene extends Phaser.Scene {
     this.detail = undefined;
     this.refreshTabs();
     const header = title(this, 120, 78, TABS[this.tab].name, 38, '#3a1f08').setStroke('#f6e3b8', 4).setShadow(0, 2, '#000', 2);
+    if (this.tab === 1) header.setVisible(false); // the painted plaque already titles this page
     this.content.add(header);
     [() => this.buildParty(), () => this.buildBestiary(), () => this.buildItems(), () => this.buildRecords()][this.tab]();
   }
@@ -122,24 +123,24 @@ export class MenuScene extends Phaser.Scene {
     BESTIARY_ORDER.forEach((id, i) => {
       const m = MONSTERS[id];
       const rec = State.get().bestiary[id];
-      const col = i % 3;
-      const row = Math.floor(i / 3);
-      const c = this.add.container(240 + col * 230, 260 + row * 200);
-      const card = this.add.image(0, 0, 'ui_monster_card').setScale(0.46);
-      const art = this.add.image(0, -22, m.art);
-      art.setScale(Math.min(128 / art.width, 96 / art.height));
+      const col = i % 5;
+      const row = Math.floor(i / 5);
+      const c = this.add.container(200 + col * 172, 262 + row * 196);
+      const card = this.add.image(0, 0, 'ui_monster_card').setScale(0.42).setTint(0xb4b8bc);
+      const art = this.add.image(0, -20, m.art);
+      art.setScale(Math.min(118 / art.width, 88 / art.height));
       if (!rec?.seen) art.setTintFill(0x0b1a2a).setAlpha(0.85);
-      const nm = label(this, 0, -80, rec?.seen ? m.name : '???', 15, COLORS.ink, 0).setOrigin(0.5).setStroke('#fff4dc', 2);
+      const nm = label(this, 0, -73, rec?.seen ? m.name : '???', 15, COLORS.ink, 0).setOrigin(0.5).setStroke('#fff4dc', 2);
       c.add([card, art, nm]);
       if (rec?.bound) {
-        const crown = this.add.image(-50, 58, 'ui_crown').setScale(0.24);
+        const crown = this.add.image(-46, 53, 'ui_crown').setScale(0.22);
         c.add(crown);
         this.tweens.add({ targets: crown, scale: 0.27, yoyo: true, repeat: -1, duration: 700 });
       } else {
         // dim the painted crown slot on unbound monsters
-        c.add(this.add.rectangle(-48, 60, 50, 36, 0x13202c, 0.6));
+        c.add(this.add.rectangle(-44, 55, 46, 33, 0x13202c, 0.6));
       }
-      if (rec?.spared) c.add(this.add.image(48, 60, 'ui_fx_sparkle').setScale(0.3).setBlendMode(Phaser.BlendModes.ADD));
+      if (rec?.spared) c.add(this.add.image(44, 55, 'ui_fx_sparkle').setScale(0.27).setBlendMode(Phaser.BlendModes.ADD));
       this.content.add(c);
       this.cardObjs.push(c);
     });
@@ -160,7 +161,7 @@ export class MenuScene extends Phaser.Scene {
     if (this.detail) {
       this.detail.setText(
         rec?.seen
-          ? `${m.name} · ${m.affinity} · ${'★'.repeat(m.stars)}   Spared ${rec.spared} · Defeated ${rec.defeated}${rec.bound ? ' · BOUND' : ''}\n${m.lore}`
+          ? `No. ${m.number} ${m.name} · ${m.affinity} · ${m.stars}★   Spared ${rec.spared} · Defeated ${rec.defeated}${rec.bound ? ' · BOUND' : ''}\n${m.lore}`
           : 'Not yet encountered. Keep exploring the western roads.',
       );
     }

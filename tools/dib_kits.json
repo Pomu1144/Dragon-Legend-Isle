@@ -1,0 +1,1563 @@
+{
+ "roster": {
+  "roster": [
+   {
+    "name": "Bat Fiend",
+    "role": "encounter",
+    "rooms": [
+     "outskirts",
+     "forest"
+    ],
+    "why": "Required (on the user's UI sheet). #116, 2 stars, Air. Its page says it is found in Greater Wesing (and No Man's Castle), and the Greater Wesing page lists it under 'Southwest of Wesing', an open field. Lv1: HP28 Atk5 Mag8 Spd19 Def6 Res13. Abilities: Confusion (250 TU, 1 Foe, confuses the target for 437 TUs, causing it to sometimes do nothing) and Turbulence (70 TU, 1 Foe, 5-6 Magical Damage (Air)). Evolves to Vampire at Lv22, then Dark Spirit at Lv34. Sprite: https://static.wikia.nocookie.net/dragonislandblue/images/4/46/Bat_Fiend.png"
+   },
+   {
+    "name": "Blood Priest",
+    "role": "encounter",
+    "rooms": [
+     "outskirts"
+    ],
+    "why": "Required (on the user's UI sheet). #149, 2 stars, Fire. Listed under 'Southwest of Wesing' on the Greater Wesing page; its own page says 'No Man's Cave in Southern Alvalon'. Lv1: HP30 Atk10 Mag3 Spd6 Def3 Res3, the slowest and frailest here, so it is the easiest. Abilities: Fire Storm (130 TU, All Foes, 1 Magical Damage (Fire)) and Flame (130 TU, 1 Foe, 3-4 Magical Damage (Fire)). Evolves to Blood Warrior at Lv17, then Blood Rogue at Lv37. Sprite: https://static.wikia.nocookie.net/dragonislandblue/images/8/84/Blood_Priest.png"
+   },
+   {
+    "name": "Bones",
+    "role": "encounter",
+    "rooms": [
+     "outskirts",
+     "mosswood"
+    ],
+    "why": "Required (on the user's UI sheet). #100, 2 stars, Death. Listed under 'Southwest of Wesing' on the Greater Wesing page; its page also gives No Man's Castle and Safaris. Bones also appears in the Forest of Mangal and Norwoods lists, so it is a forest monster too. Lv1: HP29 Atk7 Mag6 Spd13 Def10 Res10. Abilities from the raw wikitext (the parser drops the first one): Plague (130 TU, 1 Foe, 7-8 Magical Damage (Death)), Venom Spray (130 TU, All Foes, poisons for 8-9 Death damage over 500 TUs) and Venom Sting (130 TU, 1 Foe, 8-9 Physical Damage (Death) plus 8-9 Death damage over 500 TUs). No evolution. Sprite: https://static.wikia.nocookie.net/dragonislandblue/images/5/5e/Bones.png"
+   },
+   {
+    "name": "Dark Priest",
+    "role": "encounter",
+    "rooms": [
+     "forest"
+    ],
+    "why": "#150, 2 stars, Fire, category Humanoid. The Greater Wesing page lists it both 'Southwest of Wesing' and in the 'Southeast Forest', which makes it the natural bridge from the field to the forest. Its own page only says 'IN Western Gracia(?)', so don't use that as lore. Lv1: HP29 Atk3 Mag10 Spd10 Def3 Res3. The raw wikitext has TWO abilities, and the parser dropped the first: Flame (130 TU, 1 Foe, 11-14 Magical Damage (Fire)) and Ignite (70 TU, 1 Foe, 6-7 Magical Damage (Fire)). Evolves to Dark Mage at Lv22. Sprite: https://static.wikia.nocookie.net/dragonislandblue/images/8/88/Dark_Priest.png"
+   },
+   {
+    "name": "Scale Knight",
+    "role": "encounter",
+    "rooms": [
+     "forest",
+     "mosswood"
+    ],
+    "why": "#156, Earth. 2.5 stars: the raw infobox shows 2 stars plus a half star, and the page is in Category:2.5 Stars Monsters; the parser's 3.5 is wrong. Listed in the Greater Wesing 'Southeast Forest'. Lv1: HP30 Atk7 Mag7 Spd14 Def11 Res11, the sturdiest encounter, so it is a half-star step up. Abilities: Venom Spray (130 TU, all foes, 8-9 damage over 500 duration) and Venom Sting (130 TU, 1 foe, 8-9 physical damage (earth) plus 8-9 earth damage over 500 duration; the parser left this effect blank). Evolves to Serpent Mage at Lv25, then Snake God at Lv53. Sprite: https://static.wikia.nocookie.net/dragonislandblue/images/7/7f/Scale_Knight.png"
+   },
+   {
+    "name": "Devil Worm",
+    "role": "encounter",
+    "rooms": [
+     "forest",
+     "mosswood"
+    ],
+    "why": "#98, Earth. 2.5 stars by Category:2.5_Stars_Monsters; the parser's 3.5 is wrong. Listed in the Greater Wesing 'Southeast Forest' and also in the Norwoods monster links; its page adds the Lighthouse in Ringfeld, Safaris and Greater Wesing. Lv1: HP30 Atk9 Mag9 Spd14 Def9 Res9, the strongest offense of the encounters, so it belongs in the deeper rooms. Abilities from the raw wikitext (the parser dropped Clasp): Clasp (130 TU, 1 Foe, 9-12 Physical Damage (Earth)) and Reincarnate (200 TU, no target, Adds a Random Monster to Your Team). No evolution. Sprite: https://static.wikia.nocookie.net/dragonislandblue/images/1/16/Devil_Worm.png"
+   },
+   {
+    "name": "Lich",
+    "role": "miniboss",
+    "rooms": [
+     "mosswood"
+    ],
+    "why": "#159, 3 stars, Death; two of the three proposals picked it. It has the best location fit: the wiki says Liches 'can also be found in a single spot in Greater Wesing occasionally (Lich here will be levels 13 to 16). The spot is the leftmost spot in the forest section', the same region every encounter above comes from, at a much higher level. Its page also gives No Man's Castle. Stats exist only at Lv23: HP294 Atk25 Mag99 Spd74 Def74 Res173; the Lv1 column is blank, so scale the fight and do not present Lv1 numbers as wiki facts. The raw table has four abilities (the parser dropped Awaken and every effect): Awaken (100 TU, All Allies, Removes Sleep), Dark Matter (160 TU, 1 foe, 118-145 Damage), Disaster (100 TU, 2 foes, 46-57 Damage) and Enlighten (200 TU, All Allies, Increase magic by 16). I viewed the sprite: a clean transparent sprite of a tall crimson-robed, hooded sorcerer with a pale skull face and a staff. It looks menacing and works as a mini-boss. Sprite: https://static.wikia.nocookie.net/dragonislandblue/images/8/86/Lich.png"
+   },
+   {
+    "name": "Orochi",
+    "role": "boss",
+    "rooms": [
+     "waystone"
+    ],
+    "why": "#080, 8.5 stars, Fire. The raw infobox has 8 star icons plus a half star and the page is in Category:8.5 Stars Monsters; the parser's 9.5 is wrong. The Norwoods field page names Orochi under its '==Dragon Overlord==' heading, and Norwoods is the forest region with Giant Mangal that also lists Bones and Devil Worm. Its own page adds 'Saintspring (forest, rare)'. It is NOT in the official Dragon Overlords category, and its page notes '(Not a dragon)', so call it 'the Overlord of Norwoods' or the eight-headed serpent, never an official Dragon Overlord or a dragon. It has the full data set: Lv1 HP62 Atk40 Mag40 Spd34 Def55 Res55, about 2x the HP and 4-13x the Atk of the encounters. Abilities from the raw wikitext: Dragon Rage (250 TU, All Foes, 31-38 Physical Damage (Fire)), Flame (130 TU, One Foe, 45-55 Magical Damage (Fire)), Inferno (200 TU, All Foes, 26-31 Magical Damage (Fire)) and Wiggle (130 TU, One Foe, 45-55 Physical Damage (Fire); the parser left this blank). Evolves from Noko at Lv34. I viewed the sprite: a clean transparent multi-headed grey-green hydra on a coiled scaly body. It looks imposing. I chose it over Quetzalcoatl, which two proposals preferred, for two reasons. First, Quetzalcoatl's image_url is a battle screenshot with a forest background, a name banner, an HP bar and star icons baked in, so it cannot be used as a battle sprite. Second, Quetzalcoatl has no number and no stats. Sprite: https://static.wikia.nocookie.net/dragonislandblue/images/1/12/Orochi.png"
+   },
+   {
+    "name": "Divine",
+    "role": "ending",
+    "rooms": [
+     "waystone"
+    ],
+    "why": "Required (in the user's files; ending cameo, never fought). #202, 9 stars (raw {{Star/9}}; the parser read 0), Life element (from the raw infobox; the parser left it empty), Type: Spirit. 'Located in the Sanctuary in Applefield, 18th Floor.' Abilities from the raw wikitext (verify Holy there before using it): Holy (160 TU, 1 Foe, 1758-2149 Magical Damage), Immunity (passive, Self, immune to all negative status effects), Judgement (250 TU, All Foes, 1024-1251 Magical Damage), Justice (100 TU, 1 Foe, 1056-1291 Physical Damage, +100% Damage vs. Demonic) and Neutralize (130 TU, All Foes, Removes all effects, good or bad, from targets). Neutralize is the real ability that fits 'cleansing and relighting the waystone'. Stats run from rank F- to S+: HP 1835-2595, Atk and Mag 1304-1844, Spd, Def and Res 1641-2321. Sprite: https://static.wikia.nocookie.net/dragonislandblue/images/f/f9/Divine.png"
+   }
+  ],
+  "notes": "The final roster has 9 creatures, all verified in monsters.json and pages.json. Every one has an image_url and an ability table.\n\nROOM POOLS\n- outskirts: Bat Fiend, Blood Priest, Bones. These are the Greater Wesing 'Southwest of Wesing' field list, so the three required UI-sheet monsters appear together, as they do in DIB.\n- forest: Bat Fiend, Dark Priest, Scale Knight, Devil Worm. These come from 'Southeast Forest'; Dark Priest is listed in both the field and the forest.\n- mosswood: Bones, Scale Knight, Devil Worm, plus the Lich mini-boss. Lich is the wiki's rare Lv13-16 Lich at the leftmost spot of the Greater Wesing forest section.\n- waystone: Orochi as boss (the Dragon Overlord named on the Norwoods page). Divine appears in the mercy ending (Sanctuary, Applefield).\n\nThe difficulty curve follows the wiki's star ratings and stats:\n- 2 stars: Bat Fiend, Blood Priest, Bones, Dark Priest.\n- 2.5 stars: Scale Knight, Devil Worm.\n- 3 stars: Lich.\n- 8.5 stars: Orochi.\n- 9 stars: Divine.\n\nSPRITES VIEWED (saved in /tmp/claude-0/-home-user-Dragon-Legend-Isle/86652487-ad2d-5573-9073-e75d477ed090/scratchpad/dib/agent_tmp/judge/)\nThe wiki serves WebP data under .png names. I converted each file to v_*.png to view it.\n- Lich: a clean crimson-robed skull sorcerer. Good.\n- Orochi: a clean multi-headed hydra. Good.\n- Cult Warrior: a small grey armored figure with an axe. It is less imposing, and it is 2 stars, so I rejected it as mini-boss.\n- Quetzalcoatl: the image is a 250x220 in-game screenshot with a forest background, a 'Quetzalcoatl' banner, an HP bar and stars baked in. It is unusable as a battle sprite, so I rejected it as boss.\n\nPARSER BUGS TO FIX FROM RAW WIKITEXT\n1. Missing first ability rows:\n   - Bones: Plague (130 TU, 1 Foe, 7-8 Magical Damage (Death)).\n   - Devil Worm: Clasp (130 TU, 1 Foe, 9-12 Physical Damage (Earth)).\n   - Dark Priest: Flame (130 TU, 1 Foe, 11-14 Magical Damage (Fire)). None of the proposals caught this one.\n   - Lich: Awaken (100 TU, All Allies, Removes Sleep).\n   - Divine: Holy.\n2. Half-star ratings come out one star too high. Scale Knight and Devil Worm are 2.5, not 3.5. Orochi is 8.5, not 9.5.\n3. Divine reads 0 stars and has no element. The real values are 9 stars, Life, Spirit.\n4. Effects left blank: Orochi's Wiggle is 45-55 Physical Damage (Fire), Scale Knight's Venom Sting is 8-9 physical (earth) plus 8-9 earth over 500, and all of Lich's effects are blank.\n5. Lich has no Lv1 stats; only Lv23 stats exist.\n\nFIXES TO THE PROPOSALS\n- Proposal 3's Bat Squirrel has no wiki location and a blank element. Sludge and Giant Ant have no Greater Wesing or forest-route tie. I dropped all three.\n- Proposal 1's Cult Warrior is only 2 stars with a small sprite, and Imp is 4 stars, which is harder than the mini-boss slot. I dropped both in favor of the Greater Wesing set plus the Lich.\n\nLORE CAUTIONS\n- Do not call Orochi an official Dragon Overlord or a dragon. Its page says '(Not a dragon)'. 'Overlord of Norwoods' or 'eight-headed serpent' is safe.\n- Blood Priest's own page says 'No Man's Cave' (likely a typo). Dark Priest's own page says 'Western Gracia(?)'. The Greater Wesing page is the reliable location source for both.\n\nALTERNATIVES\n- Boss: Quetzalcoatl is an official Dragon Overlord, Earth, 8.5 stars, with 4 abilities. Use it only if you crop or redraw its screenshot sprite. Note that it has no number and no stats."
+ },
+ "kits": [
+  {
+   "kit": {
+    "name": "Bat Fiend",
+    "id": "bat_fiend",
+    "wiki": {
+     "number": "116",
+     "stars": 2,
+     "element": "Air",
+     "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/4/46/Bat_Fiend.png",
+     "image_size": [
+      105,
+      95
+     ],
+     "lv1": {
+      "hp": 28,
+      "attack": 5,
+      "magic": 8,
+      "speed": 19,
+      "defense": 6,
+      "resist": 13
+     },
+     "abilities": [
+      {
+       "name": "Confusion",
+       "tu": "250",
+       "target": "1 Foe",
+       "effect": "Confuses the target for 437 TUs, causing it to sometimes do nothing"
+      },
+      {
+       "name": "Turbulence",
+       "tu": "70",
+       "target": "1 Foe",
+       "effect": "5-6 Magical Damage (Air)"
+      }
+     ],
+     "evolution": "Bat Fiend (1st Form) -> Vampire (evolves at level 22) -> Dark Spirit (evolves at level 34; final form)",
+     "obtain": "Captured in No Man's Castle or obtained through a golden egg. Can also be found in Greater Wesing."
+    },
+    "sprite": {
+     "description": "A gaunt, shadowy humanoid bat-demon with a pale lavender-grey skull-like face, two curled horns, and huge tattered violet membrane wings spread wide with hooked claw tips. Its thin dark body and long spindly legs dangle beneath it as it hovers in mid-air.",
+     "dominant_color_hex": "#4A3F6B",
+     "faces": "front",
+     "flier": true
+    },
+    "battle": {
+     "check": "* BAT FIEND - No. 116 - AIR - 2 STARS.\n* Swift on the wing (SPD 19). Knows Turbulence and Confusion.\n* Its eyes hold no light. Something in the dark has hollowed them.",
+     "intro": "* A torn shape drops out of the night sky.\n* Bat Fiend circles you without a sound.",
+     "idle": [
+      "* Bat Fiend hangs in the air. Its wingbeats are slow and uneven.",
+      "* The membranes of its wings are split in places. Old tears, never healed.",
+      "* A cold draft follows it. It smells of wet stone and the castle dark.",
+      "* Bat Fiend keeps turning toward the waystone, as if it hears something there."
+     ],
+     "talk": [
+      "...skree.",
+      "The dark\ncalls us\nback.",
+      "Too far\nfrom the\ncastle.",
+      "Do not\nlook up.",
+      "The stone\nhums at\nnight."
+     ],
+     "spare_text": "* Bat Fiend's wings go still for a moment.\n* Then it lifts away into the night, and does not look back.",
+     "lore": "No. 116 - Bat Fiend. Air element, 2 stars. Lv1: HP 28, ATK 5, MAG 8, SPD 19, DEF 6, RES 13. Abilities: Turbulence (70 TU, 1 foe, 5-6 magical Air damage) and Confusion (250 TU, 1 foe, confuses for 437 TUs so it sometimes does nothing). Evolves into Vampire at level 22, then Dark Spirit at level 34. Captured in No Man's Castle, found in Greater Wesing, or hatched from a golden egg. Those that roost near the darkened waystone no longer return to their colonies.",
+     "acts": [
+      {
+       "name": "Keep Still",
+       "text": [
+        "* You stand perfectly still beneath it.",
+        "* Bat Fiend drifts lower, listening to your breathing.",
+        "* It no longer circles quite so close."
+       ],
+       "mercy": 40,
+       "once": true,
+       "calm": 1
+      },
+      {
+       "name": "Shield Light",
+       "text": [
+        "* You cup your hands around your lantern and dim it.",
+        "* Bat Fiend's frantic wingbeats slow.",
+        "* The light was hurting it."
+       ],
+       "mercy": 35,
+       "once": false,
+       "calm": 1
+      },
+      {
+       "name": "Hum Low",
+       "text": [
+        "* You hum a low, steady note, like wind through stone.",
+        "* Bat Fiend's head tilts. The sound is something it knows.",
+        "* It no longer tries to scatter your thoughts."
+       ],
+       "mercy": 50,
+       "once": true,
+       "calm": 2
+      }
+     ],
+     "attacks": [
+      {
+       "ability": "Turbulence",
+       "tu": 70,
+       "base_pattern": "tornado_sweep",
+       "projectile": "fx_tornado",
+       "tint_hex": "#9B8FD1",
+       "twist": "none",
+       "box": [
+        420,
+        280
+       ],
+       "intensity": 0.8,
+       "flavor": "* Bat Fiend beats its torn wings. The air turns against you."
+      },
+      {
+       "ability": "Confusion",
+       "tu": 250,
+       "base_pattern": "spiral",
+       "projectile": "fx_sparkle",
+       "tint_hex": "#B07CE8",
+       "twist": "confuse",
+       "box": [
+        340,
+        300
+       ],
+       "intensity": 0.7,
+       "flavor": "* Bat Fiend's wingbeats fall into a strange rhythm. Your thoughts begin to slip."
+      }
+     ]
+    }
+   },
+   "verdict": {
+    "ok": true,
+    "issues": []
+   },
+   "role": "encounter",
+   "rooms": [
+    "outskirts",
+    "forest"
+   ]
+  },
+  {
+   "kit": {
+    "name": "Blood Priest",
+    "id": "blood_priest",
+    "wiki": {
+     "number": "149",
+     "stars": 2,
+     "element": "Fire",
+     "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/8/84/Blood_Priest.png",
+     "image_size": [
+      99,
+      112
+     ],
+     "lv1": {
+      "hp": 30,
+      "attack": 10,
+      "magic": 3,
+      "speed": 6,
+      "defense": 3,
+      "resist": 3
+     },
+     "abilities": [
+      {
+       "name": "Fire Storm",
+       "tu": "130",
+       "target": "All Foes",
+       "effect": "1 Magical Damage (Fire)"
+      },
+      {
+       "name": "Flame",
+       "tu": "130",
+       "target": "1 Foe",
+       "effect": "3-4 Magical Damage (Fire)"
+      }
+     ],
+     "evolution": "Blood Priest (1st Form) -> Blood Warrior (evolves at level 17) -> Blood Rogue (evolves at level 37)",
+     "obtain": "Location: No Man's Cave in Southern Alvalon."
+    },
+    "sprite": {
+     "description": "A tall standing humanoid priest in heavy layered charcoal-grey robes veined and splattered with blood-red patterns. It wears a tall stovepipe-like hood; its face is hidden under a mass of grey tentacle-like strands with red markings. Its wide bell sleeves hang down; the hand on the viewer's left holds a long staff topped with an ankh-like loop, the other clawed hand is raised. The robe flares into a ragged red-and-black skirt over thin legs. It faces the viewer and stands on the ground (no wings, does not float).",
+     "dominant_color_hex": "#352A2A",
+     "faces": "front",
+     "flier": false
+    },
+    "battle": {
+     "check": "* BLOOD PRIEST - No. 149 - FIRE - 2 STARS.\n* ATK 10, DEF 3. Casts Fire Storm and Flame, 130 TU each.\n* Its robes are stained in patterns no one remembers the meaning of.",
+     "intro": "* A robed figure stands in the road ahead.\n* Blood Priest raises its staff. Not in blessing.",
+     "idle": [
+      "* Blood Priest murmurs a litany. The grass at its feet blackens.",
+      "* The tendrils over its face twitch, as if tasting the air.",
+      "* Smoke rises from its sleeves, though nothing there is burning.",
+      "* Blood Priest's chant falters. For a moment it seems to forget the words."
+     ],
+     "talk": [
+      "Kneel.",
+      "The flame\nmust be\nfed.",
+      "I tended\na shrine\nonce.",
+      "Its light\nwent out.",
+      "Now only\nthe fire\nanswers."
+     ],
+     "spare_text": "* Blood Priest lowers its staff.\n* It turns and walks slowly toward Southern Alvalon, its litany fading.",
+     "lore": "No. 149 - Blood Priest. Fire element, 2 stars. Lv1: HP 30, ATK 10, MAG 3, SPD 6, DEF 3, RES 3. Casts Fire Storm (130 TU, all foes, 1 magical Fire damage) and Flame (130 TU, 1 foe, 3-4 magical Fire damage). Evolves into Blood Warrior at level 17, then Blood Rogue at level 37. Found in No Man's Cave in Southern Alvalon. It still keeps its rites, though whatever it once prayed to has long stopped answering.",
+     "acts": [
+      {
+       "name": "Pray",
+       "text": [
+        "* You bow your head and pray in silence beside it.",
+        "* Blood Priest's chant slows to match your breathing."
+       ],
+       "mercy": 40,
+       "once": false,
+       "calm": 1
+      },
+      {
+       "name": "Ask Its Faith",
+       "text": [
+        "* You ask Blood Priest what it once prayed for.",
+        "* It is quiet for a long time. The staff trembles in its hand."
+       ],
+       "mercy": 35,
+       "once": true,
+       "calm": 1
+      },
+      {
+       "name": "Lay an Offering",
+       "text": [
+        "* You set a handful of dried herbs at its feet.",
+        "* Blood Priest burns them slowly, with care.",
+        "* The smoke smells clean, for once."
+       ],
+       "mercy": 30,
+       "once": true,
+       "calm": 0
+      }
+     ],
+     "attacks": [
+      {
+       "ability": "Fire Storm",
+       "tu": 130,
+       "base_pattern": "diagonal_rain",
+       "projectile": "fx_sparkle",
+       "tint_hex": "#FF5A1F",
+       "twist": "all_foes_wide",
+       "box": [
+        480,
+        260
+       ],
+       "intensity": 0.8,
+       "flavor": "* Blood Priest lifts its staff. Ash and embers fall over everyone."
+      },
+      {
+       "ability": "Flame",
+       "tu": 130,
+       "base_pattern": "aimed_volley",
+       "projectile": "orb_blood",
+       "tint_hex": "#FF7A00",
+       "twist": "none",
+       "box": [
+        320,
+        280
+       ],
+       "intensity": 1.1,
+       "flavor": "* Blood Priest points its staff at you. A tongue of fire follows."
+      }
+     ]
+    }
+   },
+   "verdict": {
+    "ok": true,
+    "issues": []
+   },
+   "role": "encounter",
+   "rooms": [
+    "outskirts"
+   ]
+  },
+  {
+   "kit": {
+    "name": "Bones",
+    "id": "bones",
+    "wiki": {
+     "number": "100",
+     "stars": 2,
+     "element": "Death",
+     "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/5/5e/Bones.png",
+     "image_size": [
+      50,
+      95
+     ],
+     "lv1": {
+      "hp": 29,
+      "attack": 7,
+      "magic": 6,
+      "speed": 13,
+      "defense": 10,
+      "resist": 10
+     },
+     "abilities": [
+      {
+       "name": "Plague",
+       "tu": "130",
+       "target": "1 Foe",
+       "effect": "7-8 Magical Damage (Death)"
+      },
+      {
+       "name": "Venom Spray",
+       "tu": "130",
+       "target": "All Foes",
+       "effect": "Poisons: 8-9 Damage (Death) over 500 TUs"
+      },
+      {
+       "name": "Venom Sting",
+       "tu": "130",
+       "target": "1 Foe",
+       "effect": "8-9 Physical Damage (Death), Poisons: 8-9 Death Damage (additional) over 500 TUs."
+      }
+     ],
+     "evolution": "1st Form: Bones (no further evolution). Recipe: Bones + Bitewing = Skull Crow.",
+     "obtain": "Found in No Man's Castle in Southern Alvalon. Also found at Safaris and in Greater Wesing."
+    },
+    "sprite": {
+     "description": "A tall, gaunt, hunched skeleton standing on two legs, its dark grey-black bones edged in pale white highlights, wrapped in a wispy violet/purple ghostly aura. Bony skull with faint glowing eyes, long dangling arms with clawed fingers, knees slightly bent mid-shamble. Seen mostly from the front, head turned slightly to the viewer's right.",
+     "dominant_color_hex": "#4B4660",
+     "faces": "front",
+     "flier": false
+    },
+    "battle": {
+     "check": "* BONES - No. 100 - DEATH - 2 STARS.\n* ATK 7, DEF 10. Knows Plague, Venom Spray and Venom Sting.\n* A first form with no evolution. It has nothing left to become.",
+     "intro": "* Bones shambles out of the dark.\n* A violet haze clings to it like a shroud.",
+     "idle": [
+      "* Bones stands crooked, its joints grinding softly.",
+      "* Violet mist seeps out from between its ribs.",
+      "* Its eye sockets glow faintly. There is no one behind them. Almost no one.",
+      "* It smells of a sealed cellar and old venom."
+     ],
+     "talk": [
+      "...",
+      "cold.\nalways\ncold.",
+      "i had a\nname once.",
+      "the mist\nholds me\ntogether.",
+      "let me\nrest."
+     ],
+     "spare_text": "* Bones lowers its clawed hands.\n* It turns and shambles back into the mist, slower now, as if tired.",
+     "lore": "No. 100 - Bones. Death element, 2 stars. Lv1: HP 29, ATK 7, MAG 6, SPD 13, DEF 10, RES 10. Knows Plague (7-8 magical Death damage to 1 foe), Venom Spray (poisons all foes for 8-9 Death damage over 500 TUs) and Venom Sting (8-9 physical Death damage plus 8-9 more over 500 TUs); each costs 130 TU. A 1st-form monster with no further evolution; Bones combined with Bitewing makes a Skull Crow. Found in No Man's Castle in Southern Alvalon, at the Safaris, and in Greater Wesing. Nothing holds it together but the mist and an old, stubborn will.",
+     "acts": [
+      {
+       "name": "Stand Vigil",
+       "text": [
+        "* You stand beside Bones without speaking.",
+        "* After a while, the grinding of its joints quiets.",
+        "* It seems less alone."
+       ],
+       "mercy": 40,
+       "once": true,
+       "calm": 20
+      },
+      {
+       "name": "Clear the Mist",
+       "text": [
+        "* You wave the violet haze away from its joints.",
+        "* For a moment Bones stands a little straighter."
+       ],
+       "mercy": 35,
+       "once": false,
+       "calm": 30
+      },
+      {
+       "name": "Speak of Crows",
+       "text": [
+        "* You tell Bones about the Bitewing you saw circling overhead.",
+        "* Its skull turns slowly upward.",
+        "* Something stirs in its empty sockets. Not quite hope."
+       ],
+       "mercy": 45,
+       "once": true,
+       "calm": 15
+      }
+     ],
+     "attacks": [
+      {
+       "ability": "Plague",
+       "tu": 130,
+       "base_pattern": "homing",
+       "projectile": "orb_blood",
+       "tint_hex": "#7A4FA8",
+       "twist": "none",
+       "box": [
+        340,
+        260
+       ],
+       "intensity": 0.8,
+       "flavor": "* Bones uses Plague. Sickly motes drift toward you."
+      },
+      {
+       "ability": "Venom Spray",
+       "tu": 130,
+       "base_pattern": "sparkle_rain",
+       "projectile": "orb_moss",
+       "tint_hex": "#6BCB3A",
+       "twist": "poison",
+       "box": [
+        460,
+        280
+       ],
+       "intensity": 0.85,
+       "flavor": "* Bones uses Venom Spray. A green mist settles over the field."
+      },
+      {
+       "ability": "Venom Sting",
+       "tu": 130,
+       "base_pattern": "aimed_volley",
+       "projectile": "orb_moss",
+       "tint_hex": "#4FA82E",
+       "twist": "poison",
+       "box": [
+        320,
+        260
+       ],
+       "intensity": 0.9,
+       "flavor": "* Bones uses Venom Sting. A bony claw lashes out, slick with venom."
+      }
+     ]
+    }
+   },
+   "verdict": {
+    "ok": true,
+    "issues": [
+     {
+      "field": "battle.talk[3] (advisory, not a factual error)",
+      "problem": "The line \"no man's / land... is / my home.\" is meant as a pun, but \"No Man's Land\" is not a DIB location; the wiki places Bones in No Man's Castle (Southern Alvalon), at Safaris, and in Greater Wesing. A player could take it as a real place name. It fits the 14-chars/3-lines rule.",
+      "correct_value": "Optional rewording that keeps to the wiki, e.g. \"no man's\\ncastle is\\nmy home.\" (8/9/8 chars)"
+     }
+    ]
+   },
+   "role": "encounter",
+   "rooms": [
+    "outskirts",
+    "mosswood"
+   ]
+  },
+  {
+   "kit": {
+    "name": "Dark Priest",
+    "id": "dark_priest",
+    "wiki": {
+     "number": "150",
+     "stars": 2,
+     "element": "Fire",
+     "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/8/88/Dark_Priest.png",
+     "image_size": [
+      73,
+      105
+     ],
+     "lv1": {
+      "hp": 29,
+      "attack": 3,
+      "magic": 10,
+      "speed": 10,
+      "defense": 3,
+      "resist": 3
+     },
+     "abilities": [
+      {
+       "name": "Flame",
+       "tu": "130",
+       "target": "1 Foe",
+       "effect": "11-14 Magical Damage (Fire)"
+      },
+      {
+       "name": "Ignite",
+       "tu": "70",
+       "target": "1 Foe",
+       "effect": "6-7 Magical Damage (Fire)"
+      }
+     ],
+     "evolution": "Dark Priest (1st Form) -> Dark Mage (2nd Form), evolves at level 22",
+     "obtain": "Monster page: \"IN Western Gracia(?)\". Location pages: Greater Wesing - Southwest of Wesing (with Bat Fiend, Blood Priest, Bones, Cult Priest) and Southeast Forest (with Cockatrice, Devil Worm, Evil Eye, Scale Knight); also in the Western Gracia field monster list."
+    },
+    "sprite": {
+     "description": "A tall humanoid figure in a black wide-brimmed hat and a long black greatcoat that flares out to the right at the hem. The face is completely hidden in shadow under the hat brim. A long white stole/scarf hangs in two strips down the front of a dark suit. Pale gloved hands hang at its sides. Almost entirely black and charcoal grey with white accents. Stands on the ground, body angled slightly but essentially facing the viewer.",
+     "dominant_color_hex": "#202020",
+     "faces": "front",
+     "flier": false
+    },
+    "battle": {
+     "check": "* DARK PRIEST - No. 150 - FIRE - 2 STARS.\n* MAG 10. Casts Flame and Ignite. Evolves into Dark Mage at LV 22.\n* No one has seen the face beneath its hat.",
+     "intro": "* A tall figure steps out from between the trees.\n* Dark Priest stands motionless, face lost in shadow.",
+     "idle": [
+      "* Dark Priest's coat stirs, though there is no wind.",
+      "* Candle smoke drifts through the forest. There are no candles.",
+      "* Its white stole is the only pale thing in the clearing.",
+      "* Dark Priest whispers names. No one answers to them."
+     ],
+     "talk": [
+      "Turn\nback.",
+      "The fire\nis all\nthat's left.",
+      "I had a\nflock\nonce.",
+      "The stone\ntook them.",
+      "Do not\nlook under\nthe brim."
+     ],
+     "spare_text": "* Dark Priest closes its gloved hand. The fire at its fingertips dies.\n* It steps back between the trees and is gone.",
+     "lore": "No. 150 - Dark Priest. Fire element, 2 stars, humanoid. Lv1: HP 29, ATK 3, MAG 10, SPD 10, DEF 3, RES 3. Casts Flame (130 TU, 11-14 magical Fire damage to 1 foe) and Ignite (70 TU, 6-7 magical Fire damage to 1 foe). Evolves into Dark Mage at level 22. Found southwest of Wesing and in the Southeast Forest of Greater Wesing, alongside Bat Fiends, Bones, Blood Priests and Cult Priests; also reported in Western Gracia. Its face has never been seen, and those who tried to look did not speak of it.",
+     "acts": [
+      {
+       "name": "Avert Eyes",
+       "text": [
+        "* You lower your gaze and do not look beneath its hat.",
+        "* Dark Priest's shoulders loosen. It did not want to be seen."
+       ],
+       "mercy": 30,
+       "once": true,
+       "calm": 1
+      },
+      {
+       "name": "Listen",
+       "text": [
+        "* You sit on a stump and let Dark Priest speak.",
+        "* It tells you of a congregation that stopped coming. Then of the night they disappeared."
+       ],
+       "mercy": 40,
+       "once": false,
+       "calm": 1
+      },
+      {
+       "name": "Say the Names",
+       "text": [
+        "* You repeat the names it whispered, slowly and clearly.",
+        "* Dark Priest goes still. The flames at its fingertips gutter low."
+       ],
+       "mercy": 35,
+       "once": false,
+       "calm": 1
+      }
+     ],
+     "attacks": [
+      {
+       "ability": "Flame",
+       "tu": 130,
+       "base_pattern": "homing",
+       "projectile": "fx_sparkle",
+       "tint_hex": "#FF6A1A",
+       "twist": "none",
+       "box": [
+        400,
+        300
+       ],
+       "intensity": 1.1,
+       "flavor": "* Dark Priest raises a pale hand. Fire gathers in its palm."
+      },
+      {
+       "ability": "Ignite",
+       "tu": 70,
+       "base_pattern": "rift_bursts",
+       "projectile": "fx_sparkle",
+       "tint_hex": "#FFB02E",
+       "twist": "none",
+       "box": [
+        360,
+        280
+       ],
+       "intensity": 0.8,
+       "flavor": "* Dark Priest snaps its fingers. The ground beneath you catches."
+      }
+     ]
+    }
+   },
+   "verdict": {
+    "ok": false,
+    "issues": [
+     {
+      "field": "wiki.obtain",
+      "problem": "It mixes up two different wiki location pages. 'Southwest of Wesing' (listed with Bat Fiend, Blood Priest, Bones, Cult Priest) is on the Greater Wesing page, not Western Gracia. The Western Gracia page lists Dark Priest in a flat monster list with no sub-area, alongside Drake, Gnoll, Manticore, Crab King, Beastman, Blood Priest, Devil Worm, Scale Knight, Sphinxling, Ice Yeti, Spike Ball and Flame Wing. The text also leaves out that Greater Wesing lists Dark Priest in its Southeast Forest too (with Cockatrice, Devil Worm, Evil Eye, Scale Knight).",
+      "correct_value": "Monster page: \"IN Western Gracia(?)\". Location pages: Greater Wesing - Southwest of Wesing (with Bat Fiend, Blood Priest, Bones, Cult Priest) and Southeast Forest (with Cockatrice, Devil Worm, Evil Eye, Scale Knight); Western Gracia field monster list."
+     },
+     {
+      "field": "battle.lore",
+      "problem": "'Found in Western Gracia, southwest of Wesing' is false: the 'Southwest of Wesing' area belongs to Greater Wesing. It also states Western Gracia as fact, but the monster page marks it uncertain with '(?)'.",
+      "correct_value": "e.g. \"Found southwest of Wesing and in the Southeast Forest of Greater Wesing, where it keeps company with Bat Fiends, Bones, Blood Priests and Cult Priests; also reported in Western Gracia.\""
+     },
+     {
+      "field": "note (no change needed)",
+      "problem": "Checked and found correct: number 150; 2 stars; Fire element; Humanoid category; LV1 stats 29/3/10/10/3/3; abilities Flame (130 TU, 1 Foe, 11-14 Magical Damage (Fire)) and Ignite (70 TU, 1 Foe, 6-7 Magical Damage (Fire)), the only two on the wiki page, nothing invented or missing. monsters.json lost Flame when it was parsed, but the kit includes it correctly from the raw wikitext. Evolution Dark Priest -> Dark Mage at level 22 is correct. image_url returns HTTP 200 and the file is a 73x105 WebP. The sprite shows a front-facing, grounded figure in a black hat and coat with a white stole, so faces=front and flier=false are correct. All talk lines are 3 lines or fewer and 14 characters or fewer per line. Minor nitpick: the check line says it 'dresses entirely in black', but the sprite has a white stole and pale hands. This is flavor text, not a factual error.",
+      "correct_value": "n/a"
+     }
+    ]
+   },
+   "role": "encounter",
+   "rooms": [
+    "forest"
+   ],
+   "fixed": true
+  },
+  {
+   "kit": {
+    "name": "Scale Knight",
+    "id": "scale_knight",
+    "wiki": {
+     "number": "156",
+     "stars": 2.5,
+     "element": "Earth",
+     "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/7/7f/Scale_Knight.png",
+     "image_size": [
+      75,
+      115
+     ],
+     "lv1": {
+      "hp": 30,
+      "attack": 7,
+      "magic": 7,
+      "speed": 14,
+      "defense": 11,
+      "resist": 11
+     },
+     "abilities": [
+      {
+       "name": "Venom Spray",
+       "tu": "130",
+       "target": "all foes",
+       "effect": "8-9 damage over 500 duration"
+      },
+      {
+       "name": "Venom Sting",
+       "tu": "130",
+       "target": "1",
+       "effect": "8-9 physical damage (earth), 8-9 earth damage over 500 duration"
+      }
+     ],
+     "evolution": "Scale Knight (1st form) -> Serpent Mage (evolves at level 25) -> Snake God (evolves at level 53)",
+     "obtain": "From an egg; from Ringfeld; from the Lighthouse; can be found in some spots in Greater Wesing; can be found in some spots in Safaris"
+    },
+    "sprite": {
+     "description": "A grey, pale-scaled naga warrior: humanoid upper torso with a long serpent tail coiled beneath it, the tail's underside dotted with dark diamond-shaped scale markings and ending in a thin black tip. Its head is hooded with tall pointed ear/crest shapes and a shadowed face. It holds a long thin sword raised over its shoulder, blade angled up and across to the right. Monochrome palette of greys, charcoal and off-white.",
+     "dominant_color_hex": "#6B6B6B",
+     "faces": "left",
+     "flier": false
+    },
+    "battle": {
+     "check": "* SCALE KNIGHT - No. 156 - EARTH - 2.5 STARS.\n* DEF 11. Venom Spray and Venom Sting.\n* Evolves into Serpent Mage at LV 25. It still keeps an oath to no one.",
+     "intro": "* Scale Knight rises from the ferns, blade raised.\n* It does not hiss. It only watches.",
+     "idle": [
+      "* Scale Knight's grip on its sword never loosens.",
+      "* Its coils tighten, slowly, then hold.",
+      "* The air smells of venom and wet moss.",
+      "* Its tongue flicks out. It has not stopped tasting the air for a long time."
+     ],
+     "talk": [
+      "Halt.",
+      "I guard\nthis path.",
+      "For whom,\nI cannot\nrecall.",
+      "Sssomething\nin the\nstone...",
+      "...lower\nyour\nhands."
+     ],
+     "spare_text": "* Scale Knight sheathes its blade and bows its head.\n* It coils away into the ferns, still on guard against something.",
+     "lore": "No. 156 - Scale Knight. Earth element, 2.5 stars. Lv1: HP 30, ATK 7, MAG 7, SPD 14, DEF 11, RES 11. Venom Spray (130 TU) deals 8-9 damage over 500 duration to all foes; Venom Sting (130 TU) deals 8-9 physical (earth) damage plus 8-9 earth damage over 500 duration to one foe. Evolves into Serpent Mage at level 25, then Snake God at level 53. Obtainable from an egg, from Ringfeld and the Lighthouse, and found in some spots in Greater Wesing and the Safaris. It keeps a vigil whose purpose it has long since forgotten.",
+     "acts": [
+      {
+       "name": "Salute",
+       "text": [
+        "* You raise your hand in a knight's salute.",
+        "* Scale Knight answers it, slowly, from long habit."
+       ],
+       "mercy": 35,
+       "once": false,
+       "calm": 1
+      },
+      {
+       "name": "Lay Down Arms",
+       "text": [
+        "* You set your weapon on the ground between you.",
+        "* Scale Knight stares at it for a long moment.",
+        "* Its blade dips."
+       ],
+       "mercy": 40,
+       "once": true,
+       "calm": 1
+      },
+      {
+       "name": "Ask Its Oath",
+       "text": [
+        "* You ask Scale Knight who it swore to protect.",
+        "* It opens its mouth to answer. Nothing comes.",
+        "* Its coils loosen. It looks lost."
+       ],
+       "mercy": 45,
+       "once": true,
+       "calm": 2
+      }
+     ],
+     "attacks": [
+      {
+       "ability": "Venom Spray",
+       "tu": 130,
+       "base_pattern": "diagonal_rain",
+       "projectile": "orb_moss",
+       "tint_hex": "#7FD13B",
+       "twist": "poison",
+       "box": [
+        460,
+        280
+       ],
+       "intensity": 0.9,
+       "flavor": "* Scale Knight exhales. A thin green mist rolls across the field."
+      },
+      {
+       "ability": "Venom Sting",
+       "tu": 130,
+       "base_pattern": "aimed_volley",
+       "projectile": "orb_moss",
+       "tint_hex": "#5E8C2A",
+       "twist": "poison",
+       "box": [
+        340,
+        280
+       ],
+       "intensity": 1,
+       "flavor": "* Scale Knight lunges. Its blade is slick with venom."
+      }
+     ]
+    }
+   },
+   "verdict": {
+    "ok": false,
+    "issues": [
+     {
+      "field": "battle.talk[1]",
+      "problem": "The line \"My blade\\nis sharp.\\nMy sting,\\nsharper.\" has 4 lines, which breaks the 3-line limit. All the other talk lines are within 14 chars/line and 3 lines.",
+      "correct_value": "Use 3 lines or fewer, e.g. \"My blade is\\nsharp. My\\nsting, more.\" or \"Blade sharp.\\nSting\\nsharper.\""
+     },
+     {
+      "field": "battle.lore",
+      "problem": "The lore says both abilities \"poison over 500 time units\". The wiki gives the duration as \"500 duration\" and never says time units (TU is the wiki's cost column, 130 for both). The line also leaves out that Venom Sting first does 8-9 physical (earth) damage before its damage over time. Venom Spray's wiki effect is just \"8-9 damage over 500 duration\", with no element and no mention of poison.",
+      "correct_value": "e.g. \"Venom Spray deals 8-9 damage over 500 duration to all foes; Venom Sting deals 8-9 physical (earth) damage plus 8-9 earth damage over 500 duration.\""
+     }
+    ]
+   },
+   "role": "encounter",
+   "rooms": [
+    "forest",
+    "mosswood"
+   ],
+   "fixed": true
+  },
+  {
+   "kit": {
+    "name": "Devil Worm",
+    "id": "devil_worm",
+    "wiki": {
+     "number": "98",
+     "stars": 2.5,
+     "element": "Earth",
+     "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/1/16/Devil_Worm.png",
+     "image_size": [
+      104,
+      120
+     ],
+     "lv1": {
+      "hp": 30,
+      "attack": 9,
+      "magic": 9,
+      "speed": 14,
+      "defense": 9,
+      "resist": 9
+     },
+     "abilities": [
+      {
+       "name": "Clasp",
+       "tu": "130",
+       "target": "1 Foe",
+       "effect": "9-12 Physical Damage (Earth)"
+      },
+      {
+       "name": "Reincarnate",
+       "tu": "200",
+       "target": "-",
+       "effect": "Adds a Random Monster to Your Team"
+      }
+     ],
+     "evolution": "1st Form: Devil Worm (no further evolutions)",
+     "obtain": "Found in the Lighthouse in Ringfeld. Devil Worm can also be found in multiple spots in Safaris and Greater Wesing."
+    },
+    "sprite": {
+     "description": "A thick, coiled worm made of rounded, bumpy dark maroon-brown segments, piled in a spiral on the ground. Its head rears up out of the coil and opens into a wide, fanged maw with tendril-like whiskers and a cluster of small glowing red eyes. Grim, slimy, and very much a ground dweller.",
+     "dominant_color_hex": "#5A3A3A",
+     "faces": "front",
+     "flier": false
+    },
+    "battle": {
+     "check": "* DEVIL WORM - No. 98 - EARTH - 2.5 STARS.\n* Clasp crushes a foe. Reincarnate adds a random monster to its team.\n* Its many eyes never close.",
+     "intro": "* The moss splits open.\n* Devil Worm rears up out of the earth.",
+     "idle": [
+      "* Devil Worm's segments grind against each other like wet gravel.",
+      "* A cluster of red eyes follows your every step.",
+      "* The soil around it has gone grey and sour.",
+      "* Something beneath the ground shifts in answer to it."
+     ],
+     "talk": [
+      "skrrrch.",
+      "the soil\nis sick.",
+      "MANY EYES.\nNO SLEEP.",
+      "it came\nup from\nbelow.",
+      "...hungry."
+     ],
+     "spare_text": "* Devil Worm loosens its coil.\n* It sinks back into the soil, and the ground closes over it.",
+     "lore": "No. 98 - Devil Worm. Earth element, 2.5 stars. Lv1: HP 30, ATK 9, MAG 9, SPD 14, DEF 9, RES 9. Abilities: Clasp (130 TU, 9-12 physical Earth damage to 1 foe) and Reincarnate (200 TU, adds a random monster to its team). A 1st-form monster with no evolutions. Lives in the Lighthouse in Ringfeld, and in several spots in the Safaris and Greater Wesing. Where it surfaces, the earth stays cold for days.",
+     "acts": [
+      {
+       "name": "Meet Its Eyes",
+       "text": [
+        "* You hold the gaze of each red eye in turn.",
+        "* Devil Worm stops swaying. It is not used to being looked at."
+       ],
+       "mercy": 40,
+       "once": true,
+       "calm": 1
+      },
+      {
+       "name": "Offer Soil",
+       "text": [
+        "* You scoop up clean loam from beneath the roots and hold it out.",
+        "* Devil Worm draws in the scent of it. Its coil eases."
+       ],
+       "mercy": 35,
+       "once": false,
+       "calm": 1
+      },
+      {
+       "name": "Kneel Low",
+       "text": [
+        "* You kneel and press your palm to the cold ground.",
+        "* Devil Worm lowers its head toward yours. The grinding of its segments slows."
+       ],
+       "mercy": 30,
+       "once": false,
+       "calm": 2
+      }
+     ],
+     "attacks": [
+      {
+       "ability": "Clasp",
+       "tu": 130,
+       "base_pattern": "orbit_ring",
+       "projectile": "orb_blood",
+       "tint_hex": "#7A3B32",
+       "twist": "none",
+       "box": [
+        340,
+        280
+       ],
+       "intensity": 0.9,
+       "flavor": "* Devil Worm uses Clasp. Its coils close in around you."
+      },
+      {
+       "ability": "Reincarnate",
+       "tu": 200,
+       "base_pattern": "rift_bursts",
+       "projectile": "fx_sparkle",
+       "tint_hex": "#B8865A",
+       "twist": "none",
+       "box": [
+        380,
+        300
+       ],
+       "intensity": 0.8,
+       "flavor": "* Devil Worm uses Reincarnate. Something claws its way up out of the earth."
+      }
+     ]
+    }
+   },
+   "verdict": {
+    "ok": false,
+    "issues": [
+     {
+      "field": "battle.check (line 2)",
+      "problem": "'Can REINCARNATE a random ally' says the ability revives or reincarnates an existing ally. The wiki effect for Reincarnate (200 TU, target '-') is 'Adds a Random Monster to Your Team'. It summons a new random monster and does not act on an ally. Also, 'Clasps foes' is plural, but Clasp targets '1 Foe'.",
+      "correct_value": "* Clasps a foe in its coils. REINCARNATE adds a random monster to its team."
+     }
+    ]
+   },
+   "role": "encounter",
+   "rooms": [
+    "forest",
+    "mosswood"
+   ],
+   "fixed": true
+  },
+  {
+   "kit": {
+    "name": "Lich",
+    "id": "lich",
+    "wiki": {
+     "number": "159",
+     "stars": 3,
+     "element": "Death",
+     "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/8/86/Lich.png",
+     "image_size": [
+      76,
+      110
+     ],
+     "lv1": {
+      "hp": 294,
+      "attack": 25,
+      "magic": 99,
+      "speed": 74,
+      "defense": 74,
+      "resist": 173
+     },
+     "abilities": [
+      {
+       "name": "Awaken",
+       "tu": "100",
+       "target": "All Allies",
+       "effect": "Removes Sleep"
+      },
+      {
+       "name": "Dark Matter",
+       "tu": "160",
+       "target": "1 foe",
+       "effect": "118-145 Damage"
+      },
+      {
+       "name": "Disaster",
+       "tu": "100",
+       "target": "2 foes",
+       "effect": "46-57 Damage"
+      },
+      {
+       "name": "Enlighten",
+       "tu": "200",
+       "target": "All Allies",
+       "effect": "Increase magic by 16"
+      }
+     ],
+     "evolution": "None listed on the wiki",
+     "obtain": "No Man's Castle. Liches can also be found in a single spot in Greater Wesing occasionally (Lich here will be levels 13 to 16). The spot is the leftmost spot in the forest section and first one that can be accessed. NOTE: the wiki's Level 1 stat column is empty; the stats stored under 'lv1' are the wiki's Level 23 column (HP 294, ATK 25, MAG 99, SPD 74, DEF 74, RES 173). The wiki says the ability values are shown as if the monster were level 1."
+    },
+    "sprite": {
+     "description": "A tall, gaunt sorcerer in layered crimson and deep-wine robes, with a tall, bent pointed hood and a high flared collar. The face inside the hood is a dark, shadowed void with no visible features. A grey lock or drape hangs down the left side of the hood. An ornate silver and purple chest piece sits on the front of the robe. On the viewer's right it holds a tall silver-lavender staff with a spiral, curled head that rises above the hood. The sleeves and hem are wide and ragged, and the robe spreads out to the ground. No feet are visible, so it seems to hover. It stands mostly front-on.",
+     "dominant_color_hex": "#7A1632",
+     "faces": "front",
+     "flier": true
+    },
+    "battle": {
+     "check": "* LICH - No. 159 - DEATH - 3 STARS.\n* (Wiki Lv23 stats) MAG 99, RES 173, ATK 25.\n* It does not touch what it destroys.",
+     "intro": "* The moss goes cold. A crimson robe drifts out between the trees.\n* LICH blocks the way.",
+     "idle": [
+      "* Lich hovers above the trail. The moss beneath it withers.",
+      "* Lich murmurs an incantation in a language older than Wesing.",
+      "* The smell of tallow and crumbling pages.",
+      "* The void beneath its hood turns toward the waystone, then back to you."
+     ],
+     "talk": [
+      "Mortal.\nTurn back.",
+      "Dark Matter\nwill find\nyou.",
+      "I kept\nthe old\nbooks.",
+      "The stone\nhas begun\nto speak.",
+      "I can no\nlonger\nrefuse it."
+     ],
+     "spare_text": "* Lich lowers its staff.\n* It drifts back into the mosswood, its incantation falling silent.\n* Lich was spared.",
+     "lore": "LICH (#159) - Death element, 3 stars. Found in No Man's Castle, and occasionally at one spot in Greater Wesing (the leftmost spot in the forest section, Lv13-16). Abilities: Awaken (100 TU, removes Sleep from all allies), Dark Matter (160 TU, 118-145 damage to 1 foe), Disaster (100 TU, 46-57 damage to 2 foes), Enlighten (200 TU, raises all allies' magic by 16). Wiki stats (Lv23 column; the Lv1 column is blank): HP 294, ATK 25, MAG 99, SPD 74, DEF 74, RES 173. No evolution listed. Once a keeper of forbidden learning, it now answers to a voice from the darkened waystone.",
+     "acts": [
+      {
+       "name": "Bow",
+       "text": [
+        "* You bow before Lich as one would before an elder.",
+        "* The void beneath its hood regards you for a long while.",
+        "* Its hostility wanes."
+       ],
+       "mercy": 35,
+       "once": true,
+       "calm": 1
+      },
+      {
+       "name": "Ask of the Books",
+       "text": [
+        "* You ask Lich what was written in the books it kept.",
+        "* It begins to answer. The words come slowly, half-forgotten.",
+        "* For a moment, it remembers itself."
+       ],
+       "mercy": 30,
+       "once": false,
+       "calm": 1
+      },
+      {
+       "name": "Resist Sleep",
+       "text": [
+        "* The cold makes your eyes heavy. You force them open.",
+        "* Lich watches you fight it. It knows what Awaken is for.",
+        "* It seems to respect the effort."
+       ],
+       "mercy": 25,
+       "once": false,
+       "calm": 0
+      }
+     ],
+     "attacks": [
+      {
+       "ability": "Dark Matter",
+       "tu": 160,
+       "base_pattern": "rift_bursts",
+       "projectile": "orb_blood",
+       "tint_hex": "#4B1460",
+       "twist": "none",
+       "box": [
+        340,
+        280
+       ],
+       "intensity": 1.4,
+       "flavor": "* Lich draws the light out of the air. DARK MATTER gathers. (160 TU)"
+      },
+      {
+       "ability": "Disaster",
+       "tu": 100,
+       "base_pattern": "diagonal_rain",
+       "projectile": "orb_blood",
+       "tint_hex": "#A3203F",
+       "twist": "none",
+       "box": [
+        420,
+        260
+       ],
+       "intensity": 1.1,
+       "flavor": "* Lich calls down DISASTER on two foes. (100 TU)"
+      },
+      {
+       "ability": "Enlighten",
+       "tu": 200,
+       "base_pattern": "sparkle_rain",
+       "projectile": "fx_sparkle",
+       "tint_hex": "#C9B6FF",
+       "twist": "none",
+       "box": [
+        320,
+        260
+       ],
+       "intensity": 0.7,
+       "flavor": "* Lich casts ENLIGHTEN. Its allies' MAGIC rises by 16. (200 TU)"
+      },
+      {
+       "ability": "Awaken",
+       "tu": 100,
+       "base_pattern": "orbit_ring",
+       "projectile": "fx_silverring",
+       "tint_hex": "#D8D0E8",
+       "twist": "none",
+       "box": [
+        300,
+        240
+       ],
+       "intensity": 0.6,
+       "flavor": "* Lich casts AWAKEN. Sleep is lifted from all its allies. (100 TU)"
+      }
+     ]
+    }
+   },
+   "verdict": {
+    "ok": false,
+    "issues": [
+     {
+      "field": "wiki.lv1",
+      "problem": "The wiki's Level 1 stat column for Lich is empty. All the values (HP 294, ATK 25, MAG 99, SPD 74, DEF 74, RES 173) are in the Level 23 column, so the 'lv1' key is wrong. The lore text already says 'Lv23 column', so the kit contradicts itself.",
+      "correct_value": "Rename the key to 'lv23' (or similar): {hp:294, attack:25, magic:99, speed:74, defense:74, resist:173}. Lv1 stats are not listed on the wiki."
+     },
+     {
+      "field": "battle.check",
+      "problem": "Says 'MAGIC 99, RESIST 173. Its ATTACK is only 25.' with no level, so a player would read these as the stats of a LV1-tier encounter. They are the wiki's Lv23 figures.",
+      "correct_value": "Label them as Lv23 wiki stats, e.g. '* (Lv23) MAGIC 99, RESIST 173. ATTACK only 25.'"
+     },
+     {
+      "field": "sprite.description",
+      "problem": "The sprite has no pale grey skull-like face. Inside the hood the face is a dark black void with small glowing red eyes. The description also leaves out the long silver staff with a curled top that Lich holds on the viewer's right.",
+      "correct_value": "A tall crimson-robed sorcerer with a pointed hood and flared collar. The face is a dark void with glowing red eyes. It has a silver/purple ornate chest piece and holds a tall silver staff with a spiral head on the viewer's right. The robe hem is ragged and no feet are visible."
+     },
+     {
+      "field": "attacks",
+      "problem": "Awaken (100 TU, All Allies, Removes Sleep) is a real, non-passive wiki ability, but it is not in the attacks list. Enlighten, the other ally-target support ability, is included, so the omission is inconsistent. The kit rules say only passives may be left out.",
+      "correct_value": "Add an Awaken entry (tu 100, All Allies, 'Removes Sleep'), e.g. a light support/no-damage turn, or state explicitly why it is left out."
+     },
+     {
+      "field": "attacks[Disaster].twist",
+      "problem": "The twist 'all_foes_wide' suggests it hits every foe, but the wiki target for Disaster is '2 foes'.",
+      "correct_value": "Use a twist consistent with 2 foes (or 'none'). Target: 2 foes, 46-57 Damage, 100 TU."
+     },
+     {
+      "field": "battle.talk[1]",
+      "problem": "'Dark Matter comes from the soul' presents a made-up claim about the ability as fact. The wiki only gives 160 TU, 1 foe, 118-145 Damage. This is minor and allowed as flavor, but it could be read as lore.",
+      "correct_value": "Keep it clearly in-character, or use something like 'Dark Matter\\nwill find\\nyou.'"
+     }
+    ]
+   },
+   "role": "miniboss",
+   "rooms": [
+    "mosswood"
+   ],
+   "fixed": true
+  },
+  {
+   "kit": {
+    "name": "Orochi",
+    "id": "orochi",
+    "wiki": {
+     "number": "080",
+     "stars": 8.5,
+     "element": "Fire",
+     "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/1/12/Orochi.png",
+     "image_size": [
+      143,
+      140
+     ],
+     "lv1": {
+      "hp": 62,
+      "attack": 40,
+      "magic": 40,
+      "speed": 34,
+      "defense": 55,
+      "resist": 55
+     },
+     "abilities": [
+      {
+       "name": "Dragon Rage",
+       "tu": "250",
+       "target": "All Foes",
+       "effect": "31-38 Physical Damage (Fire)"
+      },
+      {
+       "name": "Flame",
+       "tu": "130",
+       "target": "One Foe",
+       "effect": "45-55 Magical Damage (Fire)"
+      },
+      {
+       "name": "Inferno",
+       "tu": "200",
+       "target": "All Foes",
+       "effect": "26-31 Magical Damage (Fire)"
+      },
+      {
+       "name": "Wiggle",
+       "tu": "130",
+       "target": "One Foe",
+       "effect": "45-55 Physical Damage (Fire)"
+      }
+     ],
+     "evolution": "Noko -> Orochi (Noko evolves at level 34). Orochi is the 2nd and final form.",
+     "obtain": "Evolve from Noko at level 34; Saintspring (forest, rare)"
+    },
+    "sprite": {
+     "description": "A hulking, grounded hydra: a squat mound of dark slate-gray scaly coils with a short tail curling out at the lower right, from which a writhing crown of many serpent necks rises. Each head is olive/sage green with pale yellow-green jaws, several gaping open, splayed outward in all directions around a dark hollow at the center. Viewed from the front.",
+     "dominant_color_hex": "#4A4E46",
+     "faces": "front",
+     "flier": false
+    },
+    "battle": {
+     "check": "* OROCHI - No. 080 - FIRE - 8.5 STARS.\n* The Overlord of Norwoods. An eight-headed serpent, evolved from Noko.\n* Eight heads. Each one is in pain.",
+     "intro": "* Orochi is coiled around the great darkened waystone.\n* One head turns toward you. Then all eight.",
+     "idle": [
+      "* Orochi's heads hiss over one another. None of them sound like their own.",
+      "* Black veins pulse along its coils, in time with the waystone.",
+      "* Smoke and the smell of scorched scales hang in the air.",
+      "* Embers drift up between the heads and die in the dark."
+     ],
+     "talk": [
+      "We are\nOrochi.",
+      "Overlord\nof the\nNorwoods.",
+      "The stone\nspeaks\nthrough us.",
+      "It burns.\nIt always\nburns.",
+      "Once we\nwere only\nNoko."
+     ],
+     "spare_text": "* The heads fall silent, one by one.\n* Orochi uncoils from the waystone and lowers itself to the ground.\n* The black veins along its scales begin to fade.",
+     "lore": "#080 Orochi - Fire element, 8.5 stars. The Overlord of Norwoods. The second and final form of Noko (evolves at level 34); also found rarely in the Saintspring forest. Lv1: HP 62, ATK 40, MAG 40, SPD 34, DEF 55, RES 55. Abilities: Dragon Rage (250 TU, 31-38 physical Fire damage to all foes), Flame (130 TU, 45-55 magical Fire damage to one foe), Inferno (200 TU, 26-31 magical Fire damage to all foes), Wiggle (130 TU, 45-55 physical Fire damage to one foe). Named after Yamata no Orochi, the eight-headed, eight-tailed serpent of Japanese myth; it is a serpent, not a dragon. Bound to the darkened waystone, it guards the corruption it was meant to keep out.",
+     "acts": [
+      {
+       "name": "Name the Heads",
+       "text": [
+        "* You speak to each head in turn, slowly, one at a time.",
+        "* ...five, six, seven, eight.",
+        "* The hissing thins. Each head was waiting to be heard."
+       ],
+       "mercy": 22,
+       "once": false,
+       "calm": 15
+      },
+      {
+       "name": "Stand Unarmed",
+       "text": [
+        "* You lower your hands and stand within reach of its jaws.",
+        "* Eight heads hover over you. None of them strike.",
+        "* The fire in its throats burns lower."
+       ],
+       "mercy": 28,
+       "once": false,
+       "calm": 20
+      },
+      {
+       "name": "Recall Noko",
+       "text": [
+        "* You tell Orochi of Noko, the small serpent it once was.",
+        "* All eight heads go still at once.",
+        "* Somewhere in those coils, something remembers being small."
+       ],
+       "mercy": 35,
+       "once": true,
+       "calm": 30
+      }
+     ],
+     "attacks": [
+      {
+       "ability": "Dragon Rage",
+       "tu": 250,
+       "base_pattern": "column_drop",
+       "projectile": "orb_blood",
+       "tint_hex": "#E0401C",
+       "twist": "all_foes_wide",
+       "box": [
+        500,
+        300
+       ],
+       "intensity": 1.5,
+       "flavor": "* Every head screams at once. Orochi uses Dragon Rage."
+      },
+      {
+       "ability": "Flame",
+       "tu": 130,
+       "base_pattern": "aimed_volley",
+       "projectile": "fx_sparkle",
+       "tint_hex": "#FF8A1E",
+       "twist": "burn",
+       "box": [
+        340,
+        280
+       ],
+       "intensity": 1.1,
+       "flavor": "* One head draws back and takes aim. Orochi uses Flame."
+      },
+      {
+       "ability": "Inferno",
+       "tu": 200,
+       "base_pattern": "radial_burst",
+       "projectile": "fx_sparkle",
+       "tint_hex": "#FF5A12",
+       "twist": "all_foes_wide",
+       "box": [
+        480,
+        320
+       ],
+       "intensity": 1.3,
+       "flavor": "* The heads fan out and exhale together. Orochi uses Inferno."
+      },
+      {
+       "ability": "Wiggle",
+       "tu": 130,
+       "base_pattern": "swoop",
+       "projectile": "orb_blood",
+       "tint_hex": "#C8501E",
+       "twist": "multi_hit",
+       "box": [
+        360,
+        260
+       ],
+       "intensity": 1,
+       "flavor": "* Orochi's coils convulse and lash outward. Orochi uses Wiggle."
+      }
+     ]
+    }
+   },
+   "verdict": {
+    "ok": true,
+    "issues": [
+     {
+      "field": "wiki.stars (note only)",
+      "problem": "Advisory, not a kit error. The kit's 8.5 is correct. The parsed monsters.json 'stars' field says 9.5, but the raw infobox shows 8 full stars and 1 half star, and the category is '8.5 Stars Monsters'. Keep 8.5 and do not 'fix' it from the parsed field.",
+      "correct_value": "8.5"
+     },
+     {
+      "field": "wiki.abilities[Wiggle].effect (note only)",
+      "problem": "Advisory, not a kit error. The kit's '45-55 Physical Damage (Fire)' is correct. The raw wikitext has it on a line break, so the parser left monsters.json's effect empty. Keep the kit value.",
+      "correct_value": "45-55 Physical Damage (Fire)"
+     },
+     {
+      "field": "battle.lore / battle.talk[2] ('not a dragon')",
+      "problem": "Advisory. The wiki's Origin section calls Orochi an 'eight-headed and eight-tailed Dragon/Serpant'. The only 'not a dragon' source is a bare '(Not a dragon)' note under the Abilities table, with no explanation. 'the wiki notes it is not a dragon' is literally true but ignores the Origin wording. A safer phrasing would be 'a dragon/serpent of Japanese myth'.",
+      "correct_value": "Named after Yamata no Orochi, the eight-headed, eight-tailed dragon/serpent of Japanese mythology (the wiki also has an unexplained '(Not a dragon)' note)."
+     },
+     {
+      "field": "battle.attacks[Flame].twist / [Wiggle].twist",
+      "problem": "Advisory. The wiki lists Flame only as '45-55 Magical Damage (Fire)', with no burn status. Wiggle is one hit of 45-55 Physical Damage on One Foe, not multiple hits. The 'burn' and 'multi_hit' twists are game-pattern choices that suggest effects the DIB ability does not have. Consider neutral twists if the game shows twists as mechanics.",
+      "correct_value": "Flame: single-target magical fire damage, no status. Wiggle: single-target physical fire damage."
+     },
+     {
+      "field": "sprite.description",
+      "problem": "Small omission. The sprite (verified: 143x140 WebP served under a .png URL, HTTP 200) has visible red/crimson spot markings along the dark gray necks, and the tail and coils spread out at both the lower left and the lower right. faces=front and flier=false are correct, and there are about 8 heads.",
+      "correct_value": "Add: dark slate-gray serpent necks with red spot markings and sage-green heads; coils and a tail spreading out at the lower left and lower right."
+     }
+    ]
+   },
+   "role": "boss",
+   "rooms": [
+    "waystone"
+   ]
+  },
+  {
+   "kit": {
+    "name": "Divine",
+    "id": "divine",
+    "wiki": {
+     "number": "202",
+     "stars": 9,
+     "element": "Life",
+     "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/f/f9/Divine.png",
+     "image_size": [
+      196,
+      128
+     ],
+     "lv1": {
+      "hp": 1835,
+      "attack": 1304,
+      "magic": 1304,
+      "speed": 1641,
+      "defense": 1641,
+      "resist": 1641
+     },
+     "abilities": [
+      {
+       "name": "Holy",
+       "tu": "160",
+       "target": "1 Foe",
+       "effect": "1758-2149 Magical Damage"
+      },
+      {
+       "name": "Immunity",
+       "tu": "-",
+       "target": "Self",
+       "effect": "Immune from all negative status effects"
+      },
+      {
+       "name": "Judgement",
+       "tu": "250",
+       "target": "All Foes",
+       "effect": "1024-1251 Magical Damage"
+      },
+      {
+       "name": "Justice",
+       "tu": "100",
+       "target": "1 Foe",
+       "effect": "1056-1291 Physical Damage, +100% Damage vs. Demonic"
+      },
+      {
+       "name": "Neutralize",
+       "tu": "130",
+       "target": "All Foes",
+       "effect": "Removes all effects, good or bad, from targets"
+      }
+     ],
+     "evolution": "None (Divine is a Spirit, Type: Spirit; the wiki lists no evolutions)",
+     "obtain": "Located in the Sanctuary in Applefield, 18th Floor."
+    },
+    "sprite": {
+     "description": "A pale, glowing white humanoid spirit with a radiant light burst around its head, standing upright with arms at its sides, framed by two huge spread pairs of dark charcoal-gray feathered wings that fan out wide on both sides.",
+     "dominant_color_hex": "#55555E",
+     "faces": "front",
+     "flier": true
+    },
+    "battle": {
+     "check": "* DIVINE - No. 202 - LIFE - 9 STARS.\n* A Spirit of the Sanctuary. Immune to all negative status effects.\n* It does not regard you as a foe.",
+     "intro": "* Light pours down from above.\n* Divine descends.",
+     "idle": [
+      "* Divine hovers in perfect silence. Its wings do not move.",
+      "* The light around its head is steady and warm.",
+      "* The waystone's shadow draws back from it.",
+      "* The air is still and clean, like the Sanctuary at dawn."
+     ],
+     "talk": [
+      "...",
+      "THE STONE\nREMEMBERS\nTHE SUN.",
+      "MERCY IS\nALSO A\nLIGHT.",
+      "BE STILL."
+     ],
+     "spare_text": "* Divine lowers its wings.\n* The waystone drinks its light and burns bright again.",
+     "lore": "No. 202 - Divine. Life element, 9 stars, Type: Spirit. Found in the Sanctuary in Applefield, 18th Floor. Abilities: Holy, Immunity, Judgement, Justice, Neutralize (Justice deals +100% damage vs. Demonic). Has no evolutions. Its wings are dark, but nothing it touches stays that way.",
+     "acts": [
+      {
+       "name": "Pray",
+       "text": [
+        "* You fold your hands and pray.",
+        "* Divine's glow softens."
+       ],
+       "mercy": 25,
+       "once": false,
+       "calm": 20
+      },
+      {
+       "name": "Bow",
+       "text": [
+        "* You bow low before the winged spirit.",
+        "* Divine inclines its head."
+       ],
+       "mercy": 20,
+       "once": false,
+       "calm": 15
+      },
+      {
+       "name": "Show Mercy",
+       "text": [
+        "* You tell Divine you spared the one at the waystone.",
+        "* For a moment, the light feels warm instead of blinding."
+       ],
+       "mercy": 40,
+       "once": true,
+       "calm": 30
+      }
+     ],
+     "attacks": [
+      {
+       "ability": "Holy",
+       "tu": 160,
+       "base_pattern": "aimed_volley",
+       "projectile": "fx_sparkle",
+       "tint_hex": "#FFF6D0",
+       "twist": "none",
+       "box": [
+        340,
+        260
+       ],
+       "intensity": 1.2,
+       "flavor": "* Divine uses Holy. A spear of white light descends."
+      },
+      {
+       "ability": "Judgement",
+       "tu": 250,
+       "base_pattern": "sparkle_rain",
+       "projectile": "fx_sparkle",
+       "tint_hex": "#FFE27A",
+       "twist": "all_foes_wide",
+       "box": [
+        520,
+        320
+       ],
+       "intensity": 1.5,
+       "flavor": "* Divine uses Judgement. The whole sky grows bright and silent."
+      },
+      {
+       "ability": "Justice",
+       "tu": 100,
+       "base_pattern": "column_drop",
+       "projectile": "fx_silverring",
+       "tint_hex": "#E8E8F0",
+       "twist": "none",
+       "box": [
+        360,
+        280
+       ],
+       "intensity": 1.1,
+       "flavor": "* Divine uses Justice. The light seeks out what is Demonic."
+      },
+      {
+       "ability": "Neutralize",
+       "tu": 130,
+       "base_pattern": "orbit_ring",
+       "projectile": "fx_waterring",
+       "tint_hex": "#BFE8FF",
+       "twist": "neutralize",
+       "box": [
+        420,
+        300
+       ],
+       "intensity": 0.9,
+       "flavor": "* Divine uses Neutralize. Every effect, good or bad, washes away."
+      }
+     ]
+    }
+   },
+   "verdict": {
+    "ok": true,
+    "issues": []
+   },
+   "role": "ending",
+   "rooms": [
+    "waystone"
+   ]
+  }
+ ]
+}
