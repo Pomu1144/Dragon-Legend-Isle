@@ -144,11 +144,15 @@ export interface ItemDef {
   id: string;
   name: string;
   desc: string;
+  key?: boolean; // key items are read from the Satchel and never consumed
 }
 
 export const ITEMS: Record<string, ItemDef> = {
   tonic: { id: 'tonic', name: 'Restoration Tonic', desc: 'Restores 15 HP. Tastes like blue.' },
   orb: { id: 'orb', name: 'Binding Orb', desc: 'Binds a calm or weakened monster as your companion.' },
+  manual: { id: 'manual', name: "Tamer's Manual", desc: 'Training, capturing and the old ways of the Guild.', key: true },
+  guide: { id: 'guide', name: 'Translation Guide', desc: 'Greetings and warnings in the tongues of the villages.', key: true },
+  map: { id: 'map', name: 'Map of the Near Villages', desc: 'The roads beyond Azurelake.', key: true },
   tart: { id: 'tart', name: 'Dragonfruit Tart', desc: 'Restores 30 HP. Half-eaten. Still delicious.' },
 };
 
@@ -160,14 +164,31 @@ export interface SkillDef {
   power: number;
   minLv: number;
   desc: string;
+  support?: boolean; // non-damaging ability (e.g. Mother): steadies the tamer instead
 }
 
-// The FIGHT cards come straight from the UI sheet. TU ("time units") is the
-// Dragon Island Blue cost of the move: here it sets how long the enemy's
-// counter-attack lasts, so stronger moves leave you dodging longer.
-export const SKILLS: SkillDef[] = [
-  { id: 'tail', name: 'Tail', card: 'ui_card_tail', tu: 70, power: 1, minLv: 1, desc: 'A quick tail sweep. Short counter-attack.' },
-  { id: 'outrage', name: 'Outrage', card: 'ui_card_outrage', tu: 160, power: 2.1, minLv: 1, desc: 'A furious charge. Long counter-attack.' },
-  { id: 'flame', name: 'Flame', card: 'ui_card_flame', tu: 130, power: 1.6, minLv: 1, desc: 'Dragonfire burst. Medium counter-attack.' },
-  { id: 'wyrm', name: 'Wyrmsong', card: 'ui_card_unknown', tu: 200, power: 2.8, minLv: 3, desc: 'Unlocks at LV 3. A song that shakes the rift.' },
-];
+// FIGHT cards are the chosen hatchling's real DIB abilities (TU from the wiki).
+// TU sets how long the enemy's counter-attack lasts: heavier moves leave you open longer.
+// Cards use the painted art from the UI sheet (Tail, Outrage, Flame; anything else shows "???").
+export function cardFor(name: string) {
+  const n = name.toLowerCase();
+  if (n.includes('tail')) return 'ui_card_tail';
+  if (n.includes('flame') || n.includes('fire') || n.includes('inferno')) return 'ui_card_flame';
+  if (n.includes('rage') || n.includes('outrage') || n.includes('charge')) return 'ui_card_outrage';
+  return 'ui_card_unknown';
+}
+
+export function skillFrom(a: { name: string; tu: string; effect: string }, minLv = 1): SkillDef {
+  const tu = Number(a.tu) || 100;
+  const dmg = /damage/i.test(a.effect);
+  return {
+    id: a.name.toLowerCase().replace(/\W+/g, '_'),
+    name: a.name,
+    card: cardFor(a.name),
+    tu,
+    power: dmg ? 0.55 + tu / 110 : 0,
+    minLv,
+    desc: a.effect.split(/\.\s|:\s/)[0].replace(/\.$/, ''), // the wiki effect, without research notes
+    support: !dmg,
+  };
+}

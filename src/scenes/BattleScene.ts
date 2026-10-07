@@ -1,7 +1,8 @@
 import Phaser from 'phaser';
 import { Sound } from '../audio/Sound';
 import { BulletField, PATTERNS, BASE_PATTERNS, Box } from '../battle/patterns';
-import { AttackDef, ITEMS, MONSTERS, MonsterDef, SKILLS, SkillDef } from '../data/monsters';
+import { AttackDef, ITEMS, MONSTERS, MonsterDef, SkillDef, skillFrom } from '../data/monsters';
+import { STARTERS } from '../data/starters';
 import { ROOMS } from '../data/rooms';
 import { gainExp, State } from '../state';
 import { Controls } from '../ui/input';
@@ -39,6 +40,7 @@ export class BattleScene extends Phaser.Scene {
   private nextTu = 100;
 
   private monster!: Phaser.GameObjects.Image;
+  private companion?: Phaser.GameObjects.Image;
   private monsterBaseY = 0;
   private monsterGlow!: Phaser.GameObjects.Image;
   private nameText!: Phaser.GameObjects.Text;
@@ -86,6 +88,7 @@ export class BattleScene extends Phaser.Scene {
     const W = this.scale.width;
     const H = this.scale.height;
     this.controls = new Controls(this);
+    this.companion = undefined;
     this.hp = this.m.hp;
     this.mercy = 0;
     this.usedActs = new Set();
@@ -140,6 +143,19 @@ export class BattleScene extends Phaser.Scene {
     this.boxInner = this.add.rectangle(this.box.x, this.box.y, this.box.w, this.box.h, 0x050b18, 0.82).setOrigin(0).setDepth(11);
     this.maskG = this.make.graphics({}, false);
     this.boxText = body(this, this.box.x + 30, this.box.y + 24, '', 28, COLORS.cream, this.box.w - 60).setDepth(13);
+
+    // The tamer's hatchling stands on the left, facing the enemy.
+    const stId = State.get().starter?.id;
+    if (stId) {
+      const key = State.get().starter?.evolved && this.textures.exists('starter_' + stId + '_evo') ? 'starter_' + stId + '_evo' : 'starter_' + stId;
+      if (this.textures.exists(key)) {
+        this.textures.get(key).setFilter(Phaser.Textures.FilterMode.NEAREST);
+        this.add.image(200, 382, 'shadow').setScale(1.1, 0.7).setDepth(3).setAlpha(0.8);
+        this.companion = this.add.image(200, 380, key).setOrigin(0.5, 1).setDepth(4);
+        this.companion.setScale(Math.max(1, Math.round(130 / this.companion.height)));
+        this.tweens.add({ targets: this.companion, y: 376, yoyo: true, repeat: -1, duration: 1100, ease: 'Sine.easeInOut' });
+      }
+    }
 
     // Player stats line
     const s = State.get();
@@ -404,7 +420,7 @@ export class BattleScene extends Phaser.Scene {
   private openItems() {
     const inv = State.get().inventory;
     const items: ListItem[] = Object.entries(inv)
-      .filter(([, n]) => n > 0)
+      .filter(([id, n]) => n > 0 && !ITEMS[id]?.key)
       .map(([id, n]) => ({ text: `${ITEMS[id]?.name ?? id}  x${n}`, run: () => this.useItem(id) }));
     if (!items.length) {
       this.boxSay('* Your satchel is empty.', () => this.toMenu());
@@ -441,23 +457,38 @@ export class BattleScene extends Phaser.Scene {
   }
 
   // ---- FIGHT: skill cards + timing bar --------------------------------------
+  /** The companion hatchling's real DIB abilities (plus its Dragonling's once evolved). */
+  private skills(): SkillDef[] {
+    const s = State.get();
+    const st = STARTERS.find((x) => x.id === s.starter?.id) ?? STARTERS.find((x) => x.choice === 'fire');
+    if (!st) return [skillFrom({ name: 'Tail', tu: '70', effect: 'Physical Damage' })];
+    const base = st.abilities.filter((a) => a.tu && a.tu !== '-').map((a) => skillFrom(a)).sort((a, b) => a.tu - b.tu);
+    const evo = st.evolution.next_abilities
+      .filter((a) => a.tu && a.tu !== '-' && !base.some((b) => b.name === a.name))
+      .map((a) => skillFrom(a, st.evolution.at_level));
+    return [...base, ...evo].slice(0, 4);
+  }
+
   private openCards() {
     this.clearList();
     this.boxText.setVisible(false);
     this.phase = 'cards';
     this.cards = [];
     const lv = State.get().lv;
-    SKILLS.forEach((sk, i) => {
-      const x = this.box.x + 150 + i * 250;
-      const y = this.box.y + 74;
+    const skills = this.skills();
+    const gap = Math.min(250, (this.box.w - 120) / skills.length);
+    const x0 = this.box.x + this.box.w / 2 - (gap * (skills.length - 1)) / 2;
+    skills.forEach((sk, i) => {
+      const x = x0 + i * gap;
+      const y = this.box.y + 62;
       const locked = lv < sk.minLv;
       const c = this.add.container(x, y).setDepth(15);
       const glow = this.add.image(0, 0, 'glow').setBlendMode(Phaser.BlendModes.ADD).setTint(0xffd77a).setScale(1.1, 0.8).setAlpha(0).setName('glow');
       const card = this.add.image(0, 0, sk.card).setScale(0.62);
       if (locked) card.setTint(0x666677);
-      const nm = label(this, 0, 62, locked ? '???' : sk.name, 26, COLORS.cream, 6).setOrigin(0.5, 0);
-      const tu = label(this, 0, 96, `TU:${sk.tu}`, 20, locked ? '#8a8a8a' : COLORS.cream, 5).setOrigin(0.5, 0);
-      const info = this.add.image(nm.width / 2 + 24, 80, 'ui_btn_info').setScale(0.4);
+      const nm = label(this, 0, 48, locked ? '???' : sk.name, 26, COLORS.cream, 6).setOrigin(0.5, 0);
+      const tu = label(this, 0, 80, `TU:${sk.tu}`, 20, locked ? '#8a8a8a' : COLORS.cream, 5).setOrigin(0.5, 0);
+      const info = this.add.image(nm.width / 2 + 22, 64, 'ui_btn_info').setScale(0.36);
       c.add([glow, card, nm, tu, info]);
       c.setAlpha(0).setY(y + 16);
       this.tweens.add({ targets: c, alpha: 1, y, duration: 180, delay: i * 40, ease: 'Cubic.easeOut' });
@@ -475,7 +506,7 @@ export class BattleScene extends Phaser.Scene {
       glow.setAlpha(sel ? 0.5 : 0);
       this.tweens.killTweensOf(cd.c);
       cd.c.setAlpha(1);
-      this.tweens.add({ targets: cd.c, scale: sel ? 1.1 : 0.95, y: this.box.y + 74 - (sel ? 10 : 0), duration: 120 });
+      this.tweens.add({ targets: cd.c, scale: sel ? 1.1 : 0.95, y: this.box.y + 62 - (sel ? 8 : 0), duration: 120 });
       const nm = cd.c.list[2] as Phaser.GameObjects.Text;
       nm.setColor(sel ? COLORS.yellow : cd.locked ? '#8a8a8a' : COLORS.cream);
     });
@@ -498,7 +529,7 @@ export class BattleScene extends Phaser.Scene {
     const goL = c.pressed('left');
     const goR = c.pressed('right');
     if (goL || goR) {
-      this.cardSel = (this.cardSel + (goL ? 3 : 1)) % 4;
+      this.cardSel = (this.cardSel + (goL ? this.cards.length - 1 : 1)) % this.cards.length;
       Sound.move();
       this.refreshCards();
     }
@@ -519,7 +550,8 @@ export class BattleScene extends Phaser.Scene {
       Sound.confirm();
       this.tooltip = undefined;
       this.clearList();
-      this.startTiming(cd.skill);
+      if (cd.skill.support) this.useSupport(cd.skill);
+      else this.startTiming(cd.skill);
     }
   }
 
@@ -562,6 +594,23 @@ export class BattleScene extends Phaser.Scene {
     }
   }
 
+  private useSupport(skill: SkillDef) {
+    this.phase = 'busy';
+    const comp = this.companion;
+    if (comp) this.tweens.add({ targets: comp, y: comp.y - 18, yoyo: true, duration: 220, repeat: 1 });
+    Sound.chime();
+    this.calm += 1.5;
+    this.heal(6);
+    const who = this.companionName();
+    this.boxSay([`* ${who} uses ${skill.name}.`, `* ${skill.desc.replace(/\.$/, '')}.`, '* You steady yourself. (+6 HP, the next attack is shorter.)'], () => this.enemyTurn(skill.tu));
+  }
+
+  private companionName() {
+    const st = STARTERS.find((x) => x.id === State.get().starter?.id);
+    if (!st) return 'Your hatchling';
+    return State.get().starter?.evolved ? st.evolution.next_name : st.name;
+  }
+
   private performAttack(skill: SkillDef, acc: number) {
     this.phase = 'busy';
     const s = State.get();
@@ -597,8 +646,10 @@ export class BattleScene extends Phaser.Scene {
   private playSkillFx(skill: SkillDef, impact: () => void) {
     const mx = this.monster.x;
     const my = this.monsterBaseY - this.monster.displayHeight * 0.5;
-    if (skill.id === 'tail' || skill.id === 'outrage') {
-      const hits = skill.id === 'outrage' ? 3 : 1;
+    const comp = this.companion;
+    if (comp) this.tweens.add({ targets: comp, x: comp.x + 120, yoyo: true, duration: 160, ease: 'Quad.easeOut' });
+    if (skill.card === 'ui_card_tail' || skill.card === 'ui_card_outrage') {
+      const hits = skill.card === 'ui_card_outrage' ? 3 : 1;
       for (let h = 0; h < hits; h++) {
         this.time.delayedCall(h * 170, () => {
           Sound.slash();
@@ -622,7 +673,7 @@ export class BattleScene extends Phaser.Scene {
         });
       }
       this.time.delayedCall(hits * 170 + 60, impact);
-    } else if (skill.id === 'flame') {
+    } else if (skill.card === 'ui_card_flame') {
       Sound.whoosh();
       for (let i = 0; i < 10; i++) {
         const f = this.add.image(mx + Phaser.Math.Between(-90, 90), my + 140, 'glow').setBlendMode(Phaser.BlendModes.ADD).setTint(i % 2 ? 0xff7a1a : 0xffd04a).setScale(0.3).setDepth(50);
@@ -818,7 +869,30 @@ export class BattleScene extends Phaser.Scene {
     this.tweens.killTweensOf(this.monster);
     sparkleBurst(this, this.monster.x, this.monsterBaseY - this.monster.displayHeight / 2, 26, 60, 220);
     this.tweens.add({ targets: this.monster, alpha: 0.0, y: this.monsterBaseY - 40, duration: 1200, ease: 'Sine.easeIn' });
-    this.boxSay([this.m.spareText, `* The battle is over.\n* You gained 0 EXP and ${gold} G.`], () => this.finish('spared'));
+    // Mercy still teaches the hatchling something: it earns half the EXP as bond.
+    const bond = Math.ceil(this.m.exp / 2);
+    this.boxSay([this.m.spareText, `* The battle is over.\n* You gained ${bond} bond EXP and ${gold} G.`, ...this.grow(bond)], () => this.finish('spared'));
+  }
+
+  /** Apply EXP; returns extra result pages (level-ups and the DIB evolution at its real level). */
+  private grow(exp: number): string[] {
+    const s = State.get();
+    const pages: string[] = [];
+    if (gainExp(exp) > 0) {
+      Sound.levelUp();
+      pages.push(`* Your strength grows. You are now LV ${s.lv}.`);
+      this.lvText.setText(`${s.name.toUpperCase()}   LV ${s.lv}`);
+      this.refreshHp();
+    }
+    const st = STARTERS.find((x) => x.id === s.starter?.id);
+    if (st && s.starter && !s.starter.evolved && s.lv >= st.evolution.at_level) {
+      s.starter.evolved = true;
+      pages.push(`* ${st.name} is glowing...`, `* ${st.name} evolved into ${st.evolution.next_name}.`);
+      const fresh = st.evolution.next_abilities.filter((a) => a.tu !== '-' && !st.abilities.some((b) => b.name === a.name)).map((a) => a.name);
+      if (fresh.length) pages.push(`* New techniques: ${fresh.join(', ')}.`);
+      if (this.companion && this.textures.exists('starter_' + st.id + '_evo')) this.companion.setTexture('starter_' + st.id + '_evo');
+    }
+    return pages;
   }
 
   private tryFlee() {
@@ -908,15 +982,7 @@ export class BattleScene extends Phaser.Scene {
     State.record(this.m.id).defeated++;
     s.kills++;
     s.gold += this.m.gold;
-    const ups = gainExp(this.m.exp);
-    const pages = [`* The battle is over.\n* You gained ${this.m.exp} EXP and ${this.m.gold} G.`];
-    if (ups > 0) {
-      Sound.levelUp();
-      pages.push(`* Your strength grows. You are now LV ${s.lv}.`);
-      if (s.lv === 3) pages.push('* A new skill card awakens: Wyrmsong.');
-      this.lvText.setText(`${s.name.toUpperCase()}   LV ${s.lv}`);
-      this.refreshHp();
-    }
+    const pages = [`* The battle is over.\n* You gained ${this.m.exp} EXP and ${this.m.gold} G.`, ...this.grow(this.m.exp)];
     this.time.delayedCall(1200, () => this.boxSay(pages, () => this.finish('won')));
   }
 

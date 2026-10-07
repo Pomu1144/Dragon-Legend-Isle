@@ -29,6 +29,7 @@ export interface GameState {
   encountersLeft: Record<string, number>;
   kills: number;
   spares: number;
+  starter?: { id: string; evolved: boolean };
   playSeconds: number;
 }
 
@@ -49,6 +50,7 @@ export function newState(): GameState {
     y: 560,
     flags: {},
     inventory: { tonic: 2, orb: 0 },
+    starter: undefined,
     bestiary: {},
     encountersLeft: {},
     kills: 0,
@@ -110,7 +112,8 @@ export const State = {
   },
 };
 
-export const EXP_TABLE = [0, 10, 30, 70, 120, 200];
+// LV 6 matters: that is when DIB hatchlings evolve into Dragonlings.
+export const EXP_TABLE = [0, 10, 26, 48, 76, 110, 160, 220];
 
 /** Apply EXP and return the number of level-ups gained. */
 export function gainExp(n: number): number {

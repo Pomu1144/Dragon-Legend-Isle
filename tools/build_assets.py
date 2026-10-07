@@ -129,6 +129,12 @@ def main():
                            os.path.join(args.gen, 'g9.png'), '1', '3', '128', '176',
                            os.path.join(out, 'chars', 'wren_idle.png')])
 
+    # Guild master: idle sheet (1x3) and portrait
+    subprocess.check_call([sys.executable, '-I', os.path.join(HERE, 'slice_sheet.py'),
+                           os.path.join(args.gen, 'gm_sheet.png'), '1', '3', '128', '176',
+                           os.path.join(out, 'chars', 'guildmaster_idle.png')])
+    gm = Image.open(os.path.join(args.gen, 'gm_portrait.png')).convert('RGBA')
+    save_webp(fit(gm.crop(gm.getbbox()), 640), os.path.join(out, 'chars', 'guildmaster_portrait.webp'))
     save_webp(fit(g(8).crop(g(8).getbbox()), 640), os.path.join(out, 'chars', 'hero_portrait.webp'))
     save_webp(fit(g(6).crop(g(6).getbbox()), 640), os.path.join(out, 'chars', 'wren_portrait.webp'))
     save_webp(fit(g(7).crop(g(7).getbbox()), 1400), os.path.join(out, 'ui', 'logo.webp'))

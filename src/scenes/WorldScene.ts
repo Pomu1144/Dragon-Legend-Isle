@@ -6,6 +6,9 @@ import { Dialogue, Line } from '../ui/Dialogue';
 import { Controls } from '../ui/input';
 import { fireflies, lightPool, sparkleBurst } from '../ui/fx';
 import { label, title, COLORS } from '../ui/widgets';
+import { scene } from '../data/script';
+import { STARTERS } from '../data/starters';
+import { STORY } from '../data/story';
 
 interface WorldData {
   room?: string;
@@ -31,6 +34,7 @@ function inPoly(x: number, y: number, poly: Pt[]) {
 }
 
 interface Interact {
+  obj?: { x: number; y: number }; // follows a moving NPC
   x: number;
   y: number;
   r: number;
@@ -55,6 +59,10 @@ export class WorldScene extends Phaser.Scene {
   private dataIn: WorldData = {};
   private ySortedObjs: { obj: Phaser.GameObjects.Components.Depth & { y: number }; base: number }[] = [];
   private lastSafe: Pt = [0, 0];
+  private npcs: Record<string, Phaser.GameObjects.Sprite> = {};
+  private follower?: Phaser.GameObjects.Image;
+  private followerShadow?: Phaser.GameObjects.Image;
+  private trail: Pt[] = [];
   private timeAcc = 0;
 
   constructor() {
@@ -100,16 +108,30 @@ export class WorldScene extends Phaser.Scene {
     this.applyScale();
     this.ySortedObjs.push({ obj: this.player, base: 0 });
 
-    // NPCs
+    // NPCs (the guild master stands by the Guild Hall once he has stopped you)
+    this.npcs = {};
     for (const n of R.npcs ?? []) {
-      const sh = this.add.image(n.at[0], n.at[1], 'shadow').setAlpha(0.8);
-      const spr = this.add.sprite(n.at[0], n.at[1], n.sprite, 0).setOrigin(0.5, 0.98);
-      spr.play('wren_idle');
-      const sc = this.scaleAt(n.at[1]);
+      const at: Pt = n.id === 'halvard' && State.flag('briefed') ? [1236, 432] : n.at;
+      const sh = this.add.image(at[0], at[1], 'shadow').setAlpha(0.8);
+      const spr = this.add.sprite(at[0], at[1], n.sprite, 0).setOrigin(0.5, 0.98);
+      spr.play(n.sprite);
+      const sc = this.scaleAt(at[1]);
       spr.setScale(sc);
-      sh.setScale(sc * 0.75, sc * 0.8).setDepth(n.at[1] - 1);
+      sh.setScale(sc * 0.75, sc * 0.8);
+      spr.setData('shadow', sh);
+      this.npcs[n.id] = spr;
       this.ySortedObjs.push({ obj: spr, base: 0 });
-      this.interacts.push({ x: n.at[0], y: n.at[1], r: 70, promptY: n.at[1] - 176 * sc - 16, run: () => this.talkNpc(n.id, spr) });
+      this.interacts.push({ obj: spr, x: at[0], y: at[1], r: 70, promptY: at[1] - 176 * sc - 16, run: () => this.talkNpc(n.id, spr) });
+    }
+    // The chosen hatchling follows a few steps behind.
+    this.trail = [];
+    this.follower = undefined;
+    const st = this.starterKey();
+    if (st) {
+      this.followerShadow = this.add.image(at[0], at[1], 'shadow').setAlpha(0.7);
+      this.follower = this.add.image(at[0] - 20, at[1], st).setOrigin(0.5, 0.96);
+      this.follower.texture.setFilter(Phaser.Textures.FilterMode.NEAREST);
+      this.ySortedObjs.push({ obj: this.follower, base: 0 });
     }
     // Candles (save points)
     for (const c of R.candles ?? []) {
@@ -121,7 +143,11 @@ export class WorldScene extends Phaser.Scene {
       this.interacts.push({ x: c.at[0], y: c.at[1], r: 64, promptY: c.at[1] - img.displayHeight - 18, run: () => this.useCandle(glow, c.at) });
     }
     for (const t of R.things ?? []) {
-      this.interacts.push({ x: t.at[0], y: t.at[1], r: t.r, promptY: t.at[1] - 70, run: () => this.say(t.lines.map((text) => ({ text, speaker: t.speaker, portrait: t.portrait }))) });
+      const run = () => {
+        if (t.id === 'guild' && State.flag('briefed') && !State.flag('hasStarter')) return this.openHatchery();
+        this.say(t.lines.map((text) => ({ text, speaker: t.speaker, portrait: t.portrait })));
+      };
+      this.interacts.push({ x: t.at[0], y: t.at[1], r: t.r, promptY: t.at[1] - 70, run });
     }
 
     // Interaction prompt: blue chip with a "Z"
@@ -146,18 +172,59 @@ export class WorldScene extends Phaser.Scene {
     this.events.off('resume');
     this.events.on('resume', () => this.controls.reset());
 
+    this.events.off('starterChosen');
+    this.events.on('starterChosen', (id: string) => this.onStarter(id));
+
     if (data.fresh) {
       this.busy = true;
-      this.time.delayedCall(900, () =>
-        this.say(
-          [
-            { text: '* You wake on a cold bench in the plaza. The lamps are lit, but the streets are empty.' },
-            { text: '* A woman with a lantern waits by the fountain.' },
-          ],
-          () => undefined,
-        ),
-      );
+      this.time.delayedCall(900, () => this.say(scene('wake_aftermath')));
     }
+  }
+
+  private starterKey(): string | undefined {
+    const s = State.get().starter;
+    if (!s) return undefined;
+    const key = 'starter_' + s.id + (s.evolved ? '_evo' : '');
+    return this.textures.exists(key) ? key : 'starter_' + s.id;
+  }
+
+  private updateFollower() {
+    const f = this.follower;
+    if (!f) return;
+    const p = this.player;
+    const last = this.trail[this.trail.length - 1];
+    if (!last || Math.hypot(last[0] - p.x, last[1] - p.y) > 4) this.trail.push([p.x, p.y]);
+    if (this.trail.length > 14) this.trail.shift();
+    const target = this.trail.length >= 14 ? this.trail[0] : [p.x - 26, p.y + 2];
+    f.x += (target[0] - f.x) * 0.25;
+    f.y += (target[1] - f.y) * 0.25;
+    const sc = this.scaleAt(f.y) / 0.45;
+    f.setScale(Math.max(0.3, (52 / f.height) * sc));
+    if (target[0] < f.x - 1) f.setFlipX(false);
+    else if (target[0] > f.x + 1) f.setFlipX(true);
+    this.followerShadow?.setPosition(f.x, f.y).setScale(0.5 * sc, 0.5 * sc).setDepth(9 + f.y);
+  }
+
+  private onStarter(id: string) {
+    const s = State.get();
+    s.starter = { id, evolved: false };
+    State.setFlag('hasStarter');
+    const st = STARTERS.find((x) => x.id === id);
+    if (st) State.record(id).seen = true;
+    State.addItem('manual', 1);
+    State.addItem('guide', 1);
+    State.addItem('map', 1);
+    State.addItem('orb', 3);
+    this.controls.reset();
+    // Hatchling appears beside the hero right away.
+    const key = this.starterKey()!;
+    this.followerShadow = this.add.image(this.player.x, this.player.y, 'shadow').setAlpha(0.7);
+    this.follower = this.add.image(this.player.x - 26, this.player.y, key).setOrigin(0.5, 0.96);
+    this.follower.texture.setFilter(Phaser.Textures.FilterMode.NEAREST);
+    this.ySortedObjs.push({ obj: this.follower, base: 0 });
+    sparkleBurst(this, this.follower.x, this.follower.y - 30, 16, 3600, 70);
+    this.cameras.main.fadeIn(500);
+    this.say([...scene('after_choice'), ...scene('items_handover'), { text: '* (You also received 3 Binding Orbs.)' }]);
   }
 
   private showRoomName() {
@@ -232,7 +299,9 @@ export class WorldScene extends Phaser.Scene {
       State.get().playSeconds += Math.floor(this.timeAcc / 1000);
       this.timeAcc %= 1000;
     }
+    this.updateFollower();
     for (const o of this.ySortedObjs) o.obj.setDepth(10 + o.obj.y);
+    for (const n of Object.values(this.npcs)) (n.getData('shadow') as Phaser.GameObjects.Image | undefined)?.setPosition(n.x, n.y).setDepth(9 + n.y);
     this.shadow.setDepth(9 + this.player.y);
     if (this.controls.pressed('debug')) this.toggleDebug();
     if (this.dialogue.active) {
@@ -305,6 +374,11 @@ export class WorldScene extends Phaser.Scene {
     let best: Interact | null = null;
     let bd = Infinity;
     for (const it of this.interacts) {
+      if (it.obj) {
+        it.promptY += it.obj.y - it.y;
+        it.x = it.obj.x;
+        it.y = it.obj.y;
+      }
       const d = Math.hypot(it.x - fx, it.y - fy);
       if (d < it.r && d < bd) {
         best = it;
@@ -321,7 +395,7 @@ export class WorldScene extends Phaser.Scene {
       if (p.x >= x && p.x <= x + w && p.y >= y && p.y <= y + h) {
         if (e.locked && !State.flag(e.locked)) {
           this.pushBack(e.rect);
-          this.say((e.lockedText ?? ['* It won\'t budge.']).map((text) => ({ text })));
+          this.say(e.locked === 'hasStarter' ? scene('locked_gate_before_starter') : (e.lockedText ?? ['* It won\'t budge.']).map((text) => ({ text })));
           return true;
         }
         this.travel(e.to, e.spawn);
@@ -435,92 +509,82 @@ export class WorldScene extends Phaser.Scene {
     if (!result) return;
     if (result.monster === 'lich') {
       State.setFlag('metLich');
-      const kind = result.outcome === 'won' ? 'won' : 'peace';
-      this.say(
-        kind === 'peace'
-          ? [{ text: '* The fireflies drift back to the trail.' }, { text: '* The Lich\'s crimson robes fade between the trees. It does not follow.' }]
-          : [{ text: '* The fireflies do not come back.' }, { text: '* The trail feels colder.' }],
-      );
+      this.say(scene(result.outcome === 'won' ? 'after_lich_won' : 'after_lich_peace'));
     }
     if (result.monster === 'orochi') {
       State.setFlag('orochiDone');
       this.busy = true;
-      this.time.delayedCall(400, () => {
-        this.scene.start('Ending', { peaceful: result.outcome !== 'won' });
-      });
+      this.time.delayedCall(400, () => this.scene.start('Ending', { peaceful: result.outcome !== 'won' }));
     }
   }
 
   private runTrigger(id: string) {
+    if (id === 'gm_stop') {
+      // Master Halvard crosses the plaza to block the stairs.
+      this.busy = true;
+      this.player.anims.stop();
+      this.dir = 'up';
+      this.player.setFrame(this.frameFor('up'));
+      const gm = this.npcs.halvard;
+      const finish = () =>
+        this.say(scene('guildmaster_stops_you'), () => {
+          State.setFlag('briefed');
+          if (gm) {
+            gm.play('guildmaster_idle');
+            this.tweens.add({ targets: gm, x: 1236, y: 432, duration: 2200, ease: 'Sine.easeInOut' });
+          }
+        });
+      if (!gm) return finish();
+      gm.anims.stop();
+      gm.setFrame(2);
+      this.tweens.add({ targets: gm, x: this.player.x + 70, y: this.player.y - 40, duration: 1200, ease: 'Sine.easeInOut', onComplete: finish });
+      return;
+    }
+    if (id === 'gate_sign') {
+      State.setFlag('gateSign');
+      this.say(scene('gate_guard_or_sign'));
+      return;
+    }
     if (id === 'lich') {
       this.busy = true;
       this.cameras.main.shake(300, 0.004);
-      this.say(
-        [
-          { text: '* All at once, the fireflies go out.' },
-          { text: '* A voice comes from everywhere and nowhere.' },
-          { text: '* A figure in crimson robes stands in the path, a skull beneath its hood.' },
-          { text: '...Turn back. The Overlord of Norwoods does not wake for the living.', speaker: '???', voice: 0.7 },
-        ],
-        () => this.startBattle('lich'),
-      );
+      this.say(scene('lich_encounter'), () => this.startBattle('lich'));
     }
     if (id === 'orochi') {
       this.busy = true;
       Sound.stopMusic(0.5);
       this.cameras.main.shake(900, 0.008);
-      this.say(
-        [
-          { text: '* The Waystone flickers. Once. Twice.' },
-          { text: '* Something enormous uncoils from behind it. Eight heads rise, one after another.' },
-          { text: '* Orochi, the Overlord of Norwoods, has awoken.' },
-        ],
-        () => this.startBattle('orochi'),
-      );
+      this.say(scene('orochi_awakens'), () => this.startBattle('orochi'));
     }
   }
 
+  /** Inside the Guild Hall: the hatchery. */
+  private openHatchery() {
+    this.say(scene('guild_hall_choice_intro'), () => {
+      this.time.delayedCall(80, () => {
+        this.busy = true;
+        this.scene.launch('Hatchling');
+        this.scene.pause();
+      });
+    });
+  }
+
   private talkNpc(id: string, spr: Phaser.GameObjects.Sprite) {
+    if (id === 'halvard') {
+      if (!State.flag('briefed')) return this.say([{ text: 'Not now, Kael. Stay by the fountain.', speaker: STORY.names.guild_master, portrait: 'guildmaster_portrait', voice: 0.7 }]);
+      if (!State.flag('hasStarter')) return this.openHatchery();
+      return this.say([{ text: 'The West Gate is open. Read the manual. And send word.', speaker: STORY.names.guild_master, portrait: 'guildmaster_portrait', voice: 0.7 }]);
+    }
     if (id !== 'wren') return;
     spr.anims.stop();
     spr.setFrame(2);
-    const W = (text: string): Line => ({ text, speaker: 'Wren', portrait: 'wren_portrait', voice: 1.25 });
-    const K = (text: string): Line => ({ text, speaker: State.get().name, portrait: 'hero_portrait', voice: 0.95 });
     const after = () => spr.play('wren_idle');
     if (!State.flag('metWren')) {
-      this.say(
-        [
-          W('You\'re awake. Good. The Guild said they\'d send a tamer. I\'m Wren — I keep the lamps.'),
-          W('Three nights ago the western Waystone went dark. Since then, the creatures on the forest road have turned on anyone who passes.'),
-          K('Wild creatures don\'t do that without a reason.'),
-          W('No. They\'re afraid. Fear makes them fight. But a frightened creature can be reached — if you\'re patient enough not to kill it first.'),
-          W('Take these. Binding Orbs, and a tonic. A calmed or exhausted creature can be bound to you instead of slain.'),
-          { text: '* (You got 3 Binding Orbs and a Restoration Tonic.)' },
-          W('Fight if you must. But try mercy first.'),
-          { text: 'Will you?', speaker: 'Wren', portrait: 'wren_portrait', voice: 1.25, choices: ['I will', 'I make no promises'] },
-        ],
-        (choice) => {
-          State.setFlag('metWren');
-          State.addItem('orb', 3);
-          State.addItem('tonic', 1);
-          State.setFlag('promisedMercy', choice === 0);
-          this.say(
-            choice === 0
-              ? [W('Then go. The West Gate is down the stairs, to the west. Follow the lamps while they last.'), W('If you find a candle burning on the road, rest by it. The old flames remember those who pass.')]
-              : [W('...Honest, at least. Come back alive.'), W('The West Gate is down the stairs, to the west. Rest by the candles when you find them.')],
-            after,
-          );
-        },
-      );
-      return;
+      State.setFlag('metWren');
+      return this.say(scene('wren_first'), after);
     }
-    const hints = [
-      [W('The Bat Fiends nest under the gate at night. They hate light more than they hate us.')],
-      [W('When a creature\'s name pales to gold, its will to fight is gone. That is when you show mercy.')],
-      [W('Every technique costs time — TU, the old tamers called it. The heavier the blow, the longer you leave yourself open.')],
-      [W('The Waystone lies beyond the Mosswood Trail. Whatever put it out is still there.')],
-    ];
-    this.say(hints[Phaser.Math.Between(0, hints.length - 1)], after);
+    const hint = scene(`wren_hint_${Phaser.Math.Between(1, 3)}`);
+    this.say(hint.length ? hint : scene('wren_hint_1'), after);
   }
 
   private useCandle(glow: Phaser.GameObjects.Image, at: Pt) {

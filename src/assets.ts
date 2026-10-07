@@ -21,8 +21,15 @@ export function queueAll(load: Phaser.Loader.LoaderPlugin) {
   for (const k of ROOM_BGS) load.image('bg_' + k, `assets/bg/${k}.jpg`);
   for (const k of MONSTER_ART) load.image('mon_' + k, `assets/monsters/${k}.png`);
   load.image('mon_divine', 'assets/monsters/divine.webp');
+  for (const id of ['fire_hatchling', 'gold_hatchling', 'spark_hatchling', 'water_hatchling']) {
+    load.image('starter_' + id, `assets/starters/${id}.png`);
+    load.image('starter_' + id + '_evo', `assets/starters/${id}_evo.png`);
+  }
+  load.image('world_map', 'assets/ui/world_map.png');
   load.spritesheet('hero_walk', 'assets/chars/hero_walk.png', { frameWidth: 128, frameHeight: 176 });
   load.spritesheet('wren_idle', 'assets/chars/wren_idle.png', { frameWidth: 128, frameHeight: 176 });
+  load.spritesheet('guildmaster_idle', 'assets/chars/guildmaster_idle.png', { frameWidth: 128, frameHeight: 176 });
+  load.image('guildmaster_portrait', 'assets/chars/guildmaster_portrait.webp');
   load.image('hero_portrait', 'assets/chars/hero_portrait.webp');
   load.image('wren_portrait', 'assets/chars/wren_portrait.webp');
 }

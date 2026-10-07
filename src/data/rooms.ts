@@ -94,12 +94,16 @@ export const ROOMS: Record<string, RoomDef> = {
       fromGate: { at: [50, 882], dir: 'right' },
       candle: { at: [330, 590], dir: 'down' },
     },
-    exits: [{ rect: [0, 850, 18, 70], to: 'gate', spawn: 'fromPlaza', locked: 'metWren', lockedText: ['* (You should talk to the girl by the fountain first.)'] }],
-    npcs: [{ id: 'wren', at: [560, 590], sprite: 'wren_idle', name: 'Wren', portrait: 'wren_portrait' }],
+    exits: [{ rect: [0, 850, 18, 70], to: 'gate', spawn: 'fromPlaza', locked: 'hasStarter' }],
+    triggers: [{ id: 'gm_stop', rect: [600, 610, 300, 90], once: 'briefed' }],
+    npcs: [
+      { id: 'wren', at: [560, 590], sprite: 'wren_idle', name: 'Wren', portrait: 'wren_portrait' },
+      { id: 'halvard', at: [1236, 432], sprite: 'guildmaster_idle', name: 'Master Halvard', portrait: 'guildmaster_portrait' },
+    ],
     things: [
       { id: 'inn', at: [262, 450], r: 50, lines: ['* The Tankard Inn.', '* The shutters are barred. A notice nailed to the door: "Closed until the western road is safe."'] },
       { id: 'shop', at: [840, 404], r: 55, lines: ['* Azure Provisions. Rows of tonics glow faintly behind the glass.', '* The lamps inside are out. Whoever keeps this shop left in a hurry.'] },
-      { id: 'guild', at: [1230, 392], r: 70, lines: ['* The Tamers\' Guild Hall.', '* The anchor banners hang heavy and still. No one has answered the guild bell in three nights.'] },
+      { id: 'guild', at: [1230, 392], r: 70, lines: ['* The Tamers\' Guild Hall. Wounded hunters are being carried inside.', '* The anchor banners hang heavy and still.'] },
       { id: 'fountain', at: [740, 590], r: 60, lines: ['* The white blossoms around the fountain glow faintly.', '* Beneath the water\'s murmur, you hear the sea grinding against the harbor wall.'] },
       { id: 'stalls', at: [1250, 630], r: 120, lines: ['* Night market stalls, abandoned mid-trade. Coins still sit on the counters.', '* Nobody stayed to collect them.'] },
     ],
@@ -141,6 +145,7 @@ export const ROOMS: Record<string, RoomDef> = {
       fromPlaza: { at: [760, 900], dir: 'up' },
       fromOutskirts: { at: [1195, 40], dir: 'down' },
     },
+    triggers: [{ id: 'gate_sign', rect: [520, 760, 460, 160], once: 'gateSign' }],
     exits: [
       { rect: [420, 925, 660, 16], to: 'plaza', spawn: 'fromGate' },
       { rect: [1110, 0, 180, 12], to: 'outskirts', spawn: 'fromGate' },

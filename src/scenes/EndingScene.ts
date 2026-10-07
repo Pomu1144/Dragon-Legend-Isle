@@ -1,7 +1,9 @@
 import Phaser from 'phaser';
 import { Sound } from '../audio/Sound';
 import { State } from '../state';
-import { Dialogue, Line } from '../ui/Dialogue';
+import { Dialogue } from '../ui/Dialogue';
+import { scene } from '../data/script';
+import { STORY } from '../data/story';
 import { Controls } from '../ui/input';
 import { fireflies, lightPool, sparkleBurst } from '../ui/fx';
 import { body, label, title, COLORS } from '../ui/widgets';
@@ -40,7 +42,7 @@ export class EndingScene extends Phaser.Scene {
     const sy = H / 2 + (300 - 942 / 2) * bg.scale;
     const stoneGlow = lightPool(this, sx, sy, 160, this.peaceful ? 0xffe9a8 : 0x8fb4d8, false, 5);
     stoneGlow.setAlpha(0);
-    this.tweens.add({ targets: stoneGlow, alpha: this.peaceful ? 0.85 : 0.35, scale: stoneGlow.scale * 2.4, duration: 3000, delay: 900, ease: 'Sine.easeInOut' });
+    this.tweens.add({ targets: stoneGlow, alpha: this.peaceful ? 0.85 : 0.1, scale: stoneGlow.scale * 2.4, duration: 3000, delay: 900, ease: 'Sine.easeInOut' });
     this.time.delayedCall(1200, () => Sound.chime());
     fireflies(this, 0, 0, W, H, this.peaceful ? 60 : 12, 6, this.peaceful ? 0xffe08a : 0x9fb4d8);
 
@@ -54,32 +56,9 @@ export class EndingScene extends Phaser.Scene {
         this.tweens.add({ targets: divine, y: 300, yoyo: true, repeat: -1, duration: 2400, delay: 2600, ease: 'Sine.easeInOut' });
         sparkleBurst(this, W / 2, 240, 30, 30, 300);
       });
-      const D = (text: string): Line => ({ text, speaker: 'Divine', portrait: 'mon_divine', voice: 0.6 });
-      const name = State.get().name;
-      this.time.delayedCall(5600, () =>
-        this.dialogue.show(
-          [
-            { text: '* A light older than the island descends from the canopy.' },
-            D('Little tamer. You walked through fear and answered it with kindness.'),
-            D('Orochi guarded this stone long before your people came. You did not break it. You helped it remember.'),
-            D('The western Waystone burns again. But four still sleep at the edges of the world.'),
-            D(`Rest now, ${name}. Dragon Legend Isle will remember your name.`),
-          ],
-          () => this.card(),
-        ),
-      );
+      this.time.delayedCall(5600, () => this.dialogue.show(scene('ending_peace_divine'), () => this.card()));
     } else {
-      this.time.delayedCall(2400, () =>
-        this.dialogue.show(
-          [
-            { text: '* As the last of Orochi\'s eight heads falls, the Waystone sputters back to life.' },
-            { text: '* It is lit. But its light is cold, and no warmth reaches you.' },
-            { text: '* Far above, something that was watching turns away.' },
-            { text: '* ...Perhaps there was another way.' },
-          ],
-          () => this.card(),
-        ),
-      );
+      this.time.delayedCall(2400, () => this.dialogue.show(scene('ending_cold'), () => this.card()));
     }
   }
 
@@ -95,7 +74,8 @@ export class EndingScene extends Phaser.Scene {
     const bound = Object.values(s.bestiary).filter((r) => r.bound).length;
     c.add(body(this, W / 2, 380, `Spared ${s.spares}   ·   Defeated ${s.kills}   ·   Bound ${bound}   ·   LV ${s.lv}`, 26, COLORS.cream).setOrigin(0.5));
     c.add(body(this, W / 2, 430, this.peaceful ? (s.kills === 0 ? 'Not a single life taken.' : 'Mercy, in the end. But not from the beginning.') : 'There may have been another way.', 22, '#cfe3ff').setOrigin(0.5));
-    c.add(label(this, W / 2, 530, 'TO BE CONTINUED…', 34, COLORS.cream, 7).setOrigin(0.5));
+    const cardLines = (STORY.scenes[this.peaceful ? 'ending_card_peace' : 'ending_card_cold'] ?? []).map((l) => l.text);
+    c.add(body(this, W / 2, 480, cardLines.join('\n'), 22, COLORS.cream, 900).setOrigin(0.5, 0).setAlign('center'));
     const hint = label(this, W / 2, 640, 'Press Z to return to the title', 20, '#9bb0d0', 5).setOrigin(0.5);
     c.add(hint);
     this.tweens.add({ targets: c, alpha: 1, duration: 1400, delay: 600, onComplete: () => (this.canLeave = true) });

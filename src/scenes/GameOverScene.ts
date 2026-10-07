@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import { Sound } from '../audio/Sound';
 import { State } from '../state';
+import { STORY } from '../data/story';
 import { Controls } from '../ui/input';
 import { body, title, COLORS } from '../ui/widgets';
 
@@ -31,7 +32,7 @@ export class GameOverScene extends Phaser.Scene {
       this.tweens.add({ targets: soul, scale: 0.36, yoyo: true, repeat: -1, duration: 600, ease: 'Sine.easeInOut' });
     });
     this.text = body(this, W / 2, 500, '', 28, COLORS.cream, 900).setOrigin(0.5, 0).setAlign('center');
-    this.full = `The candlelight still remembers you, ${State.get().name}.\nRise.`;
+    this.full = (STORY.scenes.gameover_line?.[0]?.text ?? 'Get up.').replace(/\{HERO\}/g, State.get().name);
     this.shown = 0;
     this.acc = -2800;
   }

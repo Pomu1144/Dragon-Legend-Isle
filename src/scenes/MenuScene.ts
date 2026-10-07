@@ -1,6 +1,11 @@
 import Phaser from 'phaser';
 import { Sound } from '../audio/Sound';
 import { BESTIARY_ORDER, ITEMS, MONSTERS } from '../data/monsters';
+import { STARTERS } from '../data/starters';
+import { STORY } from '../data/story';
+import type { ReaderPage } from './ReaderScene';
+
+const PER_PAGE = 10;
 import { EXP_TABLE, State } from '../state';
 import { Controls } from '../ui/input';
 import { Bar, body, label, panel, title, COLORS } from '../ui/widgets';
@@ -99,6 +104,17 @@ export class MenuScene extends Phaser.Scene {
     this.ink(420, 270, `ATK ${s.atk}     DEF ${s.def}`, 26);
     this.ink(420, 316, `EXP ${s.exp}     NEXT ${next > 0 ? next : '—'}`, 26);
     this.ink(420, 362, `GOLD ${s.gold}`, 26);
+    const comp = STARTERS.find((x) => x.id === s.starter?.id);
+    if (comp) {
+      const evo = !!s.starter?.evolved;
+      const key = 'starter_' + comp.id + (evo ? '_evo' : '');
+      const art = this.add.image(900, 410, key).setOrigin(0.5, 1);
+      art.texture.setFilter(Phaser.Textures.FilterMode.NEAREST);
+      art.setScale(Math.max(1, Math.floor(120 / art.height)));
+      this.content.add(art);
+      this.ink(900, 418, evo ? comp.evolution.next_name : comp.name, 22).setOrigin(0.5, 0);
+      this.ink(900, 448, evo ? `${comp.element} · evolved` : `${comp.element} · evolves at LV ${comp.evolution.at_level}`, 18).setOrigin(0.5, 0);
+    }
     const bound = BESTIARY_ORDER.filter((id) => State.get().bestiary[id]?.bound);
     this.ink(130, 440, 'Companions', 28);
     if (!bound.length) this.ink(130, 486, 'No monsters bound yet. Calm one down, then use a Binding Orb.', 22, 820);
@@ -117,10 +133,12 @@ export class MenuScene extends Phaser.Scene {
     const pct = Math.round((seen / BESTIARY_ORDER.length) * 100);
     const plaque = this.add.image(560, 96, 'ui_plaque_monsters').setScale(0.9);
     const page = this.add.image(930, 100, 'ui_panel_page').setScale(0.62);
-    const pg = label(this, 930, 86, 'Pg 1/1', 22, COLORS.ink, 0).setOrigin(0.5).setStroke('#fff4dc', 2);
+    const pages = Math.ceil(BESTIARY_ORDER.length / PER_PAGE);
+    const pageNo = Math.floor(this.sel / PER_PAGE);
+    const pg = label(this, 930, 86, `Pg ${pageNo + 1}/${pages}`, 22, COLORS.ink, 0).setOrigin(0.5).setStroke('#fff4dc', 2);
     const fd = label(this, 930, 114, `Found ${pct}%`, 22, COLORS.ink, 0).setOrigin(0.5).setStroke('#fff4dc', 2);
     this.content.add([plaque, page, pg, fd]);
-    BESTIARY_ORDER.forEach((id, i) => {
+    BESTIARY_ORDER.slice(pageNo * PER_PAGE, pageNo * PER_PAGE + PER_PAGE).forEach((id, i) => {
       const m = MONSTERS[id];
       const rec = State.get().bestiary[id];
       const col = i % 5;
@@ -150,10 +168,11 @@ export class MenuScene extends Phaser.Scene {
   }
 
   private refreshCards() {
+    const local = this.sel % PER_PAGE;
     this.cardObjs.forEach((c, i) => {
       this.tweens.killTweensOf(c);
-      this.tweens.add({ targets: c, scale: i === this.sel ? 1.08 : 0.96, duration: 120 });
-      c.setDepth(i === this.sel ? 2 : 1);
+      this.tweens.add({ targets: c, scale: i === local ? 1.08 : 0.96, duration: 120 });
+      c.setDepth(i === local ? 2 : 1);
     });
     const id = BESTIARY_ORDER[this.sel];
     const rec = State.get().bestiary[id];
@@ -192,6 +211,29 @@ export class MenuScene extends Phaser.Scene {
     this.itemTexts.forEach((t, i) => t.setColor(i === this.sel ? '#a8410a' : COLORS.ink));
   }
 
+  private readerFor(id: string): { title: string; pages: ReaderPage[] } {
+    const it = STORY.items;
+    if (id === 'manual') return { title: it.manual.title, pages: it.manual.pages.map((p) => ({ heading: p.heading, text: p.text })) };
+    if (id === 'guide') {
+      const g = it.translation_guide;
+      return {
+        title: g.title,
+        pages: [
+          { heading: 'Foreword', text: g.intro },
+          ...g.villages.map((v) => ({ heading: `${v.village} — ${v.region}`, text: v.phrases.map((p) => `"${p.phrase}"\n      ${p.meaning}`).join('\n\n') })),
+        ],
+      };
+    }
+    const m = it.map;
+    return {
+      title: m.title,
+      pages: [
+        { heading: 'Dragon Island', text: m.text, image: 'world_map' },
+        { heading: 'The Nearest Villages', text: m.nearest.map((n) => `${n.name}  (${n.direction})\n      ${n.note}`).join('\n\n') },
+      ],
+    };
+  }
+
   private buildRecords() {
     const s = State.get();
     const bound = Object.values(s.bestiary).filter((r) => r.bound).length;
@@ -228,9 +270,11 @@ export class MenuScene extends Phaser.Scene {
       return;
     }
     if (this.tab === 1 && (goL || goR)) {
+      const before = Math.floor(this.sel / PER_PAGE);
       this.sel = (this.sel + (goL ? BESTIARY_ORDER.length - 1 : 1)) % BESTIARY_ORDER.length;
       Sound.move();
-      this.refreshCards();
+      if (Math.floor(this.sel / PER_PAGE) !== before) this.build();
+      else this.refreshCards();
     }
     if (this.tab === 2 && this.itemIds.length) {
       if (goL || goR) {
@@ -241,6 +285,12 @@ export class MenuScene extends Phaser.Scene {
       if (c.pressed('confirm')) {
         const id = this.itemIds[this.sel];
         const s = State.get();
+        if (ITEMS[id]?.key) {
+          Sound.confirm();
+          this.scene.launch('Reader', this.readerFor(id));
+          this.scene.pause();
+          return;
+        }
         if (id === 'tonic' || id === 'tart') {
           if (s.hp >= s.maxHp) {
             Sound.cancel();
