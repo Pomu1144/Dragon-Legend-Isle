@@ -1,30 +1,33 @@
 import Phaser from 'phaser';
 
 export const FONT_TITLE = 'Cinzel, Georgia, serif';
-export const FONT_LABEL = '"Lilita One", "Arial Rounded MT Bold", sans-serif';
-export const FONT_BODY = 'Nunito, "Segoe UI", sans-serif';
+export const FONT_LABEL = 'Cinzel, Georgia, serif';
+export const FONT_BODY = '"Cormorant Garamond", Georgia, serif';
 
 export const COLORS = {
-  gold: '#ffd77a',
-  cream: '#fff4dc',
+  gold: '#c9a96a',
+  cream: '#e9e1cf',
   ink: '#2a1606',
   outline: '#1a0b02',
   blue: '#9fd8ff',
-  purple: '#8f8cff',
-  green: '#6fe07a',
-  red: '#ff6b6b',
-  yellow: '#ffe14a',
+  purple: '#9a93c8',
+  green: '#8fb88a',
+  red: '#c46a62',
+  yellow: '#f2dca0',
 };
 
 /** Chunky outlined label in the style of the UI sheet ("Tail", "Bones", "TU:70"). */
 export function label(scene: Phaser.Scene, x: number, y: number, text: string, size = 28, color = '#ffffff', stroke = 7) {
+  size = Math.round(size * 0.86);
+  stroke = Math.min(stroke, 4);
   const t = scene.add.text(x, y, text, {
     fontFamily: FONT_LABEL,
+    fontStyle: '700',
     fontSize: `${size}px`,
     color,
     stroke: COLORS.outline,
     strokeThickness: stroke,
-    shadow: { offsetX: 0, offsetY: 3, color: '#000000', blur: 4, fill: true, stroke: true },
+    shadow: { offsetX: 0, offsetY: 2, color: '#000000', blur: 6, fill: true, stroke: false },
   });
   t.setPadding(6, 4, 6, 6);
   return t;
@@ -33,12 +36,12 @@ export function label(scene: Phaser.Scene, x: number, y: number, text: string, s
 export function body(scene: Phaser.Scene, x: number, y: number, text: string, size = 26, color = COLORS.cream, wrap = 0) {
   const t = scene.add.text(x, y, text, {
     fontFamily: FONT_BODY,
-    fontStyle: '800',
-    fontSize: `${size}px`,
+    fontStyle: '600',
+    fontSize: `${Math.round(size * 1.12)}px`,
     color,
-    lineSpacing: 8,
+    lineSpacing: 4,
     stroke: '#06121e',
-    strokeThickness: 4,
+    strokeThickness: 2,
     shadow: { offsetX: 0, offsetY: 2, color: '#000000', blur: 3, fill: true },
     wordWrap: wrap ? { width: wrap, useAdvancedWrap: true } : undefined,
   });
@@ -53,8 +56,8 @@ export function title(scene: Phaser.Scene, x: number, y: number, text: string, s
     fontSize: `${size}px`,
     color,
     stroke: '#120800',
-    strokeThickness: 6,
-    shadow: { offsetX: 0, offsetY: 4, color: '#000', blur: 8, fill: true, stroke: true },
+    strokeThickness: 3,
+    shadow: { offsetX: 0, offsetY: 3, color: '#000', blur: 10, fill: true, stroke: false },
   });
   t.setPadding(4, 4, 4, 8);
   return t;
@@ -73,6 +76,8 @@ export function panel(scene: Phaser.Scene, x: number, y: number, w: number, h: n
   const p = PANEL[kind];
   const ns = scene.add.nineslice(x, y, p.key, undefined, w, h, p.l, p.r, p.t, p.b);
   ns.setOrigin(0, 0);
+  // Mute the painted frames toward a darker, desaturated palette.
+  ns.setTint({ blue: 0x5e6874, parchment: 0xb8ac98, green: 0x8a9484, page: 0xc2b6a2 }[kind]);
   return ns;
 }
 

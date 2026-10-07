@@ -389,7 +389,7 @@ export class BattleScene extends Phaser.Scene {
         else this.mercy = Math.min(100, this.mercy + 8);
         if (a.calm) this.calm += a.calm;
         if (a.heal) this.heal(a.heal);
-        const extra = !first && a.once ? ['* It still appreciates it. A little.'] : [];
+        const extra = !first && a.once ? ['* It barely reacts this time.'] : [];
         this.reactMonster();
         this.boxSay([...a.text, ...extra], () => {
           this.updateName();
@@ -406,7 +406,7 @@ export class BattleScene extends Phaser.Scene {
       .filter(([, n]) => n > 0)
       .map(([id, n]) => ({ text: `${ITEMS[id]?.name ?? id}  x${n}`, run: () => this.useItem(id) }));
     if (!items.length) {
-      this.boxSay('* Your satchel is empty. Even the crumbs are gone.', () => this.toMenu());
+      this.boxSay('* Your satchel is empty.', () => this.toMenu());
       return;
     }
     this.openList(items, () => this.toMenu());
@@ -536,7 +536,7 @@ export class BattleScene extends Phaser.Scene {
     objs.push(this.add.image(cx, cy, 'glow').setBlendMode(Phaser.BlendModes.ADD).setTint(0xffd77a).setScale(0.5, 0.35).setAlpha(0.6).setDepth(16));
     const cursor = this.add.image(cx - tw / 2, cy - 4, 'ui_cursor_diamond').setScale(0.9).setDepth(17);
     objs.push(cursor);
-    const hint = label(this, cx, b.y + b.h - 22, 'Press Z!', 22, COLORS.cream, 5).setOrigin(0.5).setDepth(17);
+    const hint = label(this, cx, b.y + b.h - 22, 'Z — strike', 22, COLORS.cream, 5).setOrigin(0.5).setDepth(17);
     objs.push(hint);
     this.timing = { cursor, t: 0, x0: cx - tw / 2, x1: cx + tw / 2, objs, skill, stopped: false };
   }
@@ -580,9 +580,9 @@ export class BattleScene extends Phaser.Scene {
       this.cameras.main.shake(160, 0.006);
       this.monster.setTintFill(0xffffff);
       this.time.delayedCall(70, () => this.monster.clearTint());
-      this.tweens.add({ targets: this.monster, x: { from: this.monster.x - 14, to: this.monster.x }, duration: 260, ease: 'Elastic.easeOut' });
+      this.tweens.add({ targets: this.monster, x: { from: this.monster.x - 14, to: this.monster.x }, duration: 260, ease: 'Sine.easeOut' });
       popNumber(this, this.monster.x + 60, 180, `${dmg}`, crit ? COLORS.yellow : '#ff5a5a', 60);
-      if (crit) label(this, this.monster.x - 80, 140, 'CRITICAL!', 26, COLORS.yellow, 6).setOrigin(0.5).setDepth(60).setAngle(-8);
+      if (crit) label(this, this.monster.x - 80, 140, 'CRITICAL', 24, COLORS.yellow, 4).setOrigin(0.5).setDepth(60);
       // Hurting a monster makes it less inclined to trust you.
       this.mercy = Math.max(0, this.mercy - 10);
       this.updateName();
@@ -654,7 +654,7 @@ export class BattleScene extends Phaser.Scene {
     this.bubble?.destroy();
     const x = this.monster.x + Math.min(260, this.monster.displayWidth / 2) + 10;
     const y = 120;
-    const t = this.add.text(0, 0, text, { fontFamily: FONT_BODY, fontStyle: '800', fontSize: '24px', color: COLORS.ink, align: 'left', lineSpacing: 4 }).setOrigin(0, 0.5);
+    const t = this.add.text(0, 0, text, { fontFamily: FONT_BODY, fontStyle: '700', fontSize: '27px', color: COLORS.ink, align: 'left', lineSpacing: 4 }).setOrigin(0, 0.5);
     const w = t.width + 50;
     const h = t.height + 40;
     const p = panel(this, -20, -h / 2, w, h, 'parchment');
@@ -662,7 +662,7 @@ export class BattleScene extends Phaser.Scene {
     t.setX(5);
     const c = this.add.container(x, y, [tail, p, t]).setDepth(45);
     c.setScale(0.6).setAlpha(0);
-    this.tweens.add({ targets: c, scale: 1, alpha: 1, duration: 160, ease: 'Back.easeOut' });
+    this.tweens.add({ targets: c, scale: 1, alpha: 1, duration: 160, ease: 'Cubic.easeOut' });
     Sound.blip(0.7);
     this.bubble = c;
     this.bubbleDone = done;
@@ -709,7 +709,7 @@ export class BattleScene extends Phaser.Scene {
       const run = pat.run({ scene: this, field: this.field, box: target, soul: this.soul, power: Phaser.Math.Clamp(power, 0.6, 1.7), rng: new Phaser.Math.RandomDataGenerator([`${this.turn}${atk.ability}`]), proj: this.m.attacks?.length ? 'ui_' + atk.projectile : undefined });
       let blind: Phaser.GameObjects.Image | undefined;
       if (atk.twist === 'blind') blind = this.add.image(this.soul.x, this.soul.y, 'vignette').setDisplaySize(target.w * 1.5, target.h * 1.5).setDepth(25).setTint(0x000000);
-      if (atk.twist === 'confuse') label(this, 640, target.y + target.h + 26, 'CONFUSED — controls reversed!', 18, COLORS.yellow, 5).setOrigin(0.5).setDepth(40).setName('twistTag');
+      if (atk.twist === 'confuse') label(this, 640, target.y + target.h + 26, 'Confused — your movements are reversed', 18, COLORS.yellow, 5).setOrigin(0.5).setDepth(40).setName('twistTag');
       this.dodge = { t: 0, dur, run, inv: 0, atk, tag, blind };
       this.phase = 'dodge';
     });
@@ -803,7 +803,7 @@ export class BattleScene extends Phaser.Scene {
   // ---- outcomes ----------------------------------------------------------------
   private trySpare() {
     if (!this.spareable()) {
-      this.boxSay(this.m.id === 'rift_drake' && this.mercy >= 100 ? ['* Rift Drake is calming down... but the rift still burns. Hold on a little longer.'] : [`* You spared ${this.m.name}.`, '* ...But it isn\'t ready to go yet.'], () => this.enemyTurn(100));
+      this.boxSay(this.m.id === 'rift_drake' && this.mercy >= 100 ? ['* Rift Drake is calming down... but the rift still burns. Hold on a little longer.'] : [`* You spared ${this.m.name}.`, '* ...It is not ready to yield.'], () => this.enemyTurn(100));
       return;
     }
     this.phase = 'end';
@@ -815,17 +815,17 @@ export class BattleScene extends Phaser.Scene {
     this.tweens.killTweensOf(this.monster);
     sparkleBurst(this, this.monster.x, this.monsterBaseY - this.monster.displayHeight / 2, 26, 60, 220);
     this.tweens.add({ targets: this.monster, alpha: 0.0, y: this.monsterBaseY - 40, duration: 1200, ease: 'Sine.easeIn' });
-    this.boxSay([this.m.spareText, `* YOU WON!\n* You earned 0 EXP and ${gold} G.`], () => this.finish('spared'));
+    this.boxSay([this.m.spareText, `* The battle is over.\n* You gained 0 EXP and ${gold} G.`], () => this.finish('spared'));
   }
 
   private tryFlee() {
     if (this.m.boss) {
-      this.boxSay(['* You try to run, but your feet won\'t carry you away from this one.'], () => this.enemyTurn(100));
+      this.boxSay(['* There is no escaping this.'], () => this.enemyTurn(100));
       return;
     }
     this.phase = 'end';
     Sound.whoosh();
-    this.boxSay('* You slip away into the dark...', () => this.finish('fled'));
+    this.boxSay('* You retreat into the dark.', () => this.finish('fled'));
   }
 
   private tryBind() {
@@ -857,7 +857,7 @@ export class BattleScene extends Phaser.Scene {
         const sx = this.monster.scaleX;
         const sy = this.monster.scaleY;
         this.tweens.add({ targets: this.monster, scaleX: 0.02, scaleY: 0.02, x: mx, y: my + 20, alpha: 0.4, duration: 420, ease: 'Cubic.easeIn' });
-        this.tweens.add({ targets: orb, y: 330, duration: 400, delay: 420, ease: 'Bounce.easeOut' });
+        this.tweens.add({ targets: orb, y: 330, duration: 400, delay: 420, ease: 'Quad.easeOut' });
         let wob = 0;
         this.time.addEvent({
           delay: 520,
@@ -873,19 +873,19 @@ export class BattleScene extends Phaser.Scene {
                   this.phase = 'end';
                   Sound.save();
                   const crown = this.add.image(orb.x, orb.y - 60, 'ui_crown').setScale(0.1).setDepth(56);
-                  this.tweens.add({ targets: crown, scale: 0.45, y: orb.y - 80, duration: 400, ease: 'Back.easeOut' });
+                  this.tweens.add({ targets: crown, scale: 0.45, y: orb.y - 80, duration: 400, ease: 'Cubic.easeOut' });
                   sparkleBurst(this, orb.x, orb.y, 18, 57, 120);
                   const rec = State.record(this.m.id);
                   rec.bound = true;
                   State.get().spares++;
-                  this.boxSay([`* ${this.m.name} was bound!`, `* It joins your monsters. (Check "My Monsters" in the C menu.)`], () => this.finish('bound'));
+                  this.boxSay([`* ${this.m.name} was bound!`, `* It is bound to you now. (See "My Monsters" in the C menu.)`], () => this.finish('bound'));
                 } else {
                   Sound.shatter();
                   sparkleBurst(this, orb.x, orb.y, 12, 57, 90);
                   orb.destroy();
                   this.monster.setPosition(640, this.monsterBaseY).setScale(sx, sy).setAlpha(1);
                   this.idleMonster();
-                  this.boxSay([`* ${this.m.name} broke free!`, this.spareable() || lowHp ? '* So close...' : '* It is too wary. Calm it down or tire it out first.'], () => this.enemyTurn(100));
+                  this.boxSay([`* ${this.m.name} broke free!`, this.spareable() || lowHp ? '* It nearly held.' : '* It is too wary. Calm it or wear it down first.'], () => this.enemyTurn(100));
                 }
               });
             }
@@ -906,10 +906,10 @@ export class BattleScene extends Phaser.Scene {
     s.kills++;
     s.gold += this.m.gold;
     const ups = gainExp(this.m.exp);
-    const pages = [`* YOU WON!\n* You earned ${this.m.exp} EXP and ${this.m.gold} G.`];
+    const pages = [`* The battle is over.\n* You gained ${this.m.exp} EXP and ${this.m.gold} G.`];
     if (ups > 0) {
       Sound.levelUp();
-      pages.push(`* Your LEGEND grew! You are now LV ${s.lv}.`);
+      pages.push(`* Your strength grows. You are now LV ${s.lv}.`);
       if (s.lv === 3) pages.push('* A new skill card awakens: Wyrmsong.');
       this.lvText.setText(`${s.name.toUpperCase()}   LV ${s.lv}`);
       this.refreshHp();

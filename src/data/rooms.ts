@@ -97,11 +97,11 @@ export const ROOMS: Record<string, RoomDef> = {
     exits: [{ rect: [0, 850, 18, 70], to: 'gate', spawn: 'fromPlaza', locked: 'metWren', lockedText: ['* (You should talk to the girl by the fountain first.)'] }],
     npcs: [{ id: 'wren', at: [560, 590], sprite: 'wren_idle', name: 'Wren', portrait: 'wren_portrait' }],
     things: [
-      { id: 'inn', at: [262, 450], r: 50, lines: ['* The Tankard Inn.', '* A sign on the door reads: "Closed — the cook went looking for the moon."'] },
-      { id: 'shop', at: [840, 404], r: 55, lines: ['* Azure Provisions. Through the window, potions glow like tiny lanterns.', '* The shopkeeper is asleep on the counter. Best not to wake them.'] },
-      { id: 'guild', at: [1230, 392], r: 70, lines: ['* The Tamers\' Guild Hall.', '* The anchor banners stir in a wind you cannot feel.'] },
-      { id: 'fountain', at: [740, 590], r: 60, lines: ['* The white blossoms around the fountain glow faintly.', '* For a moment, you hear the sea.'] },
-      { id: 'stalls', at: [1250, 630], r: 120, lines: ['* Night market stalls. Someone left a half-eaten dragonfruit tart.', '* You decide it is not yours to take. Probably.'] },
+      { id: 'inn', at: [262, 450], r: 50, lines: ['* The Tankard Inn.', '* The shutters are barred. A notice nailed to the door: "Closed until the western road is safe."'] },
+      { id: 'shop', at: [840, 404], r: 55, lines: ['* Azure Provisions. Rows of tonics glow faintly behind the glass.', '* The lamps inside are out. Whoever keeps this shop left in a hurry.'] },
+      { id: 'guild', at: [1230, 392], r: 70, lines: ['* The Tamers\' Guild Hall.', '* The anchor banners hang heavy and still. No one has answered the guild bell in three nights.'] },
+      { id: 'fountain', at: [740, 590], r: 60, lines: ['* The white blossoms around the fountain glow faintly.', '* Beneath the water\'s murmur, you hear the sea grinding against the harbor wall.'] },
+      { id: 'stalls', at: [1250, 630], r: 120, lines: ['* Night market stalls, abandoned mid-trade. Coins still sit on the counters.', '* Nobody stayed to collect them.'] },
     ],
     candles: [{ id: 'plaza', at: [330, 560], kind: 'candle_double' }],
     lights: [
@@ -144,12 +144,12 @@ export const ROOMS: Record<string, RoomDef> = {
     exits: [
       { rect: [420, 925, 660, 16], to: 'plaza', spawn: 'fromGate' },
       { rect: [1110, 0, 180, 12], to: 'outskirts', spawn: 'fromGate' },
-      { rect: [0, 352, 12, 73], to: 'gate', spawn: 'fromPlaza', lockedText: ['* The old harbor road. Boarded up "until the tide behaves."'], locked: 'never' },
-      { rect: [1658, 602, 12, 98], to: 'gate', spawn: 'fromPlaza', lockedText: ['* The east road is flooded with moonlight... and actual water.'], locked: 'never' },
+      { rect: [0, 352, 12, 73], to: 'gate', spawn: 'fromPlaza', lockedText: ['* The old harbor road. Boarded shut, the planks scored by something with claws.'], locked: 'never' },
+      { rect: [1658, 602, 12, 98], to: 'gate', spawn: 'fromPlaza', lockedText: ['* The east road lies under black floodwater.'], locked: 'never' },
     ],
     things: [
-      { id: 'banner', at: [985, 790], r: 60, lines: ['* The anchor of Azurelake.', '* "Every tide returns. So do we."'] },
-      { id: 'bench', at: [1170, 650], r: 60, lines: ['* A bench. It has seen many sunsets and is not impressed by this one.'] },
+      { id: 'banner', at: [985, 790], r: 60, lines: ['* The anchor of Azurelake.', '* Stitched beneath it: "Every tide returns."'] },
+      { id: 'bench', at: [1170, 650], r: 60, lines: ['* A cold stone bench, slick with dew.'] },
       { id: 'gatehouse', at: [840, 560], r: 70, lines: ['* The West Gate stands open.', '* Beyond the bridge, the forest road waits in the dark.'] },
     ],
     lights: [
@@ -188,8 +188,8 @@ export const ROOMS: Record<string, RoomDef> = {
       { rect: [820, 0, 90, 10], to: 'forest', spawn: 'fromOutskirts' },
     ],
     things: [
-      { id: 'lamp', at: [600, 715], r: 45, lines: ['* A trail lamp. Someone keeps these lit every single night.', '* You feel looked after.'] },
-      { id: 'fence', at: [1040, 210], r: 50, lines: ['* A fence. It is mostly decorative. The sheep left years ago.'] },
+      { id: 'lamp', at: [600, 715], r: 45, lines: ['* A trail lamp. Its oil is nearly spent.', '* Someone has kept these burning, night after night. For now.'] },
+      { id: 'fence', at: [1040, 210], r: 50, lines: ['* A split-rail fence. Beyond it, the grass has been flattened in long, dragging lines.'] },
     ],
     candles: [{ id: 'outskirts', at: [968, 572], kind: 'candle_small' }],
     lights: [{ at: [585, 670], r: 170, color: warm, flicker: true }, { at: [1010, 712], r: 170, color: warm, flicker: true }],
@@ -255,7 +255,7 @@ export const ROOMS: Record<string, RoomDef> = {
       { rect: [220, 30, 110, 10], to: 'waystone', spawn: 'fromMosswood' },
     ],
     candles: [{ id: 'mosswood', at: [905, 690], kind: 'candle_tall' }],
-    things: [{ id: 'log', at: [700, 330], r: 60, lines: ['* Moss grows in the shape of a sleeping dragon.', '* Or maybe you\'re just tired.'] }],
+    things: [{ id: 'log', at: [700, 330], r: 60, lines: ['* Moss has swallowed an old cart. Bones, picked clean, lie beneath the wheel.'] }],
     lights: [{ at: [820, 800], r: 240, color: 0xff9a4a }],
     encounters: { table: ['bones', 'blood_priest', 'blood_priest'], budget: 2 },
     triggers: [{ id: 'nocturne', rect: [560, 300, 400, 120], once: 'metNocturne' }],

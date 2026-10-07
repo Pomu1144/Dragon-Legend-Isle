@@ -9,7 +9,7 @@ const PAGES: { bg: string; text: string; tint?: number; pan: [number, number] }[
   { bg: 'bg_forest', text: 'Tamers and monsters walked the same roads. Nobody remembers anymore who was the guest.', pan: [-60, 0] },
   { bg: 'bg_mosswood', text: 'Then the Rift opened. The western Waystone went dark… and the monsters grew afraid.', tint: 0xb090ff, pan: [50, 20] },
   { bg: 'bg_gate_talk', text: 'Afraid things lash out. But afraid things can also be calmed.', pan: [0, 30] },
-  { bg: 'bg_plaza', text: 'Tonight, in the harbor town of Azurelake, a young tamer is about to find out which.', pan: [-40, -30] },
+  { bg: 'bg_plaza', text: 'Tonight, in the harbor town of Azurelake, a tamer wakes to silence.', pan: [-40, -30] },
 ];
 
 export class IntroScene extends Phaser.Scene {

@@ -83,7 +83,7 @@ export class MenuScene extends Phaser.Scene {
 
   private buildParty() {
     const s = State.get();
-    const frame = this.add.image(130, 150, 'ui_frame_portrait').setOrigin(0).setDisplaySize(250, 258);
+    const frame = this.add.image(130, 150, 'ui_frame_portrait').setTint(0x7c848e).setOrigin(0).setDisplaySize(250, 258);
     const por = this.add.image(255, 263, 'hero_portrait');
     por.setScale(Math.min(214 / por.width, 190 / por.height));
     const nm = label(this, 255, 383, s.name, 24, COLORS.cream, 5).setOrigin(0.5);

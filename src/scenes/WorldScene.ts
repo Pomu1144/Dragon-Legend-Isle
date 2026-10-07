@@ -151,8 +151,8 @@ export class WorldScene extends Phaser.Scene {
       this.time.delayedCall(900, () =>
         this.say(
           [
-            { text: '* (You wake on a bench in the plaza. The lamps are already lit.)' },
-            { text: '* (Someone by the fountain is waving at you.)' },
+            { text: '* You wake on a cold bench in the plaza. The lamps are lit, but the streets are empty.' },
+            { text: '* A woman with a lantern waits by the fountain.' },
           ],
           () => undefined,
         ),
@@ -392,7 +392,7 @@ export class WorldScene extends Phaser.Scene {
     const sy = this.player.y - cam.scrollY - this.player.displayHeight * 0.45;
     const bang = label(this, this.player.x, this.player.y - this.player.displayHeight - 10, '!', 54, COLORS.yellow, 9).setOrigin(0.5, 1).setDepth(5000);
     bang.setScale(0.3);
-    this.tweens.add({ targets: bang, scale: 1, duration: 160, ease: 'Back.easeOut' });
+    this.tweens.add({ targets: bang, scale: 1, duration: 160, ease: 'Cubic.easeOut' });
     this.time.delayedCall(520, () => {
       bang.destroy();
       const black = this.add.rectangle(0, 0, this.scale.width, this.scale.height, 0x000000, 1).setOrigin(0).setScrollFactor(0).setDepth(9000);
@@ -489,14 +489,14 @@ export class WorldScene extends Phaser.Scene {
     if (!State.flag('metWren')) {
       this.say(
         [
-          W('Oh good, you\'re awake! You\'re the new tamer the Guild sent, right? I\'m Wren.'),
-          W('Listen — the western Waystone went dark three nights ago. Since then, the monsters on the forest road have been... jumpy.'),
-          K('Jumpy how?'),
-          W('Scared. And scared monsters fight. But they\'re not evil! If you talk to them — really talk — most of them will let you pass.'),
-          W('Here. Binding Orbs and a tonic. If a monster is calm or worn out, an orb lets it come with you.'),
+          W('You\'re awake. Good. The Guild said they\'d send a tamer. I\'m Wren — I keep the lamps.'),
+          W('Three nights ago the western Waystone went dark. Since then, the creatures on the forest road have turned on anyone who passes.'),
+          K('Wild creatures don\'t do that without a reason.'),
+          W('No. They\'re afraid. Fear makes them fight. But a frightened creature can be reached — if you\'re patient enough not to kill it first.'),
+          W('Take these. Binding Orbs, and a tonic. A calmed or exhausted creature can be bound to you instead of slain.'),
           { text: '* (You got 3 Binding Orbs and a Restoration Tonic.)' },
-          W('Fight if you have to. But... try mercy first? For me?'),
-          { text: 'Will you try?', speaker: 'Wren', portrait: 'wren_portrait', voice: 1.25, choices: ['I will', 'No promises'] },
+          W('Fight if you must. But try mercy first.'),
+          { text: 'Will you?', speaker: 'Wren', portrait: 'wren_portrait', voice: 1.25, choices: ['I will', 'I make no promises'] },
         ],
         (choice) => {
           State.setFlag('metWren');
@@ -505,8 +505,8 @@ export class WorldScene extends Phaser.Scene {
           State.setFlag('promisedMercy', choice === 0);
           this.say(
             choice === 0
-              ? [W('Thank you. The West Gate is down the stairs and to the left. Follow the lamps!'), W('Oh — and the candles. Touch one and it\'ll keep your place. Old Azurelake magic.')]
-              : [W('...Fair. Just come back in one piece, okay?'), W('The West Gate is down the stairs and to the left. Candles will keep your place.')],
+              ? [W('Then go. The West Gate is down the stairs, to the west. Follow the lamps while they last.'), W('If you find a candle burning on the road, rest by it. The old flames remember those who pass.')]
+              : [W('...Honest, at least. Come back alive.'), W('The West Gate is down the stairs, to the west. Rest by the candles when you find them.')],
             after,
           );
         },
@@ -514,10 +514,10 @@ export class WorldScene extends Phaser.Scene {
       return;
     }
     const hints = [
-      [W('Bat Fiends love fruit. And lullabies. And fruit lullabies, probably.')],
-      [W('If a monster\'s name glows gold, it\'s ready to be spared. Check MERCY!')],
-      [W('Stronger attacks have a higher TU cost. That means the monster gets more time to hit back. Choose wisely!')],
-      [W('The Waystone is past the Mosswood Trail. Be careful, okay?')],
+      [W('The Bat Fiends nest under the gate at night. They hate light more than they hate us.')],
+      [W('When a creature\'s name pales to gold, its will to fight is gone. That is when you show mercy.')],
+      [W('Every technique costs time — TU, the old tamers called it. The heavier the blow, the longer you leave yourself open.')],
+      [W('The Waystone lies beyond the Mosswood Trail. Whatever put it out is still there.')],
     ];
     this.say(hints[Phaser.Math.Between(0, hints.length - 1)], after);
   }
@@ -533,8 +533,8 @@ export class WorldScene extends Phaser.Scene {
     sparkleBurst(this, at[0], at[1] - 60, 18, 3600, 90);
     this.tweens.add({ targets: glow, alpha: 0.9, scale: glow.scale * 1.8, yoyo: true, duration: 500 });
     this.say([
-      { text: '* The candle\'s small flame leans toward you, as if listening.' },
-      { text: '* Watching it dance fills you with legendary resolve.' },
+      { text: '* The candle burns steady in the wind, as if it has been waiting.' },
+      { text: '* In its small light, your resolve hardens.' },
       { text: `* (HP fully restored. Progress saved — ${this.room.name}.)` },
     ]);
   }

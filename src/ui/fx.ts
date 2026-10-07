@@ -81,11 +81,11 @@ export function sparkleBurst(scene: Phaser.Scene, x: number, y: number, count = 
 /** Floating damage / heal number. */
 export function popNumber(scene: Phaser.Scene, x: number, y: number, text: string, color: string, depth = 4500) {
   const t = scene.add
-    .text(x, y, text, { fontFamily: '"Lilita One", sans-serif', fontSize: '46px', color, stroke: '#1a0b02', strokeThickness: 8 })
+    .text(x, y, text, { fontFamily: 'Cinzel, Georgia, serif', fontStyle: '700', fontSize: '40px', color, stroke: '#0a0502', strokeThickness: 4 })
     .setOrigin(0.5)
     .setDepth(depth);
   t.setScale(0.4);
-  scene.tweens.add({ targets: t, scale: 1, duration: 180, ease: 'Back.easeOut' });
+  scene.tweens.add({ targets: t, scale: 1, duration: 180, ease: 'Cubic.easeOut' });
   scene.tweens.add({ targets: t, y: y - 70, alpha: 0, delay: 600, duration: 700, ease: 'Cubic.easeIn', onComplete: () => t.destroy() });
   return t;
 }

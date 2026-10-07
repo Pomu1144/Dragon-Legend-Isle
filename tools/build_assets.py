@@ -133,10 +133,7 @@ def main():
     save_webp(fit(g(6).crop(g(6).getbbox()), 640), os.path.join(out, 'chars', 'wren_portrait.webp'))
     save_webp(fit(g(7).crop(g(7).getbbox()), 1400), os.path.join(out, 'ui', 'logo.webp'))
 
-    monsters = {1: 'bat_fiend', 2: 'bones', 3: 'blood_priest', 4: 'nocturne', 5: 'rift_drake'}
-    for i, name in monsters.items():
-        im = g(i)
-        save_webp(fit(im.crop(im.getbbox()), 760), os.path.join(out, 'monsters', name + '.webp'))
+    # Creatures are the original Dragon Island Blue sprites (tools/fetch_dib_sprites.py), never generated.
     save_webp(fit(luminance_alpha(Image.open(args.divine)), 900), os.path.join(out, 'monsters', 'divine.webp'))
     print('assets built ->', out)
 

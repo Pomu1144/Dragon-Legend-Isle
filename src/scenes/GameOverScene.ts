@@ -31,7 +31,7 @@ export class GameOverScene extends Phaser.Scene {
       this.tweens.add({ targets: soul, scale: 0.36, yoyo: true, repeat: -1, duration: 600, ease: 'Sine.easeInOut' });
     });
     this.text = body(this, W / 2, 500, '', 28, COLORS.cream, 900).setOrigin(0.5, 0).setAlign('center');
-    this.full = `Don't give up, ${State.get().name}!  The isle still needs you…\nStay legendary.`;
+    this.full = `The candlelight still remembers you, ${State.get().name}.\nRise.`;
     this.shown = 0;
     this.acc = -2800;
   }

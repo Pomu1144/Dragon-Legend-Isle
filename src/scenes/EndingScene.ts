@@ -94,7 +94,7 @@ export class EndingScene extends Phaser.Scene {
     c.add(title(this, W / 2, 300, this.peaceful ? 'The Western Waystone is Relit' : 'The Western Waystone Burns Cold', 40, this.peaceful ? COLORS.gold : '#9fb4d8').setOrigin(0.5));
     const bound = Object.values(s.bestiary).filter((r) => r.bound).length;
     c.add(body(this, W / 2, 380, `Spared ${s.spares}   ·   Defeated ${s.kills}   ·   Bound ${bound}   ·   LV ${s.lv}`, 26, COLORS.cream).setOrigin(0.5));
-    c.add(body(this, W / 2, 430, this.peaceful ? (s.kills === 0 ? 'A true Mercy run. Wren is going to be insufferably proud.' : 'Mercy won in the end. Next time, maybe from the start?') : 'Try sparing the Drake. Talk. Endure. Touch the stone.', 22, '#cfe3ff').setOrigin(0.5));
+    c.add(body(this, W / 2, 430, this.peaceful ? (s.kills === 0 ? 'Not a single life taken.' : 'Mercy, in the end. But not from the beginning.') : 'There may have been another way.', 22, '#cfe3ff').setOrigin(0.5));
     c.add(label(this, W / 2, 530, 'TO BE CONTINUED…', 34, COLORS.cream, 7).setOrigin(0.5));
     const hint = label(this, W / 2, 640, 'Press Z to return to the title', 20, '#9bb0d0', 5).setOrigin(0.5);
     c.add(hint);

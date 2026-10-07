@@ -46,7 +46,7 @@ export class Dialogue {
     this.root = scene.add.container(0, 0).setScrollFactor(0).setDepth(5000).setVisible(false);
     this.box = panel(scene, 40, H - 210, W - 80, 186, 'blue');
     this.box.setAlpha(0.97);
-    this.frame = scene.add.image(64, H - 236, 'ui_frame_portrait').setOrigin(0, 0).setDisplaySize(176, 182);
+    this.frame = scene.add.image(64, H - 236, 'ui_frame_portrait').setTint(0x7c848e).setOrigin(0, 0).setDisplaySize(176, 182);
     this.portrait = scene.add.image(64 + 88, H - 236 + 84, 'hero_portrait').setOrigin(0.5);
     this.nameText = label(scene, 64 + 88, H - 236 + 165, '', 20, COLORS.cream, 5).setOrigin(0.5);
     this.text = body(scene, 268, H - 186, '', 28, COLORS.cream, W - 268 - 90);
@@ -84,7 +84,7 @@ export class Dialogue {
       this.portrait.setScale(s);
       this.nameText.setText(l.speaker ?? '');
       this.portrait.y = this.frame.y + 80 + 6;
-      this.scene.tweens.add({ targets: this.portrait, y: this.frame.y + 80, duration: 160, ease: 'Back.easeOut' });
+      this.scene.tweens.add({ targets: this.portrait, y: this.frame.y + 80, duration: 160, ease: 'Cubic.easeOut' });
     }
     this.full = l.text;
     this.shown = 0;

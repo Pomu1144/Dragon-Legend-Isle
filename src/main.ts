@@ -1,9 +1,9 @@
 import Phaser from 'phaser';
 import '@fontsource/cinzel/700.css';
 import '@fontsource/cinzel/900.css';
-import '@fontsource/lilita-one/400.css';
-import '@fontsource/nunito/700.css';
-import '@fontsource/nunito/800.css';
+import '@fontsource/cormorant-garamond/600.css';
+import '@fontsource/cormorant-garamond/700.css';
+import '@fontsource/cormorant-garamond/600-italic.css';
 import { BootScene } from './scenes/BootScene';
 import { TitleScene } from './scenes/TitleScene';
 import { IntroScene } from './scenes/IntroScene';
@@ -15,7 +15,7 @@ import { GameOverScene } from './scenes/GameOverScene';
 
 async function start() {
   // Text objects rasterize immediately, so the webfonts must be ready first.
-  const faces = ['700 32px Cinzel', '900 32px Cinzel', '400 32px "Lilita One"', '700 32px Nunito', '800 32px Nunito'];
+  const faces = ['700 32px Cinzel', '900 32px Cinzel', '600 32px "Cormorant Garamond"', '700 32px "Cormorant Garamond"', 'italic 600 32px "Cormorant Garamond"'];
   try {
     await Promise.all(faces.map((f) => document.fonts.load(f)));
   } catch {
