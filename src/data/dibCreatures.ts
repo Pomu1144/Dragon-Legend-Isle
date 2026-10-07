@@ -1325,5 +1325,1852 @@ export const DIB_KITS = [
     }
    ]
   }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "outskirts"
+  ],
+  "name": "Cult Priest",
+  "id": "cult_priest",
+  "wiki": {
+   "number": "#087",
+   "stars": 2,
+   "element": "Air",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/4/4d/Cult_Priest.png",
+   "image_size": [
+    99,
+    112
+   ],
+   "lv1": {
+    "hp": 30,
+    "attack": 10,
+    "magic": 3,
+    "speed": 6,
+    "defense": 3,
+    "resist": 3
+   },
+   "abilities": [
+    {
+     "name": "Cheer",
+     "tu": "100",
+     "target": "All Allies",
+     "effect": "+2 Defense, +1 Attack"
+    },
+    {
+     "name": "Gust",
+     "tu": "100",
+     "target": "1 Foe",
+     "effect": "2-3 Magical Damage (Air)"
+    }
+   ],
+   "evolution": "Cult Priest evolves into Cult Warrior at level 17, which evolves into Cult Rogue at level 33.",
+   "obtain": "Found in No Man's Castle and in Greater Wesing (Southwest of Wesing)."
+  },
+  "sprite": {
+   "description": "A hooded priest in long white and pale grey robes with wide hanging sleeves, face lost in violet shadow beneath the cowl, holding a tall pale staff topped with a looped ankh-like head. Transparent background.",
+   "dominant_color_hex": "#D9D9E2",
+   "faces": "front",
+   "flier": false
+  },
+  "battle": {
+   "check": "* CULT PRIEST - AIR - 2 STARS.\n* Speaks a blessing over its kin.\n* The words harden them.",
+   "intro": "* A white-robed figure steps out of the dark grass.",
+   "idle": [
+    "* The Cult Priest murmurs a litany you cannot follow.",
+    "* Wind moves through the grass, though the night is still.",
+    "* The staff's pale loop catches the moonlight.",
+    "* Beneath the hood, there is only violet shadow."
+   ],
+   "talk": [
+    "The road west\nis closed\nto you.",
+    "We bless those\nwho walk\nunseen.",
+    "Turn back,\nchild of the\nlake.",
+    "The wind\nremembers\nwho passed.",
+    "Kneel, or\nbe carried\noff."
+   ],
+   "spare_text": "* The Cult Priest lowers its staff and is gone into the dark grass.",
+   "lore": "A Cult Priest of Greater Wesing, southwest of the city of Wesing, also seen in No Man's Castle. It does little harm by its own hand; its strength is the blessing it lays on those who fight beside it. Stats are its level-1 values from the wiki.",
+   "acts": [
+    {
+     "name": "Listen",
+     "text": [
+      "* You stand still and listen to the litany.",
+      "* The Cult Priest's voice slows, as if surprised to be heard."
+     ],
+     "mercy": 40,
+     "once": true,
+     "calm": 1
+    },
+    {
+     "name": "Bow",
+     "text": [
+      "* You lower your head to the robed figure.",
+      "* It hesitates. The staff dips."
+     ],
+     "mercy": 35,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Ask",
+     "text": [
+      "* You ask whether it saw who passed this road with captives.",
+      "* The hood turns west. It says nothing, but it does not raise the staff."
+     ],
+     "mercy": 40,
+     "once": true,
+     "calm": 1
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Cheer",
+     "tu": 100,
+     "base_pattern": "orbit_ring",
+     "projectile": "fx_silverring",
+     "tint_hex": "#E6E6F0",
+     "twist": "none",
+     "box": [
+      360,
+      230
+     ],
+     "intensity": 0.8,
+     "flavor": "* The Cult Priest raises its staff and blesses its kin. Their guard thickens."
+    },
+    {
+     "ability": "Gust",
+     "tu": 100,
+     "base_pattern": "tornado_sweep",
+     "projectile": "fx_tornado",
+     "tint_hex": "#B8C8D8",
+     "twist": "none",
+     "box": [
+      420,
+      240
+     ],
+     "intensity": 0.9,
+     "flavor": "* A cold gust tears across the field from the priest's sleeve."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "outskirts",
+   "forest"
+  ],
+  "name": "Slime",
+  "id": "slime",
+  "wiki": {
+   "number": "045",
+   "stars": 2.5,
+   "element": "Earth",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/3/38/Slime.png",
+   "image_size": [
+    128,
+    126
+   ],
+   "lv1": {
+    "hp": 29,
+    "attack": 7,
+    "magic": 7,
+    "speed": 14,
+    "defense": 11,
+    "resist": 11
+   },
+   "abilities": [
+    {
+     "name": "Awaken",
+     "tu": "100",
+     "target": "All Friends",
+     "effect": "Removes Sleep"
+    },
+    {
+     "name": "Ooze",
+     "tu": "70",
+     "target": "One Foe",
+     "effect": "4-5 Physical Damage (Earth)"
+    },
+    {
+     "name": "SlowProc",
+     "tu": "-",
+     "target": "-",
+     "effect": "Slows Target 101% when attacked."
+    },
+    {
+     "name": "Split",
+     "tu": "250",
+     "target": "Self",
+     "effect": "Copies target. HP compared to creator is shared."
+    }
+   ],
+   "evolution": "Evolves from Sludge at level 8. Evolves into King Slime at level 25.",
+   "obtain": "Found in Safaris. Can also be found in Ringfeld (Ringfield). Listed in the Greater Wesing (Southeast of Wesing) and Forest of Mangal monster lists."
+  },
+  "sprite": {
+   "description": "A translucent blue ooze creature, an upright gelatinous body with a rounded head bearing two dark eyes and an open mouth, its lower mass splaying into many dripping tendrils and small beaded droplets on thin stalks. Clean transparent sprite.",
+   "dominant_color_hex": "#3F7FD0",
+   "faces": "front",
+   "flier": false
+  },
+  "battle": {
+   "check": "* SLIME - Earth - 2.5 Stars.\n* Strike it and the cold clings.\n* It can divide itself.",
+   "intro": "* A Slime rises out of the wet ground.",
+   "idle": [
+    "* The Slime settles, then rises again.",
+    "* Something drips from the Slime and crawls back to it.",
+    "* The Slime's surface trembles without wind.",
+    "* The air smells of wet earth and stagnant water."
+   ],
+   "talk": [
+    "...\nglup.",
+    "cold...\nstay\ncold.",
+    "we are\nmany.\nwe are one.",
+    "the earth\nremembers\nrain.",
+    "do not\nstrike.\nyou slow."
+   ],
+   "spare_text": "* The Slime sinks back into the mud. Only a damp mark remains on the road.",
+   "lore": "No. 045, a 2.5-star Earth monster. Evolves from Sludge at level 8 and into King Slime at level 25. Found in Safaris and Ringfeld; also listed southeast of Wesing and in the Forest of Mangal. Its body punishes those who strike it, slowing them, and it can split into a copy that shares its life. Stats are its level-1 values.",
+   "acts": [
+    {
+     "name": "Wait",
+     "text": [
+      "* You stand still and let it come no closer.",
+      "* The Slime's trembling slows."
+     ],
+     "mercy": 35,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Kneel",
+     "text": [
+      "* You kneel and press your palm to the cold soil.",
+      "* The Slime leans toward the ground beneath your hand."
+     ],
+     "mercy": 45,
+     "once": true,
+     "calm": 2
+    },
+    {
+     "name": "Hold Back",
+     "text": [
+      "* You lower your weapon instead of striking.",
+      "* Nothing clings to you. The Slime stops dividing."
+     ],
+     "mercy": 40,
+     "once": false,
+     "calm": 1
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Ooze",
+     "tu": 70,
+     "base_pattern": "column_drop",
+     "projectile": "orb_moss",
+     "tint_hex": "#3F7FD0",
+     "twist": "slow",
+     "box": [
+      340,
+      230
+     ],
+     "intensity": 0.9,
+     "flavor": "* Cold ooze falls from above. Where it touches, the body grows heavy."
+    },
+    {
+     "ability": "Split",
+     "tu": 250,
+     "base_pattern": "bounce_orbs",
+     "projectile": "fx_waterring",
+     "tint_hex": "#5A9BE0",
+     "twist": "multi_hit",
+     "box": [
+      420,
+      240
+     ],
+     "intensity": 1,
+     "flavor": "* The Slime tears in two. Both halves move as one."
+    },
+    {
+     "ability": "Awaken",
+     "tu": 100,
+     "base_pattern": "radial_burst",
+     "projectile": "fx_sparkle",
+     "tint_hex": "#8FC4F0",
+     "twist": "all_foes_wide",
+     "box": [
+      380,
+      230
+     ],
+     "intensity": 0.75,
+     "flavor": "* A low tremor runs through the ground. Nothing nearby will stay asleep."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "outskirts"
+  ],
+  "name": "Spike Ball",
+  "id": "spike_ball",
+  "wiki": {
+   "number": "073",
+   "stars": 3,
+   "element": "Earth",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/9/9f/Spike_Ball.png",
+   "image_size": [
+    171,
+    133
+   ],
+   "lv1": {
+    "hp": 0,
+    "attack": 0,
+    "magic": 0,
+    "speed": 0,
+    "defense": 0,
+    "resist": 0
+   },
+   "abilities": [
+    {
+     "name": "Exoskeleton",
+     "tu": "160",
+     "target": "Self",
+     "effect": "+2 Defense, +2 Resist"
+    },
+    {
+     "name": "Scapegoat",
+     "tu": "160",
+     "target": "Self",
+     "effect": "Makes enemies more likely to attack this monster for 500 TUs."
+    },
+    {
+     "name": "[Thorns]",
+     "tu": "-",
+     "target": "-",
+     "effect": "Reflects 1 damage upon getting hit."
+    }
+   ],
+   "evolution": "Spike Ball -> Spike Crab (evolves at level 26) -> Spike Monster (evolves at level 55)",
+   "obtain": "Found in No Man's Castle near the bottom and in the forest west of Lorensia. *useful to let enemys attack in order to weaken them for capture* Spike Balls can also be found in a spot in Greater Wesing"
+  },
+  "sprite": {
+   "description": "A round husk of bone-white, curving thorns caged around a dark green, faintly glistening core; long spikes radiate from its rim and three pale stalks rise from its crown, the two outer ones curling sideways to yellowish bulb-eyes and the central one standing upright with a yellowish tip.",
+   "dominant_color_hex": "#2a4a36",
+   "faces": "front",
+   "flier": false
+  },
+  "battle": {
+   "check": "* SPIKE BALL - Earth - 3 Stars.\n* A thorned husk with something soft inside.\n* It does not strike. It endures.",
+   "intro": "* Something pale rolls out of the ditch and settles across the road.",
+   "idle": [
+    "* Spike Ball sits in the road. Its eye-stalks turn toward you, then away.",
+    "* The green core inside the husk swells and falls, like slow breathing.",
+    "* The thorns creak as the husk tightens around itself.",
+    "* Spike Ball has not moved. It is waiting for you to tire."
+   ],
+   "talk": [
+    "...",
+    "(creak)",
+    "(the stalks\nturn slowly)",
+    "(it draws\ninward)",
+    "(a wet sound\nfrom within)"
+   ],
+   "spare_text": "* Spike Ball loosens its thorns and rolls back into the dark grass.",
+   "lore": "Spike Ball (#073) is a 3-star Earth monster of Dragon Island Blue. Its wiki page lists no Statistics table at any level, so its level-1 stats are recorded here as 0 rather than invented. It knows only Exoskeleton, Scapegoat and the passive [Thorns], which reflects 1 damage whenever it is hit. Tamers note it is useful to let enemies attack in order to weaken them for capture. It is found near the bottom of No Man's Castle, in the forest west of Lorensia, and in a spot in Greater Wesing. Its line, Spike Crab at level 26 and Spike Monster at level 55, is said to draw on the spiked slug Gla'aki of Lovecraft's stories.",
+   "acts": [
+    {
+     "name": "Check",
+     "text": [
+      "* SPIKE BALL - Earth - 3 Stars.",
+      "* A thorned husk with something soft inside. It does not strike. It endures."
+     ],
+     "mercy": 0,
+     "once": false,
+     "calm": 0
+    },
+    {
+     "name": "Wait",
+     "text": [
+      "* You lower your hands and stand still.",
+      "* Every thorn on Spike Ball is turned toward you. Slowly, a few of them relax."
+     ],
+     "mercy": 40,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Step Aside",
+     "text": [
+      "* You leave the road clear and step onto the verge.",
+      "* Spike Ball's eye-stalks follow you. It no longer needs to guard the path."
+     ],
+     "mercy": 60,
+     "once": true,
+     "calm": 1
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Exoskeleton",
+     "tu": 160,
+     "base_pattern": "orbit_ring",
+     "projectile": "fx_silverring",
+     "tint_hex": "#d8d4c4",
+     "twist": "neutralize",
+     "box": [
+      340,
+      230
+     ],
+     "intensity": 0.8,
+     "flavor": "* The husk thickens. Pale plates close over the green core, layer on layer."
+    },
+    {
+     "ability": "Scapegoat",
+     "tu": 160,
+     "base_pattern": "homing",
+     "projectile": "orb_moss",
+     "tint_hex": "#2f5a3c",
+     "twist": "none",
+     "box": [
+      420,
+      240
+     ],
+     "intensity": 0.9,
+     "flavor": "* Spike Ball rolls into your path. Your eyes keep returning to it, whether you wish it or not."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "forest"
+  ],
+  "name": "Evil Eye",
+  "id": "evil_eye",
+  "wiki": {
+   "number": "053",
+   "stars": 2,
+   "element": "Death",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/2/27/Evil_Eye.png",
+   "image_size": [
+    95,
+    57
+   ],
+   "lv1": {
+    "hp": 30,
+    "attack": 3,
+    "magic": 10,
+    "speed": 10,
+    "defense": 3,
+    "resist": 6
+   },
+   "abilities": [
+    {
+     "name": "Flame",
+     "tu": "130",
+     "target": "One Foe",
+     "effect": "11 - 14 Magical Damage (Death)"
+    }
+   ],
+   "evolution": "Evolves to Watcher at level 20, Watcher evolves to Lich Eye at level 33, Lich Eye evolves to Beholder at level 48.",
+   "obtain": "Can be obtained in No Man's Castle or Giant Mangal. It can also be obtained from an egg. Also found in Greater Wesing (-Southeast Forest-)."
+  },
+  "sprite": {
+   "description": "A single bloodshot red eyeball with a pale green iris and black pupil, cradled in a nest of curling black-violet tendrils; it hovers with no body.",
+   "dominant_color_hex": "#2B2333",
+   "faces": "front",
+   "flier": true
+  },
+  "battle": {
+   "check": "* EVIL EYE - Death element, 2 stars.\n* A lidless eye bound in black tendrils. It does not blink.",
+   "intro": "* An Evil Eye opens between the trees.",
+   "idle": [
+    "* The Evil Eye has not blinked once.",
+    "* Black tendrils curl and uncurl around the iris.",
+    "* The waystones look dimmer while it watches.",
+    "* Somewhere behind you, the eye's gaze is still warm."
+   ],
+   "talk": [
+    "...",
+    "I saw them\npass. All of\nthem.",
+    "Nothing walks\nthis road\nunseen.",
+    "You look\nback. Why?",
+    "Close your\neyes. I\ncannot."
+   ],
+   "spare_text": "* The Evil Eye slowly turns its gaze to the dark.\n* It drifts back into the trees.",
+   "lore": "Evil Eye (#053) is a 2-star Death-element creature catalogued in Dragon Island Blue, found in Greater Wesing's Southeast Forest alongside Cockatrice, Dark Priest, Devil Worm and Scale Knight, and also in No Man's Castle and Giant Mangal, or hatched from an egg. Its only recorded ability is Flame (130 TU, one foe, 11-14 magical Death damage). Stats shown are its level-1 values. It is the first of four forms: Watcher at level 20, Lich Eye at level 33, and Beholder at level 48. In the forest the tamers say it remembers every traveler who passes the sun-carved waystones.",
+   "acts": [
+    {
+     "name": "Meet Gaze",
+     "text": [
+      "* You hold the Evil Eye's stare without looking away.",
+      "* The iris narrows. Something in it eases."
+     ],
+     "mercy": 45,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Avert Eyes",
+     "text": [
+      "* You lower your eyes to the moss and wait.",
+      "* The tendrils stop reaching for you."
+     ],
+     "mercy": 35,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Ask",
+     "text": [
+      "* You ask what it saw pass through the forest.",
+      "* The eye turns west, toward the deeper woods, and holds there."
+     ],
+     "mercy": 30,
+     "once": true,
+     "calm": 1
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Flame",
+     "tu": 130,
+     "base_pattern": "homing",
+     "projectile": "orb_blood",
+     "tint_hex": "#7A1E3A",
+     "twist": "burn",
+     "box": [
+      340,
+      230
+     ],
+     "intensity": 0.9,
+     "flavor": "* The eye's stare kindles. Dark flame follows your movement."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "forest"
+  ],
+  "name": "Cockatrice",
+  "id": "cockatrice",
+  "wiki": {
+   "number": "068",
+   "stars": 3,
+   "element": "Air",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/0/09/Cockatrice.png",
+   "image_size": [
+    78,
+    100
+   ],
+   "lv1": {
+    "hp": 30,
+    "attack": 9,
+    "magic": 9,
+    "speed": 16,
+    "defense": 11,
+    "resist": 11
+   },
+   "abilities": [
+    {
+     "name": "Escape",
+     "tu": "130",
+     "target": "-",
+     "effect": "Escape from the battle"
+    },
+    {
+     "name": "Sky Dive",
+     "tu": "160",
+     "target": "1 Foe",
+     "effect": "11-14 Physical Damage"
+    },
+    {
+     "name": "Wind",
+     "tu": "130",
+     "target": "All Allies",
+     "effect": "Removes Sleep & Poison"
+    },
+    {
+     "name": "Wing Cutter",
+     "tu": "70",
+     "target": "2 Foes",
+     "effect": "3-4 Physical Damage"
+    }
+   ],
+   "evolution": "Does not evolve (1st Form only).",
+   "obtain": "Found in Northern Alvalon. Also found in Greater Wesing and in the lower part of Ringfeld."
+  },
+  "sprite": {
+   "description": "Dark brown-grey feathered bird with spread ragged wings, a red comb and wattle at the head, and a long blue serpent tail curling below it. Clean transparent 78x100 sprite.",
+   "dominant_color_hex": "#4a3c3c",
+   "faces": "right",
+   "flier": true
+  },
+  "battle": {
+   "check": "* COCKATRICE - AIR - 3 STARS.\n* Fast and wary. Its tail is a serpent. It will not stay if the fight turns against it.",
+   "intro": "* A Cockatrice drops from the canopy without a sound.",
+   "idle": [
+    "* The Cockatrice watches you sideways, one eye at a time.",
+    "* Its serpent tail tastes the air near your boots.",
+    "* Feathers rasp against each other. The forest goes quiet around it.",
+    "* The Cockatrice shifts its weight toward the trees behind it."
+   ],
+   "talk": [
+    "Krrh.",
+    "...scrrk.",
+    "Not yours.\nThis branch.",
+    "Hss...\nhss.",
+    "Leave the\nnest alone."
+   ],
+   "spare_text": "* The Cockatrice folds its wings and watches you go. It does not follow.",
+   "lore": "Cockatrice (#068) is a 3-star Air monster that does not evolve. It is found in Northern Alvalon, in Greater Wesing and in the lower part of Ringfeld. In the woods west of Azurelake it nests high in the canopy above the sun-carved waystones and strikes from above. It is quick to flee, and tamers say the sound of its wings is the last thing a lost traveller hears before it is gone.",
+   "acts": [
+    {
+     "name": "Stand Still",
+     "text": [
+      "* You lower your arms and stop moving.",
+      "* The Cockatrice's head stops twitching. It studies you."
+     ],
+     "mercy": 40,
+     "once": true,
+     "calm": 30
+    },
+    {
+     "name": "Look Away",
+     "text": [
+      "* You turn your eyes from its gaze and toward the ground.",
+      "* The serpent tail uncoils a little. It no longer feels watched."
+     ],
+     "mercy": 35,
+     "once": false,
+     "calm": 25
+    },
+    {
+     "name": "Step Back",
+     "text": [
+      "* You give ground, slowly, away from the nesting tree.",
+      "* The Cockatrice lets out a low rattle, but it does not dive."
+     ],
+     "mercy": 40,
+     "once": false,
+     "calm": 30
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Sky Dive",
+     "tu": 160,
+     "base_pattern": "swoop",
+     "projectile": "fx_silverring",
+     "tint_hex": "#6b5a52",
+     "twist": "none",
+     "box": [
+      460,
+      240
+     ],
+     "intensity": 1.15,
+     "flavor": "* The Cockatrice climbs into the canopy, then falls on you like a stone."
+    },
+    {
+     "ability": "Wing Cutter",
+     "tu": 70,
+     "base_pattern": "rings_sweep",
+     "projectile": "fx_tornado",
+     "tint_hex": "#9aa7a0",
+     "twist": "multi_hit",
+     "box": [
+      400,
+      230
+     ],
+     "intensity": 0.9,
+     "flavor": "* Two hard beats of its wings. The air comes at you edged."
+    },
+    {
+     "ability": "Wind",
+     "tu": 130,
+     "base_pattern": "tornado_sweep",
+     "projectile": "fx_tornado",
+     "tint_hex": "#7fa3b8",
+     "twist": "neutralize",
+     "box": [
+      480,
+      240
+     ],
+     "intensity": 0.8,
+     "flavor": "* A cold gust tears through the clearing and strips the lingering ailments from it."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "forest",
+   "mosswood"
+  ],
+  "name": "Beast Knight",
+  "id": "beast_knight",
+  "wiki": {
+   "number": "#061",
+   "stars": 3,
+   "element": "Earth",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/b/b5/Beast_Knight.png",
+   "image_size": [
+    121,
+    102
+   ],
+   "lv1": {
+    "hp": 31,
+    "attack": 8,
+    "magic": 7,
+    "speed": 21,
+    "defense": 16,
+    "resist": 11
+   },
+   "abilities": [
+    {
+     "name": "Assault",
+     "tu": "160",
+     "target": "One Foe",
+     "effect": "10 - 13 Physical Damage (Earth)"
+    }
+   ],
+   "evolution": "Beast Knight evolves into Rider at level 23, and Rider evolves into Berith at level 44.",
+   "obtain": "Found easily at Safaris. Also found in Greater Wesing (southeast of Wesing), where the spot is held by an Overlord; the Beast Knights there are level 12. Listed in the Norwoods monster table."
+  },
+  "sprite": {
+   "description": "Crouched knight in dark iron plate with a pale, mottled pattern across the chest and pauldrons, a crested helm topped with a red plume, a long bone-white cape sweeping behind, one knee down and a short blade held low. Clean transparent sprite.",
+   "dominant_color_hex": "#3A3A3E",
+   "faces": "left",
+   "flier": false
+  },
+  "battle": {
+   "check": "* BEAST KNIGHT - EARTH - 3 STARS.\n* A Humanoid in iron. It keeps the old road.",
+   "intro": "* A Beast Knight rises out of the ferns, blade low.",
+   "idle": [
+    "* The Beast Knight holds one knee to the earth. It does not rest.",
+    "* Its pale cape stirs, though the forest air is still.",
+    "* The red crest on its helm turns to follow you.",
+    "* Smells of wet iron and turned soil."
+   ],
+   "talk": [
+    "Turn back.\nThe road ends.",
+    "I knelt here\nbefore the\nstones were cut.",
+    "Who do you\nhunt, boy?",
+    "Steel remembers.\nSo does earth.",
+    "...You do not\nflinch."
+   ],
+   "spare_text": "* The Beast Knight lowers its blade and sinks back among the roots. The road is open.",
+   "lore": "A Humanoid Earth monster, #061 in the collector's record, rated three stars. It is found easily at the Safaris and also southeast of Wesing in Greater Wesing, where the ground is held by an Overlord and the Beast Knights there are level 12. The record lists one technique, Assault: 160 TU against one foe for 10 to 13 physical Earth damage. The wiki stat table gives a single set of values, recorded here as level 1: HP 31, Attack 8, Magic 7, Speed 21, Defense 16, Resist 11. It evolves into Rider at level 23 and into Berith at level 44. On the western road it is said to kneel where travelers stop, as though waiting to be given an order no one living remembers.",
+   "acts": [
+    {
+     "name": "Kneel",
+     "text": [
+      "* You lower yourself to one knee, the way it does.",
+      "* The Beast Knight goes still. Something in its posture eases."
+     ],
+     "mercy": 45,
+     "once": true,
+     "calm": 1
+    },
+    {
+     "name": "Stand Firm",
+     "text": [
+      "* You plant your feet and do not step back from its blade.",
+      "* The Beast Knight tilts its helm. It seems to weigh you."
+     ],
+     "mercy": 35,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Speak Purpose",
+     "text": [
+      "* You tell it why you walk this road, and who was taken.",
+      "* The Beast Knight listens. Its grip on the blade loosens."
+     ],
+     "mercy": 40,
+     "once": true,
+     "calm": 2
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Assault",
+     "tu": 160,
+     "base_pattern": "telegraph_lines",
+     "projectile": "fx_silverring",
+     "tint_hex": "#8A7350",
+     "twist": "none",
+     "box": [
+      420,
+      230
+     ],
+     "intensity": 1,
+     "flavor": "* The Beast Knight surges forward. The ground splits along its stroke."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "mosswood"
+  ],
+  "name": "Cult Warrior",
+  "id": "cult_warrior",
+  "wiki": {
+   "number": "088",
+   "stars": 2,
+   "element": "Air",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/9/9d/Cult_Warrior.png",
+   "image_size": [
+    115,
+    99
+   ],
+   "lv1": {
+    "hp": 37,
+    "attack": 13,
+    "magic": 6,
+    "speed": 13,
+    "defense": 10,
+    "resist": 10
+   },
+   "abilities": [
+    {
+     "name": "Assault",
+     "tu": "160",
+     "target": "1 Foe",
+     "effect": "17-20 Physical Damage"
+    },
+    {
+     "name": "Axe",
+     "tu": "50",
+     "target": "1 Foe",
+     "effect": "6-7 Physical Damage"
+    },
+    {
+     "name": "Cheer",
+     "tu": "100",
+     "target": "All Allies",
+     "effect": "+2 Defense, +1 Attack"
+    }
+   ],
+   "evolution": "Cult Priest (evolves at level 17) -> Cult Warrior (evolves at level 33) -> Cult Rogue",
+   "obtain": "Found in Giant Mangal and in the Forest of Mangal."
+  },
+  "sprite": {
+   "description": "Armored figure in heavy layered white robes with a tall purple bucket helm, slit visor, and a long-hafted axe held low at its side. Clean transparent sprite.",
+   "dominant_color_hex": "#D9D9DE",
+   "faces": "front",
+   "flier": false
+  },
+  "battle": {
+   "check": "* CULT WARRIOR - AIR - 2 STARS.\n* A Cult Priest who kept the rite\n  long enough to be given an axe.",
+   "intro": "* A white robe steps out between\n  the moss-hung trunks. The axe\n  comes up without a sound.",
+   "idle": [
+    "* The Cult Warrior stands still.\n  Its robes do not move with the wind.",
+    "* Something murmurs behind the\n  purple helm. Not to you.",
+    "* The axe-head rests against the moss.\n  It has been cleaned. Recently.",
+    "* The air here smells of old\n  incense and wet bark."
+   ],
+   "talk": [
+    "None pass\nthe deep wood.",
+    "The rite was\nkept. I was\nchosen.",
+    "Go back to\nyour lamps,\nchild.",
+    "We were\npriests once.\nNow we guard.",
+    "Whom do you\nfollow\nhere?"
+   ],
+   "spare_text": "* The Cult Warrior lowers its axe\n  and steps back into the trees.\n* Its murmuring fades into the moss.",
+   "lore": "The second form of the Cult Priest line. A priest that reaches level 17 takes up the axe and the helm; at level 33 it becomes a Cult Rogue. In DIB it is found in Giant Mangal and the Forest of Mangal. Here, its white robes deep in the Mosswood show that the cult seen on the forest road reaches further west than anyone in Azurelake believed. Wiki stats are given for level 1.",
+   "acts": [
+    {
+     "name": "Hold Ground",
+     "text": [
+      "* You plant your feet and do not\n  look away from the visor.",
+      "* The Cult Warrior tilts its helm.\n  It weighs you."
+     ],
+     "mercy": 35,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Speak Rite",
+     "text": [
+      "* You repeat the murmured words\n  you heard behind the helm.",
+      "* The axe falters. For a moment\n  it seems to remember the priest\n  it used to be."
+     ],
+     "mercy": 45,
+     "once": true,
+     "calm": 2
+    },
+    {
+     "name": "Lower Hood",
+     "text": [
+      "* You lower your hood and show\n  your face. You are only a tamer.",
+      "* The Cult Warrior's grip on the\n  haft loosens."
+     ],
+     "mercy": 30,
+     "once": false,
+     "calm": 1
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Assault",
+     "tu": 160,
+     "base_pattern": "telegraph_lines",
+     "projectile": "fx_tornado",
+     "tint_hex": "#B9B4D6",
+     "twist": "none",
+     "box": [
+      460,
+      240
+     ],
+     "intensity": 1.2,
+     "flavor": "* The Cult Warrior draws the axe\n  far back. The air tightens around\n  the blade before it falls."
+    },
+    {
+     "ability": "Axe",
+     "tu": 50,
+     "base_pattern": "aimed_volley",
+     "projectile": "fx_silverring",
+     "tint_hex": "#D9D9DE",
+     "twist": "none",
+     "box": [
+      360,
+      230
+     ],
+     "intensity": 0.8,
+     "flavor": "* Short, quick chops. The edge\n  whistles through the moss-light."
+    },
+    {
+     "ability": "Cheer",
+     "tu": 100,
+     "base_pattern": "rings_sweep",
+     "projectile": "fx_silverring",
+     "tint_hex": "#8A6FC9",
+     "twist": "none",
+     "box": [
+      420,
+      240
+     ],
+     "intensity": 0.7,
+     "flavor": "* The Cult Warrior raises the axe\n  and chants. Its robes settle,\n  heavier. Its stance hardens."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "mosswood"
+  ],
+  "name": "Dream Eater",
+  "id": "dream_eater",
+  "wiki": {
+   "number": "130",
+   "stars": 2.5,
+   "element": "Death",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/2/21/Dream_Eater.png",
+   "image_size": [
+    227,
+    140
+   ],
+   "lv1": {
+    "hp": 31,
+    "attack": 4,
+    "magic": 10,
+    "speed": 3,
+    "defense": 6,
+    "resist": 6
+   },
+   "abilities": [
+    {
+     "name": "Nightmare",
+     "tu": "160",
+     "target": "1 Foe",
+     "effect": "4-5 Physical Damage (Death), +400% vs. Sleep"
+    }
+   ],
+   "evolution": "Dream Eater evolves into Dream Hunter at level 27, and Dream Hunter evolves into Morfeus at level 44.",
+   "obtain": "They can be found on all floors on No Man's Castle and are typically quite common. Dream Eaters can also be found in a single spot in Greater Wesing, the same spot where Liches can be found."
+  },
+  "sprite": {
+   "description": "A grey, many-eyed mass of ridged flesh with pale yellow-green eyes, sprouting long branching tentacle-arms that end in clawed fingers and reach upward and outward.",
+   "dominant_color_hex": "#6E6E7A",
+   "faces": "front",
+   "flier": false
+  },
+  "battle": {
+   "check": "* DREAM EATER - DEATH - 2.5 STARS.\n* It feeds on what sleepers see.\n* Its Nightmare cuts deepest into those who sleep.",
+   "intro": "* Something heaves out of the moss.\n* Too many eyes open at once.",
+   "idle": [
+    "* The Dream Eater's eyes open and close out of rhythm.",
+    "* Its long fingers comb the air, searching for something resting.",
+    "* The moss around it has gone grey.",
+    "* You feel, briefly, how tired you are."
+   ],
+   "talk": [
+    "Sleep.",
+    "You carry\ndreams.\nGive them.",
+    "The others\nslept here.\nThey fed me.",
+    "Close your\neyes, small\none.",
+    "Why do you\nnot rest?"
+   ],
+   "spare_text": "* The Dream Eater's eyes close one by one.\n* It sinks back into the moss, unfed.",
+   "lore": "Dream Eater (#130) is a 2.5-star Death monster. The wiki gives its stats at level 1 only: HP 31, Attack 4, Magic 10, Speed 3, Defense 6, Resist 6. It knows a single ability, Nightmare (160 TU, 1 Foe): 4-5 Physical Damage (Death), +400% vs. Sleep. It is common on every floor of No Man's Castle, and in Greater Wesing it appears only in a single spot, the same one where Liches are found. That is why it lingers in the mosswood near the Lich. It evolves into Dream Hunter at level 27 and into Morfeus at level 44. The wiki says it is based on Lovecraft's Abhoth, the Source of Uncleanliness, said to be the source of all miscreation and abomination.",
+   "acts": [
+    {
+     "name": "Stay Awake",
+     "text": [
+      "* You bite the inside of your cheek and keep your eyes open.",
+      "* The Dream Eater finds nothing soft to take hold of."
+     ],
+     "mercy": 40,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Meet Its Eyes",
+     "text": [
+      "* You look into each eye in turn and do not look away.",
+      "* Several of them close, as if unsettled."
+     ],
+     "mercy": 35,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Give A Memory",
+     "text": [
+      "* You let one quiet memory of home rise in your mind and drift toward it.",
+      "* The tendrils draw it in slowly. The creature grows still."
+     ],
+     "mercy": 60,
+     "once": true,
+     "calm": 2
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Nightmare",
+     "tu": 160,
+     "base_pattern": "homing",
+     "projectile": "orb_web",
+     "tint_hex": "#7A6F8E",
+     "twist": "none",
+     "box": [
+      360,
+      240
+     ],
+     "intensity": 1,
+     "flavor": "* Grey fingers stretch toward you through the dark, groping for a sleeper."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "mosswood"
+  ],
+  "name": "Mutation",
+  "id": "mutation",
+  "wiki": {
+   "number": "042",
+   "stars": 3,
+   "element": "Earth",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/e/e5/Mutation.png",
+   "image_size": [
+    219,
+    141
+   ],
+   "lv1": {
+    "hp": 31,
+    "attack": 9,
+    "magic": 7,
+    "speed": 16,
+    "defense": 16,
+    "resist": 11
+   },
+   "abilities": [
+    {
+     "name": "Adhesive Mist",
+     "tu": "200",
+     "target": "All Foes",
+     "effect": "Slows actions by 30%"
+    },
+    {
+     "name": "Pierce",
+     "tu": "160",
+     "target": "1 Foe",
+     "effect": "11-14 Physical Damage (Earth)"
+    },
+    {
+     "name": "Venom Shot",
+     "tu": "100",
+     "target": "1 Foe",
+     "effect": "8-9 Physical Damage (Earth), Poisons for 500 TUs (8-9 additional damage)"
+    }
+   ],
+   "evolution": "Evolves from Giant Ant at level 20. Evolves into Chimera Ant.",
+   "obtain": "Evolves from Giant Ant at level 20. Found in the Forest of Mangal (first map to the left) and in the Giant Mangal in Norwoods."
+  },
+  "sprite": {
+   "description": "A black, segmented insectoid with a heavy carapace, curled tightly around a large dark-red egg sac; small red eyes, jointed legs and two pincer-tipped limbs reaching outward.",
+   "dominant_color_hex": "#2B2B2E",
+   "faces": "right",
+   "flier": false
+  },
+  "battle": {
+   "check": "* MUTATION - Earth - 3 Stars.\n* A Giant Ant that kept growing. It guards the sac as if its life were inside it.",
+   "intro": "* Something black uncoils from the moss, holding a red sac close.",
+   "idle": [
+    "* The Mutation shifts its grip on the egg sac. Something inside it moves.",
+    "* A thin, sticky mist hangs in the air between you.",
+    "* The moss under its legs is wet and dark.",
+    "* Its pincers click once, then go still."
+   ],
+   "talk": [
+    "Mine.\nAll of it.",
+    "Not ant.\nNot anymore.",
+    "The sac is\nwarm. Stay\nback.",
+    "It grows.\nI grow.",
+    "Leave the\nforest\nquiet."
+   ],
+   "spare_text": "* The Mutation draws back into the moss, the sac pressed against its body. It does not follow you.",
+   "lore": "Number 042 in the Dragon Island Blue records, an Earth creature of three stars. Mutation is what a Giant Ant becomes at level 20, and it later becomes the Chimera Ant. It is found in the Forest of Mangal and in the Giant Mangal of Norwoods. In the Mosswood it guards its egg sac above everything else, and it attacks only what comes too close.",
+   "acts": [
+    {
+     "name": "Check",
+     "text": [
+      "* MUTATION - Earth - 3 Stars.",
+      "* A Giant Ant that kept growing. It guards the sac as if its life were inside it."
+     ],
+     "mercy": 0,
+     "once": false,
+     "calm": 0
+    },
+    {
+     "name": "Keep Distance",
+     "text": [
+      "* You step back and lower your arms.",
+      "* The Mutation watches you, then loosens its hold on the sac a little."
+     ],
+     "mercy": 45,
+     "once": false,
+     "calm": 20
+    },
+    {
+     "name": "Look Away",
+     "text": [
+      "* You turn your eyes from the egg sac.",
+      "* The pincers stop clicking. It no longer sees you as a thief."
+     ],
+     "mercy": 60,
+     "once": true,
+     "calm": 30
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Adhesive Mist",
+     "tu": 200,
+     "base_pattern": "sparkle_rain",
+     "projectile": "fx_sparkle",
+     "tint_hex": "#9AA08A",
+     "twist": "slow",
+     "box": [
+      480,
+      240
+     ],
+     "intensity": 0.8,
+     "flavor": "* A grey, clinging mist settles over everything. Your movements turn heavy."
+    },
+    {
+     "ability": "Pierce",
+     "tu": 160,
+     "base_pattern": "telegraph_lines",
+     "projectile": "orb_blood",
+     "tint_hex": "#3A3A3F",
+     "twist": "none",
+     "box": [
+      360,
+      230
+     ],
+     "intensity": 1,
+     "flavor": "* The pincers draw back, then drive forward like a spike through bark."
+    },
+    {
+     "ability": "Venom Shot",
+     "tu": 100,
+     "base_pattern": "aimed_volley",
+     "projectile": "orb_moss",
+     "tint_hex": "#6B8E23",
+     "twist": "poison",
+     "box": [
+      400,
+      230
+     ],
+     "intensity": 0.9,
+     "flavor": "* It spits a dark green venom. The poison keeps working after it lands."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "mosswood"
+  ],
+  "name": "Wasp Queen",
+  "id": "wasp_queen",
+  "wiki": {
+   "number": "030",
+   "stars": 3.5,
+   "element": "Air",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/d/d8/Wasp_Queen.png",
+   "image_size": [
+    69,
+    95
+   ],
+   "lv1": {
+    "hp": 31,
+    "attack": 12,
+    "magic": 6,
+    "speed": 26,
+    "defense": 10,
+    "resist": 10
+   },
+   "abilities": [
+    {
+     "name": "Analyze",
+     "tu": "160",
+     "target": "-",
+     "effect": "See enemy stats and incoming enemy monsters"
+    },
+    {
+     "name": "Detox",
+     "tu": "130",
+     "target": "All Allies",
+     "effect": "Removes Poison"
+    },
+    {
+     "name": "Double Venom",
+     "tu": "160",
+     "target": "2 Foes",
+     "effect": "9-12 Physical Damage (Air), Poisons targets for 500 TUs (16-19 additional air damage)"
+    },
+    {
+     "name": "Venom Sting",
+     "tu": "130",
+     "target": "1 Foe",
+     "effect": "13-16 Physical Damage (Air), Poisons target for 500 TUs (13-16 additional air damage)"
+    }
+   ],
+   "evolution": "Evolves from Giant Wasp at level 14 (2nd form; final form).",
+   "obtain": "Found in Giant Mangal, the Forest of Mangal, and Swinedene. Also found in Cave of Earlsome."
+  },
+  "sprite": {
+   "description": "Slender humanoid wasp, glossy charcoal-black body banded with yellow on the head crest, thorax and legs; translucent violet-grey wings trailing behind on the right; a long thin stinger blade held diagonally across the body. Clean transparent 69x95 sprite (fetch with ?format=original for PNG), leaning forward with the head toward the left.",
+   "dominant_color_hex": "#4a4a48",
+   "faces": "left",
+   "flier": true
+  },
+  "battle": {
+   "check": "* WASP QUEEN - Air - 3.5 Stars.\n* The Giant Wasp, grown into its final form. Her sting stays in you long after it is drawn.",
+   "intro": "* A thin hum cuts through the moss. The Wasp Queen descends, blade first.",
+   "idle": [
+    "* The Wasp Queen hangs in the air, wings never still.",
+    "* Her blade drips something green onto the moss.",
+    "* She tilts her head. She is counting your breaths.",
+    "* The hum of her wings rises and falls like a slow pulse."
+   ],
+   "talk": [
+    "Your blood\nruns slow.\nI hear it.",
+    "The swarm\nis gone.\nI remain.",
+    "Kneel. It\nhurts less\nlying down.",
+    "I have\nmeasured\nyou already.",
+    "Leave my\nwood, or\nfeed it."
+   ],
+   "spare_text": "* The Wasp Queen lowers her blade. She rises into the canopy and the humming fades into the dark.",
+   "lore": "Wasp Queen (#030, 3.5 stars, Air) is the second and final form of the Giant Wasp, evolving at level 14. Wiki records: Lv1 HP 31, ATK 12, MAG 6, SPD 26, DEF 10, RES 10 (Lv150: HP 1804, ATK 682, MAG 379, SPD 1516, DEF 606, RES 606). She is found in Giant Mangal, the Forest of Mangal and Swinedene, and also in the Cave of Earlsome. Her Venom Sting and Double Venom leave poison that burns for 500 TUs, while Detox purges poison from her own side and Analyze reveals enemy stats and incoming enemy monsters. In the Mosswood she is one of the stronger threats a tamer can choose to face.",
+   "acts": [
+    {
+     "name": "Hold Still",
+     "text": [
+      "* You stop moving and let her circle you.",
+      "* Her blade passes close to your throat, then withdraws.",
+      "* She seems to respect a prey that does not flinch."
+     ],
+     "mercy": 40,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Show Wound",
+     "text": [
+      "* You show her where the venom has darkened your skin.",
+      "* She studies it for a long moment.",
+      "* Her humming lowers. She has made her point."
+     ],
+     "mercy": 35,
+     "once": true,
+     "calm": 2
+    },
+    {
+     "name": "Yield Path",
+     "text": [
+      "* You step aside from the trail and lower your eyes.",
+      "* The Wasp Queen drifts past, toward the hollow behind you.",
+      "* You are no longer in her way."
+     ],
+     "mercy": 45,
+     "once": false,
+     "calm": 1
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Venom Sting",
+     "tu": 130,
+     "base_pattern": "aimed_volley",
+     "projectile": "orb_moss",
+     "tint_hex": "#9bc23a",
+     "twist": "poison",
+     "box": [
+      340,
+      230
+     ],
+     "intensity": 1,
+     "flavor": "* She lunges once. The stinger finds you, and the venom stays (13-16 Air, poison 500 TU)."
+    },
+    {
+     "ability": "Double Venom",
+     "tu": 160,
+     "base_pattern": "swoop",
+     "projectile": "orb_moss",
+     "tint_hex": "#c7c23a",
+     "twist": "poison",
+     "box": [
+      480,
+      240
+     ],
+     "intensity": 1.2,
+     "flavor": "* She sweeps across in a wide arc, striking two at once. The poison runs deeper (9-12 Air, poison 500 TU)."
+    },
+    {
+     "ability": "Detox",
+     "tu": 130,
+     "base_pattern": "rings_sweep",
+     "projectile": "fx_silverring",
+     "tint_hex": "#d9d6c0",
+     "twist": "neutralize",
+     "box": [
+      400,
+      230
+     ],
+     "intensity": 0.8,
+     "flavor": "* Pale rings spread from her wings. The poison is drawn out of her side."
+    },
+    {
+     "ability": "Analyze",
+     "tu": 160,
+     "base_pattern": "telegraph_lines",
+     "projectile": "fx_sparkle",
+     "tint_hex": "#e3c84a",
+     "twist": "none",
+     "box": [
+      360,
+      220
+     ],
+     "intensity": 0.7,
+     "flavor": "* Thin lines of light cross you. She is learning your strength, and what comes after you."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "mosswood",
+   "waystone"
+  ],
+  "name": "Manticore",
+  "id": "manticore",
+  "wiki": {
+   "number": "120",
+   "stars": 2,
+   "element": "Air",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/0/03/Manticore.png",
+   "image_size": [
+    95,
+    87
+   ],
+   "lv1": {
+    "hp": 29,
+    "attack": 5,
+    "magic": 5,
+    "speed": 19,
+    "defense": 6,
+    "resist": 13
+   },
+   "abilities": [
+    {
+     "name": "Cheer",
+     "tu": "100",
+     "target": "All Allies",
+     "effect": "+2 Defense, +1 Attack"
+    },
+    {
+     "name": "DeSoul",
+     "tu": "250",
+     "target": "Self",
+     "effect": "Removes a soul from a monster and summons that soul's creator for the duration of the battle."
+    },
+    {
+     "name": "Reincarnate",
+     "tu": "200",
+     "target": "Self",
+     "effect": "Sacrifices this monster and adds a random monster to your team"
+    },
+    {
+     "name": "Tempest",
+     "tu": "160",
+     "target": "1 Foe",
+     "effect": "10-13 Magical Damage (Air)"
+    }
+   ],
+   "evolution": "Does not evolve (1st Form only). Recipe: Manticore + Rider = Griffin Rider.",
+   "obtain": "Found in Safaris, the Forest of Mangal, Giant Mangal, and Greater Wesing."
+  },
+  "sprite": {
+   "description": "Dark charcoal-grey lion body standing on four legs, a pale red man-like face framed by a long flowing white mane, small dark wings at the shoulders, and a red scorpion stinger tail curling up behind it.",
+   "dominant_color_hex": "#2b2b36",
+   "faces": "left",
+   "flier": false
+  },
+  "battle": {
+   "check": "* MANTICORE - AIR - 2 STARS.\n* A man's face on a lion's body.\n* It does not fight alone for long.",
+   "intro": "* A Manticore steps out of the moss, its face almost human.",
+   "idle": [
+    "* The Manticore watches you with a face that is almost a man's.",
+    "* The scorpion tail sways, slow and patient.",
+    "* The wind in the mosswood bends toward the Manticore.",
+    "* Its white mane stirs though the air is still."
+   ],
+   "talk": [
+    "Turn back.",
+    "The serpent\nsees this road.",
+    "Every soul\nhas a maker.",
+    "I can be\nsomething else\nwhen I fall.",
+    "You are\nfar from\nthe lake."
+   ],
+   "spare_text": "* The Manticore lowers its tail and fades back between the trees.",
+   "lore": "Manticore, #120 in Dragon Island Blue, is a 2-star Air monster. The wiki describes it as a legendary Persian creature also seen in old European art, with the head of a man, the body of a lion and the tail of a venomous animal, most often a scorpion. It is found in Safaris, the Forest of Mangal, Giant Mangal and Greater Wesing, and the Norwoods table lists it too. Its stats are from level 1. It does not evolve, but a Manticore combined with a Rider makes a Griffin Rider. Here it roams the mosswood and the waystone fork, on the road that leads to Orochi. Its Reincarnate lets it give up its life to bring another monster into the fight.",
+   "acts": [
+    {
+     "name": "Hold Gaze",
+     "text": [
+      "* You meet the Manticore's eyes and do not look away.",
+      "* Something human in its face goes quiet."
+     ],
+     "mercy": 40,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Lower Weapon",
+     "text": [
+      "* You lower your hands and show it they are empty.",
+      "* The tail stops swaying."
+     ],
+     "mercy": 35,
+     "once": true,
+     "calm": 1
+    },
+    {
+     "name": "Speak of Orochi",
+     "text": [
+      "* You say you are not here to serve the Overlord of Norwoods.",
+      "* The Manticore turns its head toward the waystone and listens."
+     ],
+     "mercy": 30,
+     "once": true,
+     "calm": 2
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Tempest",
+     "tu": 160,
+     "base_pattern": "tornado_sweep",
+     "projectile": "fx_tornado",
+     "tint_hex": "#9fb8c8",
+     "twist": "none",
+     "box": [
+      460,
+      230
+     ],
+     "intensity": 1,
+     "flavor": "* The Manticore beats the air and a tempest tears across the trail."
+    },
+    {
+     "ability": "Cheer",
+     "tu": 100,
+     "base_pattern": "orbit_ring",
+     "projectile": "fx_silverring",
+     "tint_hex": "#d8d8e0",
+     "twist": "none",
+     "box": [
+      360,
+      240
+     ],
+     "intensity": 0.8,
+     "flavor": "* The Manticore lets out a low cry. The shadows around it stand firmer."
+    },
+    {
+     "ability": "DeSoul",
+     "tu": 250,
+     "base_pattern": "rift_bursts",
+     "projectile": "orb_web",
+     "tint_hex": "#6a5a8c",
+     "twist": "neutralize",
+     "box": [
+      420,
+      240
+     ],
+     "intensity": 1.1,
+     "flavor": "* The Manticore pulls a soul loose, and the dark answers with its maker."
+    },
+    {
+     "ability": "Reincarnate",
+     "tu": 200,
+     "base_pattern": "radial_burst",
+     "projectile": "orb_blood",
+     "tint_hex": "#b0303a",
+     "twist": "multi_hit",
+     "box": [
+      400,
+      240
+     ],
+     "intensity": 1.2,
+     "flavor": "* The Manticore gives itself up. Something else rises where it stood."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "waystone"
+  ],
+  "name": "Yeti",
+  "id": "yeti",
+  "wiki": {
+   "number": "143",
+   "stars": 3,
+   "element": "Earth",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/7/7d/Yeti.png",
+   "image_size": [
+    99,
+    110
+   ],
+   "lv1": {
+    "hp": 32,
+    "attack": 11,
+    "magic": 5,
+    "speed": 11,
+    "defense": 16,
+    "resist": 3
+   },
+   "abilities": [
+    {
+     "name": "[Berserk]",
+     "tu": "-",
+     "target": "-",
+     "effect": "This monster chooses its own targets in a battle"
+    },
+    {
+     "name": "Dance",
+     "tu": "160",
+     "target": "Self",
+     "effect": "This monster dances around like a buffoon."
+    },
+    {
+     "name": "DefenseUp",
+     "tu": "160",
+     "target": "Self",
+     "effect": "+2 Defense"
+    },
+    {
+     "name": "Grappler",
+     "tu": "100",
+     "target": "1 Foe",
+     "effect": "9-12 Physical Damage (Earth)"
+    }
+   ],
+   "evolution": "Yeti -> Ice Yeti (evolves at level 23) -> Destroyer (evolves at level 39) -> Decimator (evolves at level 55)",
+   "obtain": "Commonly found in Safaris. Found rarely in Northern Alvalon."
+  },
+  "sprite": {
+   "description": "Hulking ape-like brute: white shaggy fur draped over the head and shoulders like dripping snow, a round black body, black clawed hands and feet, small pink-red eyes; crouched with long arms hanging low. Clean transparent sprite.",
+   "dominant_color_hex": "#DCDFEA",
+   "faces": "front",
+   "flier": false
+  },
+  "battle": {
+   "check": "* YETI - Earth - 3 Stars.\n* Thick hide. Thicker skull.\n* It does not choose its prey the way you would.",
+   "intro": "* A pale shape rises from behind the Waystone.\n* YETI blocks the fork.",
+   "idle": [
+    "* YETI rocks from foot to foot. Its eyes never settle.",
+    "* Frost clings to its fur, though the night is not cold.",
+    "* YETI drags its knuckles through the dirt, leaving furrows.",
+    "* The great dark Waystone hums. YETI growls back at it."
+   ],
+   "talk": [
+    "Not yours.\nThis road.",
+    "Hrrn.\nSmall one.",
+    "Stone sings.\nI listen.",
+    "Cold place...\nfar from\nhere.",
+    "Stay.\nOr run.\nChoose."
+   ],
+   "spare_text": "* YETI lowers its arms. It lumbers off into the dark trees and does not look back.",
+   "lore": "Yeti, number 143 in the Dragon Island Blue bestiary, is a three-star Earth monster. The wiki gives only its level-1 statistics: HP 32, Attack 11, Magic 5, Speed 11, Defense 16, Resist 3. Its passive [Berserk] means it chooses its own targets in battle. It knows Dance (160 TU, Self), DefenseUp (160 TU, Self, +2 Defense) and Grappler (100 TU, 1 Foe, 9-12 Physical Earth damage). It is commonly found in Safaris and rarely in Northern Alvalon; here it is a rare wanderer near the Waystone on the Norwoods road. It evolves into Ice Yeti at level 23, Destroyer at level 39 and Decimator at level 55. The wiki text calls its Dance a buffoon's caper; in this telling it is a heavy, aimless sway that wastes its own time.",
+   "acts": [
+    {
+     "name": "Stand Still",
+     "text": [
+      "* You plant your feet and lower your eyes.",
+      "* YETI circles you once, sniffing. It finds nothing to strike."
+     ],
+     "mercy": 40,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Hum",
+     "text": [
+      "* You hum low, matching the drone of the Waystone.",
+      "* YETI tilts its head. Its shoulders loosen."
+     ],
+     "mercy": 45,
+     "once": true,
+     "calm": 2
+    },
+    {
+     "name": "Offer Snow",
+     "text": [
+      "* You scrape frost from the Waystone's base and hold it out.",
+      "* YETI takes it in one black hand. It stares at it a long while."
+     ],
+     "mercy": 60,
+     "once": true,
+     "calm": 2
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Grappler",
+     "tu": 100,
+     "base_pattern": "swoop",
+     "projectile": "orb_moss",
+     "tint_hex": "#7A6A4F",
+     "twist": "none",
+     "box": [
+      360,
+      240
+     ],
+     "intensity": 1.1,
+     "flavor": "* YETI lunges with both arms wide. Clods of earth fly where it lands."
+    },
+    {
+     "ability": "Dance",
+     "tu": 160,
+     "base_pattern": "bounce_orbs",
+     "projectile": "fx_silverring",
+     "tint_hex": "#DCDFEA",
+     "twist": "confuse",
+     "box": [
+      460,
+      230
+     ],
+     "intensity": 0.8,
+     "flavor": "* YETI sways and stamps in a slow, senseless rhythm. The ground lurches with it."
+    },
+    {
+     "ability": "DefenseUp",
+     "tu": 160,
+     "base_pattern": "orbit_ring",
+     "projectile": "fx_silverring",
+     "tint_hex": "#B8C4D6",
+     "twist": "slow",
+     "box": [
+      320,
+      230
+     ],
+     "intensity": 0.7,
+     "flavor": "* YETI hunches. Frost hardens across its fur like a shell."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "waystone"
+  ],
+  "name": "Imp",
+  "id": "imp",
+  "wiki": {
+   "number": "129",
+   "stars": 4,
+   "element": "Death",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/b/b3/Imp.png",
+   "image_size": [
+    114,
+    128
+   ],
+   "lv1": {
+    "hp": 28,
+    "attack": 6,
+    "magic": 9,
+    "speed": 8,
+    "defense": 10,
+    "resist": 16
+   },
+   "abilities": [
+    {
+     "name": "Mass Hypnosis",
+     "tu": "250",
+     "target": "All Foes",
+     "effect": "Puts targets to sleep for 149 TUs, any damage will wake them."
+    },
+    {
+     "name": "Peccatum",
+     "tu": "70",
+     "target": "1 Foe",
+     "effect": "3-4 Physical Damage (Death), 100% Damage vs. Humanoid."
+    },
+    {
+     "name": "Plague",
+     "tu": "130",
+     "target": "1 Foe",
+     "effect": "9-12 Magical Damage (Death)"
+    }
+   ],
+   "evolution": "Does not evolve (1st Form: Imp only).",
+   "obtain": "Found in No Man's Castle and at this location in Southern Alvalon, they are also easily found in Safaris. Imps can also be found in Ringfeld (Ringfield)."
+  },
+  "sprite": {
+   "description": "A lean, long-limbed demon caught mid-leap: a grey-black body striped with dark red bands like a harlequin's costume, a pale white mask-like face with a thin smile, swept red horns, clawed hands spread wide, and a thin barbed tail curling beneath it. Clean transparent 114x128 sprite.",
+   "dominant_color_hex": "#7a1c1f",
+   "faces": "front",
+   "flier": false
+  },
+  "battle": {
+   "check": "* IMP - Death element. 4 stars.\n* A demon dressed as a jester.\n* Its blows fall hardest on humans.",
+   "intro": "* Something in red and black drops from the Waystone's shadow.",
+   "idle": [
+    "* The Imp crouches on the stones, smiling behind its mask.",
+    "* The Imp's tail traces slow circles in the dust.",
+    "* The air near the Waystone tastes of old ash.",
+    "* The Imp tilts its head, as if listening to your heartbeat."
+   ],
+   "talk": [
+    "Sleep now,\nlittle tamer.",
+    "Your kind\nbreaks so\neasily.",
+    "The serpent\nwill not\nwake for you.",
+    "Every sin\nhas a weight.",
+    "Close your\neyes. It is\nkinder."
+   ],
+   "spare_text": "* The Imp's smile does not change. It steps back into the dark of the Waystone and is gone.",
+   "lore": "Imp is DIB monster #129, a 4-star Death-element creature of the Demonic category. The wiki places it in No Man's Castle, Southern Alvalon and Ringfeld, and notes it is easily found in Safaris; it is also listed in Giant Mangal, the dungeon of Norwoods, and in the Forest of Mangal and Cave of Earlsome. Its wiki stats are given only at level 1. Imp has no further forms. It opens with Mass Hypnosis, sleep that any damage will break, then follows with Peccatum, which deals double damage to Humanoid targets. Here it is a rare sight on the last road to Orochi.",
+   "acts": [
+    {
+     "name": "Hold Gaze",
+     "text": [
+      "* You look straight into the white mask and do not blink.",
+      "* The Imp's hypnosis finds nothing to take hold of."
+     ],
+     "mercy": 40,
+     "once": true,
+     "calm": 1
+    },
+    {
+     "name": "Stay Awake",
+     "text": [
+      "* You bite your tongue and keep your eyes open.",
+      "* The Imp's patience thins. Its tail stills."
+     ],
+     "mercy": 35,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Lower Hands",
+     "text": [
+      "* You open your hands and show you mean it no harm.",
+      "* The Imp watches you a long while, searching for the lie."
+     ],
+     "mercy": 30,
+     "once": false,
+     "calm": 1
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Mass Hypnosis",
+     "tu": 250,
+     "base_pattern": "spiral",
+     "projectile": "fx_silverring",
+     "tint_hex": "#c9c3d6",
+     "twist": "all_foes_wide",
+     "box": [
+      480,
+      240
+     ],
+     "intensity": 0.8,
+     "flavor": "* Pale rings turn slowly around the box. Your eyelids grow heavy."
+    },
+    {
+     "ability": "Peccatum",
+     "tu": 70,
+     "base_pattern": "aimed_volley",
+     "projectile": "orb_blood",
+     "tint_hex": "#8f1d22",
+     "twist": "none",
+     "box": [
+      340,
+      230
+     ],
+     "intensity": 1.2,
+     "flavor": "* One heavy strike, aimed at what is human in you."
+    },
+    {
+     "ability": "Plague",
+     "tu": 130,
+     "base_pattern": "rift_bursts",
+     "projectile": "orb_moss",
+     "tint_hex": "#4f5a2c",
+     "twist": "none",
+     "box": [
+      420,
+      240
+     ],
+     "intensity": 1,
+     "flavor": "* A sick green rot opens in the ground and spreads."
+    }
+   ]
+  }
  }
 ] as const;

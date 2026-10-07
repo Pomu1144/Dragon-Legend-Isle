@@ -1,3 +1,5 @@
+import { DIB_KITS } from './dibCreatures';
+
 // Overworld rooms. Every coordinate is in the source painting's pixel space,
 // so the painting is drawn 1:1 and these polygons describe where feet can go.
 
@@ -198,7 +200,7 @@ export const ROOMS: Record<string, RoomDef> = {
     ],
     candles: [{ id: 'outskirts', at: [968, 572], kind: 'candle_small' }],
     lights: [{ at: [585, 670], r: 170, color: warm, flicker: true }, { at: [1010, 712], r: 170, color: warm, flicker: true }],
-    encounters: { table: ['bat_fiend', 'blood_priest', 'bones'], budget: 3 },
+    encounters: { table: [], budget: 4 },
   },
 
   forest: {
@@ -231,7 +233,7 @@ export const ROOMS: Record<string, RoomDef> = {
       { id: 'stoneR', at: [1225, 515], r: 70, lines: ['* Another sun-carved waystone. Its glow is weak, like a candle in wind.', '* Deeper in the forest, something bigger has gone dark.'] },
     ],
     lights: [{ at: [480, 430], r: 120, color: 0xffe08a, flicker: true }, { at: [1225, 420], r: 120, color: 0xffe08a, flicker: true }, { at: [800, 760], r: 260, color: 0xff9a4a }],
-    encounters: { table: ['bat_fiend', 'dark_priest', 'scale_knight', 'devil_worm'], budget: 3 },
+    encounters: { table: [], budget: 4 },
   },
 
   mosswood: {
@@ -262,7 +264,7 @@ export const ROOMS: Record<string, RoomDef> = {
     candles: [{ id: 'mosswood', at: [905, 690], kind: 'candle_tall' }],
     things: [{ id: 'log', at: [700, 330], r: 60, lines: ['* Moss has swallowed an old cart. Bones, picked clean, lie beneath the wheel.'] }],
     lights: [{ at: [820, 800], r: 240, color: 0xff9a4a }],
-    encounters: { table: ['bones', 'scale_knight', 'devil_worm'], budget: 2 },
+    encounters: { table: [], budget: 4 },
     triggers: [{ id: 'lich', rect: [560, 300, 400, 120], once: 'metLich' }],
   },
 
@@ -294,3 +296,17 @@ export const ROOMS: Record<string, RoomDef> = {
     triggers: [{ id: 'orochi', rect: [640, 420, 380, 120], once: 'orochiDone' }],
   },
 };
+
+// Encounter tables come from the roster: each DIB creature appears in the rooms
+// its wiki location data places it in (see tools/dib_kits.json).
+const BUDGET: Record<string, number> = { outskirts: 4, forest: 4, mosswood: 4, waystone: 1 };
+for (const k of DIB_KITS) {
+  if (k.role !== 'encounter') continue;
+  for (const room of k.rooms) {
+    const r = ROOMS[room];
+    if (!r) continue;
+    r.encounters ??= { table: [], budget: BUDGET[room] ?? 2 };
+    r.encounters.budget = BUDGET[room] ?? r.encounters.budget;
+    if (!r.encounters.table.includes(k.id)) r.encounters.table.push(k.id);
+  }
+}

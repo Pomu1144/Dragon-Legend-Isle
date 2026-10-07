@@ -13,4 +13,4 @@ for s in d['starters']['starters']:
     get(s['evolution']['next_image_url'], os.path.join(out, 'starters', s['id'] + '_evo.png'))
 m = (d.get('story') or d.get('research:story'))['items']['map']['world_map_image_url']
 if m:
-    get(m.split('/revision')[0], os.path.join(out, 'ui', 'world_map.png'))
+    get(m.split('/revision')[0] + '/revision/latest?format=original', os.path.join(out, 'ui', 'world_map.png'))

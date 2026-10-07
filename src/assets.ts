@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { DIB_KITS } from './data/dibCreatures';
 
 export const UI_SPRITES = [
   'arrow_down', 'arrow_up', 'banner_header', 'bar_empty', 'bar_orange', 'bar_red', 'btn_ff', 'btn_fff', 'btn_hex',
@@ -13,7 +14,7 @@ export const UI_SPRITES = [
 
 export const ROOM_BGS = ['plaza', 'gate', 'outskirts', 'forest', 'mosswood', 'waystone', 'gate_talk'];
 // Original Dragon Island Blue sprites, unaltered (tools/fetch_dib_sprites.py).
-export const MONSTER_ART = ['bat_fiend', 'blood_priest', 'bones', 'dark_priest', 'scale_knight', 'devil_worm', 'lich', 'orochi'];
+export const MONSTER_ART = DIB_KITS.map((k) => k.id).filter((id) => id !== 'divine');
 
 export function queueAll(load: Phaser.Loader.LoaderPlugin) {
   for (const k of UI_SPRITES) load.image('ui_' + k, `assets/ui/${k}.png`);
