@@ -532,7 +532,7 @@ export class BattleScene extends Phaser.Scene {
     });
     const cd = this.cards[this.cardSel];
     this.tooltip?.destroy();
-    const desc = cd.locked ? `Locked — reach LV ${cd.skill.minLv}.` : cd.skill.desc;
+    const desc = cd.locked ? 'Your hatchling has not grown into this yet.' : cd.skill.desc;
     const tt = this.add.container(cd.c.x, this.box.y - 40).setDepth(40);
     const t = body(this, 0, 0, desc, 20, COLORS.ink, 0).setOrigin(0.5).setStroke('#fff4dc', 0).setShadow(0, 0, '#000', 0);
     const p = panel(this, -t.width / 2 - 26, -26, t.width + 52, 52, 'parchment');

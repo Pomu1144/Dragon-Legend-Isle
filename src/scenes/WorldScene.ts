@@ -166,10 +166,11 @@ export class WorldScene extends Phaser.Scene {
     this.applyScale();
     this.ySortedObjs.push({ obj: this.player, base: 0 });
 
-    // NPCs (the guild master stands by the Guild Hall once he has stopped you)
+    // NPCs (once the guild master has stopped Kael he waits inside the Guild Hall)
     this.npcs = {};
     for (const n of R.npcs ?? []) {
-      const at: Pt = n.id === 'halvard' && State.flag('briefed') ? [1236, 432] : n.at;
+      if (n.id === 'halvard' && State.flag('briefed')) continue;
+      const at: Pt = n.at;
       const sh = this.add.image(at[0], at[1], 'shadow').setAlpha(0.8);
       const spr = this.add.sprite(at[0], at[1], n.sprite, 0).setOrigin(0.5, 0.98);
       spr.play(n.sprite);
@@ -203,6 +204,7 @@ export class WorldScene extends Phaser.Scene {
     for (const t of R.things ?? []) {
       const run = () => {
         if (t.id === 'guild' && State.flag('briefed') && !State.flag('hasStarter')) return this.openHatchery();
+        if (t.id === 'guild' && State.flag('hasStarter')) return this.say([{ text: 'The West Gate is open. Read the manual. And send word.', speaker: STORY.names.guild_master, portrait: 'guildmaster_portrait', voice: 0.7 }]);
         if (BOUNTIES.some((b) => b.giver === `thing:${R.id}/${t.id}`) && this.bountyTalk(`thing:${R.id}/${t.id}`, t.lines)) return;
         if (R.id === 'dundean_square' && t.id === 'lodge') return this.say(t.lines.map((text) => ({ text })), () => this.openShop());
         this.say(t.lines.map((text) => ({ text, speaker: t.speaker, portrait: t.portrait })));
@@ -489,6 +491,77 @@ export class WorldScene extends Phaser.Scene {
     return false;
   }
 
+  /** Halvard walks to the Guild Hall door, climbs the steps and goes inside; Kael follows by pressing Z at the door. */
+  private enterGuildHall(gm: Phaser.GameObjects.Sprite) {
+    this.busy = true;
+    gm.play('guildmaster_idle');
+    this.walkTo(gm, 1230, 394, 120, () => {
+      const sh = gm.getData('shadow') as Phaser.GameObjects.Image | undefined;
+      this.tweens.add({ targets: [gm, sh].filter(Boolean), y: 318, alpha: 0, duration: 1100, ease: 'Sine.easeIn' });
+      this.tweens.add({ targets: gm, scale: gm.scale * 0.92, duration: 1100 });
+      Sound.whoosh();
+      this.time.delayedCall(1150, () => {
+        this.interacts = this.interacts.filter((i) => i.obj !== gm);
+        this.ySortedObjs = this.ySortedObjs.filter((o) => o.obj !== gm);
+        delete this.npcs.halvard;
+        sh?.destroy();
+        gm.destroy();
+        this.busy = false;
+        this.say([{ text: '* The Guild Hall door closes behind him. The lamp above it is still lit.' }]);
+      });
+    });
+  }
+
+  /** Walk a scripted character along the walkable floor (grid A* around blocks), never through scenery. */
+  private walkTo(spr: Phaser.GameObjects.Sprite, tx: number, ty: number, speed: number, done?: () => void) {
+    const st = 16;
+    const [W, H] = this.room.size;
+    const free = (cx: number, cy: number) => {
+      const x = cx * st + st / 2;
+      const y = cy * st + st / 2;
+      const hw = 12 * (this.scaleAt(y) / 0.45);
+      return this.walkable(x, y) && this.walkable(x - hw, y) && this.walkable(x + hw, y);
+    };
+    const key = (x: number, y: number) => y * 10000 + x;
+    const sx = Math.floor(spr.x / st), sy = Math.floor(spr.y / st);
+    const gx = Math.floor(tx / st), gy = Math.floor(ty / st);
+    const open: [number, number, number][] = [[sx, sy, 0]];
+    const from = new Map<number, number>([[key(sx, sy), -1]]);
+    const cost = new Map<number, number>([[key(sx, sy), 0]]);
+    let found = false;
+    while (open.length && from.size < 60000) {
+      open.sort((a, b) => a[2] - b[2]);
+      const [cx, cy] = open.shift()!;
+      if (cx === gx && cy === gy) { found = true; break; }
+      for (const [dx, dy] of [[1, 0], [-1, 0], [0, 1], [0, -1], [1, 1], [1, -1], [-1, 1], [-1, -1]]) {
+        const nx = cx + dx, ny = cy + dy;
+        if (nx < 0 || ny < 0 || nx * st > W || ny * st > H) continue;
+        if (!(nx === gx && ny === gy) && !free(nx, ny)) continue;
+        const c = cost.get(key(cx, cy))! + (dx && dy ? 1.414 : 1);
+        if (c < (cost.get(key(nx, ny)) ?? Infinity)) {
+          cost.set(key(nx, ny), c);
+          from.set(key(nx, ny), key(cx, cy));
+          open.push([nx, ny, c + Math.hypot(gx - nx, gy - ny)]);
+        }
+      }
+    }
+    const pts: [number, number][] = [];
+    if (found) {
+      for (let k = key(gx, gy); k !== -1 && k !== key(sx, sy); k = from.get(k)!) pts.unshift([(k % 10000) * st + st / 2, Math.floor(k / 10000) * st + st / 2]);
+      pts[pts.length - 1] = [tx, ty];
+    } else pts.push([tx, ty]);
+    // keep every 3rd point so the walk is smooth, then tween leg by leg
+    const legs = pts.filter((_, i) => i % 3 === 2 || i === pts.length - 1);
+    let px = spr.x, py = spr.y;
+    const chain = legs.map(([x, y]) => {
+      const d = Math.hypot(x - px, y - py);
+      px = x; py = y;
+      return { x, y, duration: Math.max(60, (d / speed) * 1000), ease: 'Linear' };
+    });
+    if (!chain.length) return done?.();
+    this.tweens.chain({ targets: spr, tweens: chain, onComplete: () => done?.() });
+  }
+
   /** The walkable point nearest (x, y), so people who walk up to Kael never end up standing on scenery. */
   private standNear(x: number, y: number): [number, number] {
     if (this.canStand(x, y)) return [x, y];
@@ -656,16 +729,13 @@ export class WorldScene extends Phaser.Scene {
       const finish = () =>
         this.say(scene('guildmaster_stops_you'), () => {
           State.setFlag('briefed');
-          if (gm) {
-            gm.play('guildmaster_idle');
-            this.tweens.add({ targets: gm, x: 1236, y: 432, duration: 2200, ease: 'Sine.easeInOut' });
-          }
+          if (gm) this.enterGuildHall(gm);
         });
       if (!gm) return finish();
       gm.anims.stop();
       gm.setFrame(2);
       const [tx, ty] = this.standNear(this.player.x + 70, this.player.y - 40);
-      this.tweens.add({ targets: gm, x: tx, y: ty, duration: 1200, ease: 'Sine.easeInOut', onComplete: finish });
+      this.walkTo(gm, tx, ty, 150, finish);
       return;
     }
     if (id === 'gate_sign') {

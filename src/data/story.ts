@@ -59,7 +59,7 @@ export const STORY: StoryData = {
     },
     {
      "heading": "Training and Evolution",
-     "text": "Creatures grow through battle. A hatchling that reaches level 6 becomes a Dragonling, at 30 a Dragon, at 55 a Wyrm. What it becomes depends on what you ask of it. A hatchling driven too hard will not live to grow."
+     "text": "Creatures grow through battle. A hatchling that has fought long enough at your side sheds the last of its shell and becomes a Dragonling. Given years, a Dragon. Given a lifetime, a Wyrm. What it becomes depends on what you ask of it. A hatchling driven too hard will not live to grow."
     },
     {
      "heading": "Sparring and Mercy",

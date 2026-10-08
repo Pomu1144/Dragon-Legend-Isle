@@ -120,7 +120,7 @@ export const ROOMS: Record<string, RoomDef> = {
     triggers: [{ id: 'gm_stop', rect: [600, 610, 300, 90], once: 'briefed' }],
     npcs: [
       { id: 'wren', at: [560, 590], sprite: 'wren_idle', name: 'Wren', portrait: 'wren_portrait' },
-      { id: 'halvard', at: [1236, 432], sprite: 'guildmaster_idle', name: 'Master Halvard', portrait: 'guildmaster_portrait' },
+      { id: 'halvard', at: [1228, 404], sprite: 'guildmaster_idle', name: 'Master Halvard', portrait: 'guildmaster_portrait' },
     ],
     things: [
       { id: 'inn', at: [262, 450], r: 50, lines: ['* The Tankard Inn.', '* The shutters are barred. A notice nailed to the door: "Closed until the western road is safe."'] },

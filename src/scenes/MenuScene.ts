@@ -139,7 +139,7 @@ export class MenuScene extends Phaser.Scene {
       art.setScale(Math.max(1, Math.floor(120 / art.height)));
       this.content.add(art);
       this.ink(900, 418, evo ? comp.evolution.next_name : comp.name, 22).setOrigin(0.5, 0);
-      this.ink(900, 448, evo ? `${comp.element} · evolved` : `${comp.element} · evolves at LV ${comp.evolution.at_level}`, 18).setOrigin(0.5, 0);
+      this.ink(900, 448, evo ? `${comp.element} · Dragonling` : `${comp.element} · still in its shell`, 18).setOrigin(0.5, 0);
     }
     const bound = BESTIARY_ORDER.filter((id) => State.get().bestiary[id]?.bound);
     this.ink(130, 440, 'Companions', 28);
