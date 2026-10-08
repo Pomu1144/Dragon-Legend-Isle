@@ -20,12 +20,9 @@ function healAmount(item: string, lv: number) {
   return Math.round((item === 'tart' ? 30 : 15) * (1 + 0.18 * (lv - 1)));
 }
 
-/** Fit monster art into a w x h box; the small pixel sprites keep whole-number scales once they are doubled. */
+/** Fit monster art (all painted) into a w x h box. */
 function fitArt(img: Phaser.GameObjects.Image, w: number, h: number) {
-  if (img.texture.key.startsWith('starter_')) img.texture.setFilter(Phaser.Textures.FilterMode.NEAREST);
-  const k = Math.min(w / img.width, h / img.height);
-  const pixel = img.texture.source[0]?.scaleMode === Phaser.ScaleModes.NEAREST;
-  return img.setScale(pixel && k >= 2 ? Math.floor(k) : k);
+  return img.setScale(Math.min(w / img.width, h / img.height));
 }
 
 /** One owned monster's display data: its form (the hatchling may have evolved), HP and EXP. */

@@ -47,9 +47,7 @@ export class HatchlingScene extends Phaser.Scene {
       const card = this.add.image(0, 0, 'ui_monster_card_blank').setScale(0.62).setTint(0xb4b8bc);
       const key = 'starter_' + s.id;
       const art = this.add.image(0, -30, key);
-      art.texture.setFilter(Phaser.Textures.FilterMode.NEAREST);
-      const fit = Math.min(170 / art.width, 128 / art.height);
-      art.setScale(fit >= 2 ? Math.floor(fit) : fit);
+      art.setScale(Math.min(170 / art.width, 128 / art.height));
       const nm = cardName(this, 0.62, s.name, 16);
       const el = label(this, 0, 150, CHOICE_LABEL[s.choice], 26, COLORS.cream, 4).setOrigin(0.5);
       const no = label(this, 0, 182, `No. ${s.number}  ·  ${s.element}`, 15, '#a8a090', 3).setOrigin(0.5);

@@ -17,10 +17,12 @@ export const UI_SPRITES = [
 
 export const ROOM_BGS = ['plaza', 'gate', 'outskirts', 'forest', 'mosswood', 'waystone', 'gate_talk', ...EXPANSION_ROOMS.map((r) => r.id), ...MISSION_ROOMS.map((r) => r.id), ...REGION_ROOMS.map((r) => r.id)];
 export const NPC_SHEETS = [...new Set([...EXPANSION_NPC_SHEETS, ...REGION_NPC_SHEETS])];
-// Original Dragon Island Blue sprites, unaltered (tools/fetch_dib_sprites.py).
+// Every Dragon Island Blue creature, repainted in the style of the room paintings from its original
+// sprite (the originals are kept in tools/dib_sprites_original/), plus the user's own painted art.
 export const MONSTER_ART = DIB_KITS.map((k) => k.id).filter((id) => id !== 'divine');
-// Painted high-resolution art (the user's): drawn smooth, not as scaled-up pixels.
-export const PAINTED_ART = new Set(['bloodgale', 'yamata', 'aethrion', 'inferno', 'flame']);
+const STARTER_IDS = ['fire_hatchling', 'gold_hatchling', 'spark_hatchling', 'water_hatchling'];
+// All creature art is painted now: drawn smooth, never as scaled-up pixels.
+export const PAINTED_ART = new Set([...MONSTER_ART, 'divine', ...STARTER_IDS, ...STARTER_IDS.map((id) => id + '_evo')]);
 
 export function queueAll(load: Phaser.Loader.LoaderPlugin) {
   for (const k of UI_SPRITES) load.image('ui_' + k, `assets/ui/${k}.png`);
@@ -29,11 +31,11 @@ export function queueAll(load: Phaser.Loader.LoaderPlugin) {
   // Room paintings are big (about 6 MB of GPU memory each): only the title's is loaded up front;
   // the rest load when their room is entered (see loadRoomArt) so phones are not overwhelmed.
   load.image('bg_plaza', 'assets/bg/plaza.jpg');
-  for (const k of MONSTER_ART) load.image('mon_' + k, `assets/monsters/${k}.png`);
+  for (const k of MONSTER_ART) load.image('mon_' + k, `assets/monsters/${k}.webp`);
   load.image('mon_divine', 'assets/monsters/divine.webp');
-  for (const id of ['fire_hatchling', 'gold_hatchling', 'spark_hatchling', 'water_hatchling']) {
-    load.image('starter_' + id, `assets/starters/${id}.png`);
-    load.image('starter_' + id + '_evo', `assets/starters/${id}_evo.png`);
+  for (const id of STARTER_IDS) {
+    load.image('starter_' + id, `assets/starters/${id}.webp`);
+    load.image('starter_' + id + '_evo', `assets/starters/${id}_evo.webp`);
   }
   load.image('world_map', 'assets/ui/world_map.png');
   load.spritesheet('hero_walk', 'assets/chars/hero_walk.png', { frameWidth: 128, frameHeight: 176 });
