@@ -6,7 +6,7 @@ import { REGION_NPC_SHEETS, REGION_ROOMS } from './data/regions';
 
 export const UI_SPRITES = [
   'arrow_down', 'arrow_up', 'banner_header', 'bar_empty', 'bar_orange', 'bar_red', 'btn_ff', 'btn_fff', 'btn_hex',
-  'btn_info', 'btn_pause', 'btn_play', 'btn_x', 'candle_double', 'candle_small', 'candle_tall', 'card_flame',
+  'btn_info', 'btn_pause', 'btn_play', 'btn_x', 'candle_double', 'candle_small', 'candle_tall', 'candle_double_unlit', 'candle_small_unlit', 'candle_tall_unlit', 'card_flame',
   'card_outrage', 'card_tail', 'card_unknown', 'chain', 'chip_blue', 'crown', 'cursor_arrow', 'cursor_diamond',
   'frame_corner', 'frame_portrait', 'fx_silverring', 'fx_sparkle', 'fx_tornado', 'fx_waterring', 'med_bag',
   'med_book', 'med_gear', 'med_mercy', 'med_monster', 'med_scroll', 'minicard', 'monster_card', 'nameplate_bat',

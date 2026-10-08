@@ -1,4 +1,4 @@
-// Waypoints: the candles. A beaten team wakes at the nearest one, counted in rooms walked.
+// Waypoints: the candles Kael has lit. A beaten team wakes at the nearest lit one, counted in rooms walked.
 import { ROOMS, type Pt, type RoomDef } from './rooms';
 import { State } from '../state';
 
@@ -34,7 +34,7 @@ function besideCandle(r: RoomDef): Pt {
   return [cx, cy + 40];
 }
 
-/** The candle nearest to a room by the roads Kael can actually take (locked roads do not count). */
+/** The lit candle nearest to a room by the roads Kael can actually take (locked roads do not count). */
 export function nearestWaypoint(from: string): { room: string; at: Pt } {
   const start = ROOMS[from] ? from : 'plaza';
   const seen = new Set([start]);
@@ -42,7 +42,7 @@ export function nearestWaypoint(from: string): { room: string; at: Pt } {
   while (queue.length) {
     const id = queue.shift()!;
     const r = ROOMS[id];
-    if (r.candles?.length) return { room: id, at: besideCandle(r) };
+    if (r.candles?.some((c) => State.flag('candle_' + c.id))) return { room: id, at: besideCandle(r) };
     for (const e of r.exits) {
       if (e.locked && (e.locked === 'never' || !State.flag(e.locked))) continue;
       if (!ROOMS[e.to] || seen.has(e.to)) continue;
@@ -50,5 +50,6 @@ export function nearestWaypoint(from: string): { room: string; at: Pt } {
       queue.push(e.to);
     }
   }
+  // none lit yet: home, by the plaza candle
   return { room: 'plaza', at: besideCandle(ROOMS.plaza) };
 }

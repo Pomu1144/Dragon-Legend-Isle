@@ -64,7 +64,7 @@ export function newState(): GameState {
     room: 'plaza',
     x: 420,
     y: 560,
-    flags: {},
+    flags: { candlesLit: true },
     inventory: { tonic: 2, orb: 0 },
     starter: undefined,
     monsters: [],
@@ -107,6 +107,12 @@ export const State = {
       const saved = JSON.parse(raw) as Partial<GameState>;
       current = { ...newState(), ...saved };
       if (!Array.isArray(saved.monsters)) migrateToTeams();
+      // Saves from before candles had to be lit: every candle in a room already visited counts as lit.
+      if (!current.flags.candlesLit) {
+        current.flags.candlesLit = true;
+        for (const k of Object.keys(current.flags)) if (k.startsWith('entered_')) current.flags['candle_' + k.slice(8)] = true;
+        current.flags['candle_' + current.room] = true;
+      }
       current.party = (current.party ?? []).filter((uid) => current.monsters.some((m) => m.uid === uid)).slice(0, PARTY_SIZE);
       return true;
     } catch {

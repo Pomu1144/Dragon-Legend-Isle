@@ -179,14 +179,21 @@ export class WorldScene extends Phaser.Scene {
     }
     // Monsters never walk the overworld beside Kael; they appear only in battle and in the menu.
     this.trail = [];
-    // Candles (save points)
+    // Candles (save points). Each starts unlit; once Kael lights it, it stays lit and is a waypoint.
     for (const c of R.candles ?? []) {
-      const sc = this.scaleAt(c.at[1]) * 1.15;
-      const img = this.add.image(c.at[0], c.at[1], 'ui_' + c.kind).setOrigin(0.5, 1).setScale(sc);
-      const glow = lightPool(this, c.at[0], c.at[1] - img.displayHeight * 0.85, 90, 0xffc070, true, 3);
+      const lit = State.flag('candle_' + c.id);
+      const sc = this.scaleAt(c.at[1]) * 0.72;
+      const img = this.add.image(c.at[0], c.at[1], 'ui_' + c.kind + (lit ? '' : '_unlit')).setOrigin(0.5, 1).setScale(sc);
+      const glow = lightPool(this, c.at[0], c.at[1] - img.displayHeight * 0.85, 70, 0xffc070, true, 3).setVisible(lit);
       this.add.image(c.at[0], c.at[1], 'shadow').setScale(sc * 0.6, sc * 0.5).setDepth(c.at[1] - 1);
       this.ySortedObjs.push({ obj: img, base: 0 });
-      this.interacts.push({ x: c.at[0], y: c.at[1], r: 64, promptY: c.at[1] - img.displayHeight - 18, run: () => this.useCandle(glow, c.at) });
+      const run = () => this.useCandle(img, glow, c);
+      this.interacts.push({ x: c.at[0], y: c.at[1], r: 64, promptY: c.at[1] - img.displayHeight - 18, run });
+      // a click or tap on the candle works too, once Kael is standing by it
+      img.setInteractive({ useHandCursor: true }).on('pointerdown', () => {
+        if (this.busy || this.dialogue.active || Math.hypot(this.player.x - c.at[0], this.player.y - c.at[1]) > 110) return;
+        run();
+      });
     }
     for (const t of R.things ?? []) {
       const run = () => {
@@ -1031,8 +1038,15 @@ export class WorldScene extends Phaser.Scene {
     this.tweens.add({ targets: t, alpha: 1, y: 104, duration: 300, yoyo: true, hold: 1800, onComplete: () => t.destroy() });
   }
 
-  private useCandle(glow: Phaser.GameObjects.Image, at: Pt) {
+  private useCandle(img: Phaser.GameObjects.Image, glow: Phaser.GameObjects.Image, c: { id: string; at: Pt; kind: string }) {
     const s = State.get();
+    const first = !State.flag('candle_' + c.id);
+    if (first) {
+      State.setFlag('candle_' + c.id);
+      img.setTexture('ui_' + c.kind);
+      glow.setVisible(true);
+      this.tweens.add({ targets: img, scaleX: img.scaleX * 1.08, scaleY: img.scaleY * 1.08, yoyo: true, duration: 220, ease: 'Sine.easeOut' });
+    }
     s.hp = s.maxHp;
     State.healParty();
     s.room = this.room.id;
@@ -1040,12 +1054,12 @@ export class WorldScene extends Phaser.Scene {
     s.y = this.player.y;
     State.save();
     Sound.save();
-    sparkleBurst(this, at[0], at[1] - 60, 18, 3600, 90);
-    this.tweens.add({ targets: glow, alpha: 0.9, scale: glow.scale * 1.8, yoyo: true, duration: 500 });
+    sparkleBurst(this, c.at[0], c.at[1] - img.displayHeight, 18, 3600, 90);
+    this.tweens.add({ targets: glow, scale: glow.scale * 1.8, yoyo: true, duration: 500 });
     this.say([
-      { text: '* The candle burns steady in the wind, as if it has been waiting.' },
+      first ? { text: '* You touch the wick. It catches, and the flame stands up straight in the wind.' } : { text: '* The candle burns steady in the wind, as if it has been waiting.' },
       { text: '* In its small light, your resolve hardens.' },
-      { text: `* (Your monsters are fully restored. Progress saved — ${this.room.name}.)` },
+      { text: `* (Your monsters are fully restored. Progress saved — ${this.room.name}.${first ? ' If your team falls, you will wake at the nearest lit candle.' : ''})` },
     ]);
   }
 
