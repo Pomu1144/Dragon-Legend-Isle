@@ -152,7 +152,7 @@ export class BattleScene extends Phaser.Scene {
     else if (this.m.rare) label(this, 44, 120, 'RARE SIGHTING', 18, '#9fd8ff', 5).setDepth(20);
     if (this.wave) {
       // the ritual group: which foe this is, of how many
-      label(this, this.scale.width - 44, 30, `${this.wave.index} of ${this.wave.total}`, 26, COLORS.cream, 6).setOrigin(1, 0).setDepth(20);
+      label(this, this.scale.width - 44, 30, this.wave.owner ? `${this.wave.owner}'s team · ${this.wave.index} of ${this.wave.total}` : `${this.wave.index} of ${this.wave.total}`, 26, COLORS.cream, 6).setOrigin(1, 0).setDepth(20);
       label(this, this.scale.width - 44, 66, this.wave.queue.length ? `${this.wave.queue.length} more waiting` : 'the last of them', 17, '#c9b98a', 4).setOrigin(1, 0).setDepth(20);
     }
 

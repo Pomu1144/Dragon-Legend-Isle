@@ -3,6 +3,7 @@
 // thanked_<mission> (reported back), and the fragment / formula key items.
 import { MISSIONS } from './data/missions';
 import type { MissionFight, MissionId } from './data/missionTypes';
+import { BOUNTIES } from './data/bounties';
 import { State } from './state';
 
 export const Quests = {
@@ -26,9 +27,8 @@ export const Quests = {
   },
   /** Quest-log rows: [title, current text, finished]. */
   log(): { title: string; text: string; done: boolean }[] {
-    if (!MISSIONS) return [];
     const rows: { title: string; text: string; done: boolean }[] = [];
-    for (const q of MISSIONS.quests) {
+    for (const q of MISSIONS?.quests ?? []) {
       if (q.id === 'formula') {
         const n = (['blood', 'wind'] as MissionId[]).filter((m) => this.done(m)).length;
         if (n === 0) continue;
@@ -43,6 +43,11 @@ export const Quests = {
       const stage = this.done(q.id) ? 2 : broken > 0 ? 1 : 0;
       const tally = fs.length > 1 && stage < 2 ? `  (${broken} of ${fs.length} broken)` : '';
       rows.push({ title: q.title, text: (q.stages[Math.min(stage, q.stages.length - 1)] ?? '') + tally, done: stage === 2 });
+    }
+    for (const b of BOUNTIES) {
+      if (!State.flag('bounty_' + b.id)) continue;
+      const done = State.flag('bounty_done_' + b.id);
+      rows.push({ title: 'Bounty: ' + b.title, text: b.stages[done ? 1 : 0] ?? '', done });
     }
     return rows;
   },

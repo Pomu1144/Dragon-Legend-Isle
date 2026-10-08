@@ -16,6 +16,8 @@ import { MISSIONS } from '../data/missions';
 import { REGION_STORY, REGION_UNLOCKS } from '../data/regions';
 import type { MissionId } from '../data/missionTypes';
 import { Quests } from '../quests';
+import { BOUNTIES } from '../data/bounties';
+import type { Bounty } from '../data/bountyTypes';
 
 interface WorldData {
   room?: string;
@@ -49,6 +51,7 @@ export interface Wave {
   between: string[]; // "* " lines shown as each next foe steps in; {N} = foes remaining
   tally: WaveTally;
   index: number; // 1-based number of the current foe
+  owner?: string; // a criminal's team: shown as "<owner>'s <monster>"
 }
 
 function inPoly(x: number, y: number, poly: Pt[]) {
@@ -179,6 +182,7 @@ export class WorldScene extends Phaser.Scene {
     for (const t of R.things ?? []) {
       const run = () => {
         if (t.id === 'guild' && State.flag('briefed') && !State.flag('hasStarter')) return this.openHatchery();
+        if (BOUNTIES.some((b) => b.giver === `thing:${R.id}/${t.id}`) && this.bountyTalk(`thing:${R.id}/${t.id}`, t.lines)) return;
         if (R.id === 'dundean_square' && t.id === 'lodge') return this.say(t.lines.map((text) => ({ text })), () => this.openShop());
         this.say(t.lines.map((text) => ({ text, speaker: t.speaker, portrait: t.portrait })));
       };
@@ -215,6 +219,13 @@ export class WorldScene extends Phaser.Scene {
       State.setFlag('entered_' + R.id);
       this.busy = true;
       this.time.delayedCall(700, () => this.say(this.toLines(entry)));
+    }
+
+    // An accepted bounty whose criminal waits here: they step out as Kael arrives.
+    const ambush = BOUNTIES.find((b) => b.room === R.id && State.flag('bounty_' + b.id) && !State.flag('bounty_done_' + b.id));
+    if (ambush) {
+      this.busy = true;
+      this.time.delayedCall(entry?.length && !State.flag('ambushed_' + ambush.id) ? 1400 : 700, () => this.bountyFight(ambush));
     }
 
     if (data.fresh) {
@@ -553,6 +564,7 @@ export class WorldScene extends Phaser.Scene {
     this.resetEncounter();
     this.busy = false;
     if (!result) return;
+    if (result.fight?.startsWith('bounty:')) return this.afterBounty(result);
     if (result.fight) return this.afterMissionFight(result);
     if (REGION_STORY.bosses[result.monster]) return this.afterRegionBoss(result);
     if (result.monster === 'lich') {
@@ -659,6 +671,7 @@ export class WorldScene extends Phaser.Scene {
     }
     const mission = Quests.givenBy(id);
     if (mission && MISSIONS && this.missionTalk(id, mission)) return;
+    if (this.bountyTalk(id)) return;
     const ex = npcLines[id];
     if (ex) {
       const flag = 'met_' + id;
@@ -787,6 +800,55 @@ export class WorldScene extends Phaser.Scene {
         this.say([{ text: `* (You bought a ${ITEMS[x.item].name}. ${s.gold} G left.)` }], () => this.openShop(true));
       },
     );
+  }
+
+  // ---- bounties: criminals and rogue tamers ------------------------------------------
+  /** Offer the next open bounty from this giver, or close a finished one. False if there is nothing. */
+  private bountyTalk(giver: string, intro?: string[]): boolean {
+    const mine = BOUNTIES.filter((b) => b.giver === giver);
+    const finished = mine.find((b) => State.flag('bounty_done_' + b.id) && !State.flag('bounty_paid_' + b.id));
+    if (finished) {
+      State.setFlag('bounty_paid_' + finished.id);
+      this.say(this.toLines(finished.done));
+      return true;
+    }
+    const open = mine.find((b) => !State.flag('bounty_' + b.id) && (!b.requires || State.flag(b.requires)));
+    if (!open) return false;
+    const pre = intro ? intro.map((text) => ({ text })) : [];
+    this.say([...pre, ...this.toLines(open.offer), { text: `* Take the bounty? (${open.title})`, choices: ['Take it', 'Not now'] }], (c) => {
+      if (c !== 0) return;
+      State.setFlag('bounty_' + open.id);
+      this.toast(`Bounty: ${open.title}`);
+    });
+    return true;
+  }
+
+  private bountyFight(b: Bounty) {
+    if (!b.team.length || !MONSTERS_BY_ID[b.team[0]]) return;
+    State.setFlag('ambushed_' + b.id);
+    this.busy = true;
+    this.player.anims.stop();
+    this.fightReturn = [this.player.x, this.player.y];
+    this.cameras.main.shake(220, 0.003);
+    const [first, ...rest] = b.team;
+    const wave: Wave = { fight: 'bounty:' + b.id, queue: rest, total: b.team.length, between: b.between, tally: { won: 0, spared: 0, bound: 0 }, index: 1, owner: b.criminal };
+    this.say(this.toLines(b.confront), () => this.startBattle(first, wave));
+  }
+
+  private afterBounty(result: BattleResult) {
+    const b = BOUNTIES.find((x) => 'bounty:' + x.id === result.fight);
+    if (!b) return;
+    if (result.outcome === 'fled') {
+      this.say([{ text: `* You break away. ${b.criminal} lets you go, for now.` }]);
+      return;
+    }
+    State.setFlag('bounty_done_' + b.id);
+    const s = State.get();
+    s.gold += b.reward.gold;
+    for (const [k, n] of Object.entries(b.reward.items)) State.addItem(k, n);
+    const got = [`${b.reward.gold} G`, ...Object.entries(b.reward.items).map(([k, n]) => `${ITEMS[k]?.name ?? k} x${n}`)].join(', ');
+    this.busy = true;
+    this.time.delayedCall(400, () => this.say([...this.toLines(b.after), { text: `* (Bounty paid: ${got}.)` }]));
   }
 
   // ---- Dragon Overlords and other region bosses -----------------------------------

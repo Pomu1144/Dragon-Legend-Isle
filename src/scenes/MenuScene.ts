@@ -307,12 +307,17 @@ export class MenuScene extends Phaser.Scene {
       this.ink(130, 170, 'No quests yet. The people of Dundean may have need of a tamer.', 24, 860);
       return;
     }
-    rows.forEach((q, i) => {
-      const y = 160 + i * 128;
-      this.content.add(this.add.image(560, y + 46, 'ui_panel_green').setDisplaySize(880, 112).setAlpha(q.done ? 0.35 : 0.55));
-      this.ink(150, y, (q.done ? '✓  ' : '') + q.title, 26).setColor(q.done ? '#5a5a4a' : COLORS.ink);
-      this.ink(150, y + 38, q.text, 19, 800);
+    // open quests first; rows shrink to fit the page as the log grows
+    const list = [...rows.filter((q) => !q.done), ...rows.filter((q) => q.done)].slice(0, 7);
+    const gap = Math.min(128, 470 / list.length);
+    const small = gap < 100;
+    list.forEach((q, i) => {
+      const y = 150 + i * gap;
+      this.content.add(this.add.image(560, y + gap * 0.36, 'ui_panel_green').setDisplaySize(880, gap - 14).setAlpha(q.done ? 0.35 : 0.55));
+      this.ink(150, y, (q.done ? '✓  ' : '') + q.title, small ? 21 : 26).setColor(q.done ? '#5a5a4a' : COLORS.ink);
+      this.ink(150, y + (small ? 28 : 38), q.text, small ? 16 : 19, 800);
     });
+    if (rows.length > list.length) this.ink(150, 628, `…and ${rows.length - list.length} more finished`, 16);
   }
 
   private buildRecords() {
