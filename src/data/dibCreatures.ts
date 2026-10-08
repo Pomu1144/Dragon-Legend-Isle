@@ -2022,7 +2022,12 @@ export const DIB_KITS = [
    "wind_cult_terraces",
    "wind_cult_shrine",
    "giant_mangal_f3",
-   "ringfeld_lower_road"
+   "ringfeld_lower_road",
+   "giant_mangal_f4",
+   "giant_mangal_f5",
+   "lighthouse_f3",
+   "north_earlsome_road",
+   "cave_of_earlsome_f1"
   ],
   "name": "Cockatrice",
   "id": "cockatrice",
@@ -2292,7 +2297,8 @@ export const DIB_KITS = [
    "giant_mangal_f1",
    "mangal_crossroads",
    "mangal_building_site",
-   "giant_mangal_f2"
+   "giant_mangal_f2",
+   "giant_mangal_f4"
   ],
   "name": "Cult Warrior",
   "id": "cult_warrior",
@@ -2552,7 +2558,9 @@ export const DIB_KITS = [
   "rooms": [
    "giant_mangal_f1",
    "mangal_crossroads",
-   "giant_mangal_f2"
+   "giant_mangal_f2",
+   "giant_mangal_f4",
+   "giant_mangal_f6"
   ],
   "name": "Mutation",
   "id": "mutation",
@@ -2703,7 +2711,12 @@ export const DIB_KITS = [
   "rooms": [
    "mangal_east_road",
    "mangal_building_site",
-   "giant_mangal_f2"
+   "giant_mangal_f2",
+   "giant_mangal_f4",
+   "giant_mangal_f5",
+   "giant_mangal_f6",
+   "north_earlsome_road",
+   "cave_of_earlsome_f1"
   ],
   "name": "Wasp Queen",
   "id": "wasp_queen",
@@ -2877,7 +2890,10 @@ export const DIB_KITS = [
   "rooms": [
    "norwoods_serpent_hollow",
    "norwoods_mangal_roots",
-   "wind_cult_terraces"
+   "wind_cult_terraces",
+   "giant_mangal_f4",
+   "giant_mangal_f5",
+   "cave_of_earlsome_f1"
   ],
   "name": "Manticore",
   "id": "manticore",
@@ -3047,7 +3063,9 @@ export const DIB_KITS = [
   "role": "encounter",
   "rooms": [
    "norwoods_serpent_hollow",
-   "safaris_grassland"
+   "safaris_grassland",
+   "north_earlsome_road",
+   "earlsome_mountain_path"
   ],
   "name": "Yeti",
   "id": "yeti",
@@ -3882,7 +3900,8 @@ export const DIB_KITS = [
   "role": "encounter",
   "rooms": [
    "forest",
-   "mosswood"
+   "mosswood",
+   "earlsome_mountain_path"
   ],
   "rarity": "rare",
   "name": "Snow Cub",
@@ -4568,7 +4587,9 @@ export const DIB_KITS = [
   "role": "encounter",
   "rooms": [
    "giant_mangal_f1",
-   "giant_mangal_f2"
+   "giant_mangal_f2",
+   "giant_mangal_f4",
+   "giant_mangal_f6"
   ],
   "name": "Kemet King",
   "id": "kemet_king",
@@ -4897,7 +4918,8 @@ export const DIB_KITS = [
    "giant_mangal_f1",
    "mangal_east_road",
    "mangal_building_site",
-   "giant_mangal_f2"
+   "giant_mangal_f2",
+   "giant_mangal_f4"
   ],
   "name": "Pincer",
   "id": "pincer",
@@ -5054,7 +5076,8 @@ export const DIB_KITS = [
    "safaris_grassland",
    "wind_cult_terraces",
    "wind_cult_shrine",
-   "giant_mangal_f3"
+   "giant_mangal_f3",
+   "giant_mangal_f5"
   ],
   "name": "Spark",
   "id": "spark",
@@ -5188,7 +5211,10 @@ export const DIB_KITS = [
   "rooms": [
    "giant_mangal_f1",
    "mangal_east_road",
-   "giant_mangal_f2"
+   "giant_mangal_f2",
+   "giant_mangal_f4",
+   "giant_mangal_f5",
+   "giant_mangal_f6"
   ],
   "name": "Doombat",
   "id": "doombat",
@@ -5362,7 +5388,9 @@ export const DIB_KITS = [
   "rooms": [
    "mangal_crossroads",
    "mangal_building_site",
-   "giant_mangal_f3"
+   "giant_mangal_f3",
+   "giant_mangal_f5",
+   "giant_mangal_f6"
   ],
   "name": "Sasuke",
   "id": "sasuke",
@@ -5496,7 +5524,9 @@ export const DIB_KITS = [
   "rooms": [
    "mangal_crossroads",
    "mangal_building_site",
-   "giant_mangal_f3"
+   "giant_mangal_f3",
+   "giant_mangal_f5",
+   "giant_mangal_f6"
   ],
   "name": "Drake",
   "id": "drake",
@@ -5649,7 +5679,9 @@ export const DIB_KITS = [
   "role": "encounter",
   "rooms": [
    "mangal_crossroads",
-   "giant_mangal_f3"
+   "giant_mangal_f3",
+   "giant_mangal_f5",
+   "giant_mangal_f6"
   ],
   "name": "Flame Wing",
   "id": "flame_wing",
@@ -5941,7 +5973,11 @@ export const DIB_KITS = [
  {
   "role": "encounter",
   "rooms": [
-   "safaris_riverbank"
+   "safaris_riverbank",
+   "azurelake_harbor_road",
+   "azurelake_harbor",
+   "azurelake_east_road",
+   "azurelake_east_ford"
   ],
   "name": "Baby Nessie",
   "id": "baby_nessie",
@@ -6059,7 +6095,9 @@ export const DIB_KITS = [
  {
   "role": "encounter",
   "rooms": [
-   "safaris_riverbank"
+   "safaris_riverbank",
+   "azurelake_harbor_road",
+   "azurelake_east_road"
   ],
   "name": "Blue Seahorse",
   "id": "blue_seahorse",
@@ -6193,7 +6231,11 @@ export const DIB_KITS = [
   "rooms": [
    "safaris_riverbank",
    "east_valley_road",
-   "safaris_far_shore"
+   "safaris_far_shore",
+   "azurelake_harbor_road",
+   "azurelake_harbor",
+   "azurelake_east_road",
+   "azurelake_east_ford"
   ],
   "name": "Reptilo",
   "id": "reptilo",
@@ -6302,7 +6344,13 @@ export const DIB_KITS = [
  {
   "role": "encounter",
   "rooms": [
-   "safaris_riverbank"
+   "safaris_riverbank",
+   "lighthouse_f1",
+   "lighthouse_f2",
+   "lighthouse_f3",
+   "azurelake_harbor",
+   "azurelake_east_road",
+   "azurelake_east_ford"
   ],
   "name": "White Dolphin",
   "id": "white_dolphin",
@@ -6419,7 +6467,12 @@ export const DIB_KITS = [
   "rooms": [
    "safaris_riverbank",
    "safaris_far_shore",
-   "giant_mangal_f3"
+   "giant_mangal_f3",
+   "giant_mangal_f4",
+   "azurelake_harbor_road",
+   "azurelake_harbor",
+   "azurelake_east_road",
+   "azurelake_east_ford"
   ],
   "name": "Kappa",
   "id": "kappa",
@@ -6551,7 +6604,8 @@ export const DIB_KITS = [
  {
   "role": "encounter",
   "rooms": [
-   "safaris_riverbank"
+   "safaris_riverbank",
+   "azurelake_east_ford"
   ],
   "name": "Bon",
   "id": "bon",
@@ -6832,7 +6886,9 @@ export const DIB_KITS = [
  {
   "role": "encounter",
   "rooms": [
-   "giant_mangal_f3"
+   "giant_mangal_f3",
+   "giant_mangal_f5",
+   "giant_mangal_f6"
   ],
   "name": "Blood Warrior",
   "id": "blood_warrior",
@@ -7491,7 +7547,11 @@ export const DIB_KITS = [
   "role": "encounter",
   "rooms": [
    "ringfeld_lower_road",
-   "ringfeld_shore_road"
+   "ringfeld_shore_road",
+   "azurelake_harbor_road",
+   "azurelake_harbor",
+   "azurelake_east_road",
+   "azurelake_east_ford"
   ],
   "name": "Giant Turtle",
   "id": "giant_turtle",
@@ -7624,7 +7684,11 @@ export const DIB_KITS = [
  {
   "role": "encounter",
   "rooms": [
-   "ringfeld_shore_road"
+   "ringfeld_shore_road",
+   "azurelake_harbor_road",
+   "azurelake_harbor",
+   "azurelake_east_road",
+   "azurelake_east_ford"
   ],
   "name": "Mer Warrior",
   "id": "mer_warrior",
@@ -8035,7 +8099,10 @@ export const DIB_KITS = [
   "rooms": [
    "south_earlsome_valley",
    "earlsome_dragon_pass",
-   "longdale_road"
+   "longdale_road",
+   "north_earlsome_road",
+   "cave_of_earlsome_f1",
+   "earlsome_mountain_path"
   ],
   "name": "Bat King",
   "id": "bat_king",
@@ -8560,7 +8627,9 @@ export const DIB_KITS = [
  {
   "role": "encounter",
   "rooms": [
-   "earlsome_dragon_pass"
+   "earlsome_dragon_pass",
+   "north_earlsome_road",
+   "earlsome_mountain_path"
   ],
   "name": "Samurai",
   "id": "samurai",
@@ -9160,5 +9229,3225 @@ export const DIB_KITS = [
     }
    ]
   }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "lighthouse_f1",
+   "lighthouse_f2",
+   "lighthouse_f3",
+   "azurelake_harbor_road",
+   "azurelake_harbor"
+  ],
+  "name": "Piranha",
+  "id": "piranha",
+  "wiki": {
+   "number": "021",
+   "stars": 1.5,
+   "element": "Water",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/4/43/Piranha.png",
+   "image_size": [
+    59,
+    90
+   ],
+   "lv1": {
+    "hp": 31,
+    "attack": 10,
+    "magic": 2,
+    "speed": 19,
+    "defense": 4,
+    "resist": 2
+   },
+   "abilities": [
+    {
+     "name": "Bite",
+     "tu": "70",
+     "target": "1 Foe",
+     "effect": "6-7 Physical Damage (Water)"
+    }
+   ],
+   "evolution": "Piranha -> Razorfish (evolves at level 18) -> Dark Razorfish (evolves at level 37) -> Deep Whale (evolves at level 56)",
+   "obtain": "Found in Northern Alvalon at this location: (map image Enyalocation.png). And found at Light tower in Ringfeld."
+  },
+  "sprite": {
+   "description": "A school of three small silver-grey fish stacked diagonally, each with an oversized gaping jaw of white jagged teeth and a black throat, with flame-orange fins and tail spikes; tails point left, open mouths point right.",
+   "dominant_color_hex": "#A8A8A8",
+   "faces": "right",
+   "flier": false
+  },
+  "battle": {
+   "check": "* PIRANHA - WATER - 1.5 STARS.\n* Three jaws, one hunger. It knows only Bite.\n* Quick in the water, thin-skinned against anything.",
+   "intro": "* Three silver shapes turn in the shallows as one.",
+   "idle": [
+    "* The school circles. Teeth catch the lamplight.",
+    "* Water drips from three open mouths.",
+    "* The Piranha wait for something to bleed.",
+    "* The smell of brine and old rust thickens."
+   ],
+   "talk": [
+    "...",
+    "clack.\nclack.\nclack.",
+    "warm thing.\nnear water.",
+    "we are three.\nwe are\nalways three.",
+    "the light\nhurts.\ngo away."
+   ],
+   "spare_text": "* The school loosens and slips back into the dark water.",
+   "lore": "Piranha (DIB #21) is a 1.5-star Water monster that hunts as a school of three, found in Northern Alvalon and at the Light tower in Ringfeld. It knows a single ability, Bite (70 TU, 6-7 Water physical damage to one foe), and its level-1 stats favour speed (19) over defense (4) and resist (2). It evolves into Razorfish at level 18, Dark Razorfish at level 37 and finally Deep Whale at level 56. Keepers of the coast say a tamer patient enough to raise one will one day hold something vast.",
+   "capture_fail": [
+    "* The card snaps shut on water. Three shapes scatter and regroup.",
+    "* One fish is held. The other two tear it free."
+   ],
+   "acts": [
+    {
+     "name": "Still Water",
+     "text": [
+      "* You stop moving and let the water settle.",
+      "* With no splashing to chase, the school slows its circling."
+     ],
+     "mercy": 40,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Shade Light",
+     "text": [
+      "* You turn your lantern away from the water.",
+      "* In the dimness the three bodies hang quieter, mouths half closed."
+     ],
+     "mercy": 35,
+     "once": true,
+     "calm": 2
+    },
+    {
+     "name": "Count Them",
+     "text": [
+      "* One. Two. Three. You count them aloud, slowly.",
+      "* They seem to listen. Nothing ever counted them without hunger before."
+     ],
+     "mercy": 30,
+     "once": true,
+     "calm": 1
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Bite",
+     "tu": 70,
+     "base_pattern": "swoop",
+     "projectile": "fx_waterring",
+     "tint_hex": "#C8C8C8",
+     "twist": "multi_hit",
+     "box": [
+      360,
+      230
+     ],
+     "intensity": 0.9,
+     "flavor": "* Three mouths lunge in turn, each one a ring of white teeth."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "lighthouse_f1",
+   "lighthouse_f2",
+   "lighthouse_f3"
+  ],
+  "name": "Mutant Fish",
+  "id": "mutant_fish",
+  "wiki": {
+   "number": "152",
+   "stars": 2,
+   "element": "Water",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/1/1d/Mutant_Fish.png",
+   "image_size": [
+    128,
+    111
+   ],
+   "lv1": {
+    "hp": 29,
+    "attack": 5,
+    "magic": 8,
+    "speed": 13,
+    "defense": 6,
+    "resist": 13
+   },
+   "abilities": [
+    {
+     "name": "Bubble",
+     "tu": "70",
+     "target": "1 Foe",
+     "effect": "5-6 Magical Damage (Water)"
+    },
+    {
+     "name": "Reincarnate",
+     "tu": "200",
+     "target": "-",
+     "effect": "Replaces this monster with a random monster"
+    }
+   ],
+   "evolution": "Mutant Fish -> Sea Maiden (evolves at level 19) -> Sea Caliph (evolves at level 32)",
+   "obtain": "Found in the Lighthouse in Ringfeld."
+  },
+  "sprite": {
+   "description": "A hunched, half-upright fish-thing: a heavy slate-grey trunk on short clawed legs, wrapped in ragged teal and deep-blue fins that hang off its shoulders and arms like a torn cloak. Spined crest along the back. Its head is small and pale, almost a bare skull, set low between the fins. Body turned three-quarters toward the viewer.",
+   "dominant_color_hex": "#3E8CA8",
+   "faces": "front",
+   "flier": false
+  },
+  "battle": {
+   "check": "* MUTANT FISH - WATER - 2 STARS.\n* Spits pressured bubbles that burst cold.\n* Given time, it gives itself up to the tide and something else climbs out.",
+   "intro": "* Something wet drags itself up the lighthouse stairs.",
+   "idle": [
+    "* The Mutant Fish breathes through gills that were never meant for air.",
+    "* Salt water runs off its fins and pools around its claws.",
+    "* Its pale face does not blink. It may not be able to.",
+    "* Somewhere above, the dead lamp hangs in its cage. The creature keeps its face turned from it."
+   ],
+   "talk": [
+    "...cold.",
+    "the water\nwas warm\nonce",
+    "not fish.\nnot man.",
+    "your light\nhurts",
+    "let me\ngo back\ndown"
+   ],
+   "spare_text": "* The Mutant Fish lowers its fins and slides back toward the dark water below the stairs.",
+   "lore": "A thing of the Lighthouse in Ringfeld, neither wholly fish nor wholly anything else. It lives on the flooded lower stairs, where sea water seeps through the stone. Left alone long enough, it will surrender its own shape and something else stands where it stood; no one has seen what it becomes on purpose. Those that survive grow into the Sea Maiden at level 19, and the Sea Maiden into the Sea Caliph at level 32.",
+   "capture_fail": [
+    "* The card slips off its wet scales.",
+    "* The Mutant Fish shudders loose. It will not be held yet."
+   ],
+   "acts": [
+    {
+     "name": "Shade Lantern",
+     "text": [
+      "* You close your lantern's shutter and turn it away from the creature.",
+      "* Its gills slow. It stops cringing."
+     ],
+     "mercy": 40,
+     "once": true,
+     "calm": 1
+    },
+    {
+     "name": "Pour Water",
+     "text": [
+      "* You tip your flask over its drying fins.",
+      "* It goes very still, and lets the water run."
+     ],
+     "mercy": 35,
+     "once": false,
+     "calm": 2
+    },
+    {
+     "name": "Stare",
+     "text": [
+      "* You meet its pale, lidless face.",
+      "* It stares back. Neither of you looks away.",
+      "* Nothing is decided."
+     ],
+     "mercy": 10,
+     "once": false,
+     "calm": 0
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Bubble",
+     "tu": 70,
+     "base_pattern": "bounce_orbs",
+     "projectile": "fx_waterring",
+     "tint_hex": "#6FC3DA",
+     "twist": "none",
+     "box": [
+      360,
+      230
+     ],
+     "intensity": 0.9,
+     "flavor": "* It spits a cluster of cold bubbles. They bounce, then burst."
+    },
+    {
+     "ability": "Reincarnate",
+     "tu": 200,
+     "base_pattern": "rift_bursts",
+     "projectile": "fx_sparkle",
+     "tint_hex": "#2F6E86",
+     "twist": "none",
+     "box": [
+      420,
+      240
+     ],
+     "intensity": 1,
+     "flavor": "* The Mutant Fish folds in on itself. The water around it opens. Something else is coming up."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "lighthouse_f1",
+   "lighthouse_f2",
+   "lighthouse_f3",
+   "azurelake_harbor_road",
+   "azurelake_harbor"
+  ],
+  "name": "Giant Crab",
+  "id": "giant_crab",
+  "wiki": {
+   "number": "031",
+   "stars": 1,
+   "element": "Water",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/f/fb/Giant_Crab.png",
+   "image_size": [
+    91,
+    55
+   ],
+   "lv1": {
+    "hp": 80,
+    "attack": 5,
+    "magic": 5,
+    "speed": 5,
+    "defense": 21,
+    "resist": 21
+   },
+   "abilities": [
+    {
+     "name": "Attack Break",
+     "tu": "130",
+     "target": "1 Foe",
+     "effect": "5-6 Physical Damage (Water), -1 Attack"
+    },
+    {
+     "name": "Harden",
+     "tu": "160",
+     "target": "Self",
+     "effect": "+2 Defense"
+    }
+   ],
+   "evolution": "Giant Crab -> Crab King (evolves at level 18)",
+   "obtain": "Found in Northern Alvalon in these locations: (location map image Giantcrablocation2.png)"
+  },
+  "sprite": {
+   "description": "A broad low crab with a glossy green carapace edged in jagged leaf-like spines, an ochre-gold underbelly veined with darker lines, and one oversized green-and-gold pincer thrust forward on the left; thin spiked legs splay beneath it.",
+   "dominant_color_hex": "#2E7A22",
+   "faces": "left",
+   "flier": false
+  },
+  "battle": {
+   "check": "* GIANT CRAB - WATER - 1 star.\n* Its shell gets harder each time it waits.\n* The big claw strikes to weaken, not to kill.",
+   "intro": "* A green shell rises out of the wet ground. A claw opens.",
+   "idle": [
+    "* The Giant Crab shifts sideways and does not take its eyes off you.",
+    "* Water drips from the seams of its shell.",
+    "* The great claw opens and closes, slowly, like a counting hand.",
+    "* Its legs dig into the mud. It is not going anywhere."
+   ],
+   "talk": [
+    "click.\nclick.",
+    "...the tide\nleft me here.",
+    "you are soft.\ni am not.",
+    "close enough\nto grip.",
+    "...back to\nthe water."
+   ],
+   "spare_text": "* The Giant Crab lowers its claw and backs away, one slow step at a time, toward the water.",
+   "lore": "* The wiki gives Giant Crab level-1 figures: 80 HP, 5 Attack, 5 Magic, 5 Speed, 21 Defense, 21 Resist. It is found in Northern Alvalon, and at level 18 it becomes the Crab King. Its claw is meant to cripple a foe's strength more than to wound, and its shell thickens while it waits.",
+   "capture_fail": [
+    "* The card slides off the wet shell. The crab does not even flinch.",
+    "* It pulls itself under its own carapace. The card finds nothing to hold."
+   ],
+   "acts": [
+    {
+     "name": "Keep Distance",
+     "text": [
+      "* You step back, out of reach of the claw.",
+      "* The Giant Crab watches. It does not follow."
+     ],
+     "mercy": 35,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Wet Its Shell",
+     "text": [
+      "* You scoop water from a puddle and pour it over the green carapace.",
+      "* The plates loosen. Its claw sinks a little."
+     ],
+     "mercy": 45,
+     "once": true,
+     "calm": 2
+    },
+    {
+     "name": "Point To Water",
+     "text": [
+      "* You point toward the nearest water and stand aside.",
+      "* Its eyes turn that way, and stay there a long moment."
+     ],
+     "mercy": 40,
+     "once": false,
+     "calm": 1
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Attack Break",
+     "tu": 130,
+     "base_pattern": "telegraph_lines",
+     "projectile": "fx_waterring",
+     "tint_hex": "#3FA86A",
+     "twist": "none",
+     "box": [
+      380,
+      230
+     ],
+     "intensity": 0.9,
+     "flavor": "* The claw marks its line in the mud, then crashes down along it. Your arms feel weaker."
+    },
+    {
+     "ability": "Harden",
+     "tu": 160,
+     "base_pattern": "bounce_orbs",
+     "projectile": "orb_moss",
+     "tint_hex": "#B8922A",
+     "twist": "slow",
+     "box": [
+      340,
+      220
+     ],
+     "intensity": 0.8,
+     "flavor": "* The crab draws in. Flakes of hard shell break loose and roll around you as it grows harder."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "lighthouse_f1",
+   "lighthouse_f2",
+   "lighthouse_f3",
+   "azurelake_harbor"
+  ],
+  "name": "Shark",
+  "id": "shark",
+  "wiki": {
+   "number": "121",
+   "stars": 2,
+   "element": "Water",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/1/14/Shark.png",
+   "image_size": [
+    80,
+    127
+   ],
+   "lv1": {
+    "hp": 35,
+    "attack": 8,
+    "magic": 5,
+    "speed": 10,
+    "defense": 13,
+    "resist": 6
+   },
+   "abilities": [
+    {
+     "name": "Fin Blade",
+     "tu": "160",
+     "target": "1 Foe",
+     "effect": "10-13 Physical Damage (Water)"
+    },
+    {
+     "name": "Killer Stare",
+     "tu": "100",
+     "target": "1 Foe",
+     "effect": "Stuns target for 100 TUs"
+    },
+    {
+     "name": "Man Eater",
+     "tu": "130",
+     "target": "1 Foe",
+     "effect": "8-9 Physical Damage (Water), +100% Damage vs. Humanoid"
+    }
+   ],
+   "evolution": "Shark -> Terror Shark (evolves at level 22)",
+   "obtain": "Found in Northern Alvalon at this location: [map image Enyalocation.png]. Found in the Lighthouse"
+  },
+  "sprite": {
+   "description": "A slate-grey shark rendered vertically, nose angled down and tail curling up behind it, its body hard-edged like folded metal plates, a pale ridged underside and a thin mouth of small white teeth near the bottom of the frame.",
+   "dominant_color_hex": "#5B6275",
+   "faces": "front",
+   "flier": false
+  },
+  "battle": {
+   "check": "* SHARK - WATER - 2 STARS.\n* Its stare can hold you in place.\n* It bites humans twice as hard.",
+   "intro": "* Something grey turns once in the dark water and comes back.",
+   "idle": [
+    "* The Shark circles. It has done this for a long time.",
+    "* Water slaps against stone. The Shark does not blink.",
+    "* Its fin cuts a slow line through the shallows.",
+    "* It watches your hands, and then your throat."
+   ],
+   "talk": [
+    "Warm.\nWarm and\nslow.",
+    "No light\nup there\nnow.",
+    "You float\nbadly.",
+    "Blood\ncarries far\nin salt.",
+    "Stay. The\ntide will\nbring you."
+   ],
+   "spare_text": "* The Shark sinks below the surface and does not rise again.",
+   "lore": "A plain grey hunter of the northern coast, said to gather in the drowned lower rooms of the Lighthouse where the sea comes in through the stone. Fishermen do not name it aloud. It strikes with a fin like a blade, and its stare alone can pin a swimmer in place long enough for the rest. It is known to favour people over other prey. With time it grows into the Terror Shark, at level 22.",
+   "capture_fail": [
+    "* The card goes dark and wet. The Shark is already gone beneath.",
+    "* It snaps the light in half and circles again."
+   ],
+   "acts": [
+    {
+     "name": "Hold Still",
+     "text": [
+      "* You stop moving in the water.",
+      "* The Shark slows. Without thrashing, you are less like food."
+     ],
+     "mercy": 40,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Meet Its Eyes",
+     "text": [
+      "* You do not look away from the black, flat eye.",
+      "* Neither of you blinks. It turns aside first."
+     ],
+     "mercy": 35,
+     "once": true,
+     "calm": 2
+    },
+    {
+     "name": "Splash",
+     "text": [
+      "* You beat the surface with both hands.",
+      "* The Shark comes closer. That was the wrong thing to do."
+     ],
+     "mercy": 0,
+     "once": false,
+     "calm": 0
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Fin Blade",
+     "tu": 160,
+     "base_pattern": "tornado_sweep",
+     "projectile": "fx_waterring",
+     "tint_hex": "#7F8AA3",
+     "twist": "none",
+     "box": [
+      460,
+      230
+     ],
+     "intensity": 1,
+     "flavor": "* A grey fin slices across the water like a drawn knife."
+    },
+    {
+     "ability": "Killer Stare",
+     "tu": 100,
+     "base_pattern": "telegraph_lines",
+     "projectile": "fx_silverring",
+     "tint_hex": "#C9D2E0",
+     "twist": "slow",
+     "box": [
+      340,
+      240
+     ],
+     "intensity": 0.9,
+     "flavor": "* Its eye finds yours. Your limbs forget how to move."
+    },
+    {
+     "ability": "Man Eater",
+     "tu": 130,
+     "base_pattern": "swoop",
+     "projectile": "orb_blood",
+     "tint_hex": "#8C2A2A",
+     "twist": "none",
+     "box": [
+      400,
+      230
+     ],
+     "intensity": 1.1,
+     "flavor": "* The jaws open wide. It knows what you are."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "lighthouse_f1",
+   "lighthouse_f2",
+   "lighthouse_f3"
+  ],
+  "name": "Armor Fish",
+  "id": "armor_fish",
+  "wiki": {
+   "number": "103",
+   "stars": 2.5,
+   "element": "Water",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/d/d3/Armor_Fish.png",
+   "image_size": [
+    128,
+    104
+   ],
+   "lv1": {
+    "hp": 29,
+    "attack": 4,
+    "magic": 10,
+    "speed": 14,
+    "defense": 6,
+    "resist": 6
+   },
+   "abilities": [
+    {
+     "name": "Rapid Water",
+     "tu": "130",
+     "target": "1 Foe",
+     "effect": "11-14 Magical Damage (Water)"
+    }
+   ],
+   "evolution": "Armor Fish -> Ceola King (evolves at level 23)",
+   "obtain": "Appears in the Lighthouse."
+  },
+  "sprite": {
+   "description": "A pale, silver-white armored fish seen curled in mid-turn: a hard shell-like carapace pierced by a row of dark round holes, swept-back blade fins tinted sea-green, and thin trailing barbels and spines below. Head and mouth lean down to the left.",
+   "dominant_color_hex": "#c9d2d8",
+   "faces": "left",
+   "flier": true
+  },
+  "battle": {
+   "check": "* ARMOR FISH - Water - 2.5 stars.\n* A hollow shell that swims. It spits water fast and often (Rapid Water, 130 TU); its body is light, not strong.",
+   "intro": "* Something pale turns in the damp air of the stairwell. ARMOR FISH.",
+   "idle": [
+    "* ARMOR FISH circles once. The holes in its shell whistle faintly.",
+    "* Salt water drips from its fins and does not reach the floor.",
+    "* It hangs in the air as if the tide never left this place.",
+    "* Smells like the bottom of the lamp-room cistern."
+   ],
+   "talk": [
+    "...",
+    "wet stone\nremembers",
+    "the light\nwent out\nonce",
+    "shell is\nempty\ninside",
+    "tide comes\nback up\nthe stairs"
+   ],
+   "spare_text": "* ARMOR FISH sinks back into the dark of the stairwell, unhurried, as if returning to deeper water.",
+   "lore": "Armor Fish (#103) are counted among the creatures of the Lighthouse in Ringfeld. Their shells are pierced through with round holes. At level 23 it becomes a Ceola King.",
+   "capture_fail": [
+    "* The card slides off the wet shell. The shell rings once, hollow.",
+    "* ARMOR FISH twists away and circles back, unhurried."
+   ],
+   "acts": [
+    {
+     "name": "Stand Still",
+     "text": [
+      "* You stop moving and let it circle you.",
+      "* ARMOR FISH slows. It seems to be deciding what you are."
+     ],
+     "mercy": 35,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Listen",
+     "text": [
+      "* You listen to the air moving through the holes in its shell.",
+      "* The sound is low and even, like breathing. ARMOR FISH settles."
+     ],
+     "mercy": 40,
+     "once": true,
+     "calm": 2
+    },
+    {
+     "name": "Offer Water",
+     "text": [
+      "* You tip your flask out across the floor.",
+      "* ARMOR FISH dips toward the puddle and stays there a while."
+     ],
+     "mercy": 35,
+     "once": true,
+     "calm": 1
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Rapid Water",
+     "tu": 130,
+     "base_pattern": "aimed_volley",
+     "projectile": "fx_waterring",
+     "tint_hex": "#7fc6d8",
+     "twist": "none",
+     "box": [
+      360,
+      230
+     ],
+     "intensity": 0.9,
+     "flavor": "* Short, hard jets of seawater, one after another, all aimed straight at you."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "lighthouse_f1",
+   "lighthouse_f2",
+   "lighthouse_f3"
+  ],
+  "name": "Iron Fish",
+  "id": "iron_fish",
+  "wiki": {
+   "number": "101",
+   "stars": 2.5,
+   "element": "Water",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/7/7c/Iron_Fish.png",
+   "image_size": [
+    109,
+    110
+   ],
+   "lv1": {
+    "hp": 29,
+    "attack": 10,
+    "magic": 4,
+    "speed": 14,
+    "defense": 6,
+    "resist": 6
+   },
+   "abilities": [
+    {
+     "name": "Skull Butt",
+     "tu": "130",
+     "target": "1 Foe",
+     "effect": "11-14 Physical Damage (Water)"
+    }
+   ],
+   "evolution": "Iron Fish -> Sea Dragon (evolves at level 23)",
+   "obtain": "Found in the lighthouse."
+  },
+  "sprite": {
+   "description": "A heavy fish sheathed in rust-red iron plates, a domed riveted skull with dark bolt-holes, fins like torn sheet metal; head to the left, body curling down and back into a hooked tail.",
+   "dominant_color_hex": "#8A4A2E",
+   "faces": "left",
+   "flier": false
+  },
+  "battle": {
+   "check": "* IRON FISH - WATER - 2.5 STARS.\n* Its only weapon is its skull. Each blow lands heavy, and it does not tire of them.",
+   "intro": "* Something heavy turns over in the dark water. Rust blooms where it surfaces.",
+   "idle": [
+    "* The Iron Fish grinds its plates together. The sound carries like a distant hull.",
+    "* Water runs out of the bolt-holes in its skull, slow and brown.",
+    "* It circles low, never quite leaving the wet stone.",
+    "* The smell of old rain and corroded metal."
+   ],
+   "talk": [
+    "...clank...",
+    "the light\nturns\nand turns",
+    "we were\nfish once",
+    "rust\nis only\nslow fire",
+    "hold still"
+   ],
+   "spare_text": "* The Iron Fish sinks back into the black water. The ripples close over it.",
+   "lore": "The Iron Fish keeps to the flooded lower rooms of the Ringfeld lighthouse, where the sea comes in through the stones. Its plates are not armour it grew so much as armour that grew over it, layer upon layer of rust, as if the tide had been forging it for a very long time. It knows one thing: to drive its skull into whatever stands in the water. The keepers say the ones that live long enough stop being fish at all, and that what they become is the reason the light was built.",
+   "capture_fail": [
+    "* The card slides off its wet iron and skitters across the floor.",
+    "* It shakes the light off like seawater and keeps circling."
+   ],
+   "acts": [
+    {
+     "name": "Stand Firm",
+     "text": [
+      "* You plant your feet on the slick stone and do not flinch.",
+      "* The Iron Fish halts mid-charge, as if a wall had answered it."
+     ],
+     "mercy": 35,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Scrape Rust",
+     "text": [
+      "* You reach out and scrape a flake of rust from its plate.",
+      "* Beneath it, the metal is still bright. It goes very still."
+     ],
+     "mercy": 45,
+     "once": true,
+     "calm": 2
+    },
+    {
+     "name": "Hum",
+     "text": [
+      "* You hum low, like the lighthouse foghorn heard from far off.",
+      "* Its plates stop grinding. It seems to listen."
+     ],
+     "mercy": 30,
+     "once": false,
+     "calm": 1
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Skull Butt",
+     "tu": 130,
+     "base_pattern": "swoop",
+     "projectile": "fx_waterring",
+     "tint_hex": "#7FA6B2",
+     "twist": "none",
+     "box": [
+      380,
+      230
+     ],
+     "intensity": 0.95,
+     "flavor": "* The Iron Fish lowers its riveted skull and rams through the water."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "lighthouse_f1",
+   "lighthouse_f2",
+   "lighthouse_f3"
+  ],
+  "name": "Tiger Fish",
+  "id": "tiger_fish",
+  "wiki": {
+   "number": "090",
+   "stars": 1.5,
+   "element": "Water",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/0/0c/Tiger_Fish.png",
+   "image_size": [
+    49,
+    54
+   ],
+   "lv1": {
+    "hp": 28,
+    "attack": 10,
+    "magic": 2,
+    "speed": 31,
+    "defense": 4,
+    "resist": 2
+   },
+   "abilities": [
+    {
+     "name": "Bite",
+     "tu": "70",
+     "target": "1 Foe",
+     "effect": "6-7 Physical Damage (Water)"
+    },
+    {
+     "name": "Spawn",
+     "tu": "250",
+     "target": "Self",
+     "effect": "Creates a copy of this monster. HP is shared."
+    }
+   ],
+   "evolution": "Tiger Fish -> Tiger Swarm (evolves at level 38)",
+   "obtain": "Found in [[Northern Alvalon]] at these locations: (location map image Tigerfishlocation.png). Also listed on the Lighthouse (Ringfeld) dungeon page: floors 1-3, Very Rare. Wiki note: You should capture this monster and evolve it into a Tiger Swarm. Tiger Swarm is used in the recipe for a much more powerful monster known as Aqua Horror."
+  },
+  "sprite": {
+   "description": "A small, spiny fish seen head-on in three-quarter view, body striped in bands of burnt orange and gunmetal silver like a tiger's coat. Its jaw hangs open, crowded with white needle teeth; jagged fins sweep back toward a ragged tail at the left. Black shadow between the stripes.",
+   "dominant_color_hex": "#E0A040",
+   "faces": "right",
+   "flier": false
+  },
+  "battle": {
+   "check": "* TIGER FISH - WATER - 1.5 stars.\n* Bites fast and often. Given time,\n  it splits into another of itself.",
+   "intro": "* Something striped turns in the shallows, and its mouth opens before its eyes do.",
+   "idle": [
+    "* The Tiger Fish holds still. Only its teeth seem to move.",
+    "* Water drips from the fins without a sound.",
+    "* Its stripes catch the light like bars on a cage.",
+    "* Somewhere beneath the surface, a second shape waits to be born."
+   ],
+   "talk": [
+    "Teeth first.\nAlways teeth.",
+    "Cut me.\nThere are\nmore of me.",
+    "The tide\nfeeds us.",
+    "We share\none heart.",
+    "Warm meat\nwalks dry."
+   ],
+   "spare_text": "* The Tiger Fish sinks back into the dark water. Its copy follows, and then there is only one ripple.",
+   "lore": "Number 90 of the island's catalogue, a Water creature of one and a half stars. Fishermen say a single Tiger Fish is never alone for long: it divides itself in the water, and every copy draws from the same life, so wounding one wounds all. It is weak alone, but those who keep one long enough see it become a swarm.",
+   "capture_fail": [
+    "* The card closes on water. The fish is already somewhere else.",
+    "* Two shapes, one heart. The card could not tell which to hold."
+   ],
+   "acts": [
+    {
+     "name": "Stand Still",
+     "text": [
+      "* You stop moving and let the water settle.",
+      "* The Tiger Fish circles once, then hangs in place, watching."
+     ],
+     "mercy": 40,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Offer Bait",
+     "text": [
+      "* You toss a scrap of dried fish into the shallows.",
+      "* The Tiger Fish takes it in one snap. Its fins lower."
+     ],
+     "mercy": 55,
+     "once": true,
+     "calm": 2
+    },
+    {
+     "name": "Splash",
+     "text": [
+      "* You strike the surface hard.",
+      "* The Tiger Fish flinches back and bares more teeth."
+     ],
+     "mercy": 0,
+     "once": false,
+     "calm": 0
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Bite",
+     "tu": 70,
+     "base_pattern": "aimed_volley",
+     "projectile": "fx_waterring",
+     "tint_hex": "#E0A040",
+     "twist": "none",
+     "box": [
+      340,
+      230
+     ],
+     "intensity": 0.9,
+     "flavor": "* Rows of teeth close from the dark, quick and close together."
+    },
+    {
+     "ability": "Spawn",
+     "tu": 250,
+     "base_pattern": "bounce_orbs",
+     "projectile": "fx_silverring",
+     "tint_hex": "#A0A4A8",
+     "twist": "multi_hit",
+     "box": [
+      420,
+      240
+     ],
+     "intensity": 1,
+     "flavor": "* The fish splits. Two striped shapes now share one pulse."
+    }
+   ]
+  }
+ },
+ {
+  "role": "boss",
+  "rooms": [],
+  "name": "Archelon",
+  "id": "archelon",
+  "wiki": {
+   "number": "N/A",
+   "stars": 4.5,
+   "element": "Water",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/8/8b/Archelon.png",
+   "image_size": [
+    365,
+    440
+   ],
+   "lv1": {
+    "hp": 1512,
+    "attack": 137,
+    "magic": 83,
+    "speed": 244,
+    "defense": 142,
+    "resist": 140
+   },
+   "abilities": [
+    {
+     "name": "Dragon Rage",
+     "tu": "250",
+     "target": "One Foe",
+     "effect": "29 - 36 Physical Damage (Water)"
+    }
+   ],
+   "evolution": "None listed on the Archelon page (\"You cannot collect any dragon overlords.\"). The page states: \"The real identity of Archelon is a Sea Dragon.\" Sea Dragon's chain: Iron Fish (evolves at level 23) -> Sea Dragon.",
+   "obtain": "It is the dragon overlord that will block your way to Lighthouse in Ringfeld. You cannot collect any dragon overlords. Reward: None."
+  },
+  "sprite": {
+   "description": "A long, limbless sea dragon coiled in a loose S-shape against a cloudy sky. Its body is charcoal-black, covered in heavy overlapping scales, with crimson flame-shaped markings running along its spine, flanks and coils. The head is at the lower left, turned toward the viewer's left, a narrow crocodilian snout with jaws open on rows of pale teeth and a jagged black crest sweeping back from the skull. The tail rises at the right side and curls back down. Note: the wiki image is a 365x440 battle screenshot that includes a cloud background, the name 'Archelon', an HP bar and a small floating water icon above the creature; the creature must be cut out from it.",
+   "dominant_color_hex": "#2F2F35",
+   "faces": "left",
+   "flier": true
+  },
+  "battle": {
+   "check": "* ARCHELON - WATER - 4.5 STARS.\n* A Dragon Overlord. Its true form is a Sea Dragon.\n* It knows one technique, Dragon Rage. It waits a long time between blows, and each one falls like a breaking wave.",
+   "intro": "* The tide pulls back from the causeway all at once.\n* Something long and black rises out of the water beside the dark Lighthouse.\n* Archelon bars the way.",
+   "idle": [
+    "* Archelon circles the causeway without a sound.",
+    "* Spray hangs in the air around it and does not fall.",
+    "* Behind it the Lighthouse stands unlit, its windows black.",
+    "* The red lines along its body brighten and fade, slowly, like held breath."
+   ],
+   "talk": [
+    "Nothing\ncrosses.",
+    "The light\nis out.\nI keep it.",
+    "Boats\nbreak.\nYou will too.",
+    "I was here\nbefore the\nlamp.",
+    "Go back to\nthe shore."
+   ],
+   "spare_text": "* Archelon sinks until only its crest shows above the water.\n* It turns once around the causeway and draws aside.\n* The tide comes back in quietly, and the stones of the causeway stay dry.",
+   "lore": "Archelon is the Dragon Overlord that blocks the way to the Lighthouse in Ringfeld. Its record gives no number (N/A), 4.5 stars (four full stars and one half star; the page is filed only under Dragon Overlords, with no star category), the Water element, and level 22. No level-1 values exist: the stats here are read from its record's stat screen at level 22, where it is shown under its real name, Sea Dragon: HP 1512, Attack 137, Magic 83, Speed 244, Defense 142, Resist 140. Technique: Dragon Rage (250 TU, one foe, 29-36 physical Water damage, given as if the monster were level 1). The real identity of Archelon is a Sea Dragon, which evolves from Iron Fish at level 23. Dragon Overlords cannot be collected, and it gives no reward. Its name is from the Greek for 'ruler turtle', an extinct sea turtle, the largest ever documented. In Ringfeld they say it does not hunt the shore, only the causeway, and that every boat that has tried to reach the Lighthouse is in the cove now.",
+   "capture_fail": [
+    "* The card soaks through in your hand. Archelon does not look at it.",
+    "* A wave takes the light out of the card and carries it out to sea. Nothing is held."
+   ],
+   "acts": [
+    {
+     "name": "Hold Your Ground",
+     "text": [
+      "* You plant your feet at the edge of the causeway and stay there.",
+      "* Archelon's head comes level with yours. It looks for a long time.",
+      "* You do not step forward. It seems to note that."
+     ],
+     "mercy": 20,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Watch the Water",
+     "text": [
+      "* You stop looking at the Lighthouse and watch the sea instead.",
+      "* The swell around Archelon slows to the pace of your breathing.",
+      "* Its coils loosen a little."
+     ],
+     "mercy": 22,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Speak of the Cove",
+     "text": [
+      "* You tell it about the ribs of the keeper's boat in the cove.",
+      "* Archelon goes still. The red along its body dims.",
+      "* For a moment it does not look like a guard. It looks tired."
+     ],
+     "mercy": 28,
+     "once": true,
+     "calm": 2
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Dragon Rage",
+     "tu": 250,
+     "base_pattern": "swoop",
+     "projectile": "fx_waterring",
+     "tint_hex": "#3E6E9E",
+     "twist": "multi_hit",
+     "box": [
+      460,
+      240
+     ],
+     "intensity": 1.35,
+     "flavor": "* Archelon rears out of the sea and comes down on the causeway. Dragon Rage."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "north_earlsome_road",
+   "earlsome_mountain_path"
+  ],
+  "name": "Stomper",
+  "id": "stomper",
+  "wiki": {
+   "number": "139",
+   "stars": 5,
+   "element": "Earth",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/4/49/Stomper.png",
+   "image_size": [
+    113,
+    128
+   ],
+   "lv1": {
+    "hp": 35,
+    "attack": 14,
+    "magic": 14,
+    "speed": 13,
+    "defense": 24,
+    "resist": 24
+   },
+   "abilities": [
+    {
+     "name": "Tusk",
+     "tu": "160",
+     "target": "1 Foe",
+     "effect": "18-23 Physical Damage (Earth)"
+    },
+    {
+     "name": "Unstable Magic",
+     "tu": "250",
+     "target": "1 Friend",
+     "effect": "Heals 27-34 HP, Sacrifces your monster [40%]"
+    }
+   ],
+   "evolution": "Stomper -> Ganesha (evolves at level 53). 2-form chain.",
+   "obtain": "In North Earlsome in the woods. Somewhat rare. Also in Endergate, on the road directly north of the boat."
+  },
+  "sprite": {
+   "description": "An upright grey elephant standing on two legs, crowned with a tall golden spired crown, wearing gold-trimmed armour at the collar, belt and ankles; long trunk hanging down its chest, two long curved white tusks, small pink eyes, a curved silver scimitar held at its side in its right hand, left hand raised open. Body faces the viewer, three-quarter front.",
+   "dominant_color_hex": "#7c8195",
+   "faces": "front",
+   "flier": false
+  },
+  "battle": {
+   "check": "* STOMPER - EARTH - 5 stars.\n* Its tusks strike like a falling\n  wall. Its healing magic is unstable;\n  it may cost Stomper itself.",
+   "intro": "* The trees part. Something crowned\n  and heavy steps out of the woods.",
+   "idle": [
+    "* Stomper shifts its weight. The\n  ground answers.",
+    "* The golden crown catches what\n  little light there is.",
+    "* Stomper's trunk hangs still.\n  Its eyes do not leave you.",
+    "* The scimitar's edge rests against\n  the earth, patient."
+   ],
+   "talk": [
+    "The woods\nare mine to\nkeep.",
+    "Every step\nI take is\nheard.",
+    "Old roots.\nOld weight.",
+    "I mend.\nThe cost\nis mine.",
+    "Go back\nthe way\nyou came."
+   ],
+   "spare_text": "* Stomper lowers its blade and turns\n  back into the trees. The ground\n  stops trembling.",
+   "lore": "* Stomper walks the woods of North\n  Earlsome, seldom seen, and the road\n  north of the boat at Endergate.\n  It wears a crown no one gave it.\n  In time it becomes Ganesha.",
+   "capture_fail": [
+    "* The card cracks against its hide.\n  Stomper does not even flinch.",
+    "* Stomper plants its feet. The card\n  cannot move something so heavy."
+   ],
+   "acts": [
+    {
+     "name": "Stand Still",
+     "text": [
+      "* You stand where you are and let\n  it come close.",
+      "* Stomper circles you once, slowly.\n  It seems to measure you."
+     ],
+     "mercy": 35,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Bow",
+     "text": [
+      "* You bow your head to the crown.",
+      "* Stomper's trunk lifts, then lowers.\n  Something in it eases."
+     ],
+     "mercy": 45,
+     "once": true,
+     "calm": 2
+    },
+    {
+     "name": "Touch Earth",
+     "text": [
+      "* You kneel and press your palm to\n  the ground it guards.",
+      "* The trembling slows. Stomper\n  watches your hand."
+     ],
+     "mercy": 30,
+     "once": false,
+     "calm": 1
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Tusk",
+     "tu": 160,
+     "base_pattern": "telegraph_lines",
+     "projectile": "orb_moss",
+     "tint_hex": "#8a6a3c",
+     "twist": "none",
+     "box": [
+      380,
+      230
+     ],
+     "intensity": 1,
+     "flavor": "* Stomper lowers its head. The tusks\n  come through like a falling wall."
+    },
+    {
+     "ability": "Unstable Magic",
+     "tu": 250,
+     "base_pattern": "rift_bursts",
+     "projectile": "fx_sparkle",
+     "tint_hex": "#d8b84a",
+     "twist": "lifesteal",
+     "box": [
+      340,
+      240
+     ],
+     "intensity": 0.9,
+     "flavor": "* Gold light pours from the crown.\n  It mends, and the mending may\n  take Stomper with it."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "cave_of_earlsome_f1"
+  ],
+  "name": "Thunder Mage",
+  "id": "thunder_mage",
+  "wiki": {
+   "number": "110",
+   "stars": 4.5,
+   "element": "Air",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/b/b8/Thunder_Mage.png",
+   "image_size": [
+    74,
+    105
+   ],
+   "lv1": {
+    "hp": 34,
+    "attack": 9,
+    "magic": 15,
+    "speed": 16,
+    "defense": 16,
+    "resist": 16
+   },
+   "abilities": [
+    {
+     "name": "Electrocute",
+     "tu": "50",
+     "target": "1 Foe",
+     "effect": "6-7 Magical Damage (Air), Stuns target for 21 TUs."
+    },
+    {
+     "name": "High Voltage",
+     "tu": "250",
+     "target": "1 Foe",
+     "effect": "23-28 Magical Damage (Air), stun for 439 TUs"
+    },
+    {
+     "name": "Ion Blast",
+     "tu": "160",
+     "target": "All Foes",
+     "effect": "8-9 Magical Damage (Air)"
+    },
+    {
+     "name": "Lightning",
+     "tu": "130",
+     "target": "1 Foe",
+     "effect": "13-16 Magical Damage (Air), stuns for 129 TUs"
+    }
+   ],
+   "evolution": "Spark -> Thunder Mage (Spark evolves at level 28). Thunder Mage is the final (2nd) form.",
+   "obtain": "Found in the [[Cave of Earlsome]] in [[North Earlsome]] and [[Underworld]]. Evolves from [[Spark]] at level 28."
+  },
+  "sprite": {
+   "description": "A robed humanoid mage seen nearly front-on, with a bare, textured mid-blue head that rises from the high collar of a tattered olive-yellow mantle. The mantle is worn over a long charcoal-black robe that sweeps sideways as if caught in wind. It holds a thin dark staff hung with blue-and-yellow tassels. No feet show beneath the robe.",
+   "dominant_color_hex": "#2E2E2A",
+   "faces": "front",
+   "flier": false
+  },
+  "battle": {
+   "check": "* THUNDER MAGE - AIR - 4.5 stars.\n* Nearly every strike it casts leaves you frozen in place.\n* High Voltage is slow to gather. Dreadful when it lands.",
+   "intro": "* The air goes dry. A robed shape is already watching you.",
+   "idle": [
+    "* Thunder Mage turns its staff. The tassels do not fall.",
+    "* The hair on your arms stands up and stays there.",
+    "* A low hum comes from somewhere inside the robe.",
+    "* Somewhere in the dark, something waits to strike."
+   ],
+   "talk": [
+    "Be still.\nStillness is\nall I give.",
+    "The spark was\nsmall once.\nI was too.",
+    "Every storm\nneeds a place\nto break.",
+    "Your heart is\nloud. I can\nhear it.",
+    "Hold. Hold.\nHold."
+   ],
+   "spare_text": "* Thunder Mage lowers its staff. The charge in the air drains slowly into the stone.",
+   "lore": "* A Spark that lived long enough to become something else. Keepers of the Cave of Earlsome say the mages do not hunt; they stand in the passages and wait, and whatever comes near is stopped where it stands. Stats shown are level 1.",
+   "capture_fail": [
+    "* The card scorches black at the edges and falls away.",
+    "* Thunder Mage does not move. The card simply stops working."
+   ],
+   "acts": [
+    {
+     "name": "Ground",
+     "text": [
+      "* You press both palms flat to the wet stone.",
+      "* The charge runs past you into the earth. Thunder Mage tilts its head."
+     ],
+     "mercy": 35,
+     "once": true,
+     "calm": 1
+    },
+    {
+     "name": "Stand Still",
+     "text": [
+      "* You stop moving and let it see you are not afraid of stillness.",
+      "* The humming softens, as if it recognizes the gesture."
+     ],
+     "mercy": 35,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Speak of Sparks",
+     "text": [
+      "* You speak of the small bright Sparks, and what they grow into.",
+      "* Its face stays blank. The tassels on its staff go slack."
+     ],
+     "mercy": 40,
+     "once": true,
+     "calm": 2
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Electrocute",
+     "tu": 50,
+     "base_pattern": "aimed_volley",
+     "projectile": "fx_sparkle",
+     "tint_hex": "#7FC8FF",
+     "twist": "slow",
+     "box": [
+      340,
+      230
+     ],
+     "intensity": 0.9,
+     "flavor": "* A short, bright snap leaps from the staff straight at you."
+    },
+    {
+     "ability": "High Voltage",
+     "tu": 250,
+     "base_pattern": "telegraph_lines",
+     "projectile": "fx_silverring",
+     "tint_hex": "#E8F4FF",
+     "twist": "slow",
+     "box": [
+      460,
+      250
+     ],
+     "intensity": 1.3,
+     "flavor": "* The whole chamber brightens. Lines of light mark where it will fall."
+    },
+    {
+     "ability": "Ion Blast",
+     "tu": 160,
+     "base_pattern": "radial_burst",
+     "projectile": "fx_sparkle",
+     "tint_hex": "#B8E04A",
+     "twist": "all_foes_wide",
+     "box": [
+      500,
+      240
+     ],
+     "intensity": 1.1,
+     "flavor": "* The air itself splits open in every direction at once."
+    },
+    {
+     "ability": "Lightning",
+     "tu": 130,
+     "base_pattern": "column_drop",
+     "projectile": "fx_silverring",
+     "tint_hex": "#A0D8FF",
+     "twist": "slow",
+     "box": [
+      400,
+      240
+     ],
+     "intensity": 1.1,
+     "flavor": "* Bolts drop from the dark ceiling, one after another."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "cave_of_earlsome_f1"
+  ],
+  "name": "Kemet God",
+  "id": "kemet_god",
+  "wiki": {
+   "number": "164",
+   "stars": 4.5,
+   "element": "Air",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/f/f1/Kemet_God.png",
+   "image_size": [
+    115,
+    128
+   ],
+   "lv1": {
+    "hp": 34,
+    "attack": 10,
+    "magic": 13,
+    "speed": 10,
+    "defense": 18,
+    "resist": 24
+   },
+   "abilities": [
+    {
+     "name": "Assault",
+     "tu": "160",
+     "target": "1 Foe",
+     "effect": "13-16 Physical Damage (Air)"
+    },
+    {
+     "name": "Awaken",
+     "tu": "100",
+     "target": "All Allies",
+     "effect": "Removes Effect: Sleep"
+    },
+    {
+     "name": "[Easy Target]",
+     "tu": "-",
+     "target": "-",
+     "effect": "Makes enemies more likely to attack this monster"
+    },
+    {
+     "name": "[Pharaoh's Curse]",
+     "tu": "-",
+     "target": "-",
+     "effect": "Revenge Effects: Duration: 500 TUs 9-11 Air damage over duration"
+    },
+    {
+     "name": "Scapegoat",
+     "tu": "160",
+     "target": "Self",
+     "effect": "Makes enemies more likely to attack this monster for 500 TUs"
+    },
+    {
+     "name": "Tempest",
+     "tu": "160",
+     "target": "1 Foe",
+     "effect": "17-20 Magical Damage (Air)"
+    }
+   ],
+   "evolution": "Evolves from Kemet King at level 35. Kemet God is the 2nd (final) form.",
+   "obtain": "*Found in Saintspring, Applefield, Cave of Earlsome, Underworld\n*Evolves from Kemet King at level 35."
+  },
+  "sprite": {
+   "description": "A gaunt blue-skinned humanoid with yellow eyes and purple fin-like jackal ears beneath a tall dark crown, its limbs plated in dark grey and silver armour, wearing a white wrapped kilt and carrying long barbed spears and polearms. Clean transparent 115x128 PNG.",
+   "dominant_color_hex": "#8A93A8",
+   "faces": "left",
+   "flier": false
+  },
+  "battle": {
+   "check": "* KEMET GOD - AIR - 4.5 STARS.\n* It draws every blow toward itself. Those who strike it carry a curse away.",
+   "intro": "* The air goes still and dry. Kemet God steps forward, spear upright, and waits to be struck.",
+   "idle": [
+    "* Kemet God does not move. Its spear stays perfectly upright.",
+    "* The tall ears of its crown turn toward you, then away.",
+    "* A thin wind circles Kemet God and never leaves it.",
+    "* The air tastes of dust from a room no one has opened in a long time."
+   ],
+   "talk": [
+    "Strike me.\nAll of you.",
+    "I was a king.\nThe wind made\nme more.",
+    "Every wound you\ngive me, you\nwill keep.",
+    "Kneel, or be\nburied here.",
+    "No one leaves\nmy tomb owing\nnothing."
+   ],
+   "spare_text": "* Kemet God lowers its spear. The dry wind around it falls apart, and it walks back into the dark without a word.",
+   "lore": "Kemet God (#164) is an Air monster rated 4.5 stars (four StarIcons and one HalfStarIcon; category 4.5 Stars Monsters). Stats are from the wiki's level-1 column. Its two bracketed abilities are passives: Easy Target draws enemy attacks to it, and Pharaoh's Curse is a revenge effect dealing 9-11 Air damage over 500 TUs to whoever strikes it, so neither gets an attack pattern. Scapegoat repeats the Easy Target effect for 500 TUs as an active skill. It is found in Saintspring, Applefield, the Cave of Earlsome and the Underworld, and evolves from Kemet King at level 35. The wiki tags its category as Humanoid, marked unconfirmed.",
+   "capture_fail": [
+    "* The card darkens and crumbles at the edges. Kemet God does not even look at it.",
+    "* For a moment the card holds. Then the curse finds it, and it falls to dust."
+   ],
+   "acts": [
+    {
+     "name": "Hold Back",
+     "text": [
+      "* You lower your weapon and refuse to strike, even with the opening it offers.",
+      "* Kemet God waits. When no blow comes, the wind around it slackens a little."
+     ],
+     "mercy": 35,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Kneel",
+     "text": [
+      "* You kneel in the dust before Kemet God.",
+      "* The spear tilts, barely. It has been knelt to before, and it remembers."
+     ],
+     "mercy": 40,
+     "once": true,
+     "calm": 1
+    },
+    {
+     "name": "Speak Its Name",
+     "text": [
+      "* You say aloud the name of the king it once was.",
+      "* The crown turns fully toward you. For a long moment, nothing in the room breathes."
+     ],
+     "mercy": 40,
+     "once": true,
+     "calm": 2
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Assault",
+     "tu": 160,
+     "base_pattern": "aimed_volley",
+     "projectile": "fx_silverring",
+     "tint_hex": "#B8C2D6",
+     "twist": "none",
+     "box": [
+      420,
+      230
+     ],
+     "intensity": 1.1,
+     "flavor": "* Kemet God drives forward with the spear. Silver thrusts come straight at you, one after another."
+    },
+    {
+     "ability": "Awaken",
+     "tu": 100,
+     "base_pattern": "radial_burst",
+     "projectile": "fx_sparkle",
+     "tint_hex": "#D9B95A",
+     "twist": "neutralize",
+     "box": [
+      340,
+      230
+     ],
+     "intensity": 0.8,
+     "flavor": "* Kemet God strikes its staff on the stone floor. Whatever was sleeping near it is awake now."
+    },
+    {
+     "ability": "Scapegoat",
+     "tu": 160,
+     "base_pattern": "orbit_ring",
+     "projectile": "fx_waterring",
+     "tint_hex": "#8A93A8",
+     "twist": "none",
+     "box": [
+      360,
+      240
+     ],
+     "intensity": 0.9,
+     "flavor": "* Kemet God spreads its arms wide. The rings close around you, pulling your eyes back to it."
+    },
+    {
+     "ability": "Tempest",
+     "tu": 160,
+     "base_pattern": "tornado_sweep",
+     "projectile": "fx_tornado",
+     "tint_hex": "#A89F8A",
+     "twist": "none",
+     "box": [
+      500,
+      240
+     ],
+     "intensity": 1.25,
+     "flavor": "* Kemet God raises the spear. A dry tempest rises out of nowhere and tears across the box."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "cave_of_earlsome_f1"
+  ],
+  "name": "Abomination",
+  "id": "abomination",
+  "wiki": {
+   "number": "204",
+   "stars": 4,
+   "element": "Arcane",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/7/72/Abomination.png",
+   "image_size": [
+    89,
+    105
+   ],
+   "lv1": {
+    "hp": 34,
+    "attack": 10,
+    "magic": 16,
+    "speed": 23,
+    "defense": 18,
+    "resist": 18
+   },
+   "abilities": [
+    {
+     "name": "Money Slap",
+     "tu": "160",
+     "target": "One Foe",
+     "effect": "21-26 Magical Damage. Spends 10 Silver to Boost Damage 200%."
+    },
+    {
+     "name": "Pass",
+     "tu": "250",
+     "target": "One Ally",
+     "effect": "Target will take the next turn"
+    },
+    {
+     "name": "Sacrifice",
+     "tu": "250",
+     "target": "One Foe",
+     "effect": "31-38 Magical Damage. Sacrifices a monster in your party that isn't in battle to increase damage by 3% per level of the sacrificed ally."
+    },
+    {
+     "name": "Switch",
+     "tu": "100",
+     "target": "Self",
+     "effect": "Replace self with a monster in your party that isn't in battle."
+    }
+   ],
+   "evolution": "None listed on the wiki (no evolution section; does not evolve).",
+   "obtain": "*Found in the Cave of North Earlsome"
+  },
+  "sprite": {
+   "description": "A squat, ghost-pale courtier in old court dress: chalk-white face with a gaping black mouth and staring black eyes, a tall black lacquered cap, a heavy pale-gold robe worked with a red pattern and gold-trimmed sleeves, one hand raising a folded fan. Stands upright, body turned slightly to the viewer's left.",
+   "dominant_color_hex": "#D3C078",
+   "faces": "left",
+   "flier": false
+  },
+  "battle": {
+   "check": "* ABOMINATION - Arcane, 4 stars.\n* It pays silver to strike harder, and it will spend a companion who is not even in the fight.",
+   "intro": "* Something in court robes steps out of the cave dark. Its painted mouth hangs open, and it does not close.",
+   "idle": [
+    "* Abomination counts something on its fingers. The count never ends.",
+    "* The open mouth does not move when it breathes.",
+    "* A coin rolls from its sleeve and is gone into the dark.",
+    "* Abomination waits, fan raised, as if for an audience to begin."
+   ],
+   "talk": [
+    "Silver first.\nThen the blow.",
+    "Who paid\nfor you?",
+    "The court\nis still in\nsession.",
+    "Kneel. Pay.\nKneel again.",
+    "I keep one\nback. Always."
+   ],
+   "spare_text": "* Abomination lowers its fan.\n* It turns and walks back into the cave, robes dragging, still counting under its breath.",
+   "lore": "No. 204 - Abomination. Arcane element, 4 stars. Lv1: HP 34, ATK 10, MAG 16, SPD 23, DEF 18, RES 18. Abilities: Money Slap (160 TU, one foe, 21-26 magical damage; spends 10 Silver to boost damage 200%), Pass (250 TU, one ally takes the next turn), Sacrifice (250 TU, one foe, 31-38 magical damage; sacrifices a party monster not in battle for +3% damage per level of the sacrificed ally) and Switch (100 TU, replaces itself with a party monster not in battle). No evolution is recorded. Found in the Cave of North Earlsome.",
+   "capture_fail": [
+    "* The card goes dark. Abomination tucks a coin into its sleeve, as if the price was not met.",
+    "* Abomination's mouth stays open. The card slides off it like rain off lacquer."
+   ],
+   "acts": [
+    {
+     "name": "Bow",
+     "text": [
+      "* You bow low, the way one bows before a magistrate.",
+      "* Abomination's fan dips, slowly, in answer.",
+      "* It seems to remember a ceremony it once belonged to."
+     ],
+     "mercy": 40,
+     "once": true,
+     "calm": 1
+    },
+    {
+     "name": "Show Empty Purse",
+     "text": [
+      "* You turn out your purse. There is nothing in it worth taking.",
+      "* Abomination stares at your empty hands for a long moment.",
+      "* Its fingers stop counting."
+     ],
+     "mercy": 35,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Stand Before Bench",
+     "text": [
+      "* You step between Abomination and your waiting companions.",
+      "* It looks past you at them, then back at you.",
+      "* No one here will be spent today. It seems to understand that."
+     ],
+     "mercy": 45,
+     "once": true,
+     "calm": 2
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Money Slap",
+     "tu": 160,
+     "base_pattern": "aimed_volley",
+     "projectile": "fx_silverring",
+     "tint_hex": "#D8D2C0",
+     "twist": "multi_hit",
+     "box": [
+      400,
+      230
+     ],
+     "intensity": 1,
+     "flavor": "* Abomination flings a fistful of silver. Every coin is paid to hurt you."
+    },
+    {
+     "ability": "Sacrifice",
+     "tu": 250,
+     "base_pattern": "rift_bursts",
+     "projectile": "orb_blood",
+     "tint_hex": "#A3202A",
+     "twist": "lifesteal",
+     "box": [
+      460,
+      240
+     ],
+     "intensity": 1.15,
+     "flavor": "* Somewhere behind it, something it owned goes quiet. The cave floor splits open with the cost."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "cave_of_earlsome_f1"
+  ],
+  "name": "Ninja",
+  "id": "ninja",
+  "wiki": {
+   "number": "078",
+   "stars": 5,
+   "element": "Air",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/2/21/Ninja.png",
+   "image_size": [
+    69,
+    102
+   ],
+   "lv1": {
+    "hp": 35,
+    "attack": 17,
+    "magic": 11,
+    "speed": 51,
+    "defense": 19,
+    "resist": 9
+   },
+   "abilities": [
+    {
+     "name": "Escape",
+     "tu": "130",
+     "target": "Self",
+     "effect": "Escape from battle"
+    },
+    {
+     "name": "Metal Slash",
+     "tu": "100",
+     "target": "1 Foe",
+     "effect": "Deals 13-16 Physical Damage (Air), +300% VS Metal"
+    },
+    {
+     "name": "Ninjutsu",
+     "tu": "100",
+     "target": "Self",
+     "effect": "Disguise this monster, making enemies less likely to attack it. Duration : 500"
+    },
+    {
+     "name": "Slay",
+     "tu": "100",
+     "target": "1 Foe",
+     "effect": "Deals 13-16 Physical Damage (Air), +100% VS Humanoid"
+    }
+   ],
+   "evolution": "Assassin -> Sasuke (evolves at level 15) -> Ninja (evolves at level 32) -> Goemon (evolves at level 84)",
+   "obtain": "Cave of Earlsome in North Earlsome. Evolve a Sasuke to level 32."
+  },
+  "sprite": {
+   "description": "Lean humanoid ninja in a crouched, coiled stance, wrapped in charcoal and dark violet-grey layered armour. Jagged, leaf-like pale sage/grey-green plates jut from the shoulders, arms and hips. A dark hood trails back to the upper right, and a single red eye glints in the shadowed face. A long, thin, curved blade is raised at the upper left, one leg is drawn up, and the body is angled toward the left. Mostly dark greys (#303030-#606060) with violet-grey shading and pale grey-green highlights. Clean transparent 69x102 RGBA PNG.",
+   "dominant_color_hex": "#3A3A48",
+   "faces": "left",
+   "flier": false
+  },
+  "battle": {
+   "check": "* NINJA - Air - 5 Stars.\n* Very fast. Its blades bite twice as deep into men, four times into metal.",
+   "intro": "* The lamplight on the cave wall bends. A Ninja is standing where the shadow was.",
+   "idle": [
+    "* The Ninja has not moved. You are no longer sure where it is.",
+    "* Somewhere in the dark, a blade is wiped clean.",
+    "* The cave air stirs, though nothing in it breathes.",
+    "* It watches your hands, never your face."
+   ],
+   "talk": [
+    "...you are\nloud.",
+    "men come\ndown here\nto hide.",
+    "i find\nthem.",
+    "metal rings.\nflesh does\nnot.",
+    "go back\nup."
+   ],
+   "spare_text": "* The Ninja steps backward into the dark and is gone. The cave is only a cave again.",
+   "lore": "Ninja (#078) is a 5-star Air monster of the Humanoid category. Its stats are its level-1 values: 35 HP, 17 Attack, 11 Magic, 51 Speed, 19 Defense and 9 Resist. It knows Escape (130 TU, self, escape from battle), Metal Slash (100 TU, one foe, 13-16 physical Air damage, +300% vs Metal), Ninjutsu (100 TU, self, a disguise that makes enemies less likely to attack it for 500 TU) and Slay (100 TU, one foe, 13-16 physical Air damage, +100% vs Humanoid). It is the third form of its line: Assassin evolves into Sasuke at level 15, Sasuke into Ninja at level 32, and Ninja into Goemon at level 84. It is found in the Cave of Earlsome in North Earlsome.",
+   "capture_fail": [
+    "* The card closes on an empty shadow. The Ninja is a step to the left.",
+    "* The Ninja cuts the light of the card in two. It falls dark."
+   ],
+   "acts": [
+    {
+     "name": "Lower Blade",
+     "text": [
+      "* You set your weapon on the stone and step away from it.",
+      "* The Ninja's grip loosens, very slightly."
+     ],
+     "mercy": 40,
+     "once": true,
+     "calm": 1
+    },
+    {
+     "name": "Stand Still",
+     "text": [
+      "* You stop moving and let it look at you.",
+      "* There is nothing here it was sent to find. It begins to see that."
+     ],
+     "mercy": 35,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Bare Hands",
+     "text": [
+      "* You show your empty palms. No metal, no knife.",
+      "* The Ninja tilts its head. You are not what it hunts."
+     ],
+     "mercy": 35,
+     "once": true,
+     "calm": 0
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Metal Slash",
+     "tu": 100,
+     "base_pattern": "telegraph_lines",
+     "projectile": "fx_silverring",
+     "tint_hex": "#B8C0D0",
+     "twist": "none",
+     "box": [
+      420,
+      230
+     ],
+     "intensity": 1.1,
+     "flavor": "* Thin lines of light cross the dark a breath before the blade follows them."
+    },
+    {
+     "ability": "Ninjutsu",
+     "tu": 100,
+     "base_pattern": "tornado_sweep",
+     "projectile": "fx_tornado",
+     "tint_hex": "#4A4A60",
+     "twist": "blind",
+     "box": [
+      380,
+      240
+     ],
+     "intensity": 0.9,
+     "flavor": "* The Ninja folds into a grey wind. You lose it, and the wind keeps cutting."
+    },
+    {
+     "ability": "Slay",
+     "tu": 100,
+     "base_pattern": "aimed_volley",
+     "projectile": "fx_sparkle",
+     "tint_hex": "#6E6A8C",
+     "twist": "none",
+     "box": [
+      340,
+      230
+     ],
+     "intensity": 1.2,
+     "flavor": "* It comes straight for you. The cuts are made for something with a heartbeat."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "cave_of_earlsome_f1"
+  ],
+  "name": "Thunder Wolf",
+  "id": "thunder_wolf",
+  "wiki": {
+   "number": "051",
+   "stars": 6.5,
+   "element": "Air",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/e/e7/ThunderWolf.png",
+   "image_size": [
+    71,
+    82
+   ],
+   "lv1": {
+    "hp": 47,
+    "attack": 26,
+    "magic": 26,
+    "speed": 26,
+    "defense": 29,
+    "resist": 29
+   },
+   "abilities": [
+    {
+     "name": "Electro Claw",
+     "tu": "130",
+     "target": "One Foe",
+     "effect": "23 - 28 Physical damage (Air) Stuns target for 129 TUs"
+    },
+    {
+     "name": "Howl",
+     "tu": "100",
+     "target": "One Foe",
+     "effect": "Stuns target for 100 TUs"
+    },
+    {
+     "name": "Ion Blast",
+     "tu": "160",
+     "target": "All Foes",
+     "effect": "13 - 16 Magical damage (Air)"
+    },
+    {
+     "name": "Overdrive",
+     "tu": "160",
+     "target": "All friends",
+     "effect": "Increases Attack and Magic by 1"
+    }
+   ],
+   "evolution": "Wolf -> Dire Wolf (evolves at level 22) -> Thunder Wolf (evolves at level 37). Recipe: Thunder Wolf + Thunder Wolf = Wolf God.",
+   "obtain": "*Evolves from a Dire Wolf to level 37\n*Catch at the mountains of Applefield around Olympia\n*The Cave of Earlsome.\n*Or in the wooded area outside of olympia.\n*On the small island in Endergate some times.\n* In the lower levels of the Sanctuary."
+  },
+  "sprite": {
+   "description": "A lean, low-running wolf in mid-stride, facing right: a coat of soot-black banded with khaki-gold tiger stripes, a jagged lightning-bolt tail held high, jaws open in a snarl, pale grey-white arcs of static crackling around its body.",
+   "dominant_color_hex": "#4a4636",
+   "faces": "right",
+   "flier": false
+  },
+  "battle": {
+   "check": "* THUNDER WOLF - AIR - 6.5 STARS.\n* Its claws carry a charge that locks the limbs. Its howl alone can still a foe in place.",
+   "intro": "* The hair on your arms rises. Thunder Wolf steps out of the static.",
+   "idle": [
+    "* Thunder Wolf paces. The grass blackens where its feet land.",
+    "* A thin arc runs from its tail to the ground, and is gone.",
+    "* The air tastes of iron. Something is building.",
+    "* Thunder Wolf watches you without blinking. Its fur hums."
+   ],
+   "talk": [
+    "Rrrhh.",
+    "Storm\nbefore\nteeth.",
+    "Run.\nThe sky\nis faster.",
+    "...hhhaaa...",
+    "Pack is\ngone.\nOnly me."
+   ],
+   "spare_text": "* Thunder Wolf lowers its head. The charge drains into the earth, and it turns away into the dark.",
+   "lore": "* Wolf, then Dire Wolf, then this. Somewhere between the second and the third shape, the storm got in. Travelers in the high woods and the cave north of Longdale speak of a light that runs on four legs, and of companions found afterward, standing, unable to move.",
+   "capture_fail": [
+    "* The card sparks and goes black. Thunder Wolf shakes off the light.",
+    "* The charge in its fur burns the seal away."
+   ],
+   "acts": [
+    {
+     "name": "Ground",
+     "text": [
+      "* You kneel and press your palm flat to the earth.",
+      "* Thunder Wolf's fur settles a little. The arcs grow thinner."
+     ],
+     "mercy": 40,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Hold Still",
+     "text": [
+      "* You stand completely still and let it come close.",
+      "* It circles you once, twice. It smells no fear it can use."
+     ],
+     "mercy": 35,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Answer Howl",
+     "text": [
+      "* You lift your head and give a low, steady call.",
+      "* Thunder Wolf stops. For a moment it listens, ears forward, like something remembering a pack."
+     ],
+     "mercy": 50,
+     "once": true,
+     "calm": 2
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Electro Claw",
+     "tu": 130,
+     "base_pattern": "swoop",
+     "projectile": "fx_silverring",
+     "tint_hex": "#e8e2a0",
+     "twist": "slow",
+     "box": [
+      360,
+      230
+     ],
+     "intensity": 1.15,
+     "flavor": "* It crosses the ground in one bright stroke. The claws leave your limbs heavy."
+    },
+    {
+     "ability": "Howl",
+     "tu": 100,
+     "base_pattern": "rings_sweep",
+     "projectile": "fx_waterring",
+     "tint_hex": "#c8ccd4",
+     "twist": "slow",
+     "box": [
+      420,
+      230
+     ],
+     "intensity": 0.95,
+     "flavor": "* The howl goes through you. Your feet forget how to move."
+    },
+    {
+     "ability": "Ion Blast",
+     "tu": 160,
+     "base_pattern": "telegraph_lines",
+     "projectile": "fx_sparkle",
+     "tint_hex": "#f4f0b8",
+     "twist": "all_foes_wide",
+     "box": [
+      500,
+      240
+     ],
+     "intensity": 1.2,
+     "flavor": "* The air splits in white lines. Everything near it is struck at once."
+    },
+    {
+     "ability": "Overdrive",
+     "tu": 160,
+     "base_pattern": "orbit_ring",
+     "projectile": "fx_sparkle",
+     "tint_hex": "#d8c46a",
+     "twist": "none",
+     "box": [
+      340,
+      240
+     ],
+     "intensity": 1,
+     "flavor": "* Thunder Wolf's stripes glow. Its allies stand straighter in the static."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "earlsome_mountain_path"
+  ],
+  "name": "Ice Yeti",
+  "id": "ice_yeti",
+  "wiki": {
+   "number": "144",
+   "stars": 4,
+   "element": "Earth",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/b/b8/Ice_Yeti.png",
+   "image_size": [
+    99,
+    113
+   ],
+   "lv1": {
+    "hp": 33,
+    "attack": 12,
+    "magic": 9,
+    "speed": 10,
+    "defense": 21,
+    "resist": 15
+   },
+   "abilities": [
+    {
+     "name": "Charge",
+     "tu": "100",
+     "target": "Self",
+     "effect": "Increases Attack by 1"
+    },
+    {
+     "name": "Dance",
+     "tu": "160",
+     "target": "Self",
+     "effect": "\"dances like a bafoon\" Absolutely Nothing"
+    },
+    {
+     "name": "DefenseUp",
+     "tu": "160",
+     "target": "Self",
+     "effect": "Increases Defense by 2"
+    },
+    {
+     "name": "Grappler",
+     "tu": "100",
+     "target": "1 Foe",
+     "effect": "Deals 10-13 Physical damage (Earth)"
+    }
+   ],
+   "evolution": "Yeti (evolves at level 23) -> Ice Yeti (evolves at level 39) -> Destroyer (evolves at level 55) -> Decimator",
+   "obtain": "*Evolves from Yeti at level 23"
+  },
+  "sprite": {
+   "description": "A hunched, heavy-shouldered beast of matted black-blue fur, its back, shoulders and skull grown over with a jagged carapace of pale blue ice crystals; two faint pink-red eyes glow beneath the ice, and long dark claws hang from its knuckled forearms near the ground.",
+   "dominant_color_hex": "#262A36",
+   "faces": "front",
+   "flier": false
+  },
+  "battle": {
+   "check": "* ICE YETI - EARTH - 4 stars.\n* Its ice is armor grown on. Each\n  pause thickens it (DefenseUp).",
+   "intro": "* The snow-bank stands up. It was not snow.",
+   "idle": [
+    "* Frost cracks along its shoulders as it breathes.",
+    "* The ice on its back groans like a frozen lake.",
+    "* It watches you from under a ridge of crystal.",
+    "* Snow does not melt where it stands."
+   ],
+   "talk": [
+    "Cold keeps.\nCold keeps\neverything.",
+    "You are warm.\nThat will\nnot last.",
+    "The peak\nwas quiet\nbefore you.",
+    "I was small\nonce. The ice\ncame later.",
+    "Go down.\nLeave the\nwhite to us."
+   ],
+   "spare_text": "* The Ice Yeti lowers its claws and turns back into the drifts. The wind fills its tracks.",
+   "lore": "Ice Yeti, #144, is a four-star Earth monster that a Yeti becomes at level 23. In the high snow the ice it carries is not frozen to it but grown from it, layer on layer, like rings in old wood. It trusts nothing that moves fast in the cold. Past this form it grows into the Destroyer at level 39 and the Decimator at level 55.",
+   "capture_fail": [
+    "* The card frosts over and slides off its ice.",
+    "* The card cracks in the cold. The Yeti does not move."
+   ],
+   "acts": [
+    {
+     "name": "Stand Still",
+     "text": [
+      "* You stop moving and let the snow settle on you.",
+      "* The Yeti studies you. You do not look like prey."
+     ],
+     "mercy": 40,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Brush Ice",
+     "text": [
+      "* You brush the frost from a stone at its feet.",
+      "* It watches the bare stone a long time. Its breath slows."
+     ],
+     "mercy": 35,
+     "once": true,
+     "calm": 1
+    },
+    {
+     "name": "Mimic Dance",
+     "text": [
+      "* You shift your weight the way it did when it swayed.",
+      "* It pauses. Then, slowly, it sways back."
+     ],
+     "mercy": 30,
+     "once": true,
+     "calm": 2
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Grappler",
+     "tu": 100,
+     "base_pattern": "column_drop",
+     "projectile": "fx_silverring",
+     "tint_hex": "#A9C4E8",
+     "twist": "none",
+     "box": [
+      420,
+      240
+     ],
+     "intensity": 1.1,
+     "flavor": "* Its claws come down like falling ice from a ledge."
+    },
+    {
+     "ability": "Charge",
+     "tu": 100,
+     "base_pattern": "swoop",
+     "projectile": "fx_sparkle",
+     "tint_hex": "#D8E6F5",
+     "twist": "none",
+     "box": [
+      460,
+      230
+     ],
+     "intensity": 0.9,
+     "flavor": "* It hunches low. The ice on its back bristles."
+    },
+    {
+     "ability": "DefenseUp",
+     "tu": 160,
+     "base_pattern": "orbit_ring",
+     "projectile": "fx_waterring",
+     "tint_hex": "#8FB3DA",
+     "twist": "slow",
+     "box": [
+      380,
+      240
+     ],
+     "intensity": 0.9,
+     "flavor": "* New crystal grows across its shoulders with a sound like cracking glass."
+    },
+    {
+     "ability": "Dance",
+     "tu": 160,
+     "base_pattern": "bounce_orbs",
+     "projectile": "fx_sparkle",
+     "tint_hex": "#C9D6E6",
+     "twist": "none",
+     "box": [
+      340,
+      230
+     ],
+     "intensity": 0.8,
+     "flavor": "* It sways on its heels in the snow. Nothing comes of it. It does it anyway."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "earlsome_mountain_path"
+  ],
+  "name": "Snow Panther",
+  "id": "snow_panther",
+  "wiki": {
+   "number": "026",
+   "stars": 6.5,
+   "element": "Water",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/d/d5/Snow_Panther.png",
+   "image_size": [
+    119,
+    140
+   ],
+   "lv1": {
+    "hp": 44,
+    "attack": 23,
+    "magic": 23,
+    "speed": 59,
+    "defense": 32,
+    "resist": 32
+   },
+   "abilities": [
+    {
+     "name": "Claw",
+     "tu": "160",
+     "target": "One Foe",
+     "effect": "30-37 Physical Damage (Water)"
+    },
+    {
+     "name": "Freeze",
+     "tu": "160",
+     "target": "One Foe",
+     "effect": "30-37 Magical Damage (Water)"
+    },
+    {
+     "name": "Charge",
+     "tu": "160",
+     "target": "Self",
+     "effect": "Increases Attack by 1"
+    },
+    {
+     "name": "Blizzard",
+     "tu": "130",
+     "target": "All Foes",
+     "effect": "9-12 Magical Damage (Water)"
+    }
+   ],
+   "evolution": "Snow Cub (evolves at level 28) -> Snow Panther (final form)",
+   "obtain": "Evolve from Snow Cub at level 28.\n\nFound in Saintspring (Forest), specifically at the spot shown in the thumbnail (if a Fire Tiger is one of the first three monsters, a Snow Panther is almost always present later on in the lineup).\n\nFound also at the lighthouse in Swinedene and in the Sanctuary."
+  },
+  "sprite": {
+   "description": "A lean great cat in a white coat marked with dark blue rosettes shaped like small skulls. Pale grey wisps of cold vapour rise from its spine, shoulders and tail like smoke off snow. It stalks low with its head lowered toward the lower right, ice-green eyes fixed on its prey, forepaws planted.",
+   "dominant_color_hex": "#E8EEF4",
+   "faces": "right",
+   "flier": false
+  },
+  "battle": {
+   "check": "* SNOW PANTHER - WATER - 6.5 STARS.\n* Its claws and its breath strike with the same cold.\n* It gathers itself before it lunges. Do not let it gather long.",
+   "intro": "* The snow beside you was never snow. It stands up.",
+   "idle": [
+    "* Frost vapour rises from its back and does not drift.",
+    "* The skull-marks on its coat seem to shift when you look away.",
+    "* It circles once. The ground it crossed is white with rime.",
+    "* Its breathing is slow. Yours is not."
+   ],
+   "talk": [
+    "...",
+    "*low, even\nbreathing*",
+    "The cold\nkeeps what\nit takes.",
+    "You are warm.\nThat is\nall I hear.",
+    "Stand still.\nIt ends\nquieter."
+   ],
+   "spare_text": "* The panther lowers its head and walks back into the white. Its tracks fill before they cool.",
+   "lore": "Snow Cubs that live past their twenty-eighth season grow long and silent and lose their voice to the wind. Northern herders say a Snow Panther does not hunt by sight; it listens for the heat of a heartbeat across a frozen field, and the dark marks on its pelt are the faces of everything it has followed through a blizzard. Where Fire Tigers walk, one of these is said to follow later, as winter follows a burned summer.",
+   "capture_fail": [
+    "* The card frosts over and cracks. The panther did not even turn.",
+    "* The card goes rigid with ice. It is still watching you."
+   ],
+   "acts": [
+    {
+     "name": "Hold Still",
+     "text": [
+      "* You stop moving and slow your breathing.",
+      "* The panther's ears turn toward you. It hears less of you now."
+     ],
+     "mercy": 35,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Bare Hands",
+     "text": [
+      "* You open your hands and let the cold reach them.",
+      "* It sniffs the air. You smell like nothing it needs to fear."
+     ],
+     "mercy": 40,
+     "once": true,
+     "calm": 2
+    },
+    {
+     "name": "Stare",
+     "text": [
+      "* You meet the ice-green eyes and do not look away.",
+      "* It holds the stare. Something in its shoulders loosens."
+     ],
+     "mercy": 30,
+     "once": false,
+     "calm": 1
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Claw",
+     "tu": 160,
+     "base_pattern": "swoop",
+     "projectile": "fx_silverring",
+     "tint_hex": "#D8E6F2",
+     "twist": "none",
+     "box": [
+      420,
+      230
+     ],
+     "intensity": 1.05,
+     "flavor": "* It crosses the distance in one stride. Four pale lines open in the air."
+    },
+    {
+     "ability": "Freeze",
+     "tu": 160,
+     "base_pattern": "telegraph_lines",
+     "projectile": "fx_waterring",
+     "tint_hex": "#9FD3F0",
+     "twist": "slow",
+     "box": [
+      380,
+      240
+     ],
+     "intensity": 1,
+     "flavor": "* It exhales. The breath hangs in lines, then hardens."
+    },
+    {
+     "ability": "Charge",
+     "tu": 160,
+     "base_pattern": "rings_sweep",
+     "projectile": "fx_silverring",
+     "tint_hex": "#B9C8D8",
+     "twist": "none",
+     "box": [
+      320,
+      220
+     ],
+     "intensity": 0.8,
+     "flavor": "* It sinks low into the snow. Its muscles draw tight like rope in frost."
+    },
+    {
+     "ability": "Blizzard",
+     "tu": 130,
+     "base_pattern": "diagonal_rain",
+     "projectile": "fx_sparkle",
+     "tint_hex": "#EAF4FF",
+     "twist": "all_foes_wide",
+     "box": [
+      500,
+      240
+     ],
+     "intensity": 1.15,
+     "flavor": "* The wind turns on its call. Everything goes white."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "volcano_l3",
+   "volcano_l4",
+   "volcano_l5",
+   "volcano_l6",
+   "volcano_l7",
+   "volcano_l8",
+   "volcano_l9",
+   "volcano_l10"
+  ],
+  "name": "Red Dragon",
+  "id": "red_dragon",
+  "wiki": {
+   "number": "003",
+   "stars": 6,
+   "element": "Fire",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/9/95/Red_Dragon.png",
+   "image_size": [
+    233,
+    125
+   ],
+   "lv1": {
+    "hp": 45,
+    "attack": 17,
+    "magic": 17,
+    "speed": 26,
+    "defense": 28,
+    "resist": 28
+   },
+   "abilities": [
+    {
+     "name": "Defense Break",
+     "tu": "130",
+     "target": "1 Foe",
+     "effect": "17-20 Physical Damage (Fire)"
+    },
+    {
+     "name": "Flame",
+     "tu": "130",
+     "target": "1 Foe",
+     "effect": "18-23 Magical Damage (Fire)"
+    },
+    {
+     "name": "Man Eater",
+     "tu": "130",
+     "target": "1 Foe",
+     "effect": "17-20 Physical Damage (Fire), +100% Damage vs. Humanoid"
+    },
+    {
+     "name": "Outrage",
+     "tu": "160",
+     "target": "1 Foe",
+     "effect": "22-27 Physical Damage (Fire)"
+    }
+   ],
+   "evolution": "Fire Hatchling (1st Form, evolves at level 8) -> Red Dragonling (2nd Form, evolves at level 30) -> Red Dragon (3rd Form, evolves at level 55) -> Red Wyrm (4th Form)",
+   "obtain": "Evolves from Red Dragonling at level 30."
+  },
+  "sprite": {
+   "description": "A lean crimson-and-charcoal dragon in mid-flight, seen from slightly above. Two enormous membrane wings span the whole image, deep red with violet-dark shading and hooked claw tips along the leading edges. Its body is dark gunmetal grey plated with red scales; a horned, spiked head juts forward and down at the centre, jaws parted. Clawed forelegs reach downward, a spiked tail trails behind. It hovers, wings fully spread.",
+   "dominant_color_hex": "#9E1F2A",
+   "faces": "front",
+   "flier": true
+  },
+  "battle": {
+   "check": "* RED DRAGON - No. 003 - FIRE - 6 STARS.\n* Heavily scaled (DEF 28, RES 28). Man Eater strikes humans twice as hard.\n* Outrage is slow to gather. When it comes, it does not stop halfway.",
+   "intro": "* The heat in the shaft changes direction.\n* Red Dragon unfolds out of the dark below, wings spanning the stone.",
+   "idle": [
+    "* Red Dragon hangs in the updraft. Its wings barely move.",
+    "* The scales along its neck tick and crack as they cool and heat again.",
+    "* It watches you, not the monsters. It has always known which one is the meat.",
+    "* Somewhere beneath it, the mountain breathes out. The dragon breathes with it."
+   ],
+   "talk": [
+    "...",
+    "Small one.\nYou smell\nof rain.",
+    "The deep\nis ours.",
+    "Turn\nback.",
+    "It waits\nbelow.\nWe guard."
+   ],
+   "spare_text": "* Red Dragon folds its wings and drops back into the heat below.\n* For a long time the glow of it can still be seen, sinking.",
+   "lore": "No. 003 - Red Dragon. Fire element, 6 stars, of the Dragon category. Lv1: HP 45, ATK 17, MAG 17, SPD 26, DEF 28, RES 28. Abilities (as at level 1): Defense Break (130 TU, 1 foe, 17-20 physical Fire damage), Flame (130 TU, 1 foe, 18-23 magical Fire damage), Man Eater (130 TU, 1 foe, 17-20 physical Fire damage, +100% vs. Humanoid) and Outrage (160 TU, 1 foe, 22-27 physical Fire damage). The third form of the red starter line: Fire Hatchling evolves at level 8, Red Dragonling at level 30, and Red Dragon becomes Red Wyrm at level 55. It is obtained by evolving a Red Dragonling at level 30. Dragons were the mascots of the medieval age; some breathe fire, some have no wings, some are said to be immune to magic. The ones that nest in the volcano's throat take no master. A handful have been seen over the years. None has ever been brought out.",
+   "capture_fail": [
+    "* The card blackens and curls in the heat before it can close.",
+    "* The seal takes hold for a moment. Then the dragon breathes, and it is gone."
+   ],
+   "acts": [
+    {
+     "name": "Lower Eyes",
+     "text": [
+      "* You lower your gaze to the stone at your feet.",
+      "* Red Dragon's head drops level with yours. It studies you.",
+      "* You are not a challenger. It allows that."
+     ],
+     "mercy": 35,
+     "once": true,
+     "calm": 1
+    },
+    {
+     "name": "Step Back",
+     "text": [
+      "* You step back from the edge, away from its nest.",
+      "* The dragon's wings settle by a fraction.",
+      "* It was never defending itself. It was defending the way down."
+     ],
+     "mercy": 30,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Hold Still",
+     "text": [
+      "* You stand in the heat and do not move, though it hurts.",
+      "* Red Dragon breathes over you, long and slow, not quite flame.",
+      "* It has seen what it needed to see."
+     ],
+     "mercy": 45,
+     "once": true,
+     "calm": 2
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Defense Break",
+     "tu": 130,
+     "base_pattern": "column_drop",
+     "projectile": "orb_blood",
+     "tint_hex": "#B3262E",
+     "twist": "none",
+     "box": [
+      400,
+      230
+     ],
+     "intensity": 1.1,
+     "flavor": "* Red Dragon's claws come down like falling stone."
+    },
+    {
+     "ability": "Flame",
+     "tu": 130,
+     "base_pattern": "radial_burst",
+     "projectile": "fx_sparkle",
+     "tint_hex": "#FF6A1F",
+     "twist": "burn",
+     "box": [
+      420,
+      240
+     ],
+     "intensity": 1.1,
+     "flavor": "* Red Dragon opens its jaws. The air itself catches."
+    },
+    {
+     "ability": "Man Eater",
+     "tu": 130,
+     "base_pattern": "homing",
+     "projectile": "orb_blood",
+     "tint_hex": "#7A0F18",
+     "twist": "none",
+     "box": [
+      360,
+      230
+     ],
+     "intensity": 1.2,
+     "flavor": "* Red Dragon looks past the monsters. It is looking at you."
+    },
+    {
+     "ability": "Outrage",
+     "tu": 160,
+     "base_pattern": "swoop",
+     "projectile": "fx_tornado",
+     "tint_hex": "#D9381E",
+     "twist": "multi_hit",
+     "box": [
+      480,
+      250
+     ],
+     "intensity": 1.3,
+     "flavor": "* Red Dragon's wings beat once, twice. Then it stops holding back."
+    }
+   ]
+  }
+ },
+ {
+  "role": "miniboss",
+  "rooms": [],
+  "name": "Yamata",
+  "id": "yamata",
+  "wiki": {
+   "number": "F02",
+   "stars": 9.5,
+   "element": "Fire",
+   "image_url": "",
+   "image_size": [
+    462,
+    480
+   ],
+   "lv1": {
+    "hp": 74,
+    "attack": 58,
+    "magic": 58,
+    "speed": 38,
+    "defense": 64,
+    "resist": 64
+   },
+   "abilities": [
+    {
+     "name": "Eightfold Rage",
+     "tu": "250",
+     "target": "All Foes",
+     "effect": "44-53 Physical Damage (Fire)"
+    },
+    {
+     "name": "Hellflame",
+     "tu": "130",
+     "target": "One Foe",
+     "effect": "62-75 Magical Damage (Fire)"
+    },
+    {
+     "name": "Ash Tide",
+     "tu": "200",
+     "target": "All Foes",
+     "effect": "36-43 Magical Damage (Fire), Burns for 3 turns"
+    },
+    {
+     "name": "Strangling Coil",
+     "tu": "130",
+     "target": "One Foe",
+     "effect": "58-70 Physical Damage (Fire), -10 Speed"
+    }
+   ],
+   "evolution": "Noko (1st form, evolves at level 34) -> Orochi (2nd form, evolves at level 60) -> Yamata (3rd form)",
+   "obtain": "Found only in the deepest levels of the volcano beyond the scorched approach (rare). It cannot be captured there."
+  },
+  "sprite": {
+   "description": "A massive coiled many-headed serpent seen from the front: a heaped mound of thick black-and-charcoal coils covered in overlapping leaf-like grey-black scale plates, from which eight or nine long necks rise and fan outward in a crown. Each head is a narrow, spiked, horned serpent skull with jaws open and a thin forked red tongue hanging down. Glowing blood-red blotches and eye-like marks run along the inner side of every neck and through the coils. Small clawed feet show at the base among the plates.",
+   "dominant_color_hex": "#2B2A2C",
+   "faces": "front",
+   "flier": false
+  },
+  "battle": {
+   "check": "* YAMATA - No. F02 - FIRE - 9.5 STARS.\n* What Orochi becomes when it is left to grow. Its scales have burned black.\n* Ash Tide leaves the air burning. Its coils slow whatever they hold.",
+   "intro": "* The rock floor heaves. Black coils slide up out of the heat-haze.\n* Red marks open along every neck, one after another, like eyes.",
+   "idle": [
+    "* Yamata's heads turn in slow circles, each tasting the heat.",
+    "* The red marks along its necks brighten and dim, like breathing.",
+    "* Plates of black scale shift over one another with a sound like dry leaves.",
+    "* Ash falls from its coils and does not stop falling."
+   ],
+   "talk": [
+    "We grew.",
+    "Down here\nno stone\nheld us.",
+    "Older fires\nthan ours\nburn below.",
+    "We kneel\nto one.\nNot to you.",
+    "Go up.\nWhile your\nskin is yours."
+   ],
+   "spare_text": "* One by one, the heads draw back into the coils.\n* Yamata sinks into the heat-haze until only the red marks show, then not even those.\n* The rock is still warm where it lay.",
+   "lore": "F02 Yamata - Fire element, 9.5 stars. An original creature of this game, not from Dragon Island Blue: the third form in the line Noko -> Orochi (DIB #079 -> #080), into which Orochi evolves at level 60. Found rarely in the deepest levels of the volcano, and never capturable there. Lv1: HP 74, ATK 58, MAG 58, SPD 38, DEF 64, RES 64. Abilities: Eightfold Rage (250 TU, 44-53 physical Fire damage to all foes), Hellflame (130 TU, 62-75 magical Fire damage to one foe), Ash Tide (200 TU, 36-43 magical Fire damage to all foes, burning for 3 turns), Strangling Coil (130 TU, 58-70 physical Fire damage to one foe, -10 Speed). Each is a stronger heir of one of Orochi's four: Dragon Rage, Flame, Inferno and Wiggle.",
+   "capture_fail": [
+    "* The card blackens and curls in the heat before its light can close.",
+    "* The red marks flare. The card falls to the rock as ash.",
+    "* Nothing down here can be carried out."
+   ],
+   "acts": [
+    {
+     "name": "Count the Heads",
+     "text": [
+      "* You count the heads aloud, slowly, one at a time.",
+      "* ...seven, eight. Nine.",
+      "* The ninth head turns away, as if it had not wanted to be counted."
+     ],
+     "mercy": 35,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Stand in the Heat",
+     "text": [
+      "* You stand where the floor is hottest and do not step back.",
+      "* The heads lower to look at you. None of them strike.",
+      "* The red marks along its necks burn a little dimmer."
+     ],
+     "mercy": 40,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Speak of the Stone",
+     "text": [
+      "* You tell it of the Waystone in the Norwoods, and the small serpent kept there.",
+      "* Every head goes still at once.",
+      "* For a moment it looks less like a god's beast and more like something that was once small."
+     ],
+     "mercy": 45,
+     "once": true,
+     "calm": 2
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Eightfold Rage",
+     "tu": 250,
+     "base_pattern": "column_drop",
+     "projectile": "orb_blood",
+     "tint_hex": "#D0281A",
+     "twist": "all_foes_wide",
+     "box": [
+      520,
+      250
+     ],
+     "intensity": 1.3,
+     "flavor": "* Every head strikes down at once. Yamata uses Eightfold Rage."
+    },
+    {
+     "ability": "Hellflame",
+     "tu": 130,
+     "base_pattern": "aimed_volley",
+     "projectile": "fx_sparkle",
+     "tint_hex": "#FF5A14",
+     "twist": "none",
+     "box": [
+      340,
+      240
+     ],
+     "intensity": 1.1,
+     "flavor": "* One head draws back, its throat glowing white. Yamata uses Hellflame."
+    },
+    {
+     "ability": "Ash Tide",
+     "tu": 200,
+     "base_pattern": "radial_burst",
+     "projectile": "fx_sparkle",
+     "tint_hex": "#B8461E",
+     "twist": "burn",
+     "box": [
+      480,
+      250
+     ],
+     "intensity": 1.2,
+     "flavor": "* The heads exhale together, and the air turns to burning ash. Yamata uses Ash Tide."
+    },
+    {
+     "ability": "Strangling Coil",
+     "tu": 130,
+     "base_pattern": "orbit_ring",
+     "projectile": "orb_blood",
+     "tint_hex": "#8A1C1C",
+     "twist": "slow",
+     "box": [
+      360,
+      240
+     ],
+     "intensity": 1,
+     "flavor": "* The black coils close in from every side. Yamata uses Strangling Coil."
+    }
+   ]
+  },
+  "original": true
+ },
+ {
+  "role": "deity",
+  "rooms": [],
+  "name": "Aethrion",
+  "id": "aethrion",
+  "wiki": {
+   "number": "D01",
+   "stars": 10,
+   "element": "Fire",
+   "image_url": "",
+   "image_size": [
+    485,
+    480
+   ],
+   "lv1": {
+    "hp": 92,
+    "attack": 64,
+    "magic": 88,
+    "speed": 66,
+    "defense": 70,
+    "resist": 78
+   },
+   "abilities": [
+    {
+     "name": "Sixfold Wing",
+     "tu": "100",
+     "target": "All Foes",
+     "effect": "38-47 Magical Damage (Fire), Burns targets: 38-47 Fire damage over 500 TU"
+    },
+    {
+     "name": "Last Ember",
+     "tu": "160",
+     "target": "1 Foe",
+     "effect": "118-145 Magical Damage (Fire), +100% Damage vs. Demonic"
+    },
+    {
+     "name": "Halo of Ash",
+     "tu": "160",
+     "target": "All Friends",
+     "effect": "+2 Magic, +2 Resist, Immune from negative status effects for 500 TUs"
+    },
+    {
+     "name": "Pyre",
+     "tu": "250",
+     "target": "All Foes",
+     "effect": "72-89 Magical Damage (Fire), Removes all positive effects from targets"
+    }
+   ],
+   "evolution": "Does not evolve. It belongs to no evolution chain.",
+   "obtain": "Not found in the wild. Met once, at Level 10, the bottom of the volcano in the Scorched region."
+  },
+  "sprite": {
+   "description": "A pale, faceless figure floating upright, seen from the front, arms loose at its sides. A crown of flame sits on its head inside a dark disc ringed by a blazing gold halo with four star-points. Six great wings spread from its back, three to each side, feathered in white, tan and gold, with deep crimson inner plumes; tongues of fire run off the wing-tips and trail below it. Fine gold veins cross its chest, arms and legs, with a gold sun-shaped clasp at the centre of the chest. Crimson cloth and flame wrap its waist and hang between its legs to its bare feet.",
+   "dominant_color_hex": "#E6D3B8",
+   "faces": "front",
+   "flier": true
+  },
+  "battle": {
+   "check": "* AETHRION - FIRE - 10 STARS.\n* A deity, one of eight. The Dragon Overlords are beneath it.\n* Halo of Ash shuts out every ailment. Pyre burns away whatever protects you.",
+   "intro": "* The heat stops rising. It has nowhere higher to go.\n* Six wings open across the bottom of the world.\n* Aethrion has been awake the whole way down.",
+   "idle": [
+    "* The halo turns slowly. It gives no shadow.",
+    "* Fire runs off the ends of its wings and does not reach the floor.",
+    "* Gold light moves in the veins of its arms, like a slow pulse.",
+    "* It has no face. You still feel it looking at your hands."
+   ],
+   "talk": [
+    "You came\ndown awake.",
+    "I am one\nof eight.",
+    "Overlords\nkneel.\nI do not.",
+    "Every flame\nup there\nwas mine.",
+    "Your hands\nare cold."
+   ],
+   "spare_text": "* Aethrion folds its six wings, one pair at a time.\n* The halo dims to the colour of embers.\n* The way up lies open behind you. It does not watch you go.",
+   "lore": "An original creature, not from Dragon Island Blue. Aethrion is the God of Fire, one of eight deities who stand above the Dragon Overlords. It waits at Level 10, the bottom of the volcano in the Scorched region, below the village carved into the caldera walls. The other seven are not named here. The people of the caldera say that every flame on the island was first lit from the one at the bottom, and that the Overlords bow when it wakes. They do not say what it is waiting for. Stats are its level-1 values.",
+   "capture_fail": [
+    "* The card blackens and curls before it reaches the light.",
+    "* Ash falls where the card was. Aethrion has not moved."
+   ],
+   "acts": [
+    {
+     "name": "Kneel",
+     "text": [
+      "* You kneel on the black glass. The heat presses down on your back.",
+      "* Aethrion turns its faceless head toward you."
+     ],
+     "mercy": 18,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Speak of Home",
+     "text": [
+      "* You tell it about the lake at home, and the lamps by the fountain.",
+      "* The halo flickers, as if a draught had found it."
+     ],
+     "mercy": 24,
+     "once": true,
+     "calm": 2
+    },
+    {
+     "name": "Endure the Heat",
+     "text": [
+      "* You stand in the full heat and do not look away.",
+      "* Your hatchling stays at your side.",
+      "* The flames along its wings lie down."
+     ],
+     "mercy": 20,
+     "once": false,
+     "calm": 1
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Sixfold Wing",
+     "tu": 100,
+     "base_pattern": "swoop",
+     "projectile": "fx_sparkle",
+     "tint_hex": "#F2A33A",
+     "twist": "burn",
+     "box": [
+      480,
+      240
+     ],
+     "intensity": 1.2,
+     "flavor": "* Six wings beat once. Burning feathers fill the air."
+    },
+    {
+     "ability": "Last Ember",
+     "tu": 160,
+     "base_pattern": "homing",
+     "projectile": "orb_blood",
+     "tint_hex": "#D8401E",
+     "twist": "none",
+     "box": [
+      380,
+      240
+     ],
+     "intensity": 1.3,
+     "flavor": "* A single ember leaves its open hand and follows you."
+    },
+    {
+     "ability": "Halo of Ash",
+     "tu": 160,
+     "base_pattern": "orbit_ring",
+     "projectile": "fx_silverring",
+     "tint_hex": "#E8C66A",
+     "twist": "none",
+     "box": [
+      420,
+      240
+     ],
+     "intensity": 1.1,
+     "flavor": "* The halo widens. Grey ash circles inside it and does not fall."
+    },
+    {
+     "ability": "Pyre",
+     "tu": 250,
+     "base_pattern": "radial_burst",
+     "projectile": "fx_sparkle",
+     "tint_hex": "#FFF1D6",
+     "twist": "neutralize",
+     "box": [
+      520,
+      250
+     ],
+     "intensity": 1.4,
+     "flavor": "* White fire rises from the floor, and everything that guarded you burns away."
+    }
+   ]
+  },
+  "original": true
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "scorched_reach",
+   "scorched_slope",
+   "volcano_l3",
+   "volcano_l4",
+   "volcano_l5",
+   "volcano_l6",
+   "volcano_l7",
+   "volcano_l8",
+   "volcano_l9",
+   "volcano_l10"
+  ],
+  "name": "Inferno",
+  "id": "inferno",
+  "wiki": {
+   "number": "F03",
+   "stars": 6,
+   "element": "Fire",
+   "image_url": "",
+   "image_size": [
+    499,
+    480
+   ],
+   "lv1": {
+    "hp": 44,
+    "attack": 22,
+    "magic": 16,
+    "speed": 12,
+    "defense": 33,
+    "resist": 27
+   },
+   "abilities": [
+    {
+     "name": "Magma Claw",
+     "tu": "130",
+     "target": "1 Foe",
+     "effect": "19-23 Physical Damage (Fire)"
+    },
+    {
+     "name": "Molten Hide",
+     "tu": "160",
+     "target": "Itself",
+     "effect": "+30 Defense, Duration: 500"
+    },
+    {
+     "name": "Inferno",
+     "tu": "200",
+     "target": "All Foes",
+     "effect": "15-18 Magical Damage (Fire)"
+    },
+    {
+     "name": "Eruption",
+     "tu": "250",
+     "target": "All Foes",
+     "effect": "26-31 Physical Damage (Fire)"
+    }
+   ],
+   "evolution": "Flame evolves into Inferno at level 30. Final form.",
+   "obtain": "Found in the volcano beneath the scorched region, on the levels below the caldera village, growing more common the deeper one goes. Can also be raised by evolving a Flame at level 30."
+  },
+  "sprite": {
+   "description": "A hulking brute of dark magma rock split by glowing orange cracks, jagged crystal spikes jutting from both shoulders, long claws that glow at the tips, and in place of a head a roaring column of flame swept back by heat.",
+   "dominant_color_hex": "#5a3a2c",
+   "faces": "left",
+   "flier": false
+  },
+  "battle": {
+   "check": "* INFERNO - FIRE - 6 STARS.\n* Its claws cut with Magma Claw; when struck, it hardens its own crust with Molten Hide.\n* Eruption and Inferno strike everyone at once. Stand apart.",
+   "intro": "* The rock wall moves. Inferno pulls itself out of it.",
+   "idle": [
+    "* The cracks across its chest brighten, then dim, like breathing.",
+    "* The flame where its head should be leans toward you.",
+    "* A shoulder spike splits from the heat and grows back.",
+    "* The stone beneath its feet has begun to run."
+   ],
+   "talk": [
+    "...",
+    "the mountain\nis awake.",
+    "you are\nsmall\nhere.",
+    "deeper\nis hotter.",
+    "the fire\ndoes not\nforgive."
+   ],
+   "spare_text": "* Inferno sinks back against the rock. Its cracks go dull, and it is only a wall again.",
+   "lore": "An original creature, not from Dragon Island Blue: the final form of Flame, which it becomes at level 30. It lives in the volcano below the scorched region, on the levels beneath the caldera village, and is met more often the deeper the levels go. Those who live in the upper levels say the rock itself grows these, slowly, from the heat. Stats are its level-1 values.",
+   "capture_fail": [
+    "* The card blackens and curls in its claws.",
+    "* Inferno lets the ash fall from its hand."
+   ],
+   "acts": [
+    {
+     "name": "Step Back",
+     "text": [
+      "* You step back from the heat and give it the ground.",
+      "* The flame on its head lowers a little."
+     ],
+     "mercy": 35,
+     "once": true,
+     "calm": 1
+    },
+    {
+     "name": "Stay Still",
+     "text": [
+      "* You hold still while the rock around you hisses.",
+      "* Inferno watches. Its cracks stop pulsing."
+     ],
+     "mercy": 30,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Cool the Stone",
+     "text": [
+      "* Your hatchling breathes slow and steady beside you.",
+      "* The light in Inferno's chest dims to a low red."
+     ],
+     "mercy": 35,
+     "once": false,
+     "calm": 2
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Magma Claw",
+     "tu": 130,
+     "base_pattern": "swoop",
+     "projectile": "orb_blood",
+     "tint_hex": "#ff6a1a",
+     "twist": "burn",
+     "box": [
+      380,
+      230
+     ],
+     "intensity": 1,
+     "flavor": "* Glowing claws rake the air. Inferno uses Magma Claw."
+    },
+    {
+     "ability": "Molten Hide",
+     "tu": 160,
+     "base_pattern": "orbit_ring",
+     "projectile": "fx_sparkle",
+     "tint_hex": "#ffb347",
+     "twist": "none",
+     "box": [
+      320,
+      220
+     ],
+     "intensity": 0.8,
+     "flavor": "* Its cracks seal over with fresh rock. Inferno uses Molten Hide."
+    },
+    {
+     "ability": "Inferno",
+     "tu": 200,
+     "base_pattern": "radial_burst",
+     "projectile": "fx_sparkle",
+     "tint_hex": "#ff4500",
+     "twist": "all_foes_wide",
+     "box": [
+      480,
+      240
+     ],
+     "intensity": 1.15,
+     "flavor": "* The flame on its head roars out in every direction. Inferno uses Inferno."
+    },
+    {
+     "ability": "Eruption",
+     "tu": 250,
+     "base_pattern": "column_drop",
+     "projectile": "orb_blood",
+     "tint_hex": "#e03a10",
+     "twist": "all_foes_wide",
+     "box": [
+      500,
+      250
+     ],
+     "intensity": 1.25,
+     "flavor": "* It drives both fists into the ground. The floor bursts upward. Inferno uses Eruption."
+    }
+   ]
+  },
+  "original": true
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "scorched_reach",
+   "scorched_slope",
+   "volcano_l3",
+   "volcano_l4",
+   "volcano_l5",
+   "volcano_l6",
+   "volcano_l7",
+   "volcano_l8",
+   "volcano_l9"
+  ],
+  "name": "Flame",
+  "id": "flame",
+  "wiki": {
+   "number": "F04",
+   "stars": 3,
+   "element": "Fire",
+   "image_url": "",
+   "image_size": [
+    400,
+    400
+   ],
+   "lv1": {
+    "hp": 30,
+    "attack": 7,
+    "magic": 10,
+    "speed": 18,
+    "defense": 10,
+    "resist": 13
+   },
+   "abilities": [
+    {
+     "name": "Ember",
+     "tu": "70",
+     "target": "1 Foe",
+     "effect": "4-5 Magical Damage (Fire)"
+    },
+    {
+     "name": "Cinder Spit",
+     "tu": "130",
+     "target": "1 Foe",
+     "effect": "8-10 Magical Damage (Fire), 6-7 Fire Damage over 500 duration"
+    },
+    {
+     "name": "Smolder",
+     "tu": "160",
+     "target": "Self",
+     "effect": "+2 Resist"
+    }
+   ],
+   "evolution": "Flame (1st Form) evolves at level 30 into Inferno (2nd Form).",
+   "obtain": "Found inside the volcano of the scorched region, on the levels below the caldera village; it grows rarer as the levels grow deeper and Inferno takes its place."
+  },
+  "sprite": {
+   "description": "A small, low creature made of ember and cinder: a rounded body of cracked black-grey cinder crust with glowing orange-red heat showing through the cracks, two short stubby legs, a stubby tail ending in a flickering tongue of flame, a crown of small wavering flames on its head, two bright yellow-white ember eyes, a few loose sparks drifting upward from its back. Body faces left, head turned slightly toward the viewer. A younger, smaller, softer-edged version of a larger fire creature.",
+   "dominant_color_hex": "#e0601e",
+   "faces": "left",
+   "flier": false
+  },
+  "battle": {
+   "check": "* FLAME - FIRE - 3 STARS.\n* Small, but the heat comes off it in steady waves.\n* What it spits keeps burning after it lands.",
+   "intro": "* A cinder in the rock opens two bright eyes.",
+   "idle": [
+    "* Sparks lift off the Flame's back and go dark above it.",
+    "* The crust on its body cracks. Light shows through.",
+    "* The Flame settles lower. The stone beneath it softens.",
+    "* Its tail flickers, steady as a lamp wick."
+   ],
+   "talk": [
+    "Ssss...",
+    "Fff.\nfff.",
+    "...\nwarm?",
+    "Hhhh...\nash.",
+    "Ssst.\nnot\ncold."
+   ],
+   "spare_text": "* The Flame dims to a dull red and crawls back into a crack in the rock. For a while the crack still glows.",
+   "lore": "An original creature, not from Dragon Island Blue: Flame is a small fire creature of ember and cinder that lives in the volcano of the scorched region, below the caldera village. It strikes one foe with a quick Ember, spits burning cinders that keep burning, and hardens its crust with Smolder to raise its Resist. At level 30 it evolves into Inferno, the larger form it will one day become. Stats are its level-1 values.",
+   "capture_fail": [
+    "* The card curls and blackens in the Flame's heat.",
+    "* The Flame spits. The card falls away in sparks."
+   ],
+   "acts": [
+    {
+     "name": "Shield the Eyes",
+     "text": [
+      "* You raise an arm against the glare and do not look away.",
+      "* The Flame's light drops from white to orange."
+     ],
+     "mercy": 35,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Offer Stone",
+     "text": [
+      "* You set a flat, dark stone on the ground between you.",
+      "* The Flame creeps onto it and settles. The stone begins to glow."
+     ],
+     "mercy": 55,
+     "once": true,
+     "calm": 2
+    },
+    {
+     "name": "Stay Still",
+     "text": [
+      "* You stop moving and let the heat reach you.",
+      "* The Flame's sparks slow. It no longer spits."
+     ],
+     "mercy": 35,
+     "once": false,
+     "calm": 1
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Ember",
+     "tu": 70,
+     "base_pattern": "aimed_volley",
+     "projectile": "fx_sparkle",
+     "tint_hex": "#ff8a1e",
+     "twist": "none",
+     "box": [
+      360,
+      230
+     ],
+     "intensity": 0.85,
+     "flavor": "* A short flick of embers leaves its mouth."
+    },
+    {
+     "ability": "Cinder Spit",
+     "tu": 130,
+     "base_pattern": "bounce_orbs",
+     "projectile": "orb_blood",
+     "tint_hex": "#e0481a",
+     "twist": "burn",
+     "box": [
+      400,
+      235
+     ],
+     "intensity": 0.95,
+     "flavor": "* It spits a clot of burning cinder. Where it lands, it keeps burning."
+    },
+    {
+     "ability": "Smolder",
+     "tu": 160,
+     "base_pattern": "rings_sweep",
+     "projectile": "fx_silverring",
+     "tint_hex": "#9a4a2a",
+     "twist": "neutralize",
+     "box": [
+      340,
+      225
+     ],
+     "intensity": 0.8,
+     "flavor": "* Its glow sinks inward. The crust over its body thickens and darkens."
+    }
+   ]
+  },
+  "original": true
  }
 ] as const;

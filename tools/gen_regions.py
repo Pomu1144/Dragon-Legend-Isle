@@ -173,7 +173,7 @@ for r in d['kits']:
     kits['kits'].append(e)
     by_id[k['id']] = e
 for r in plan['rooms']:
-    for n in r['encounters']:
+    for n in r.get('encounters') or [e['name'] for e in r.get('table', [])]:
         e = by_id.get(snake(n))
         if e and e['role'] == 'encounter' and e['kit']['id'] not in LATER and r['id'] not in e['rooms']:
             e['rooms'].append(r['id'])
