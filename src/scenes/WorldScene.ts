@@ -266,7 +266,8 @@ export class WorldScene extends Phaser.Scene {
     if (this.dataIn.debug || !this.player || !this.room) return;
     const s = State.get();
     s.room = this.room.id;
-    if (this.canStand(this.player.x, this.player.y)) {
+    // Inside a trigger (its scene or fight still running), keep the last spot outside it, so Continue never lands in it.
+    if (this.canStand(this.player.x, this.player.y) && !this.pendingTrigger(this.player.x, this.player.y)) {
       s.x = Math.round(this.player.x);
       s.y = Math.round(this.player.y);
     }
@@ -495,16 +496,21 @@ export class WorldScene extends Phaser.Scene {
         return true;
       }
     }
-    for (const t of this.room.triggers ?? []) {
-      if (State.flag(t.once)) continue;
-      if (t.requires && !State.flag(t.requires)) continue;
-      const [x, y, w, h] = t.rect;
-      if (p.x >= x && p.x <= x + w && p.y >= y && p.y <= y + h) {
-        this.runTrigger(t.id);
-        return true;
-      }
+    const t = this.pendingTrigger(p.x, p.y);
+    if (t) {
+      this.runTrigger(t.id);
+      return true;
     }
     return false;
+  }
+
+  /** The not-yet-fired trigger whose rect holds (x, y), if any. */
+  private pendingTrigger(px: number, py: number) {
+    return (this.room.triggers ?? []).find((t) => {
+      if (State.flag(t.once) || (t.requires && !State.flag(t.requires))) return false;
+      const [x, y, w, h] = t.rect;
+      return px >= x && px <= x + w && py >= y && py <= y + h;
+    });
   }
 
   /** Halvard walks to the Guild Hall door, climbs the steps and goes inside; Kael follows by pressing Z at the door. */
@@ -629,8 +635,12 @@ export class WorldScene extends Phaser.Scene {
     const depth = 1 - Phaser.Math.Clamp(this.player.y / this.room.size[1], 0, 1);
     const g = rollGroup(enc.table, depth);
     if (!g) return false;
-    // a wild group never outnumbers Kael's standing monsters (a lone hatchling meets lone foes)
-    const standing = State.partyMons().filter((m) => m.hp > 0).length;
+    // a wild group never outnumbers the monsters Kael puts on the field (a lone hatchling meets lone foes);
+    // a fainted party slot counts when a living bench monster will step into it at the start
+    const mons = State.partyMons().slice(0, 3);
+    const up = mons.filter((m) => m.hp > 0).length;
+    const ready = State.bench().filter((m) => m.hp > 0).length;
+    const standing = up + Math.min(mons.length - up, ready);
     this.startBattle(g.foes.slice(0, Math.max(1, standing)), { nocap: g.nocap });
     return true;
   }
@@ -690,6 +700,13 @@ export class WorldScene extends Phaser.Scene {
     this.resetEncounter();
     this.busy = false;
     if (!result) return;
+    this.afterBattle(result);
+    // Keep the outcome at once (story flags, captures, EXP), with Kael already stepped back out of
+    // any trigger, so a loss in the next wild fight never undoes it.
+    this.autosave();
+  }
+
+  private afterBattle(result: BattleResult) {
     if (result.fight?.startsWith('bounty:')) return this.afterBounty(result);
     if (result.fight) return this.afterMissionFight(result);
     if (REGION_STORY.bosses[result.monster]) return this.afterRegionBoss(result);

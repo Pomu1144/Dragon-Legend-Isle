@@ -14,7 +14,9 @@ import { Bar, body, label, panel, starRow, COLORS } from '../ui/widgets';
 import type { BattleResult } from './WorldScene';
 
 // Dragon Island Blue team battle: up to three foes against Kael's three monsters, turn order
-// set by Time Units (the queue on the left), Kael commanding from his portrait box.
+// set by Time Units (the queue on the left), Kael commanding from his portrait box. When one of
+// Kael's monsters faints, the next living monster on his bench steps into its slot; the battle is
+// lost only when the whole team is down.
 
 /** Start data for the 'Battle' scene. */
 export interface BattleStart {
@@ -115,6 +117,10 @@ export class BattleScene extends Phaser.Scene {
   private reserve: string[] = []; // foes still to step in
   private foeXs: number[] = [];
   private lead?: Unit;
+  private bench: PartyMon[] = []; // Kael's living benched monsters, in team order: the next steps in when an ally faints
+  private allyUnits: Unit[] = []; // every ally that has stood on the field
+  private swaps: { out: PartyMon; in: PartyMon }[] = []; // who stepped in for whom, in order
+  private benchTag!: Phaser.GameObjects.Container;
   private tempParty = false;
   private wroteBack = false;
   private round = 0;
@@ -179,6 +185,9 @@ export class BattleScene extends Phaser.Scene {
     this.phase = 'busy';
     this.units = [];
     this.allFoes = [];
+    this.bench = [];
+    this.allyUnits = [];
+    this.swaps = [];
     this.round = 0;
     this.acted = new Set();
     this.keySeq = 0;
@@ -227,7 +236,8 @@ export class BattleScene extends Phaser.Scene {
     if (!mons.length && this.debugStart) {
       // a debug start with no save: a full test team (debug starts never write the save slot)
       const s = State.get();
-      const ids = this.data0.party?.filter((id) => MONSTERS[id] || STARTERS.some((st) => st.id === id)).slice(0, 3);
+      // (past the third, they wait on the bench)
+      const ids = this.data0.party?.filter((id) => MONSTERS[id] || STARTERS.some((st) => st.id === id)).slice(0, 6);
       if (ids?.length) {
         for (const id of ids) {
           const starter = STARTERS.some((st) => st.id === id);
@@ -247,9 +257,16 @@ export class BattleScene extends Phaser.Scene {
       mons = [newPartyMon('gold_hatchling', 5, true)];
       this.tempParty = true;
     }
-    if (!mons.some((m) => m.hp > 0)) mons[0].hp = 1;
-    const ax = ALLY_X[Math.min(3, mons.length)];
-    mons.slice(0, 3).forEach((m, i) => this.makeAlly(m, i, ax[i]));
+    this.bench = this.tempParty ? [] : State.bench().filter((m) => m.hp > 0);
+    if (!mons.some((m) => m.hp > 0) && !this.bench.length) mons[0].hp = 1;
+    // a monster still down from an earlier fight (after fleeing) gives its slot to the bench at once
+    const lineup = mons.slice(0, 3).map((m) => {
+      const sub = m.hp > 0 ? undefined : this.bench.shift();
+      if (sub) this.swaps.push({ out: m, in: sub });
+      return sub ?? m;
+    });
+    const ax = ALLY_X[Math.min(3, lineup.length)];
+    lineup.forEach((m, i) => this.makeAlly(m, i, ax[i]));
 
     // The foes: three on the field, the rest wait their turn.
     const foes = this.data0.foes;
@@ -262,6 +279,8 @@ export class BattleScene extends Phaser.Scene {
 
     this.disc = new RoundDisc(this, W - 44, Touch.active ? 118 : 40, D.foeUi);
     this.disc.set(0);
+    this.benchTag = this.add.container(256, PANEL_Y + 30).setDepth(D.allyUi);
+    this.refreshBench();
     this.caption = new Caption(this, 720, 478, 900, D.caption);
     this.activeGlow = this.add.image(0, 0, 'glow').setBlendMode(Phaser.BlendModes.ADD).setTint(0xffd77a).setAlpha(0).setScale(1.1, 0.5).setDepth(D.ally - 1);
     this.tweens.add({ targets: this.activeGlow, scaleX: 1.25, yoyo: true, repeat: -1, duration: 900, ease: 'Sine.easeInOut' });
@@ -345,7 +364,7 @@ export class BattleScene extends Phaser.Scene {
     return PAINTED_ART.has(id) || (this.textures.exists(key) && this.textures.get(key).getSourceImage().width > 360);
   }
 
-  private makeAlly(mon: PartyMon, slot: number, x: number) {
+  private makeAlly(mon: PartyMon, slot: number, x: number, entering = false) {
     const evolved = evolvedOf(mon);
     const base = baseOf(mon.id, evolved) ?? baseOf('gold_hatchling')!;
     const maxHp = maxHpOf(mon.id, mon.lv, evolved);
@@ -373,7 +392,7 @@ export class BattleScene extends Phaser.Scene {
       lv: mon.lv,
       hp: Phaser.Math.Clamp(mon.hp, 0, maxHp),
       maxHp,
-      tu: Math.round(startTu(base.lv1.speed) * 0.85),
+      tu: entering ? startTu(base.lv1.speed) : Math.round(startTu(base.lv1.speed) * 0.85),
       raw: { ...base.lv1 },
       mods: { attack: 0, magic: 0, defense: 0, resist: 0 },
       stats: { ...base.lv1 },
@@ -398,10 +417,22 @@ export class BattleScene extends Phaser.Scene {
     this.refreshStats(u);
     this.refreshHp(u, false);
     this.units.push(u);
+    this.allyUnits.push(u);
     if (u.alive) {
       u.chip = this.makeChip(u);
       sprite.scene.tweens.add({ targets: sprite, scaleY: sprite.scaleY * 1.02, duration: 1400 + slot * 120, yoyo: true, repeat: -1, ease: 'Sine.easeInOut' });
     } else this.ghostAlly(u);
+    if (entering) {
+      // stepping in from the bench: it rises into the slot as the fallen one's plate fades
+      const ui = [nameText, bar, hpText, stTag] as unknown as Phaser.GameObjects.Components.Alpha[];
+      ui.forEach((o) => o.setAlpha(0));
+      this.tweens.add({ targets: ui, alpha: 1, duration: 500, delay: 200 });
+      sprite.setAlpha(0).setY(ALLY_FOOT + 26);
+      shadow.setAlpha(0);
+      this.tweens.add({ targets: shadow, alpha: 0.85, duration: 500, delay: 200 });
+      this.tweens.add({ targets: sprite, alpha: 1, y: ALLY_FOOT, duration: 650, delay: 200, ease: 'Cubic.easeOut' });
+      this.time.delayedCall(200, () => sparkleBurst(this, x, ALLY_FOOT - sprite.displayHeight / 2, 12, D.fx, 90));
+    }
     return u;
   }
 
@@ -621,7 +652,7 @@ export class BattleScene extends Phaser.Scene {
     if (this.phase === 'end') return;
     this.phase = 'busy';
     if (this.checkEnd()) return;
-    if (!this.living('foe').length) return this.afterAction(); // empty field: call in the reserve
+    if (!this.living('foe').length || !this.living('ally').length) return this.afterAction(); // empty field: call in the reserve / the bench
     const live = this.living();
     const u = live.reduce((best, x) => (x.tu < best.tu - 0.001 || (Math.abs(x.tu - best.tu) < 0.001 && x.side === 'ally' && best.side === 'foe') ? x : best));
     const d = u.tu;
@@ -691,7 +722,7 @@ export class BattleScene extends Phaser.Scene {
   }
 
   private checkEnd(): boolean {
-    if (!this.living('ally').length) {
+    if (!this.living('ally').length && !this.bench.length) {
       this.lose();
       return true;
     }
@@ -702,11 +733,12 @@ export class BattleScene extends Phaser.Scene {
     return false;
   }
 
-  /** After any action: fallen foes are replaced by reinforcements, then time moves on. */
+  /** After any action: fallen allies are replaced from the bench, fallen foes by reinforcements, then time moves on. */
   private afterAction(): void {
     if (this.phase === 'end') return;
     this.phase = 'busy';
     this.layoutQueue();
+    if (this.stepIn()) return;
     if (!this.living('ally').length) return this.next();
     const spawned: number[] = [];
     for (let slot = 0; slot < this.foeXs.length && this.reserve.length; slot++) {
@@ -726,14 +758,48 @@ export class BattleScene extends Phaser.Scene {
     this.hold(1600, () => this.next());
   }
 
-  /** A fallen, spared or captured foe's leftovers go before another steps into its slot. */
-  private retire(u: Unit) {
-    for (const o of [u.sprite, u.shadow, u.nameText, u.bar, u.stTag, ...u.extras]) {
-      this.tweens.killTweensOf(o);
-      o.destroy();
+  /** DIB team rule: each fainted ally's slot goes to the next living monster on the bench. */
+  private stepIn(): boolean {
+    const down = this.units.filter((u) => u.side === 'ally' && !u.alive).sort((a, b) => a.slot - b.slot);
+    const lines: string[] = [];
+    for (const gone of down) {
+      const mon = this.bench.shift();
+      if (!mon) break;
+      this.retire(gone, 300);
+      const sub = this.makeAlly(mon, gone.slot, gone.homeX, true);
+      if (gone.mon) this.swaps.push({ out: gone.mon, in: mon });
+      lines.push(`* ${sub.name} steps in for ${gone.name}!`);
     }
+    if (!lines.length) return false;
+    Sound.whoosh();
+    this.refreshBench();
+    this.layoutQueue();
+    this.caption.show(lines.join(' '));
+    this.hold(1600, () => this.afterAction());
+    return true;
+  }
+
+  /** The bench, as small pips at the corner of the party box: how many are still ready to step in. */
+  private refreshBench() {
+    const c = this.benchTag;
+    c.removeAll(true);
+    const n = this.bench.length;
+    if (!n) return;
+    const big = Touch.active;
+    const r = big ? 7 : 6;
+    const shown = Math.min(n, 5);
+    for (let i = 0; i < shown; i++) c.add(this.add.circle(r + i * (r * 2 + 4), 0, r, 0x8fcaff, 0.95).setStrokeStyle(2, 0x0a1822, 0.9));
+    c.add(label(this, shown * (r * 2 + 4) + 1, -1, `+${n}`, big ? 26 : 22, '#8fcaff', 4).setOrigin(0, 0.5));
+  }
+
+  /** A fallen, spared or captured foe's (or a benched-out ally's) leftovers go before another steps into its slot. */
+  private retire(u: Unit, fade = 0) {
+    const objs = [u.sprite, u.shadow, u.nameText, u.bar, u.stTag, ...(u.hpText ? [u.hpText] : []), ...u.extras];
     u.zone.destroy();
     this.units = this.units.filter((x) => x !== u);
+    for (const o of objs) this.tweens.killTweensOf(o);
+    if (!fade) return objs.forEach((o) => o.destroy());
+    this.tweens.add({ targets: objs, alpha: 0, duration: fade, onComplete: () => objs.forEach((o) => o.destroy()) });
   }
 
   // ---- an ally's turn: the ability menu -------------------------------------------
@@ -750,7 +816,7 @@ export class BattleScene extends Phaser.Scene {
 
   private endAllyTurn() {
     const u = this.turnUnit;
-    if (u?.side === 'ally') u.nameText.setColor(u.alive ? '#f4f1e8' : '#8a8f96');
+    if (u?.side === 'ally' && this.units.includes(u)) u.nameText.setColor(u.alive ? '#f4f1e8' : '#8a8f96');
     this.activeGlow.setAlpha(0);
     this.tweens.killTweensOf(this.tamerHint);
     this.tamerHint.setAlpha(0);
@@ -1080,7 +1146,8 @@ export class BattleScene extends Phaser.Scene {
    */
   private capHit(u: Unit, t: Unit, n: number) {
     if (u.side !== 'foe' || t.side !== 'ally') return n;
-    const cap = u.tier === 'deity' ? 0.5 : u.tier === 'boss' ? 0.4 : u.tier === 'miniboss' ? 0.45 : 0.7;
+    // (an Overlord's level always runs ahead of the party, so its blows take under a third: four to fell one)
+    const cap = u.tier === 'deity' ? 0.5 : u.tier === 'boss' ? 0.3 : u.tier === 'miniboss' ? 0.45 : 0.7;
     return Math.min(n, Math.max(1, Math.ceil(t.maxHp * cap)));
   }
 
@@ -1271,7 +1338,7 @@ export class BattleScene extends Phaser.Scene {
     } else {
       dustify(this, t.sprite, tint, D.fx);
       this.time.delayedCall(1150, () => {
-        if (!t.alive) this.ghostAlly(t);
+        if (!t.alive && this.units.includes(t)) this.ghostAlly(t);
       });
       t.nameText.setColor('#8a8f96');
     }
@@ -1464,13 +1531,14 @@ export class BattleScene extends Phaser.Scene {
   }
 
   // ---- Kael's tamer commands -----------------------------------------------------------
-  /** No running from missions, bounties, or any Guardian, Overlord or deity on the field. */
+  /** No running from missions, bounties, or any deity on the field (a Guardian or an Overlord can be backed away from). */
   private canFlee() {
-    return !this.data0.fight && !this.living('foe').some((f) => f.tier || f.def?.boss);
+    return !this.data0.fight && !this.living('foe').some((f) => f.tier === 'deity');
   }
 
+  /** Worn down, or held off: a Guardian or an Overlord for three rounds, a deity for five. */
   private spareable(f: Unit) {
-    return f.hp / f.maxHp <= 0.35 || ((f.tier === 'boss' || f.tier === 'deity') && this.round >= 5);
+    return f.hp / f.maxHp <= 0.35 || (!!f.tier && this.round >= (f.tier === 'deity' ? 5 : 3));
   }
 
   /** Kael acted: the command costs the active monster its turn (100 TU). */
@@ -1883,10 +1951,17 @@ export class BattleScene extends Phaser.Scene {
   }
 
   // ---- outcomes -----------------------------------------------------------------------------
+  /** HP back to every monster that fought; one that stepped in keeps the slot, the fallen one goes to the end of the bench. */
   private writeBack() {
     if (this.tempParty || this.wroteBack) return;
     this.wroteBack = true;
-    for (const u of this.units) if (u.side === 'ally' && u.mon) u.mon.hp = Phaser.Math.Clamp(u.hp, 0, u.maxHp);
+    for (const u of this.allyUnits) if (u.mon) u.mon.hp = Phaser.Math.Clamp(u.hp, 0, u.maxHp);
+    const s = State.get();
+    for (const sw of this.swaps) {
+      const k = s.party.indexOf(sw.out.uid);
+      if (k >= 0 && !s.party.includes(sw.in.uid)) s.party[k] = sw.in.uid;
+    }
+    for (const sw of this.swaps) if (!s.party.includes(sw.out.uid)) State.toBenchEnd(sw.out.uid);
   }
 
   private tally() {
@@ -1951,8 +2026,8 @@ export class BattleScene extends Phaser.Scene {
         a.hp = a.mon.hp;
         this.refreshHp(a);
       }
-      // fainted monsters come round with 1 HP after a won battle
-      for (const a of this.units) if (a.side === 'ally' && a.mon && a.mon.hp <= 0) a.mon.hp = 1;
+      // fainted monsters (on the field or benched out) come round with 1 HP after a won battle
+      for (const m of [...this.allyUnits.map((a) => a.mon), ...this.swaps.map((sw) => sw.out)]) if (m && m.hp <= 0) m.hp = 1;
     }
     if (grow.length) Sound.levelUp();
     else Sound.chime();
@@ -1966,7 +2041,9 @@ export class BattleScene extends Phaser.Scene {
     this.phase = 'end';
     this.endAllyTurn();
     this.closeUi();
-    this.writeBack();
+    // No write-back: Continue reloads the save, and the sleeping World may still flush the run to the
+    // slot (page hidden) during the fade, which must not keep a fallen team or a slot order nobody chose.
+    this.wroteBack = true;
     Sound.stopMusic(0.1);
     Sound.shatter();
     this.caption.show('* Your team has fallen.');

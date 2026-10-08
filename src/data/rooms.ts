@@ -248,7 +248,7 @@ export const ROOMS: Record<string, RoomDef> = {
     },
     exits: [
       { rect: [570, 930, 440, 12], to: 'outskirts', spawn: 'fromForest' },
-      { rect: [900, 85, 90, 10], to: 'mosswood', spawn: 'fromForest' },
+      { rect: [900, 85, 90, 20], to: 'mosswood', spawn: 'fromForest' },
     ],
     things: [
       { id: 'stoneL', at: [480, 520], r: 70, lines: ['* A waystone carved with a sun.', '* "When the Waystones sleep, the island forgets itself."'] },
@@ -281,7 +281,7 @@ export const ROOMS: Record<string, RoomDef> = {
     },
     exits: [
       { rect: [640, 930, 370, 12], to: 'forest', spawn: 'fromMosswood' },
-      { rect: [220, 30, 110, 10], to: 'waystone', spawn: 'fromMosswood' },
+      { rect: [220, 30, 110, 22], to: 'waystone', spawn: 'fromMosswood' },
     ],
     candles: [{ id: 'mosswood', at: [905, 690], kind: 'candle_tall' }],
     things: [{ id: 'log', at: [700, 330], r: 60, lines: ['* Moss has swallowed an old cart. Bones, picked clean, lie beneath the wheel.'] }],
@@ -310,8 +310,8 @@ export const ROOMS: Record<string, RoomDef> = {
     spawns: { fromMosswood: { at: [820, 890], dir: 'up' } },
     exits: [
       { rect: [640, 930, 360, 12], to: 'mosswood', spawn: 'fromWaystone' },
-      { rect: [100, 50, 150, 12], to: 'waystone', spawn: 'fromMosswood', locked: 'never', lockedText: ['* The northern road is swallowed by a wall of rift-mist.', '* Not yet.'] },
-      { rect: [1450, 60, 110, 12], to: 'waystone', spawn: 'fromMosswood', locked: 'never', lockedText: ['* The eastern road shimmers and folds back on itself.', '* Not yet.'] },
+      { rect: [100, 50, 150, 22], to: 'waystone', spawn: 'fromMosswood', locked: 'never', lockedText: ['* The northern road is swallowed by a wall of rift-mist.', '* Not yet.'] },
+      { rect: [1450, 60, 110, 22], to: 'waystone', spawn: 'fromMosswood', locked: 'never', lockedText: ['* The eastern road shimmers and folds back on itself.', '* Not yet.'] },
     ],
     things: [{ id: 'waystone', at: [830, 410], r: 70, lines: ['* The great Waystone. Its four-pointed star is cold and dark.'] }],
     lights: [{ at: [830, 300], r: 200, color: 0x9fd8ff }, { at: [820, 820], r: 240, color: 0xff9a4a }],
@@ -324,8 +324,8 @@ for (const r of EXPANSION_ROOMS) ROOMS[r.id] = r;
 Object.assign(ROOMS.waystone.spawns, WAYSTONE_SPAWNS);
 if (WAYSTONE_EXITS) {
   const ex = ROOMS.waystone.exits;
-  ex[1] = { rect: [100, 50, 150, 12], to: WAYSTONE_EXITS.topLeft, spawn: WAYSTONE_EXITS.topLeftSpawn, locked: 'orochiDone', lockedText: ['* The northern road is choked with grey ash and the coils of something vast.', '* Not while the Waystone is guarded.'] };
-  ex[2] = { rect: [1450, 60, 110, 12], to: WAYSTONE_EXITS.topRight, spawn: WAYSTONE_EXITS.topRightSpawn, locked: 'orochiDone', lockedText: ['* The eastern road is blocked by eight great coils of scale.', '* Not while the Waystone is guarded.'] };
+  ex[1] = { rect: [100, 50, 150, 22], to: WAYSTONE_EXITS.topLeft, spawn: WAYSTONE_EXITS.topLeftSpawn, locked: 'orochiDone', lockedText: ['* The northern road is choked with grey ash and the coils of something vast.', '* Not while the Waystone is guarded.'] };
+  ex[2] = { rect: [1450, 60, 110, 22], to: WAYSTONE_EXITS.topRight, spawn: WAYSTONE_EXITS.topRightSpawn, locked: 'orochiDone', lockedText: ['* The eastern road is blocked by eight great coils of scale.', '* Not while the Waystone is guarded.'] };
 }
 
 // The Dundean missions (graveyard blood rite, wind priests' cult): their rooms, and the
@@ -383,7 +383,7 @@ const FOREST: Record<string, Encounter[]> = {
   mosswood: [
     { id: 'bitewing', w: 10 }, { id: 'goblin', w: 10 }, { id: 'sludge', w: 8 }, { id: 'bat_squirrel', w: 10 },
     { id: 'snow_cub', w: 0.6 }, { id: 'fire_cub', w: 0.6 },
-    { id: 'giant_wasp', w: 34 },
+    { id: 'giant_wasp', w: 22, depth: [0.4, 1] },
     { id: 'giant_ant', w: 30, depth: [0.45, 1] },
   ],
   waystone: [{ id: 'giant_ant', w: 60 }, { id: 'giant_wasp', w: 30 }],

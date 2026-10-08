@@ -37,10 +37,17 @@ function view(mon: PartyMon) {
 interface PickOpt {
   name: string;
   art?: string;
+  arrow?: -1 | 1; // a move-earlier / move-later choice: the painted arrow instead of art
   sub?: string;
   color?: string;
   hp?: [number, number];
   disabled?: boolean;
+}
+
+/** 1st, 2nd, 3rd, 4th... */
+function ordinal(n: number) {
+  const t = n % 100;
+  return `${n}${t >= 11 && t <= 13 ? 'th' : ['th', 'st', 'nd', 'rd'][n % 10] ?? 'th'}`;
 }
 
 /** First sentences of the bestiary entry that fit in the two lines under the cards. */
@@ -162,7 +169,9 @@ export class MenuScene extends Phaser.Scene {
     this.content.add([frame, por]);
     this.ink(262, 134, s.name, 32);
     this.ink(262, 178, `Dragon Tamer   ·   LV ${s.lv}`, 22);
-    this.ink(262, 210, `Gold ${s.gold}   ·   Monsters owned ${s.monsters.length}`, 20);
+    const bench = State.bench();
+    const ready = bench.filter((m) => m.hp > 0).length;
+    this.ink(262, 210, `Gold ${s.gold}   ·   Monsters owned ${s.monsters.length}${bench.length ? `   ·   Bench ${ready}${ready < bench.length ? ` of ${bench.length} ready` : ''}` : ''}`, 20);
     const team = State.partyMons();
     this.sel = Phaser.Math.Clamp(this.sel, 0, PARTY_SIZE - 1);
     for (let i = 0; i < PARTY_SIZE; i++) {
@@ -177,7 +186,11 @@ export class MenuScene extends Phaser.Scene {
       this.cardObjs.push(c);
       this.content.add(c);
     }
-    const hint = team.length ? '← →  choose   ·   Z  manage in My Monsters' : 'Your hatchling waits at the Guild Hall.';
+    const hint = !team.length
+      ? 'Your hatchling waits at the Guild Hall.'
+      : bench.length
+        ? '← →  choose   ·   Z  manage in My Monsters   ·   the bench steps in, in team order, when one faints'
+        : '← →  choose   ·   Z  manage in My Monsters';
     this.ink(130, 630, hint, 18);
     this.refreshCards();
   }
@@ -238,10 +251,9 @@ export class MenuScene extends Phaser.Scene {
     this.build();
   }
 
-  /** Owned monsters as My Monsters lists them: the party in slot order, then the rest in capture order. */
+  /** Owned monsters as My Monsters lists them: the party in slot order, then the bench in team order. */
   private ownedOrder() {
-    const s = State.get();
-    return [...s.party, ...s.monsters.map((m) => m.uid).filter((u) => !s.party.includes(u))];
+    return [...State.get().party, ...State.bench().map((m) => m.uid)];
   }
 
   /** My Monsters: Kael's own monsters on the first pages (Z places one in the party), then the bestiary. */
@@ -262,6 +274,7 @@ export class MenuScene extends Phaser.Scene {
     const fd = label(this, 930, 114, mine ? `Owned ${owned}` : `Found ${pct}%`, 22, COLORS.ink, 0).setOrigin(0.5).setStroke('#fff4dc', 2);
     this.content.add([plaque, page, pg, fd]);
     this.ink(132, 84, mine ? 'Your team' : 'Bestiary', 26);
+    if (mine && owned > this.ownedIds.filter((u) => State.get().party.includes(u)).length) this.ink(134, 124, 'Crowned: the party.  Blue numbers: the bench,\nin the order they step in when one faints.', 16);
     const first = mine ? pageNo * PER_PAGE : owned + (pageNo - ownPages) * PER_PAGE;
     const last = mine ? Math.min(owned, first + PER_PAGE) : Math.min(total, first + PER_PAGE);
     for (let n = first; n < last; n++) {
@@ -303,7 +316,12 @@ export class MenuScene extends Phaser.Scene {
       const crown = this.add.image(-46, 53, 'ui_crown').setScale(0.22);
       c.add([crown, label(this, 0, 54, `${slot + 1}`, 17, COLORS.yellow, 4).setOrigin(0.5)]);
       this.tweens.add({ targets: crown, scale: 0.27, yoyo: true, repeat: -1, duration: 700 });
-    } else c.add(this.add.rectangle(-44, 55, 46, 33, 0x13202c, 0.6));
+    } else {
+      // the bench: its place in team order (who steps in first when one faints) in the seal
+      c.add(this.add.rectangle(-44, 55, 46, 33, 0x13202c, 0.6));
+      const at = State.bench().findIndex((m) => m.uid === uid);
+      c.add(label(this, 0, 54, `${at + 1}`, 15, v.hp > 0 ? '#8fcaff' : '#8a8f96', 4).setOrigin(0.5));
+    }
     c.add(label(this, 44, 55, `LV ${mon.lv}`, 13, COLORS.cream, 3).setOrigin(0.5));
   }
 
@@ -350,9 +368,12 @@ export class MenuScene extends Phaser.Scene {
       const mon = State.get().monsters.find((m) => m.uid === uid)!;
       const v = view(mon);
       const slot = State.get().party.indexOf(uid);
+      const at = State.bench().findIndex((m) => m.uid === uid);
+      const next = State.bench().filter((m) => m.hp > 0).indexOf(mon) + 1; // fainted ones are skipped
+      const where = slot >= 0 ? `Party slot ${slot + 1}` : v.hp > 0 ? `Bench ${at + 1} (steps in ${ordinal(next)})` : `Bench ${at + 1} (fainted: skipped)`;
       this.detail.setText(
-        `${v.name} · LV ${mon.lv} · ${v.element || '—'} · HP ${v.hp}/${v.max} · EXP ${mon.exp}/${v.next} · ${slot >= 0 ? `Party slot ${slot + 1}` : 'Resting'}\n` +
-          `${v.abilities.map((a) => a.name).join(', ')}   ·   Z  ${slot >= 0 ? 'move or rest' : 'place in the party'}`,
+        `${v.name} · LV ${mon.lv} · ${v.element || '—'} · HP ${v.hp}/${v.max} · EXP ${mon.exp}/${v.next} · ${where}\n` +
+          `${v.abilities.map((a) => a.name).join(', ')}   ·   Z  ${slot >= 0 ? 'move or rest' : 'place in the party or reorder'}`,
       );
       return;
     }
@@ -366,7 +387,10 @@ export class MenuScene extends Phaser.Scene {
     );
   }
 
-  /** Z on an owned monster: choose the party slot it takes (swapping with whoever stands there), or send it to rest. */
+  /**
+   * Z on an owned monster: choose the party slot it takes (swapping with whoever stands there, who
+   * takes its place on the bench), send it to rest at the end of the bench, or move it along the bench.
+   */
   private monstersConfirm() {
     const uid = this.ownedIds[this.sel];
     if (!uid) return Sound.cancel();
@@ -383,16 +407,23 @@ export class MenuScene extends Phaser.Scene {
       const v = view(other);
       opts.push({ name: v.name, art: v.art, color: elementColor(v.element), sub: `Slot ${i + 1} · LV ${other.lv}`, hp: [v.hp, v.max], disabled: i === cur });
     }
-    if (cur >= 0) opts.push({ name: 'Rest', sub: 'Leave the party', disabled: s.party.length <= 1 });
+    const bench = State.bench();
+    const at = bench.findIndex((m) => m.uid === uid);
+    if (cur >= 0) opts.push({ name: 'Rest', sub: 'To the bench', disabled: s.party.length <= 1 });
+    else {
+      opts.push({ name: 'Earlier', arrow: -1, sub: 'Steps in sooner', disabled: at <= 0 });
+      opts.push({ name: 'Later', arrow: 1, sub: 'Steps in later', disabled: at >= bench.length - 1 });
+    }
     Sound.confirm();
     this.openPicker(`Where does ${view(mon).name} stand?`, opts, (i) => {
       const party = s.party;
-      if (i >= PARTY_SIZE) party.splice(cur, 1);
-      else if (cur >= 0) {
+      if (i >= PARTY_SIZE) {
+        if (cur >= 0) State.toBenchEnd(uid);
+        else State.moveOnBench(uid, i === PARTY_SIZE ? -1 : 1);
+      } else if (cur >= 0) {
         if (party[i]) [party[cur], party[i]] = [party[i], party[cur]];
         else party.push(...party.splice(cur, 1));
-      } else if (party[i]) party[i] = uid;
-      else party.push(uid);
+      } else State.stepIn(uid, i);
       Sound.save();
       this.ownedIds = this.ownedOrder();
       this.sel = Math.max(0, this.ownedIds.indexOf(uid));
@@ -404,7 +435,7 @@ export class MenuScene extends Phaser.Scene {
   private openPicker(heading: string, opts: PickOpt[], pick: (i: number) => void) {
     const W = this.scale.width;
     const H = this.scale.height;
-    const bw = 196;
+    const bw = opts.length > 4 ? 162 : 196;
     const gap = 14;
     const w = opts.length * bw + (opts.length - 1) * gap + 64;
     const h = 330;
@@ -431,8 +462,9 @@ export class MenuScene extends Phaser.Scene {
       root.add(box);
       if (o.art) {
         root.add(this.add.image(bx + bw / 2, by + 110, 'shadow').setScale(0.55, 0.4).setAlpha(0.6));
-        root.add(fitArt(this.add.image(bx + bw / 2, by + 112, o.art).setOrigin(0.5, 1), 150, 86));
-      } else root.add(this.add.image(bx + bw / 2, by + 74, o.name === 'Rest' ? 'ui_med_book' : 'ui_slot_round').setScale(o.name === 'Rest' ? 0.34 : 0.5).setAlpha(0.8));
+        root.add(fitArt(this.add.image(bx + bw / 2, by + 112, o.art).setOrigin(0.5, 1), Math.min(150, bw - 20), 86));
+      } else if (o.arrow) root.add(this.add.image(bx + bw / 2, by + 74, 'ui_cursor_arrow').setScale(0.7).setFlipX(o.arrow < 0).setAlpha(0.9));
+      else root.add(this.add.image(bx + bw / 2, by + 74, o.name === 'Rest' ? 'ui_med_book' : 'ui_slot_round').setScale(o.name === 'Rest' ? 0.34 : 0.5).setAlpha(0.8));
       const nm = label(this, bx + bw / 2, by + 122, o.name, 18, o.color ?? COLORS.cream, 4).setOrigin(0.5, 0);
       if (nm.width > bw - 16) nm.setScale((bw - 16) / nm.width);
       root.add(nm);

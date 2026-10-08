@@ -203,8 +203,9 @@ function tuIn(text: string, fallback: number): number {
 }
 
 // Late-game wiki ranges (hundreds or thousands) are rescaled to a Lv1 budget by the move's TU.
-function lv1Range(r: [number, number], tu: number): [number, number] {
-  if (r[1] <= 60) return [Math.max(1, Math.min(r[0], r[1])), Math.max(1, r[1])];
+// k: the factor lv1Of applied to the creature's stats; its smaller ranges shrink with them.
+function lv1Range(r: [number, number], tu: number, k = 1): [number, number] {
+  if (r[1] <= 60) return [Math.max(1, Math.round(Math.min(r[0], r[1]) * k)), Math.max(1, Math.round(r[1] * k))];
   const hi = Math.round(8 + tu * 0.13);
   return [Math.max(1, Math.round((hi * r[0]) / r[1])), hi];
 }
@@ -220,7 +221,7 @@ function parseTarget(t: string): TargetKind | undefined {
 }
 
 /** Parse a wiki ability ("5-6 Physical Damage (Earth)", "Confuses the target for 437 TUs"...). Never throws. */
-export function parseAbility(a: Ability): Move | undefined {
+export function parseAbility(a: Ability, k = 1): Move | undefined {
   const tu = Number(a.tu);
   if (!a.name || !Number.isFinite(tu) || tu <= 0) return undefined; // passives ([Aura], Immunity...) are not actions
   const full = (a.effect ?? '').replace(/\s+/g, ' ').trim();
@@ -237,14 +238,14 @@ export function parseAbility(a: Ability): Move | undefined {
         const r = rangeIn(clause);
         const prev = mv.statuses.find((x) => x.kind === 'poison');
         if (prev) {
-          if (r && !prev.dmg) prev.dmg = lv1Range(r, tu);
-        } else mv.statuses.push({ kind: 'poison', tu: tuIn(effect, 500), dmg: r ? lv1Range(r, tu) : undefined, element: elementIn(clause) });
+          if (r && !prev.dmg) prev.dmg = lv1Range(r, tu, k);
+        } else mv.statuses.push({ kind: 'poison', tu: tuIn(effect, 500), dmg: r ? lv1Range(r, tu, k) : undefined, element: elementIn(clause) });
         continue;
       }
       // ("any damage will wake it" and "+200% Damage vs. Dragon" are riders, not hits)
       if (/damage/.test(c) && !mv.dmg && !/wake/.test(c) && !/^\+?\d+(\.\d+)?%/.test(c.trim())) {
         const r = rangeIn(clause);
-        mv.dmg = r ? lv1Range(r, tu) : [Math.max(1, Math.round(tu / 12)), Math.max(2, Math.round(tu / 10))];
+        mv.dmg = r ? lv1Range(r, tu, k) : [Math.max(1, Math.round(tu / 12)), Math.max(2, Math.round(tu / 10))];
         mv.magical = /magic/.test(c);
         mv.element = elementIn(clause);
         continue;
@@ -297,8 +298,10 @@ export function parseAbility(a: Ability): Move | undefined {
 /** Every usable ability of a unit (passives dropped); never empty. */
 export function movesOf(b: UnitBase): Move[] {
   const out: Move[] = [];
+  const hp = MONSTERS[b.id]?.lv1.hp ?? 0;
+  const k = hp > 100 ? 50 / hp : 1; // same factor as lv1Of
   for (const a of b.abilities) {
-    const m = parseAbility(a);
+    const m = parseAbility(a, k);
     if (m && !out.some((x) => x.name === m.name)) out.push(m);
   }
   if (!out.length) out.push(parseAbility({ name: 'Attack', tu: '100', target: '1 Foe', effect: '4-5 Physical Damage' })!);

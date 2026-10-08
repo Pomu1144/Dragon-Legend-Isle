@@ -44,7 +44,7 @@ export interface GameState {
   kills: number;
   spares: number;
   starter?: { id: string; evolved: boolean };
-  monsters: PartyMon[]; // every monster Kael owns
+  monsters: PartyMon[]; // every monster Kael owns, in team order (the bench steps in in this order)
   party: string[]; // uids of the (up to PARTY_SIZE) monsters that fight, in slot order
   playSeconds: number;
 }
@@ -117,6 +117,38 @@ export const State = {
   partyMons(): PartyMon[] {
     return current.party.map((uid) => current.monsters.find((m) => m.uid === uid)).filter((m): m is PartyMon => !!m);
   },
+  /** The bench: every owned monster outside the party, in team order. When an ally faints in battle the next living one steps in. */
+  bench(): PartyMon[] {
+    return current.monsters.filter((m) => !current.party.includes(m.uid));
+  },
+  /** Move a benched monster one place earlier (-1) or later (+1) in team order. */
+  moveOnBench(uid: string, dir: -1 | 1): boolean {
+    const bench = State.bench();
+    const i = bench.findIndex((m) => m.uid === uid);
+    const j = i + dir;
+    if (i < 0 || j < 0 || j >= bench.length) return false;
+    swapInTeam(bench[i], bench[j]);
+    return true;
+  },
+  /** A benched monster takes party slot `slot`; whoever stood there takes its place on the bench. */
+  stepIn(uid: string, slot: number) {
+    const mon = current.monsters.find((m) => m.uid === uid);
+    if (!mon || current.party.includes(uid)) return;
+    const out = current.monsters.find((m) => m.uid === current.party[slot]);
+    if (!out) {
+      current.party.push(uid);
+      return;
+    }
+    current.party[slot] = uid;
+    swapInTeam(mon, out);
+  },
+  /** Send a monster to the end of the bench (leaving the party if it stood there). */
+  toBenchEnd(uid: string) {
+    const i = current.monsters.findIndex((m) => m.uid === uid);
+    if (i < 0) return;
+    current.party = current.party.filter((u) => u !== uid);
+    current.monsters.push(...current.monsters.splice(i, 1));
+  },
   /** Add a newly owned monster: it joins the party when a slot is free, otherwise it waits in storage. */
   addMonster(mon: PartyMon): 'party' | 'stored' {
     current.monsters.push(mon);
@@ -154,6 +186,14 @@ export const State = {
     return true;
   },
 };
+
+/** Two owned monsters trade places in team order. */
+function swapInTeam(a: PartyMon, b: PartyMon) {
+  const list = current.monsters;
+  const i = list.indexOf(a);
+  const j = list.indexOf(b);
+  if (i >= 0 && j >= 0) [list[i], list[j]] = [list[j], list[i]];
+}
 
 function isEvolved(mon: PartyMon) {
   return !!mon.starter && !!current.starter?.evolved;
