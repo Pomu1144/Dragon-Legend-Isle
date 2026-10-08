@@ -92,8 +92,6 @@ export class WorldScene extends Phaser.Scene {
   private lastSafe: Pt = [0, 0];
   private npcs: Record<string, Phaser.GameObjects.Sprite> = {};
   private fightReturn?: [number, number];
-  private follower?: Phaser.GameObjects.Image;
-  private followerShadow?: Phaser.GameObjects.Image;
   private trail: Pt[] = [];
   private timeAcc = 0;
   private saveAcc = 0;
@@ -185,16 +183,8 @@ export class WorldScene extends Phaser.Scene {
       this.ySortedObjs.push({ obj: spr, base: 0 });
       this.interacts.push({ obj: spr, x: at[0], y: at[1], r: 70, promptY: at[1] - 176 * sc - 16, run: () => this.talkNpc(n.id, spr) });
     }
-    // The chosen hatchling follows a few steps behind.
+    // Monsters never walk the overworld beside Kael; they appear only in battle and in the menu.
     this.trail = [];
-    this.follower = undefined;
-    const st = this.starterKey();
-    if (st) {
-      this.followerShadow = this.add.image(at[0], at[1], 'shadow').setAlpha(0.7);
-      this.follower = this.add.image(at[0] - 20, at[1], st).setOrigin(0.5, 0.96);
-      this.follower.texture.setFilter(Phaser.Textures.FilterMode.NEAREST);
-      this.ySortedObjs.push({ obj: this.follower, base: 0 });
-    }
     // Candles (save points)
     for (const c of R.candles ?? []) {
       const sc = this.scaleAt(c.at[1]) * 1.15;
@@ -289,28 +279,12 @@ export class WorldScene extends Phaser.Scene {
     State.save();
   }
 
-  private starterKey(): string | undefined {
-    const s = State.get().starter;
-    if (!s) return undefined;
-    const key = 'starter_' + s.id + (s.evolved ? '_evo' : '');
-    return this.textures.exists(key) ? key : 'starter_' + s.id;
-  }
-
-  private updateFollower() {
-    const f = this.follower;
-    if (!f) return;
+  /** Kael's last few steps, so a broken-off fight can put him back where he came from. */
+  private trackTrail() {
     const p = this.player;
     const last = this.trail[this.trail.length - 1];
     if (!last || Math.hypot(last[0] - p.x, last[1] - p.y) > 4) this.trail.push([p.x, p.y]);
     if (this.trail.length > 14) this.trail.shift();
-    const target = this.trail.length >= 14 ? this.trail[0] : [p.x - 26, p.y + 2];
-    f.x += (target[0] - f.x) * 0.25;
-    f.y += (target[1] - f.y) * 0.25;
-    const sc = this.scaleAt(f.y) / 0.45;
-    f.setScale(Math.max(0.3, (52 / f.height) * sc));
-    if (target[0] < f.x - 1) f.setFlipX(false);
-    else if (target[0] > f.x + 1) f.setFlipX(true);
-    this.followerShadow?.setPosition(f.x, f.y).setScale(0.5 * sc, 0.5 * sc).setDepth(9 + f.y);
   }
 
   private onStarter(id: string) {
@@ -325,13 +299,7 @@ export class WorldScene extends Phaser.Scene {
     State.addItem('orb', 3);
     State.addItem('silver_card', 1);
     this.controls.reset();
-    // Hatchling appears beside the hero right away.
-    const key = this.starterKey()!;
-    this.followerShadow = this.add.image(this.player.x, this.player.y, 'shadow').setAlpha(0.7);
-    this.follower = this.add.image(this.player.x - 26, this.player.y, key).setOrigin(0.5, 0.96);
-    this.follower.texture.setFilter(Phaser.Textures.FilterMode.NEAREST);
-    this.ySortedObjs.push({ obj: this.follower, base: 0 });
-    sparkleBurst(this, this.follower.x, this.follower.y - 30, 16, 3600, 70);
+    sparkleBurst(this, this.player.x, this.player.y - 60, 16, 3600, 70);
     this.cameras.main.fadeIn(500);
     this.autosave();
     this.say([...scene('after_choice'), ...scene('items_handover'), { text: '* (You also received 3 Capture Cards and a Silver Card. Use them from MERCY > Capture.)' }], () => this.autosave());
@@ -409,7 +377,7 @@ export class WorldScene extends Phaser.Scene {
       State.get().playSeconds += Math.floor(this.timeAcc / 1000);
       this.timeAcc %= 1000;
     }
-    this.updateFollower();
+    this.trackTrail();
     for (const o of this.ySortedObjs) o.obj.setDepth(10 + o.obj.y);
     for (const n of Object.values(this.npcs)) (n.getData('shadow') as Phaser.GameObjects.Image | undefined)?.setPosition(n.x, n.y).setDepth(9 + n.y);
     this.shadow.setDepth(9 + this.player.y);
