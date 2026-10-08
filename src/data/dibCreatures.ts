@@ -555,7 +555,8 @@ export const DIB_KITS = [
   "role": "encounter",
   "rooms": [
    "norwoods_scorched_road",
-   "norwoods_mangal_roots"
+   "norwoods_mangal_roots",
+   "ringfeld_shore_road"
   ],
   "name": "Scale Knight",
   "id": "scale_knight",
@@ -1872,7 +1873,9 @@ export const DIB_KITS = [
    "east_valley_road",
    "safaris_far_shore",
    "wind_cult_terraces",
-   "wind_cult_shrine"
+   "wind_cult_shrine",
+   "giant_mangal_f3",
+   "ringfeld_lower_road"
   ],
   "name": "Cockatrice",
   "id": "cockatrice",
@@ -2141,7 +2144,8 @@ export const DIB_KITS = [
   "rooms": [
    "giant_mangal_f1",
    "mangal_crossroads",
-   "mangal_building_site"
+   "mangal_building_site",
+   "giant_mangal_f2"
   ],
   "name": "Cult Warrior",
   "id": "cult_warrior",
@@ -2400,7 +2404,8 @@ export const DIB_KITS = [
   "role": "encounter",
   "rooms": [
    "giant_mangal_f1",
-   "mangal_crossroads"
+   "mangal_crossroads",
+   "giant_mangal_f2"
   ],
   "name": "Mutation",
   "id": "mutation",
@@ -2550,7 +2555,8 @@ export const DIB_KITS = [
   "role": "encounter",
   "rooms": [
    "mangal_east_road",
-   "mangal_building_site"
+   "mangal_building_site",
+   "giant_mangal_f2"
   ],
   "name": "Wasp Queen",
   "id": "wasp_queen",
@@ -3054,7 +3060,9 @@ export const DIB_KITS = [
    "mangal_crossroads",
    "graveyard_gate",
    "graveyard_rows",
-   "graveyard_ritual_circle"
+   "graveyard_ritual_circle",
+   "giant_mangal_f2",
+   "ringfeld_shore_road"
   ],
   "name": "Imp",
   "id": "imp",
@@ -3338,7 +3346,8 @@ export const DIB_KITS = [
   "role": "encounter",
   "rooms": [
    "forest",
-   "mosswood"
+   "mosswood",
+   "ringfeld_lower_road"
   ],
   "name": "Goblin",
   "id": "goblin",
@@ -4117,7 +4126,8 @@ export const DIB_KITS = [
   "role": "encounter",
   "rooms": [
    "mosswood",
-   "waystone"
+   "waystone",
+   "ringfeld_lower_road"
   ],
   "name": "Giant Ant",
   "id": "giant_ant",
@@ -4410,7 +4420,8 @@ export const DIB_KITS = [
  {
   "role": "encounter",
   "rooms": [
-   "giant_mangal_f1"
+   "giant_mangal_f1",
+   "giant_mangal_f2"
   ],
   "name": "Kemet King",
   "id": "kemet_king",
@@ -4738,7 +4749,8 @@ export const DIB_KITS = [
   "rooms": [
    "giant_mangal_f1",
    "mangal_east_road",
-   "mangal_building_site"
+   "mangal_building_site",
+   "giant_mangal_f2"
   ],
   "name": "Pincer",
   "id": "pincer",
@@ -4894,7 +4906,8 @@ export const DIB_KITS = [
    "mangal_east_road",
    "safaris_grassland",
    "wind_cult_terraces",
-   "wind_cult_shrine"
+   "wind_cult_shrine",
+   "giant_mangal_f3"
   ],
   "name": "Spark",
   "id": "spark",
@@ -5027,7 +5040,8 @@ export const DIB_KITS = [
   "role": "encounter",
   "rooms": [
    "giant_mangal_f1",
-   "mangal_east_road"
+   "mangal_east_road",
+   "giant_mangal_f2"
   ],
   "name": "Doombat",
   "id": "doombat",
@@ -5200,7 +5214,8 @@ export const DIB_KITS = [
   "role": "encounter",
   "rooms": [
    "mangal_crossroads",
-   "mangal_building_site"
+   "mangal_building_site",
+   "giant_mangal_f3"
   ],
   "name": "Sasuke",
   "id": "sasuke",
@@ -5333,7 +5348,8 @@ export const DIB_KITS = [
   "role": "encounter",
   "rooms": [
    "mangal_crossroads",
-   "mangal_building_site"
+   "mangal_building_site",
+   "giant_mangal_f3"
   ],
   "name": "Drake",
   "id": "drake",
@@ -5485,7 +5501,8 @@ export const DIB_KITS = [
  {
   "role": "encounter",
   "rooms": [
-   "mangal_crossroads"
+   "mangal_crossroads",
+   "giant_mangal_f3"
   ],
   "name": "Flame Wing",
   "id": "flame_wing",
@@ -6254,7 +6271,8 @@ export const DIB_KITS = [
   "role": "encounter",
   "rooms": [
    "safaris_riverbank",
-   "safaris_far_shore"
+   "safaris_far_shore",
+   "giant_mangal_f3"
   ],
   "name": "Kappa",
   "id": "kappa",
@@ -6666,7 +6684,9 @@ export const DIB_KITS = [
  },
  {
   "role": "encounter",
-  "rooms": [],
+  "rooms": [
+   "giant_mangal_f3"
+  ],
   "name": "Blood Warrior",
   "id": "blood_warrior",
   "wiki": {
@@ -7160,5 +7180,1830 @@ export const DIB_KITS = [
    ]
   },
   "sprite_check": "viewed"
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "ringfeld_lower_road"
+  ],
+  "name": "Treehead",
+  "id": "treehead",
+  "wiki": {
+   "number": "114",
+   "stars": 2,
+   "element": "Earth",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/c/cc/Treehead.png",
+   "image_size": [
+    79,
+    105
+   ],
+   "lv1": {
+    "hp": 30,
+    "attack": 5,
+    "magic": 8,
+    "speed": 10,
+    "defense": 6,
+    "resist": 13
+   },
+   "abilities": [
+    {
+     "name": "Awaken",
+     "tu": "100",
+     "target": "All Allies",
+     "effect": "Removes Sleep"
+    },
+    {
+     "name": "Coco Drop",
+     "tu": "160",
+     "target": "1 Foe",
+     "effect": "6-7 Physical Damage (Earth)"
+    },
+    {
+     "name": "Wind",
+     "tu": "130",
+     "target": "All Allies",
+     "effect": "Removes Sleep & Poison"
+    }
+   ],
+   "evolution": "Treehead (1st Form) evolves into Pyro (2nd Form) at level 23.",
+   "obtain": "Found in Northern Alvalon at these locations: [Treeheadlocation map]."
+  },
+  "sprite": {
+   "description": "Crouching dark grey humanoid of weathered stone-like bark, long thin arms resting on a black rock, its face a carved mask striped red and white; a small palm tree with green fronds and a cluster of brown coconuts grows straight out of the top of its head. Clean transparent 79x105 sprite.",
+   "dominant_color_hex": "#2a2a2a",
+   "faces": "front",
+   "flier": false
+  },
+  "battle": {
+   "check": "* TREEHEAD - EARTH - 2 STARS.\n* Slow to strike, quick to rouse its kin. What grows from its head is heavier than it looks.",
+   "intro": "* Something you took for a stump lifts its painted face.",
+   "idle": [
+    "* The Treehead sits motionless. The fronds above it stir without wind.",
+    "* A coconut knocks against another, high on its crown.",
+    "* The red stripes on its mask are not paint. They look cut in.",
+    "* The Treehead breathes out slowly. Somewhere behind it, something wakes."
+   ],
+   "talk": [
+    "...",
+    "Rooted.\nNot asleep.",
+    "Hhhm.\nGo round.",
+    "Stone remembers.\nBark forgets.",
+    "No one sleeps\nwhile I sit."
+   ],
+   "spare_text": "* The Treehead lowers its face to the rock and is a stump again. You pass.",
+   "lore": "Treehead (#114) is a 2-star Earth monster of the Humanoid category, found in Northern Alvalon. It strikes a single foe with Coco Drop for 6-7 physical Earth damage, and it tends its allies: Awaken removes Sleep from all of them, and Wind removes both Sleep and Poison. At level 23 it evolves into Pyro. Stats are its level-1 values. In Northern Alvalon and on the roads of Ringfeld it sits so still that travellers rest against it before they see the mask, and it is said no creature near a Treehead stays asleep for long.",
+   "capture_fail": [
+    "* The Treehead does not move. It is far heavier than it looks.",
+    "* It sets its long hands on the rock and does not come loose."
+   ],
+   "acts": [
+    {
+     "name": "Sit Down",
+     "text": [
+      "* You sit on the ground across from it, as still as you can.",
+      "* The Treehead's mask tilts. It seems to take you for another stump."
+     ],
+     "mercy": 40,
+     "once": true,
+     "calm": 2
+    },
+    {
+     "name": "Speak Low",
+     "text": [
+      "* You keep your voice down, as if not to wake something.",
+      "* The fronds settle. The Treehead lets its breath out."
+     ],
+     "mercy": 35,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Step Around",
+     "text": [
+      "* You give its rock a wide berth, keeping off its roots.",
+      "* It watches you go round. It does not reach for the coconuts."
+     ],
+     "mercy": 40,
+     "once": false,
+     "calm": 1
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Coco Drop",
+     "tu": 160,
+     "base_pattern": "column_drop",
+     "projectile": "orb_moss",
+     "tint_hex": "#6b4a2b",
+     "twist": "none",
+     "box": [
+      420,
+      240
+     ],
+     "intensity": 1,
+     "flavor": "* The Treehead bows its head. Its crown sheds what it carries."
+    },
+    {
+     "ability": "Awaken",
+     "tu": 100,
+     "base_pattern": "radial_burst",
+     "projectile": "fx_sparkle",
+     "tint_hex": "#c8b37a",
+     "twist": "neutralize",
+     "box": [
+      360,
+      230
+     ],
+     "intensity": 0.85,
+     "flavor": "* It lets out a low hum through the mask. Nothing near it stays asleep."
+    },
+    {
+     "ability": "Wind",
+     "tu": 130,
+     "base_pattern": "tornado_sweep",
+     "projectile": "fx_tornado",
+     "tint_hex": "#7f9a6a",
+     "twist": "neutralize",
+     "box": [
+      460,
+      230
+     ],
+     "intensity": 0.9,
+     "flavor": "* The fronds sweep once. A cold green air passes over the ground and is gone."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "ringfeld_lower_road",
+   "ringfeld_shore_road"
+  ],
+  "name": "Giant Turtle",
+  "id": "giant_turtle",
+  "wiki": {
+   "number": "033",
+   "stars": 2.5,
+   "element": "Water",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/3/30/Giant_Turtle.png",
+   "image_size": [
+    134,
+    128
+   ],
+   "lv1": {
+    "hp": 45,
+    "attack": 4,
+    "magic": 4,
+    "speed": 6,
+    "defense": 14,
+    "resist": 17
+   },
+   "abilities": [
+    {
+     "name": "Harden",
+     "tu": "160",
+     "target": "Self",
+     "effect": "+2 Defense"
+    },
+    {
+     "name": "Shell Spin",
+     "tu": "130",
+     "target": "1 Foe",
+     "effect": "4-5 Physical Damage (Water)"
+    }
+   ],
+   "evolution": "Giant Turtle -> Turtle King (evolves at level 24) -> Tortilla (evolves at level 58)",
+   "obtain": "Found in Southern Alvalon at this location: [Giantturtlelocation.png]. And in Northern Alvalon at these locations: [Giantturtlelocation2.png]. And in the North Cave (all floors) in Southern Alvalon and Pirate's Cave (floors 5 & 6) in Northern Alvalon. Giant Turtles can also be found in the lower part of Ringfeld (Ringfield)."
+  },
+  "sprite": {
+   "description": "A large green turtle seen three-quarters from the front, head raised on a long wrinkled neck with small red-rimmed eyes and a hooked beak; its high-domed shell is jade green with pale yellow-edged plates, and four thick scaled legs end in dark claws.",
+   "dominant_color_hex": "#3f8060",
+   "faces": "left",
+   "flier": false
+  },
+  "battle": {
+   "check": "* GIANT TURTLE - Water - 2.5 Stars.\n* Its shell turns most blows aside.\n* When it hardens, it hardens further still.",
+   "intro": "* A stone at the roadside lifts its head out of the mud.",
+   "idle": [
+    "* Giant Turtle watches you with small red eyes. It does not blink.",
+    "* Water runs from the seams of its shell and darkens the ground beneath it.",
+    "* Giant Turtle draws its neck in a little, then lets it out again.",
+    "* The air smells of cold river silt."
+   ],
+   "talk": [
+    "...",
+    "(a slow hiss)",
+    "(it lowers\nits head)",
+    "(the shell\ncreaks)",
+    "(it breathes\nout, wet\nand long)"
+   ],
+   "spare_text": "* Giant Turtle turns its back to you and walks heavily down toward the water.",
+   "lore": "Giant Turtle (No. 33) is a 2.5-star Water monster of Dragon Island Blue. Level 1: HP 45, Attack 4, Magic 4, Speed 6, Defense 14, Resist 17. It knows Harden (160 TU, self, +2 Defense) and Shell Spin (130 TU, 1 foe, 4-5 physical Water damage). It evolves into Turtle King at level 24 and into Tortilla at level 58. It is found in Southern and Northern Alvalon, on every floor of the North Cave, on floors 5 and 6 of Pirate's Cave, and in the lower part of Ringfeld. Slow, and patient beyond reason, it waits out what it cannot outrun.",
+   "capture_fail": [
+    "* The shell closes. Giant Turtle pulls free and plants itself again.",
+    "* Giant Turtle withdraws its head. There is nothing left to hold."
+   ],
+   "acts": [
+    {
+     "name": "Wait It Out",
+     "text": [
+      "* You crouch at the edge of the mud and do nothing.",
+      "* Giant Turtle's breathing slows to match the river."
+     ],
+     "mercy": 30,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Stand Still",
+     "text": [
+      "* You stop and let your arms hang.",
+      "* Giant Turtle looks at you for a long time. Its neck eases out of the shell."
+     ],
+     "mercy": 40,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Clear the Way",
+     "text": [
+      "* You step off the path that leads down to the water.",
+      "* Giant Turtle sees the way is open. Its claws stop digging into the mud."
+     ],
+     "mercy": 60,
+     "once": true,
+     "calm": 2
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Harden",
+     "tu": 160,
+     "base_pattern": "orbit_ring",
+     "projectile": "fx_waterring",
+     "tint_hex": "#5f9a78",
+     "twist": "neutralize",
+     "box": [
+      340,
+      230
+     ],
+     "intensity": 0.8,
+     "flavor": "* Giant Turtle sinks into its shell. The plates draw tight with a sound like grinding stone."
+    },
+    {
+     "ability": "Shell Spin",
+     "tu": 130,
+     "base_pattern": "bounce_orbs",
+     "projectile": "fx_waterring",
+     "tint_hex": "#3f8060",
+     "twist": "none",
+     "box": [
+      460,
+      240
+     ],
+     "intensity": 1,
+     "flavor": "* Giant Turtle hides its head and spins. River water sprays from the shell as it comes at you."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "ringfeld_shore_road"
+  ],
+  "name": "Mer Warrior",
+  "id": "mer_warrior",
+  "wiki": {
+   "number": "070",
+   "stars": 2,
+   "element": "Water",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/2/29/Mer_Warrior.png",
+   "image_size": [
+    118,
+    90
+   ],
+   "lv1": {
+    "hp": 29,
+    "attack": 3,
+    "magic": 10,
+    "speed": 13,
+    "defense": 3,
+    "resist": 6
+   },
+   "abilities": [
+    {
+     "name": "Magic Wall",
+     "tu": "200",
+     "target": "All Allies",
+     "effect": "+2 Resist"
+    },
+    {
+     "name": "Overflow",
+     "tu": "100",
+     "target": "1 Foe",
+     "effect": "9-11 Magical Damage (Water)"
+    }
+   ],
+   "evolution": "Mer Warrior (1st Form) -> Mer Hunter (evolves at level 15) -> Mer Prince (evolves at level 23) -> Mer King (evolves at level 38; final form)",
+   "obtain": "Found in Northern Alvalon at these locations: [location map]. And in Pirate's Cave (all floors) in Northern Alvalon. Mer Warrior can also be located in the lower part of Ringfeld (Ringfield)."
+  },
+  "sprite": {
+   "description": "A hunched, dark slate-grey fish-man seen in three-quarter profile, bent low on thin bowed legs. Its smooth domed head has a wide lipless mouth and small pale eyes; its skin is mottled charcoal and dull grey like wet stone, with only a faint cold blue cast. Long arms hang nearly to the ground, one gripping a dark trident whose barbed tines point down and forward, the shaft trailing behind it.",
+   "dominant_color_hex": "#4E535A",
+   "faces": "left",
+   "flier": false
+  },
+  "battle": {
+   "check": "* MER WARRIOR - No. 70 - WATER - 2 STARS.\n* Knows Overflow, a single strike of water, and Magic Wall, which hardens its allies against magic.\n* It is frail of body (DEF 3). It relies on what it can raise around itself.",
+   "intro": "* Water stands in the ruts of the road where no rain has fallen.\n* Mer Warrior rises out of it, trident low.",
+   "idle": [
+    "* Mer Warrior breathes through its open mouth. The sound is wet and slow.",
+    "* Its trident tines drag in the mud, leaving three thin lines.",
+    "* Water runs off its shoulders and does not stop running.",
+    "* It watches the road behind you, as if counting who else might come."
+   ],
+   "talk": [
+    "...",
+    "Low water.\nThe river\nforgets.",
+    "Do not\nwade here.",
+    "The road\nfloods by\nnight.",
+    "Ash fell\non the\nwater."
+   ],
+   "spare_text": "* Mer Warrior lowers its trident and steps backward into the standing water.\n* The ruts are only ruts again. The road is dry.",
+   "lore": "No. 70 - Mer Warrior. Water element, 2 stars. Lv1: HP 29, ATK 3, MAG 10, SPD 13, DEF 3, RES 6. Abilities: Magic Wall (200 TU, all allies, +2 Resist) and Overflow (100 TU, 1 foe, 9-11 magical Water damage). Evolves into Mer Hunter at level 15, Mer Prince at level 23, and Mer King at level 38. Found in Northern Alvalon and on every floor of Pirate's Cave there, and also in the lower part of Ringfeld. Travellers on the lower road say the water it brings with it is never from the river nearby.",
+   "capture_fail": [
+    "* The Mer Warrior slips the binding like water through fingers.",
+    "* It sinks into the puddle at its feet and rises again, untouched."
+   ],
+   "acts": [
+    {
+     "name": "Step Back",
+     "text": [
+      "* You step back out of the standing water and onto dry ground.",
+      "* Mer Warrior watches your boots. Its grip on the trident loosens.",
+      "* It does not follow you out of the water."
+     ],
+     "mercy": 35,
+     "once": true,
+     "calm": 1
+    },
+    {
+     "name": "Lower Blade",
+     "text": [
+      "* You lower your weapon until its point rests in the mud.",
+      "* Mer Warrior tilts its head. Slowly, it lets its tines drop to match.",
+      "* For a moment you are two shapes standing in the rain that is not falling."
+     ],
+     "mercy": 40,
+     "once": true,
+     "calm": 2
+    },
+    {
+     "name": "Listen",
+     "text": [
+      "* You stand still and listen to the water running off it.",
+      "* Under the dripping there is a low sound, like a current far beneath stone.",
+      "* Mer Warrior goes quiet, as if it had not known anyone could hear it."
+     ],
+     "mercy": 30,
+     "once": false,
+     "calm": 1
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Magic Wall",
+     "tu": 200,
+     "base_pattern": "orbit_ring",
+     "projectile": "fx_waterring",
+     "tint_hex": "#8FB4CC",
+     "twist": "neutralize",
+     "box": [
+      380,
+      240
+     ],
+     "intensity": 0.9,
+     "flavor": "* Mer Warrior plants its trident. Rings of water rise and close around it like a wall."
+    },
+    {
+     "ability": "Overflow",
+     "tu": 100,
+     "base_pattern": "column_drop",
+     "projectile": "fx_waterring",
+     "tint_hex": "#3E6E9A",
+     "twist": "none",
+     "box": [
+      340,
+      230
+     ],
+     "intensity": 1,
+     "flavor": "* Mer Warrior raises its trident. The water in the ruts lifts and comes down on you."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "ringfeld_shore_road"
+  ],
+  "name": "Assassin",
+  "id": "assassin",
+  "wiki": {
+   "number": "076",
+   "stars": 1.5,
+   "element": "Air",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/6/69/Assassin.png",
+   "image_size": [
+    50,
+    100
+   ],
+   "lv1": {
+    "hp": 28,
+    "attack": 10,
+    "magic": 4,
+    "speed": 27,
+    "defense": 2,
+    "resist": 2
+   },
+   "abilities": [
+    {
+     "name": "Stab",
+     "tu": "130",
+     "target": "1 Foe",
+     "effect": "11-14 Physical Damage (Air)"
+    }
+   ],
+   "evolution": "Assassin (1st Form, evolves at level 15) -> Sasuke (2nd Form, evolves at level 32) -> Ninja (3rd Form, evolves at level 84) -> Goemon (4th Form; final form)",
+   "obtain": "Found in Southern Alvalon and in Northern Alvalon at the locations shown on the wiki maps, and in Pirate's Cave on all floors."
+  },
+  "sprite": {
+   "description": "A lean hooded humanoid in a long charcoal-grey coat that falls to the knees, belted with dark straps. Under the deep hood is a pale white mask with hollow dark eye holes and a bound mouth, framed by pale hair. A crimson sash crosses the chest. Its arms are folded across the body, and in its left hand (viewer's right) it holds a long thin blade pointed upward. Its hands are bare and grey, and it stands square to the viewer on dark boots.",
+   "dominant_color_hex": "#303030",
+   "faces": "front",
+   "flier": false
+  },
+  "battle": {
+   "check": "* ASSASSIN - No. 076 - AIR - 1.5 STARS.\n* Very fast (SPD 27), but thin-skinned (DEF 2, RES 2).\n* Knows one thing: Stab. It waits a long time to use it.",
+   "intro": "* A hooded shape stands where the path was empty.\n* The Assassin does not draw. Its blade is already out.",
+   "idle": [
+    "* The Assassin keeps its arms folded. The blade rests against its shoulder.",
+    "* The white mask does not turn. You feel it watching your ribs.",
+    "* The Assassin takes one step to the side. You did not see it move.",
+    "* The red sash stirs, though the air here is still."
+   ],
+   "talk": [
+    "...",
+    "Stand still.",
+    "One thrust.\nNo more.",
+    "You breathe\ntoo loudly.",
+    "Who sent\nyou?"
+   ],
+   "spare_text": "* The Assassin lowers its blade and steps back into the shadow.\n* The air moves once. Then it is gone.",
+   "lore": "No. 076 - Assassin. Air element, 1.5 stars. Lv1: HP 28, ATK 10, MAG 4, SPD 27, DEF 2, RES 2. Ability: Stab (130 TU, 1 foe, 11-14 physical Air damage). The first form of its line: Assassin evolves into Sasuke at level 15, Sasuke into Ninja at level 32, and Ninja into Goemon at level 84. Found in Southern Alvalon, in Northern Alvalon, and on every floor of Pirate's Cave. It strikes once and slowly, but it strikes first.",
+   "capture_fail": [
+    "* The Assassin slips out of the binding before it closes.\n* It was never where you aimed.",
+    "* The mask turns toward you. The blade comes up.\n* It will not be taken so easily."
+   ],
+   "acts": [
+    {
+     "name": "Hold Still",
+     "text": [
+      "* You stop moving and let your breath go quiet.",
+      "* The Assassin's blade wavers, searching for an opening.",
+      "* There is nothing to answer."
+     ],
+     "mercy": 35,
+     "once": true,
+     "calm": 1
+    },
+    {
+     "name": "Show Hands",
+     "text": [
+      "* You open your empty hands and keep them where it can see.",
+      "* The mask tilts a fraction.",
+      "* Its grip on the blade loosens."
+     ],
+     "mercy": 35,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Turn Aside",
+     "text": [
+      "* You turn your shoulder and step off its line.",
+      "* You are no one's mark.",
+      "* The Assassin unfolds its arms. It has no contract for you."
+     ],
+     "mercy": 50,
+     "once": true,
+     "calm": 2
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Stab",
+     "tu": 130,
+     "base_pattern": "aimed_volley",
+     "projectile": "fx_silverring",
+     "tint_hex": "#C9CCD2",
+     "twist": "none",
+     "box": [
+      360,
+      240
+     ],
+     "intensity": 1,
+     "flavor": "* The Assassin draws its arm back. It takes its time.\n* Then the blade comes straight for you."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "south_earlsome_valley",
+   "longdale_road"
+  ],
+  "name": "Gold Lion",
+  "id": "gold_lion",
+  "wiki": {
+   "number": "107",
+   "stars": 4,
+   "element": "Life",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/f/f6/Gold_Lion.png",
+   "image_size": [
+    91,
+    105
+   ],
+   "lv1": {
+    "hp": 34,
+    "attack": 13,
+    "magic": 8,
+    "speed": 13,
+    "defense": 13,
+    "resist": 8
+   },
+   "abilities": [
+    {
+     "name": "Claw",
+     "tu": "160",
+     "target": "1 Foe",
+     "effect": "17-20 Physical Damage (Life)"
+    },
+    {
+     "name": "Man Eater",
+     "tu": "130",
+     "target": "1 Foe",
+     "effect": "13-16 Physical Damage (Life), +100% Damage vs. Humanoid"
+    },
+    {
+     "name": "Roar",
+     "tu": "100",
+     "target": "1 Foe",
+     "effect": "Stuns target for 100 TUs"
+    }
+   ],
+   "evolution": "Gold Lion (1st Form) -> Lion King (evolves at level 54; final form)",
+   "obtain": "Found in South Earlsome, on the path to Longdale from Dundean"
+  },
+  "sprite": {
+   "description": "A heavy, prowling lion seen nearly head-on, stalking forward with one foreleg raised. A great shaggy mane of near-black brown frames a tan lion face with red eyes and a bared, fanged open mouth. Over the brow of that face sits a white horned skull-like ram mask with its own red eyes, and two dark grey/black curved ram horns sweep back from it. Perched on top of the skull is a small blue scaled reptilian head with red eyes. Blue-violet scaled armor plates cover its legs, its body and legs are a pale cream-tan gold, and a blue serpentine tail curls up behind it.",
+   "dominant_color_hex": "#4A3A24",
+   "faces": "front",
+   "flier": false
+  },
+  "battle": {
+   "check": "* GOLD LION - No. 107 - LIFE - 4 STARS.\n* Strong and steady (ATK 13, DEF 13). Its Man Eater bites twice as hard against people.\n* Its Roar can leave you frozen where you stand.",
+   "intro": "* Something heavy moves in the brush beside the valley road.\n* Gold Lion steps out onto the path and does not step aside.",
+   "idle": [
+    "* Gold Lion paces the width of the road. It never turns its back on you.",
+    "* Its mane is matted with old burrs and dust from the high cliffs.",
+    "* Three sets of red eyes watch you: the lion's, the white skull's, and the small blue head's above them.",
+    "* Gold Lion lowers its head and breathes in your scent. It knows what you are."
+   ],
+   "talk": [
+    "...",
+    "This road\nis ours.",
+    "Men come.\nMen do not\nleave.",
+    "The dust\nsmells of\nfire.",
+    "Go back\ndown."
+   ],
+   "spare_text": "* Gold Lion holds your gaze a long moment.\n* Then it turns, and is gone up the slope among the rocks.",
+   "lore": "No. 107 - Gold Lion. Life element, 4 stars. Lv1: HP 34, ATK 13, MAG 8, SPD 13, DEF 13, RES 8. Abilities: Claw (160 TU, 1 foe, 17-20 physical Life damage), Man Eater (130 TU, 1 foe, 13-16 physical Life damage, +100% damage vs. Humanoid) and Roar (100 TU, 1 foe, stuns the target for 100 TUs). Evolves into Lion King at level 54. Found in South Earlsome, on the path to Longdale from Dundean. Travelers on the valley road learn to walk in groups, and not to run.",
+   "capture_fail": [
+    "* Gold Lion tears free and shakes its mane. It is not finished with you.",
+    "* The bond will not hold. Gold Lion's red eyes narrow."
+   ],
+   "acts": [
+    {
+     "name": "Hold Ground",
+     "text": [
+      "* You plant your feet and do not back away.",
+      "* Gold Lion stops pacing.",
+      "* Prey runs. You did not."
+     ],
+     "mercy": 40,
+     "once": true,
+     "calm": 1
+    },
+    {
+     "name": "Lower Eyes",
+     "text": [
+      "* You lower your eyes from its stare, slowly.",
+      "* Gold Lion's lips draw back from its teeth, then close.",
+      "* The challenge has gone out of the air."
+     ],
+     "mercy": 35,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Give Way",
+     "text": [
+      "* You step to the side of the road, leaving the path open.",
+      "* Gold Lion watches the gap you have made.",
+      "* It begins to look past you, up toward the cliffs."
+     ],
+     "mercy": 45,
+     "once": true,
+     "calm": 2
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Claw",
+     "tu": 160,
+     "base_pattern": "swoop",
+     "projectile": "orb_blood",
+     "tint_hex": "#C9A24A",
+     "twist": "none",
+     "box": [
+      460,
+      230
+     ],
+     "intensity": 1,
+     "flavor": "* Gold Lion rears and brings its armored paw down in a wide arc."
+    },
+    {
+     "ability": "Man Eater",
+     "tu": 130,
+     "base_pattern": "aimed_volley",
+     "projectile": "orb_blood",
+     "tint_hex": "#B8432F",
+     "twist": "none",
+     "box": [
+      360,
+      240
+     ],
+     "intensity": 1.15,
+     "flavor": "* Gold Lion lunges for your throat. It has done this to men before."
+    },
+    {
+     "ability": "Roar",
+     "tu": 100,
+     "base_pattern": "rings_sweep",
+     "projectile": "fx_silverring",
+     "tint_hex": "#D8D2C0",
+     "twist": "slow",
+     "box": [
+      420,
+      220
+     ],
+     "intensity": 0.9,
+     "flavor": "* Gold Lion roars. The sound goes through your chest and your legs will not answer."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "south_earlsome_valley",
+   "earlsome_dragon_pass",
+   "longdale_road"
+  ],
+  "name": "Bat King",
+  "id": "bat_king",
+  "wiki": {
+   "number": "020",
+   "stars": 4,
+   "element": "Air",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/4/4a/Bat_King.png",
+   "image_size": [
+    188,
+    138
+   ],
+   "lv1": {
+    "hp": 33,
+    "attack": 9,
+    "magic": 12,
+    "speed": 18,
+    "defense": 15,
+    "resist": 21
+   },
+   "abilities": [
+    {
+     "name": "Confusion",
+     "tu": "250",
+     "target": "One Foe",
+     "effect": "Confuses the Target for 437 TUs, causing it to sometimes do nothing."
+    },
+    {
+     "name": "Drain",
+     "tu": "250",
+     "target": "One Foe",
+     "effect": "18 - 22 Physical Damage (Air), Heals for 50% of Damage dealt"
+    },
+    {
+     "name": "Tailwind",
+     "tu": "100",
+     "target": "Self",
+     "effect": "Speeds up Actions by -38%"
+    },
+    {
+     "name": "Ultrasonic",
+     "tu": "130",
+     "target": "All Foes",
+     "effect": "Decreases Defense by 2"
+    }
+   ],
+   "evolution": "Bat Squirrel (1st Form, evolves at level 10) -> Giant Bat (2nd Form, evolves at level 22) -> Doombat (3rd Form, evolves at level 33) -> Bat King (4th Form)",
+   "obtain": "can catch lots of all through longdale and earlsome. Found in sanctuary on level 1. Can be evolved from doombat at level 33."
+  },
+  "sprite": {
+   "description": "A large front-facing bat with vast spread wings, the membranes near-black shot through with deep blood-red, ribbed by long black finger bones ending in hooked claws. Its dark armored head bears tall swept-back horns and a crown of spikes around glowing red eyes; a lean, ridged black body hangs beneath with clawed arms drawn in and spindly hind talons. Clean transparent sprite, 188x138.",
+   "dominant_color_hex": "#2A1A1F",
+   "faces": "front",
+   "flier": true
+  },
+  "battle": {
+   "check": "* BAT KING - No. 20 - AIR - 4 STARS.\n* High Resist (RES 21). Its Drain takes back half of what it tears out of you.\n* Its shriek wears down your guard; its eyes can turn your own hands still.",
+   "intro": "* The red glow in the cliffs goes dark for a moment.\n* Something vast unfolds against it. Bat King descends.",
+   "idle": [
+    "* Bat King hangs above you. Its wingbeats come slow and heavy, like a bellows.",
+    "* The spikes on its brow catch the red light from the cliffs.",
+    "* Smaller bats wheel at the edge of the dark. None come closer than it allows.",
+    "* Its eyes do not blink. They have watched this pass a long time."
+   ],
+   "talk": [
+    "...",
+    "Kneel.",
+    "This valley\nis mine.\nAll of it.",
+    "A man came\nwith ash on\nhis hands.",
+    "I fed.\nI am still\nhungry."
+   ],
+   "spare_text": "* Bat King folds its wings around itself like a mantle.\n* It rises without a sound and returns to the cliffs. The smaller bats follow.",
+   "lore": "No. 20 - Bat King. Air element, 4 stars. Lv1: HP 33, ATK 9, MAG 12, SPD 18, DEF 15, RES 21. Abilities (as at level 1): Confusion (250 TU, one foe, confuses the target for 437 TUs so it sometimes does nothing), Drain (250 TU, one foe, 18-22 physical Air damage, heals for 50% of damage dealt), Tailwind (100 TU, self, speeds up actions by -38%), Ultrasonic (130 TU, all foes, decreases Defense by 2). Fourth and final form of its line: Bat Squirrel evolves at 10 into Giant Bat, Giant Bat at 22 into Doombat, and Doombat at 33 into Bat King. Said to be caught in great numbers all through Longdale and Earlsome, and found in the sanctuary on level 1. The bats of the valley cliffs answer to it.",
+   "capture_fail": [
+    "* The card flares. Bat King's wings snap shut around the light and crush it out.",
+    "* It rises higher, out of reach. Its eyes stay on you."
+   ],
+   "acts": [
+    {
+     "name": "Cover Ears",
+     "text": [
+      "* You press your palms hard against your ears.",
+      "* The shriek still reaches your teeth, but your head stays clear.",
+      "* Bat King tilts its head, as if measuring you again."
+     ],
+     "mercy": 30,
+     "once": true,
+     "calm": 1
+    },
+    {
+     "name": "Bow Head",
+     "text": [
+      "* You lower your eyes and your blade, and do not move.",
+      "* Bat King drifts lower. It studies the back of your neck.",
+      "* It does not strike. Not yet."
+     ],
+     "mercy": 35,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Yield Ground",
+     "text": [
+      "* You step back from the cliff path and leave the high ground to it.",
+      "* Bat King settles on an outcrop above you, wings half-folded.",
+      "* The valley is still its own. That seems to be enough."
+     ],
+     "mercy": 45,
+     "once": true,
+     "calm": 2
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Confusion",
+     "tu": 250,
+     "base_pattern": "spiral",
+     "projectile": "fx_sparkle",
+     "tint_hex": "#9A1C30",
+     "twist": "confuse",
+     "box": [
+      340,
+      240
+     ],
+     "intensity": 1,
+     "flavor": "* Its red eyes widen. The cliffs turn slowly around you."
+    },
+    {
+     "ability": "Drain",
+     "tu": 250,
+     "base_pattern": "homing",
+     "projectile": "orb_blood",
+     "tint_hex": "#8C0F1E",
+     "twist": "lifesteal",
+     "box": [
+      380,
+      230
+     ],
+     "intensity": 1.1,
+     "flavor": "* Bat King drops on you with its jaws open. What it takes, it keeps."
+    },
+    {
+     "ability": "Tailwind",
+     "tu": 100,
+     "base_pattern": "swoop",
+     "projectile": "fx_tornado",
+     "tint_hex": "#6E6A78",
+     "twist": "none",
+     "box": [
+      460,
+      230
+     ],
+     "intensity": 1.1,
+     "flavor": "* It catches the cold draft off the cliffs. It moves faster now."
+    },
+    {
+     "ability": "Ultrasonic",
+     "tu": 130,
+     "base_pattern": "rings_sweep",
+     "projectile": "fx_silverring",
+     "tint_hex": "#CFCAD8",
+     "twist": "all_foes_wide",
+     "box": [
+      500,
+      240
+     ],
+     "intensity": 1.2,
+     "flavor": "* A shriek too high to hear. Your guard feels thinner."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "south_earlsome_valley"
+  ],
+  "name": "Minos",
+  "id": "minos",
+  "wiki": {
+   "number": "138",
+   "stars": 4,
+   "element": "Earth",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/c/c6/Minos.png",
+   "image_size": [
+    87,
+    126
+   ],
+   "lv1": {
+    "hp": 0,
+    "attack": 0,
+    "magic": 0,
+    "speed": 0,
+    "defense": 0,
+    "resist": 0
+   },
+   "abilities": [
+    {
+     "name": "Assault",
+     "tu": "160",
+     "target": "1 foe",
+     "effect": "Physical damage (Earth)"
+    },
+    {
+     "name": "Charge",
+     "tu": "160",
+     "target": "Self",
+     "effect": "Increases Attack"
+    },
+    {
+     "name": "D. Assault",
+     "tu": "160",
+     "target": "2 foes",
+     "effect": "Physical damage (Earth)"
+    },
+    {
+     "name": "Dragon Slayer",
+     "tu": "100",
+     "target": "1 foe",
+     "effect": "Physical damage (Earth). Effect increased by: 100% vs Dragon"
+    }
+   ],
+   "evolution": "Minotaur -> Minos (Minotaur evolves into Minos at level 21). Minos is the 2nd and final form.",
+   "obtain": "South Earlsome, Swinedene; Evolve a Minotaur to level 21; Wesburn"
+  },
+  "sprite": {
+   "description": "A tall grey-skinned minotaur seen almost head-on, standing upright. Long curved horns sweep out from a heavy bull's skull. Its hide is dark ashen grey and scarred, with bands of dark iron at the wrists and shoulders. A ragged dark-red cloth hangs from its waist. One hand drags a length of chain ending in a spiked iron weight; the legs are thick and hoofed.",
+   "dominant_color_hex": "#473E3D",
+   "faces": "front",
+   "flier": false
+  },
+  "battle": {
+   "check": "* MINOS - Earth - 4 stars.\n* Its Dragon Slayer strikes twice as hard against dragons.\n* It can Charge to raise its own Attack before it swings.",
+   "intro": "* Minos steps out of the cliff shadow. The chain in its fist scrapes along the stone.",
+   "idle": [
+    "* Minos lowers its horns and breathes through its nose, slow and heavy.",
+    "* The iron weight at the end of its chain swings once, then hangs still.",
+    "* Grit falls from its shoulders each time it shifts its weight.",
+    "* Minos watches the pass behind you more than it watches you."
+   ],
+   "talk": [
+    "Turn back.",
+    "This road is\nnot for those\nwho walk it.",
+    "I have broken\ndragons on\nthese stones.",
+    "The valley\nremembers who\ncame before.",
+    "Go, while your\nlegs still\ncarry you."
+   ],
+   "spare_text": "* Minos lets the chain go slack. It steps aside to the cliff wall and does not look at you again.",
+   "lore": "MINOS (#138) - Earth element, 4 stars (four StarIcons; category 4 Stars Monsters). Found in South Earlsome and Swinedene, and in Wesburn; also obtained by evolving a Minotaur to level 21. It is the 2nd and final form of the Minotaur line. Abilities: Assault (160 TU, Earth physical damage to 1 foe), Charge (160 TU, raises its own Attack), D. Assault (160 TU, Earth physical damage to 2 foes), Dragon Slayer (100 TU, Earth physical damage to 1 foe, effect increased by 100% vs Dragon). The wiki's level-1 stat column is entirely blank and no other level is listed, so no stats are recorded. The hunters at Dundean say something guards the pass to Longdale; in South Earlsome, Minos walks the valley stones.",
+   "capture_fail": [
+    "* Minos tears free and stamps the ground. The stone cracks under its hoof.",
+    "* The bindings snap against its horns. It shakes its head and stands again. It does not kneel. Not yet."
+   ],
+   "acts": [
+    {
+     "name": "Stand Firm",
+     "text": [
+      "* You plant your feet and do not step back.",
+      "* Minos tilts its horns. It seems to measure you anew."
+     ],
+     "mercy": 40,
+     "once": true,
+     "calm": 1
+    },
+    {
+     "name": "Show Empty Hands",
+     "text": [
+      "* You open your hands and keep them low, away from your weapon.",
+      "* The chain stops swinging. Its breathing slows."
+     ],
+     "mercy": 35,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Speak of the Pass",
+     "text": [
+      "* You tell it you are not here for the valley. Only for the one who passed through.",
+      "* Minos is silent a long moment. Then it snorts, low, and looks east."
+     ],
+     "mercy": 30,
+     "once": false,
+     "calm": 2
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Assault",
+     "tu": 160,
+     "base_pattern": "column_drop",
+     "projectile": "orb_moss",
+     "tint_hex": "#7A6A55",
+     "twist": "none",
+     "box": [
+      380,
+      240
+     ],
+     "intensity": 1,
+     "flavor": "* Minos brings the chain down. Stone breaks loose from above."
+    },
+    {
+     "ability": "Charge",
+     "tu": 160,
+     "base_pattern": "telegraph_lines",
+     "projectile": "fx_silverring",
+     "tint_hex": "#A04A3A",
+     "twist": "none",
+     "box": [
+      420,
+      230
+     ],
+     "intensity": 0.9,
+     "flavor": "* Minos lowers its horns and scrapes the ground. Its arms swell with strength."
+    },
+    {
+     "ability": "D. Assault",
+     "tu": 160,
+     "base_pattern": "rings_sweep",
+     "projectile": "orb_moss",
+     "tint_hex": "#6B6258",
+     "twist": "all_foes_wide",
+     "box": [
+      500,
+      240
+     ],
+     "intensity": 1.1,
+     "flavor": "* The chain sweeps wide across the whole path. There is nowhere it does not reach."
+    },
+    {
+     "ability": "Dragon Slayer",
+     "tu": 100,
+     "base_pattern": "aimed_volley",
+     "projectile": "fx_silverring",
+     "tint_hex": "#8C3A2E",
+     "twist": "multi_hit",
+     "box": [
+      340,
+      250
+     ],
+     "intensity": 1.2,
+     "flavor": "* Minos turns toward your dragon. Its eyes fix on the scales."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "south_earlsome_valley"
+  ],
+  "name": "Fairy Queen",
+  "id": "fairy_queen",
+  "wiki": {
+   "number": "048",
+   "stars": 3.5,
+   "element": "Life",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/e/e0/Fairy_Queen.png",
+   "image_size": [
+    80,
+    100
+   ],
+   "lv1": {
+    "hp": 32,
+    "attack": 6,
+    "magic": 12,
+    "speed": 16,
+    "defense": 9,
+    "resist": 21
+   },
+   "abilities": [
+    {
+     "name": "Analyze",
+     "tu": "100",
+     "target": "This monster only",
+     "effect": "Activates the enemy team party order buttom in the top right. Touch it to see which enemies are coming"
+    },
+    {
+     "name": "Magic Wall",
+     "tu": "100",
+     "target": "All friends",
+     "effect": "Increases Resist by 2"
+    },
+    {
+     "name": "Mass Hypnosis",
+     "tu": "160",
+     "target": "All Foes",
+     "effect": "Puts the target to sleep for 149 TUs. Any damage will wake it."
+    },
+    {
+     "name": "Sanctify",
+     "tu": "100",
+     "target": "One Foe",
+     "effect": "10 - 13 Magical Damage (Life)"
+    }
+   ],
+   "evolution": "Evolves from Fairy at level 12 (2nd form; final form). Fairy -> Fairy Queen.",
+   "obtain": "You can obtain it at Wesburn north from Saint Wesburn."
+  },
+  "sprite": {
+   "description": "Slender pale grey-white humanoid woman with long pale blond hair, both arms raised above her head, long legs drawn up in a half-seated pose; large grey bat-like wings with grey-blue membranes spread to both sides, a small pink heart shape above each inner wing joint. Clean transparent 80x100 sprite (fetch with ?format=original for PNG), body turned slightly, viewed mostly from the front.",
+   "dominant_color_hex": "#a8b0b4",
+   "faces": "front",
+   "flier": true
+  },
+  "battle": {
+   "check": "* FAIRY QUEEN - Life - 3.5 Stars.\n* Her hypnosis is famous among monsters. Those who sleep under it seldom strike back.",
+   "intro": "* The air goes still and sweet. A pale figure unfolds her wings above you.",
+   "idle": [
+    "* The Fairy Queen hums a tune with no beginning.",
+    "* Her wings open and close, slow as breathing.",
+    "* Your eyelids feel heavier than they should.",
+    "* She watches the dark behind you, counting what follows."
+   ],
+   "talk": [
+    "Sleep. The\nroad will\nwait.",
+    "You are so\ntired. I\ncan see it.",
+    "Close your\neyes. Only\nfor a while.",
+    "No one\nwakes from\nmy song.",
+    "What do\nyou chase\nso far?"
+   ],
+   "spare_text": "* The Fairy Queen folds her wings. Her humming thins into the wind, and the heaviness leaves your eyes.",
+   "lore": "Fairy Queen (#048, 3.5 stars, Life) is the second and final form of the Fairy, evolving at level 12. Wiki records level-1 stats: HP 32, ATK 6, MAG 12, SPD 16, DEF 9, RES 21. The wiki says she is famous for her hypnosis magic on monsters, which lowers a foe's chance to counter attack significantly, and that she can be obtained at Wesburn north from Saint Wesburn. Mass Hypnosis puts all foes to sleep for 149 TUs until damage wakes them; Sanctify deals 10-13 Life magic damage to one foe; Magic Wall raises her side's Resist by 2; Analyze reveals the enemy party order.",
+   "capture_fail": [
+    "* The Fairy Queen slips from the seal like smoke through fingers.",
+    "* She laughs without sound. The seal falls empty to the ground."
+   ],
+   "acts": [
+    {
+     "name": "Stay Awake",
+     "text": [
+      "* You bite the inside of your cheek and keep your eyes open.",
+      "* Her song falters. She has not met many who resist it.",
+      "* She regards you with something close to curiosity."
+     ],
+     "mercy": 35,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Answer Her",
+     "text": [
+      "* You tell her who you follow, and why.",
+      "* The Fairy Queen goes quiet. Her wings stop moving.",
+      "* She looks east for a long moment, then back at you."
+     ],
+     "mercy": 40,
+     "once": true,
+     "calm": 2
+    },
+    {
+     "name": "Lower Arms",
+     "text": [
+      "* You let your weapon hang at your side.",
+      "* She drifts lower, near enough to touch.",
+      "* She does not sing. Not yet."
+     ],
+     "mercy": 35,
+     "once": false,
+     "calm": 1
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Mass Hypnosis",
+     "tu": 160,
+     "base_pattern": "spiral",
+     "projectile": "fx_sparkle",
+     "tint_hex": "#d7a9e0",
+     "twist": "slow",
+     "box": [
+      480,
+      240
+     ],
+     "intensity": 1.1,
+     "flavor": "* Her song coils outward over everything. Your limbs grow heavy with sleep (all foes, sleep 149 TU)."
+    },
+    {
+     "ability": "Sanctify",
+     "tu": 100,
+     "base_pattern": "aimed_volley",
+     "projectile": "fx_silverring",
+     "tint_hex": "#f2efd8",
+     "twist": "none",
+     "box": [
+      340,
+      230
+     ],
+     "intensity": 1,
+     "flavor": "* She points once. Pale light falls on you and burns clean (10-13 Life)."
+    },
+    {
+     "ability": "Magic Wall",
+     "tu": 100,
+     "base_pattern": "orbit_ring",
+     "projectile": "fx_waterring",
+     "tint_hex": "#b8c8e8",
+     "twist": "neutralize",
+     "box": [
+      380,
+      230
+     ],
+     "intensity": 0.8,
+     "flavor": "* Faint rings circle her and harden in the air. Magic will find her harder to touch (Resist +2)."
+    },
+    {
+     "ability": "Analyze",
+     "tu": 100,
+     "base_pattern": "telegraph_lines",
+     "projectile": "fx_sparkle",
+     "tint_hex": "#c9c3d8",
+     "twist": "none",
+     "box": [
+      360,
+      220
+     ],
+     "intensity": 0.8,
+     "flavor": "* Thin lines of light pass through you. She is looking at what comes after you."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "earlsome_dragon_pass"
+  ],
+  "name": "Samurai",
+  "id": "samurai",
+  "wiki": {
+   "number": "123",
+   "stars": 4.5,
+   "element": "Fire",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/0/09/Samurai.png",
+   "image_size": [
+    83,
+    117
+   ],
+   "lv1": {
+    "hp": 34,
+    "attack": 15,
+    "magic": 9,
+    "speed": 13,
+    "defense": 15,
+    "resist": 15
+   },
+   "abilities": [
+    {
+     "name": "Blade",
+     "tu": "200",
+     "target": "1 Foe",
+     "effect": "24-29 Physical Damage"
+    },
+    {
+     "name": "No Guard",
+     "tu": "100",
+     "target": "Self",
+     "effect": "No Guard Condition for 500 TUs"
+    },
+    {
+     "name": "Slice",
+     "tu": "130",
+     "target": "1 Foe",
+     "effect": "17-20 Physical Damage"
+    }
+   ],
+   "evolution": "Samurai -> Samurai Lord (evolves at level 44) -> Shogun (evolves at level 58)",
+   "obtain": "Found in Ringfeld (forest), Giant Mangal, South Earlsome, North Earlsome, the Cave of Earlsome, Holy Cave, and the Forest of Mangal. Before Longdale, a battle with three  Lv.46 samurai will occour"
+  },
+  "sprite": {
+   "description": "A humanoid warrior in heavy dark-grey lamellar armour plates, face hidden behind a snarling red oni-style mask under a black helmet with a tall red plume. A tall red war banner with pale script rises from his back. Red cloth shows between the armour plates at waist and legs. He stands in a low, wide stance, katana held low in his right hand with the long pale blade angled down toward the left.",
+   "dominant_color_hex": "#2A2C2E",
+   "faces": "front",
+   "flier": false
+  },
+  "battle": {
+   "check": "* SAMURAI - FIRE - 4.5 STARS.\n* Its Blade is slow and heavy. Before the worst cuts, it drops its guard on purpose.",
+   "intro": "* A red banner rises out of the dark between the trees. The Samurai does not speak. It only draws.",
+   "idle": [
+    "* The Samurai holds its stance. The blade does not waver.",
+    "* The red mask watches you. Nothing behind it blinks.",
+    "* The banner on its back stirs, though there is no wind.",
+    "* The smell of hot iron hangs in the air."
+   ],
+   "talk": [
+    "Turn back.",
+    "The road east\nis held.",
+    "I do not ask\nyour name.",
+    "Steel answers\nsteel.",
+    "Your stance is\nopen. Close it."
+   ],
+   "spare_text": "* The Samurai lowers its blade and steps aside from the road. It does not look back.",
+   "lore": "Samurai (No. 123) is a 4.5-star Fire humanoid found in Ringfeld's forest, the Giant Mangal, the Forest of Mangal, South and North Earlsome, the Cave of Earlsome and the Holy Cave. Hunters say three of them hold the way before Longdale, each near level 46. It fights with Blade and Slice, and can enter the No Guard condition for 500 TUs, giving up its defence to strike. It becomes Samurai Lord at level 44 and Shogun at level 58. Stats listed are its level-1 values.",
+   "capture_fail": [
+    "* The card's light breaks against the armour. The Samurai cuts its way free.",
+    "* It resets its stance as if nothing happened."
+   ],
+   "acts": [
+    {
+     "name": "Bow",
+     "text": [
+      "* You lower your head to the Samurai.",
+      "* After a long moment, it returns the bow. Its grip loosens a little."
+     ],
+     "mercy": 40,
+     "once": true,
+     "calm": 1
+    },
+    {
+     "name": "Hold Ground",
+     "text": [
+      "* You set your feet and do not step back.",
+      "* The Samurai studies your stance. It seems to respect it."
+     ],
+     "mercy": 35,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Sheathe",
+     "text": [
+      "* You put your weapon away and wait.",
+      "* The mask tilts slightly. The Samurai's blade drops an inch lower."
+     ],
+     "mercy": 30,
+     "once": false,
+     "calm": 2
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Blade",
+     "tu": 200,
+     "base_pattern": "telegraph_lines",
+     "projectile": "fx_silverring",
+     "tint_hex": "#D8D2C8",
+     "twist": "none",
+     "box": [
+      460,
+      230
+     ],
+     "intensity": 1.05,
+     "flavor": "* The Samurai raises its blade high. Pale lines cross the ground where it will fall."
+    },
+    {
+     "ability": "No Guard",
+     "tu": 100,
+     "base_pattern": "aimed_volley",
+     "projectile": "fx_sparkle",
+     "tint_hex": "#B3261E",
+     "twist": "none",
+     "box": [
+      380,
+      240
+     ],
+     "intensity": 0.85,
+     "flavor": "* The Samurai drops its guard completely. The banner burns red. The next cut will come harder."
+    },
+    {
+     "ability": "Slice",
+     "tu": 130,
+     "base_pattern": "diagonal_rain",
+     "projectile": "fx_silverring",
+     "tint_hex": "#C9C4BC",
+     "twist": "none",
+     "box": [
+      420,
+      225
+     ],
+     "intensity": 0.95,
+     "flavor": "* Quick slashes come in at an angle, low and from the left."
+    }
+   ]
+  }
+ },
+ {
+  "role": "boss",
+  "rooms": [],
+  "name": "Apalala",
+  "id": "apalala",
+  "wiki": {
+   "number": "N/A",
+   "stars": 0,
+   "element": "Water",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/d/d8/Blue_Wyrm.png",
+   "image_size": [
+    160,
+    143
+   ],
+   "lv1": {
+    "hp": 4104,
+    "attack": 929,
+    "magic": 929,
+    "speed": 657,
+    "defense": 1435,
+    "resist": 1435
+   },
+   "abilities": [
+    {
+     "name": "Attack Break",
+     "tu": "130",
+     "target": "1 foe",
+     "effect": "Decreases attack by 82 Deal 943-1152 Physical damage (water)"
+    },
+    {
+     "name": "Ocean Ruler",
+     "tu": "130",
+     "target": "1 foe",
+     "effect": "Effects Increased by: 100% VS Water Deals 943-1152 Physical Damage (water)"
+    },
+    {
+     "name": "Outrage",
+     "tu": "160",
+     "target": "1 foe",
+     "effect": "Deals 1252 - 1531 Physical damage (water)"
+    },
+    {
+     "name": "Tidal wave",
+     "tu": "130",
+     "target": "all foes",
+     "effect": "Deals 415 - 508 Magical damage (water)"
+    }
+   ],
+   "evolution": "None listed on the Apalala page. The page states: \"The real identity of Apalala is a Blue Wyrm.\" Blue Wyrm's chain: Water Hatchling (evolves at level 8) -> Blue Dragonling (evolves at level 30) -> Blue Dragon (evolves at level 55) -> Blue Wyrm.",
+   "obtain": "Found in South Earlsome. Details coming soon!"
+  },
+  "sprite": {
+   "description": "A massive, heavy-bodied wyrm sitting upright on its haunches, seen from the front. Its scales are blue-black, close to charcoal, with dull slate-blue scale plating along the flanks and limbs and a smooth grey chest and belly. Two broad, dark membranous wings spread up and out behind its shoulders. Its head is raised and turned slightly toward the viewer's right, jaws parted, with pale horn-like crests sweeping back from the skull. Thick clawed forelegs plant in front of it, and a long tail curls along the ground to the viewer's left.",
+   "dominant_color_hex": "#2A2C3A",
+   "faces": "front",
+   "flier": false
+  },
+  "battle": {
+   "check": "* APALALA - WATER - STARS UNRECORDED.\n* A Dragon Overlord. Its true form is a Blue Wyrm.\n* Attack Break leaves your arms heavy. Ocean Ruler strikes Water twice as hard.",
+   "intro": "* Water runs down the cliff where no stream should be.\n* Something vast shifts on the pass above you.\n* Apalala lowers its head into the road.",
+   "idle": [
+    "* Apalala breathes slowly. Each breath sounds like surf on stone.",
+    "* Water beads on its scales and runs off into the dust.",
+    "* The red glow in the cliffs shows on its wings and nowhere else.",
+    "* It has not moved from the mouth of the pass."
+   ],
+   "talk": [
+    "Turn back.\nThe pass\nis closed.",
+    "I was\nApalala\nof the river.",
+    "I keep\nthe pass.\nI keep it.",
+    "Ash came\nup this\nroad.",
+    "The river\nremembers\nwho drowned."
+   ],
+   "spare_text": "* Apalala's breathing slows until you cannot hear it over the wind.\n* It draws its wings in and moves aside from the road.\n* The water stops running down the cliff.",
+   "lore": "Apalala is a Dragon Overlord found in South Earlsome. Its record lists no number, no stars and no element; its real identity is a Blue Wyrm, and every one of its techniques is marked as Water. The record gives only its stats as met, not at level 1: HP 4104, Attack 929, Magic 929, Speed 657, Defense 1435, Resist 1435 (the record writes the last value as a second \"Magic\"). Techniques, also not given at level 1: Attack Break (130 TU, one foe, decreases attack by 82, 943-1152 physical Water damage), Ocean Ruler (130 TU, one foe, effect increased by 100% against Water, 943-1152 physical Water damage), Outrage (160 TU, one foe, 1252-1531 physical Water damage), Tidal Wave (130 TU, all foes, 415-508 magical Water damage). In old Buddhist tales, Apalala was a water dragon who lived by the Swat River and was converted by the Buddha. Hunters in Dundean say a dragon guards the pass above Longdale.",
+   "capture_fail": [
+    "* The card goes dark and wet in your hand. Apalala does not look at it.",
+    "* Water runs off the card and takes the light with it. Nothing is held."
+   ],
+   "acts": [
+    {
+     "name": "Kneel",
+     "text": [
+      "* You kneel in the road below its head and stay there.",
+      "* Apalala watches you for a long time.",
+      "* Its breathing slows a little."
+     ],
+     "mercy": 20,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Speak of Water",
+     "text": [
+      "* You tell it about the rivers you crossed to get here.",
+      "* Its head tilts, the way a listener's does.",
+      "* For a moment it seems to be somewhere else."
+     ],
+     "mercy": 24,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Show Empty Hands",
+     "text": [
+      "* You open your hands. There is no ash on them.",
+      "* Apalala lowers its head and breathes over your palms.",
+      "* It finds nothing it is looking for. Its jaws close."
+     ],
+     "mercy": 30,
+     "once": true,
+     "calm": 2
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Attack Break",
+     "tu": 130,
+     "base_pattern": "telegraph_lines",
+     "projectile": "fx_waterring",
+     "tint_hex": "#3A4A78",
+     "twist": "neutralize",
+     "box": [
+      420,
+      240
+     ],
+     "intensity": 1.2,
+     "flavor": "* Apalala brings a forelimb down across the road. Attack Break."
+    },
+    {
+     "ability": "Ocean Ruler",
+     "tu": 130,
+     "base_pattern": "rings_sweep",
+     "projectile": "fx_waterring",
+     "tint_hex": "#4F7FB8",
+     "twist": "none",
+     "box": [
+      460,
+      240
+     ],
+     "intensity": 1.25,
+     "flavor": "* The air turns heavy and wet. Apalala uses Ocean Ruler."
+    },
+    {
+     "ability": "Outrage",
+     "tu": 160,
+     "base_pattern": "swoop",
+     "projectile": "fx_silverring",
+     "tint_hex": "#2A2C3A",
+     "twist": "multi_hit",
+     "box": [
+      360,
+      250
+     ],
+     "intensity": 1.4,
+     "flavor": "* Apalala rears up and throws its whole weight at you. Outrage."
+    },
+    {
+     "ability": "Tidal wave",
+     "tu": 130,
+     "base_pattern": "diagonal_rain",
+     "projectile": "fx_waterring",
+     "tint_hex": "#5E8FC4",
+     "twist": "all_foes_wide",
+     "box": [
+      520,
+      230
+     ],
+     "intensity": 1.3,
+     "flavor": "* Water pours down the cliffs and floods the pass. Tidal Wave."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "longdale_road"
+  ],
+  "name": "Finder",
+  "id": "finder",
+  "wiki": {
+   "number": "105",
+   "stars": 4,
+   "element": "Arcane",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/0/00/Finder.png",
+   "image_size": [
+    128,
+    123
+   ],
+   "lv1": {
+    "hp": 34,
+    "attack": 12,
+    "magic": 12,
+    "speed": 10,
+    "defense": 16,
+    "resist": 16
+   },
+   "abilities": [
+    {
+     "name": "Photon",
+     "tu": "130",
+     "target": "1 Foe",
+     "effect": "13-16 Magical Damage (Arcane)"
+    }
+   ],
+   "evolution": "Evolves to Djinn at level 55.",
+   "obtain": "Found near Longdale in South Earlsome on the road and in the mountains."
+  },
+  "sprite": {
+   "description": "A floating polished silver sphere wrapped in curling blood-red ribbon-like veins; one large green eye with a black slit pupil sits at its center, and several smaller dark eyes ringed in red are set around its lower rim. It has no limbs or mouth.",
+   "dominant_color_hex": "#A9A9B2",
+   "faces": "front",
+   "flier": true
+  },
+  "battle": {
+   "check": "* FINDER - Arcane element, 4 stars.\n* A silver orb of many eyes. Its Photon strikes a single foe with arcane light.",
+   "intro": "* A silver sphere rises over the valley road.\n* Every eye on it turns toward you at once.",
+   "idle": [
+    "* The Finder turns slowly. Its small eyes keep watching the road behind you.",
+    "* Red veins shift across the silver, like something writing on it.",
+    "* The great green eye narrows on the cliffs, then returns to you.",
+    "* The air near the orb hums, faint and cold."
+   ],
+   "talk": [
+    "...",
+    "I find what\nwas lost.\nAlways.",
+    "Small feet.\nThree nights\nold.",
+    "Grey on the\nstones. Ash\ndoes not lie.",
+    "Go back.\nThe pass is\nnot yours."
+   ],
+   "spare_text": "* The Finder's eyes close, one by one.\n* It drifts up toward the cliffs and is gone.",
+   "lore": "Finder (#105) is a 4-star Arcane-element creature catalogued in Dragon Island Blue, found near Longdale in South Earlsome on the road and in the mountains. Its only recorded ability is Photon (130 TU, 1 foe, 13-16 magical Arcane damage). Stats shown are its level-1 values. It evolves to Djinn at level 55. On the valley road toward Longdale, travelers say the orbs mark the path of anything that has passed, and that no trail is ever hidden from them for long.",
+   "capture_fail": [
+    "* The Finder saw the throw coming. Every eye did.",
+    "* The orb slips free and rises out of reach, still watching."
+   ],
+   "acts": [
+    {
+     "name": "Show Hands",
+     "text": [
+      "* You raise your empty hands and stand still.",
+      "* The small eyes search them, then lose interest."
+     ],
+     "mercy": 40,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Look Away",
+     "text": [
+      "* You turn your face from the great eye and wait.",
+      "* The cold hum softens."
+     ],
+     "mercy": 35,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Ask",
+     "text": [
+      "* You ask if it has seen two children and a man in grey.",
+      "* Every eye turns east, toward the red glow in the cliffs, and holds there."
+     ],
+     "mercy": 30,
+     "once": true,
+     "calm": 2
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Photon",
+     "tu": 130,
+     "base_pattern": "aimed_volley",
+     "projectile": "fx_sparkle",
+     "tint_hex": "#7FE08A",
+     "twist": "none",
+     "box": [
+      360,
+      230
+     ],
+     "intensity": 1,
+     "flavor": "* The great eye brightens. Beams of green light fall where you stand."
+    }
+   ]
+  }
+ },
+ {
+  "role": "encounter",
+  "rooms": [
+   "longdale_road"
+  ],
+  "name": "Legionnaire",
+  "id": "legionnaire",
+  "wiki": {
+   "number": "095",
+   "stars": 4.5,
+   "element": "Fire",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/f/f6/Legionnaire.png",
+   "image_size": [
+    100,
+    141
+   ],
+   "lv1": {
+    "hp": 35,
+    "attack": 14,
+    "magic": 10,
+    "speed": 8,
+    "defense": 24,
+    "resist": 18
+   },
+   "abilities": [
+    {
+     "name": "[Aura]",
+     "tu": "-",
+     "target": "All Allies",
+     "effect": "+1 Attack"
+    },
+    {
+     "name": "Charge",
+     "tu": "160",
+     "target": "Self",
+     "effect": "+1 Attack"
+    },
+    {
+     "name": "Metal Slash",
+     "tu": "100",
+     "target": "1 Foe",
+     "effect": "11-14 Physical Damage (Fire). +300% damage vs. Metal."
+    },
+    {
+     "name": "Spear",
+     "tu": "130",
+     "target": "1 Foe",
+     "effect": "16-19 Physical Damage (Fire)"
+    }
+   ],
+   "evolution": "Spartan (1st form, evolves at level 32) -> Legionnaire (2nd form, evolves at level 46) -> Centurion (3rd form, evolves at level 55) -> Guardian (4th form)",
+   "obtain": "Found in South Earlsome near the town; evolve a Spartan to level 32"
+  },
+  "sprite": {
+   "description": "A heavily armoured humanoid soldier in dark green plate with copper trim, standing almost square to the viewer. Its closed charcoal helm has a green faceplate with a narrow visor slit, and two long copper horns curve upward and inward from it. In its right hand (viewer's left) it holds a tall dark polearm topped by a broad silver axe blade and a spear point. On its left arm it carries a tall rectangular tower shield, dark green with a copper border and raised copper vein-like ridges across its face. Layered tassets hang to its knees over green greaves. Palette: dark bottle-green, charcoal, black and copper.",
+   "dominant_color_hex": "#48785F",
+   "faces": "front",
+   "flier": false
+  },
+  "battle": {
+   "check": "* LEGIONNAIRE - No. 095 - FIRE - 4.5 STARS.\n* DEF 24, RES 18. Its [Aura] gives +1 Attack to all its allies, always.\n* Spear and Metal Slash strike with fire. Metal Slash deals +300% damage to Metal.",
+   "intro": "* A Legionnaire steps out across the road and plants its shield.\n* The road behind it is closed.",
+   "idle": [
+    "* Legionnaire does not move. Its shield does not move.",
+    "* Heat rises off its green plate in thin, wavering lines.",
+    "* Behind the visor slit, nothing blinks.",
+    "* The butt of its halberd rests in the dirt, exactly where it was set."
+   ],
+   "talk": [
+    "Turn back.",
+    "The pass is\nclosed.",
+    "Orders came\nfrom the\nvalley.",
+    "No one goes\nup. No one\ncomes down.",
+    "...grey ash\non the road.\nNot ours."
+   ],
+   "spare_text": "* Legionnaire lifts its shield from the road and steps aside.\n* It turns its visor back toward the cliffs, and keeps its watch.",
+   "lore": "No. 095 - Legionnaire. Fire element, 4.5 stars, Humanoid. Lv1: HP 35, ATK 14, MAG 10, SPD 8, DEF 24, RES 18. [Aura] is always active: +1 Attack to all allies. Charge (160 TU) grants itself +1 Attack; Metal Slash (100 TU) deals 11-14 physical (fire) damage to one foe, +300% damage vs. Metal; Spear (130 TU) deals 16-19 physical (fire) damage to one foe. Evolves from Spartan at level 32, into Centurion at level 46, then Guardian at level 55. Found in South Earlsome near the town.",
+   "capture_fail": [
+    "* The card's light breaks against the shield and gutters out in the dirt.",
+    "* Legionnaire steps forward over it. Its line holds."
+   ],
+   "acts": [
+    {
+     "name": "Stand Still",
+     "text": [
+      "* You stop where you are and lower your weapon.",
+      "* Legionnaire watches you hold your ground.",
+      "* The halberd's blade dips, a little."
+     ],
+     "mercy": 35,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Give Account",
+     "text": [
+      "* You tell it plainly who you are, and who you are following.",
+      "* Legionnaire is silent for a long time.",
+      "* Its shield arm loosens."
+     ],
+     "mercy": 40,
+     "once": true,
+     "calm": 1
+    },
+    {
+     "name": "Salute",
+     "text": [
+      "* You strike your chest once, as soldiers do.",
+      "* Legionnaire returns the salute out of old habit.",
+      "* For a moment it seems to remember a time before its post."
+     ],
+     "mercy": 45,
+     "once": true,
+     "calm": 2
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Charge",
+     "tu": 160,
+     "base_pattern": "telegraph_lines",
+     "projectile": "fx_silverring",
+     "tint_hex": "#D9822B",
+     "twist": "none",
+     "box": [
+      480,
+      230
+     ],
+     "intensity": 1,
+     "flavor": "* Legionnaire beats its halberd on its shield. The plate glows hot at the seams."
+    },
+    {
+     "ability": "Metal Slash",
+     "tu": 100,
+     "base_pattern": "rings_sweep",
+     "projectile": "fx_sparkle",
+     "tint_hex": "#E8562A",
+     "twist": "none",
+     "box": [
+      420,
+      230
+     ],
+     "intensity": 1,
+     "flavor": "* The axe blade swings low. Its edge burns orange where it cuts the air."
+    },
+    {
+     "ability": "Spear",
+     "tu": 130,
+     "base_pattern": "aimed_volley",
+     "projectile": "fx_sparkle",
+     "tint_hex": "#C2401F",
+     "twist": "none",
+     "box": [
+      340,
+      240
+     ],
+     "intensity": 1.1,
+     "flavor": "* Legionnaire braces behind its shield and drives the spike forward, again and again."
+    }
+   ]
+  }
  }
 ] as const;

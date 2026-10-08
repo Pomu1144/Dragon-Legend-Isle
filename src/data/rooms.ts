@@ -1,7 +1,7 @@
 import { DIB_KITS } from './dibCreatures';
 import { EXPANSION_ROOMS, WAYSTONE_EXITS, WAYSTONE_SPAWNS } from './expansion';
 import { MISSION_ENTRANCES, MISSION_ROOMS } from './missions';
-import { REGION_ROOMS, REGION_UNLOCKS } from './regions';
+import { REGION_ROOMS, REGION_SPAWN_PATCHES, REGION_UNLOCKS } from './regions';
 
 // Overworld rooms. Every coordinate is in the source painting's pixel space,
 // so the painting is drawn 1:1 and these polygons describe where feet can go.
@@ -331,6 +331,7 @@ for (const e of MISSION_ENTRANCES) {
 // The regions through the old frontiers (Giant Mangal's upper floors, Ringfeld, South Earlsome);
 // their entry exits already exist and open on the flags tools/gen_regions.py names.
 for (const r of REGION_ROOMS) ROOMS[r.id] = r;
+for (const p of REGION_SPAWN_PATCHES) if (ROOMS[p.room] && !ROOMS[p.room].spawns[p.name]) ROOMS[p.room].spawns[p.name] = p.spawn;
 for (const u of REGION_UNLOCKS) {
   if (!ROOMS[u.exitTo]) continue;
   for (const r of Object.values(ROOMS))
