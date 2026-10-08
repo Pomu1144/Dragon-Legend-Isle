@@ -12,7 +12,8 @@ export const UI_SPRITES = [
   'med_book', 'med_gear', 'med_mercy', 'med_monster', 'med_scroll', 'minicard', 'monster_card', 'nameplate_bat',
   'orb_blood', 'orb_moss', 'orb_web', 'panel_blue', 'panel_green', 'panel_page', 'panel_parchment',
   'plaque_monsters', 'slot_round', 'soul', 'star', 'tab_bestiary', 'tab_crest', 'tab_party', 'tab_quests',
-  'tab_trophy', 'tab_world', 'tag_blue', 'capture_normal', 'capture_silver', 'capture_gold',
+  'tab_trophy', 'tab_world', 'tag_blue', 'capture_normal', 'capture_silver', 'capture_gold', 'card_burst',
+  'med_capture', 'med_spare', 'med_flee',
 ];
 
 export const ROOM_BGS = ['plaza', 'gate', 'outskirts', 'forest', 'mosswood', 'waystone', 'gate_talk', ...EXPANSION_ROOMS.map((r) => r.id), ...MISSION_ROOMS.map((r) => r.id), ...REGION_ROOMS.map((r) => r.id)];

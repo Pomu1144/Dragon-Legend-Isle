@@ -1,15 +1,16 @@
 import Phaser from 'phaser';
 import { loadRoomArt, PAINTED_ART } from '../assets';
 import { Sound } from '../audio/Sound';
-import { Caption, fitSprite, Menu, MenuItem, QueueChip, RoundDisc, speech, tealPanel } from '../battle/teamUi';
+import { Caption, CardDeck, CardItem, faceImage, fitSprite, MedalItem, MedalRow, Menu, MenuItem, QueueChip, RoundDisc, speech, StatusRow, tealPanel } from '../battle/teamUi';
 import { baseOf, ELEMENT_TINT, evolvedOf, Fighter, grantExp, hpAt, levelMul, maxHpOf, Move, movesOf, newPartyMon, rollDamage, startTu, StatKey, StatusFx, tierOf, tuCost, UnitBase } from '../battle/units';
 import { CAPTURE_CARDS, CaptureCard, captureChance, ITEMS, MONSTERS, MonsterDef, Stats } from '../data/monsters';
 import { ROOMS } from '../data/rooms';
+import { STARTERS } from '../data/starters';
 import { PartyMon, State } from '../state';
 import { dustify, fireflies, lightPool, popNumber, sparkleBurst } from '../ui/fx';
 import { Controls } from '../ui/input';
 import { Touch } from '../ui/touch';
-import { Bar, body, label, panel, COLORS } from '../ui/widgets';
+import { Bar, body, label, panel, starRow, COLORS } from '../ui/widgets';
 import type { BattleResult } from './WorldScene';
 
 // Dragon Island Blue team battle: up to three foes against Kael's three monsters, turn order
@@ -25,6 +26,7 @@ export interface BattleStart {
   owner?: string; // a criminal's team: "<owner>'s <monster>"
   between?: string[]; // "* " lines as reinforcements step in; {N} = foes remaining
   lv?: number; // foe level (default: from the party's level)
+  party?: string[]; // debug starts only: the test team (MONSTERS or STARTERS ids)
 }
 
 type Phase = 'busy' | 'menu' | 'target' | 'cards' | 'say' | 'pages' | 'end';
@@ -63,7 +65,7 @@ interface Unit extends Fighter {
   nameText: Phaser.GameObjects.Text;
   bar: Bar;
   hpText?: Phaser.GameObjects.Text;
-  stTag: Phaser.GameObjects.Text;
+  stTag: StatusRow;
   extras: Phaser.GameObjects.GameObject[];
   zone: Phaser.GameObjects.Zone;
   chip?: QueueChip;
@@ -91,6 +93,12 @@ const QUEUE_MAX = 6;
 const PORTRAIT = { x: 1074, y: 508, w: 198, h: 206 };
 // Kael's commands open in the centre box of the panel (over the party row), never over the field.
 const DOCK = { x: 236, y: PANEL_Y + 2, w: 832, h: 206 };
+// While an ally chooses, Kael's round command medallions stand on the panel rim at the right (on
+// phones they keep left of the on-screen Z / X column) and the narration strip steps left of them.
+const MEDALS = { desk: { right: 1268, size: 56 }, touch: { right: 1126, size: 70 } };
+const CAPTION_HOME = { x: 720, w: 900 };
+const CAPTION_DOCKED = { desk: { x: 604, w: 840 }, touch: { x: 452, w: 760 } };
+const STATUS_ORDER = ['sleep', 'stun', 'confuse', 'poison', 'slow', 'haste', 'taunt', 'stealth'] as const;
 const D = { foe: 10, foeUi: 30, queue: 40, panel: 50, ally: 52, allyUi: 54, caption: 58, menu: 70, cursor: 80, fx: 90, num: 95, pages: 100 };
 
 const STATUS_NAMES: Record<string, string> = { confuse: 'Confused', sleep: 'Asleep', stun: 'Stunned', slow: 'Slowed', haste: 'Hasted', poison: 'Poisoned', taunt: 'Taunting', stealth: 'Hidden' };
@@ -120,6 +128,11 @@ export class BattleScene extends Phaser.Scene {
   private menu?: Menu;
   private menuKind: 'ability' | 'tamer' | 'items' | '' = '';
   private abilitySel = 0;
+  private deck?: CardDeck;
+  private medals?: MedalRow;
+  private onMedals = false;
+  private tamerFrom: 'list' | 'medal' = 'list'; // where X leads back to from a tamer command
+  private medalSel = -1; // the medallion to hand the keys back to after X
   private tgt?: Targeting;
   private cards?: { root: Phaser.GameObjects.Container; list: { c: Phaser.GameObjects.Container; card: CaptureCard; owned: number; canBuy: boolean; usable: boolean }[]; sel: number; info: Phaser.GameObjects.Text; hint: Phaser.GameObjects.Text; actor: Unit };
   private sayT = 0;
@@ -130,6 +143,10 @@ export class BattleScene extends Phaser.Scene {
   private sil!: Phaser.GameObjects.Image;
   private silName!: Phaser.GameObjects.Text;
   private silSub!: Phaser.GameObjects.Text;
+  private silBar!: Bar;
+  private silHp!: Phaser.GameObjects.Text;
+  private silSt!: StatusRow;
+  private actor?: Unit; // whoever the left box shows
 
   constructor() {
     super('Battle');
@@ -169,6 +186,10 @@ export class BattleScene extends Phaser.Scene {
     this.menu = undefined;
     this.menuKind = '';
     this.abilitySel = 0;
+    this.deck = undefined;
+    this.medals = undefined;
+    this.onMedals = false;
+    this.actor = undefined;
     this.tgt = undefined;
     this.cards = undefined;
     this.pageState = undefined;
@@ -206,10 +227,19 @@ export class BattleScene extends Phaser.Scene {
     if (!mons.length && this.debugStart) {
       // a debug start with no save: a full test team (debug starts never write the save slot)
       const s = State.get();
-      s.starter ??= { id: 'gold_hatchling', evolved: false };
-      State.addMonster(newPartyMon(s.starter.id, 5, true));
-      State.addMonster(newPartyMon('snow_cub', 5));
-      State.addMonster(newPartyMon('bat_squirrel', 4));
+      const ids = this.data0.party?.filter((id) => MONSTERS[id] || STARTERS.some((st) => st.id === id)).slice(0, 3);
+      if (ids?.length) {
+        for (const id of ids) {
+          const starter = STARTERS.some((st) => st.id === id);
+          if (starter) s.starter ??= { id, evolved: false };
+          State.addMonster(newPartyMon(id, 5, starter));
+        }
+      } else {
+        s.starter ??= { id: 'gold_hatchling', evolved: false };
+        State.addMonster(newPartyMon(s.starter.id, 5, true));
+        State.addMonster(newPartyMon('snow_cub', 5));
+        State.addMonster(newPartyMon('bat_squirrel', 4));
+      }
       mons = State.partyMons();
     }
     if (!mons.length) {
@@ -264,11 +294,15 @@ export class BattleScene extends Phaser.Scene {
     tealPanel(this, 8, PANEL_Y + 2, 222, 206).setDepth(D.panel).setTint(0xd8eef4);
     tealPanel(this, 236, PANEL_Y + 2, 832, 206).setDepth(D.panel);
 
-    // Left box: the silhouette of whoever acts.
+    // Left box: whoever acts (or is being aimed at), with its name and HP, as in DIB.
     const big = Touch.active;
-    this.sil = this.add.image(119, 640, '__DEFAULT').setOrigin(0.5, 1).setDepth(D.ally).setVisible(false);
-    this.silName = label(this, 119, 644, '', big ? 22 : 17, '#e6f4f8', 4).setOrigin(0.5, 0).setDepth(D.allyUi);
-    this.silSub = label(this, 119, big ? 676 : 674, '', big ? 18 : 14, COLORS.gold, 3).setOrigin(0.5, 0).setDepth(D.allyUi);
+    this.add.rectangle(20, PANEL_Y + 14, 198, 128, 0x04121a, 0.22).setOrigin(0).setDepth(D.panel);
+    this.sil = this.add.image(119, big ? 628 : 636, '__DEFAULT').setOrigin(0.5, 1).setDepth(D.ally).setVisible(false);
+    this.silName = label(this, 119, big ? 626 : 636, '', big ? 24 : 20, '#f4f1e8', 4).setOrigin(0.5, 0).setDepth(D.allyUi);
+    this.silSub = label(this, 26, PANEL_Y + 14, '', big ? 18 : 14, COLORS.gold, 3).setDepth(D.allyUi);
+    this.silBar = new Bar(this, 26, big ? 684 : 686, 186, 'red', big ? 32 : 26).setDepth(D.allyUi).setVisible(false);
+    this.silHp = label(this, 119, big ? 683 : 686, '', big ? 24 : 16, '#f4f1e8', 3).setOrigin(0.5).setDepth(D.allyUi + 1);
+    this.silSt = new StatusRow(this, 196, PANEL_Y + 30, big ? 30 : 24).setDepth(D.allyUi);
 
     // Right box: the tamer. The painted corner bands stay on top of the portrait.
     const p = PORTRAIT;
@@ -326,7 +360,8 @@ export class BattleScene extends Phaser.Scene {
     const big = Touch.active;
     const bar = new Bar(this, x - 104, big ? 690 : 691, 208, 'red', big ? 32 : 26).setDepth(D.allyUi);
     const hpText = label(this, x, big ? 689 : 691, '', big ? 24 : 15, '#f4f1e8', 3).setOrigin(0.5).setDepth(D.allyUi + 1);
-    const stTag = label(this, x, 516, '', big ? 20 : 13, '#c9f0a0', 3).setOrigin(0.5, 0).setDepth(D.allyUi);
+    // inside the box, clear of its wood-and-gold top rim (which runs to about y 520)
+    const stTag = new StatusRow(this, x, big ? 540 : 536, big ? 28 : 22, big ? 18 : 13).setDepth(D.allyUi);
     const zone = this.add.zone(x - 135, PANEL_Y + 4, 270, 204).setOrigin(0).setDepth(D.allyUi + 2).setInteractive({ useHandCursor: true });
     const u: Unit = {
       key: 'a' + this.keySeq++,
@@ -393,28 +428,37 @@ export class BattleScene extends Phaser.Scene {
     fitSprite(sprite, targetH, this.foeXs.length === 1 ? 560 : 330, tier ? 330 : 300, this.painted(def.id, key));
     shadow.setScale((sprite.displayWidth / 128) * 1.15, Math.min(1.6, 0.5 + sprite.displayWidth / 400));
     const name = this.data0.owner ? `${this.data0.owner}'s ${base.name}` : base.name;
-    const nameText = label(this, x, 28, name, 29, base.color, 5).setOrigin(0.5, 0).setDepth(D.foeUi);
-    const room = this.foeXs.length === 1 ? 520 : 300;
-    if (nameText.width > room) nameText.setScale(room / nameText.width);
-    const bar = new Bar(this, x - 116, 84, 232, 'red', 26).setDepth(D.foeUi);
-    const extras: Phaser.GameObjects.GameObject[] = [];
+    // The DIB foe header: a framed face tile, the name in its element's colour over the HP bar,
+    // the star rating under the bar with the LV at its end (and a rank line when it has one).
     const big = Touch.active;
-    const tagSize = big ? 22 : 15;
-    const rank = def.boss
-      ? label(this, x, 98, def.role === 'deity' ? 'DEITY' : def.role === 'boss' ? 'DRAGON OVERLORD' : 'GUARDIAN', tagSize, def.role === 'deity' ? '#ffcf6a' : COLORS.gold, 4)
-      : def.rare
-        ? label(this, x, 98, 'RARE SIGHTING', tagSize, '#9fd8ff', 4)
-        : undefined;
-    const lvTag = label(this, x + 112, 98, `LV ${lv}`, tagSize, '#e4dccb', 3).setOrigin(1, 0).setDepth(D.foeUi);
-    if (rank) {
-      // the rank and the level share the line under the bar, side by side
-      const total = rank.width + lvTag.width;
-      rank.setOrigin(0, 0).setX(x - total / 2).setDepth(D.foeUi);
-      lvTag.setOrigin(0, 0).setX(x - total / 2 + rank.width);
-      extras.push(rank);
-    }
+    const hw = this.foeXs.length === 1 ? 380 : 304;
+    const left = x - hw / 2;
+    const T = 60;
+    const bx = left + T + 12;
+    const bw = hw - T - 12;
+    const extras: Phaser.GameObjects.GameObject[] = [];
+    const tile = this.add.container(left + T / 2, 18 + T / 2).setDepth(D.foeUi);
+    const tileBack = this.add.nineslice(0, 0, 'ui_chip_blue', undefined, T + 8, T + 8, 16, 16, 14, 14).setTint(0xc8dce4);
+    const face = faceImage(this, key, T - 8);
+    const rim = this.add.rectangle(0, 0, T - 8, T - 8).setStrokeStyle(1.5, tier ? 0xf2c66a : 0x0a1822, 0.9);
+    tile.add([tileBack, this.add.rectangle(0, 0, T - 8, T - 8, 0x0e2a38, 0.85), face, rim]);
+    extras.push(tile);
+    const nameText = label(this, bx + bw / 2, 12, name, 28, base.color, 5).setOrigin(0.5, 0).setDepth(D.foeUi);
+    if (nameText.width > bw + 16) nameText.setScale((bw + 16) / nameText.width);
+    const bar = new Bar(this, bx, 62, bw, 'red', 26).setDepth(D.foeUi);
+    const tagSize = big ? 20 : 15;
+    const n = Math.ceil(base.stars);
+    const ss = big ? 20 : 17;
+    if (n > 0) extras.push(starRow(this, bx + 6 + (n * ss) / 2, 88, base.stars, n * ss, ss).setDepth(D.foeUi));
+    const lvTag = label(this, bx + bw, 88, `LV ${lv}`, tagSize, '#e4dccb', 3).setOrigin(1, 0.5).setDepth(D.foeUi);
     extras.push(lvTag);
-    const stTag = label(this, x, big ? 126 : 120, '', big ? 20 : 14, '#c9f0a0', 3).setOrigin(0.5, 0).setDepth(D.foeUi);
+    const rank = def.boss
+      ? label(this, x, 100, def.role === 'deity' ? 'DEITY' : def.role === 'boss' ? 'DRAGON OVERLORD' : 'GUARDIAN', tagSize, def.role === 'deity' ? '#ffcf6a' : COLORS.gold, 4)
+      : def.rare
+        ? label(this, x, 100, 'RARE SIGHTING', tagSize, '#9fd8ff', 4)
+        : undefined;
+    if (rank) extras.push(rank.setOrigin(0.5, 0).setDepth(D.foeUi));
+    const stTag = new StatusRow(this, x, rank ? (big ? 140 : 132) : big ? 122 : 116, big ? 30 : 24, big ? 19 : 14).setDepth(D.foeUi);
     const zone = this.add.zone(x - 160, 20, 320, GROUND_Y - 4).setOrigin(0).setDepth(D.foeUi + 1).setInteractive({ useHandCursor: true });
     const u: Unit = {
       key: 'f' + this.keySeq++,
@@ -487,13 +531,21 @@ export class BattleScene extends Phaser.Scene {
     u.bar.set(u.hp / u.maxHp, animate);
     u.hpText?.setText(`${Math.max(0, u.hp)}/${u.maxHp}`);
     u.chip?.bar.set(u.hp / u.maxHp, animate);
+    if (u === this.actor) {
+      this.silBar.set(u.hp / u.maxHp, animate);
+      this.silHp.setText(`${Math.max(0, u.hp)}/${u.maxHp}`);
+    }
   }
 
+  private statusesOf(u: Unit): string[] {
+    return u.alive ? STATUS_ORDER.filter((k) => u.st[k] > 0) : [];
+  }
+
+  /** The status badges over a creature (and in the left box when it is the one shown there). */
   private refreshStatus(u: Unit) {
-    const parts: string[] = [];
-    for (const k of ['sleep', 'stun', 'confuse', 'poison', 'slow', 'haste', 'taunt', 'stealth'] as const) if (u.st[k] > 0) parts.push(STATUS_NAMES[k]);
-    const txt = u.alive ? parts.join(' · ') : '';
-    if (u.stTag.text !== txt) u.stTag.setText(txt);
+    const kinds = this.statusesOf(u);
+    u.stTag.set(kinds, STATUS_NAMES);
+    if (u === this.actor) this.silSt.set(kinds, STATUS_NAMES);
   }
 
   private living(side?: 'ally' | 'foe') {
@@ -525,23 +577,37 @@ export class BattleScene extends Phaser.Scene {
     for (const u of this.units) this.refreshStatus(u);
   }
 
+  /** The left box: the creature's own art, name, LV and HP (a fainted one shows greyed). */
   private showActor(u: Unit) {
-    if (!this.textures.exists(u.base.art)) return;
-    this.sil.setTexture(u.base.art).setVisible(true).setAlpha(0);
-    const sc = Math.min(160 / this.sil.width, 112 / this.sil.height, 2);
-    this.sil.setScale(sc).setTintFill(0x03141c);
-    this.tweens.add({ targets: this.sil, alpha: 1, duration: 200 });
-    this.silName.setText(u.name);
-    if (this.silName.width > 200) this.silName.setScale(200 / this.silName.width);
-    else this.silName.setScale(1);
-    this.silSub.setText(`LV ${u.lv}  ·  ${u.base.element}`);
+    const key = u.sprite.texture.key;
+    const same = this.actor === u && this.sil.visible;
+    this.actor = u;
+    this.sil.setTexture(key).setVisible(true);
+    fitSprite(this.sil, 104, 196, Touch.active ? 100 : 108, this.painted(u.base.id, key));
+    if (u.alive) this.sil.clearTint();
+    else this.sil.setTint(0x50555c);
+    if (!same) {
+      this.tweens.killTweensOf(this.sil);
+      this.sil.setAlpha(0);
+      this.tweens.add({ targets: this.sil, alpha: u.alive ? 1 : 0.5, duration: 200 });
+    }
+    this.silName.setText(u.name).setColor(u.side === 'foe' ? u.base.color : '#f4f1e8');
+    this.silName.setScale(this.silName.width > 204 ? 204 / this.silName.width : 1);
+    this.silSub.setText(`LV ${u.lv}`);
+    this.silBar.setVisible(true).set(u.hp / u.maxHp, false);
+    this.silHp.setText(`${Math.max(0, u.hp)}/${u.maxHp}`);
+    this.silSt.set(this.statusesOf(u), STATUS_NAMES);
   }
 
   private clearActor() {
     this.tweens.killTweensOf(this.sil);
+    this.actor = undefined;
     this.sil.setVisible(false);
     this.silName.setText('');
     this.silSub.setText('');
+    this.silBar.setVisible(false);
+    this.silHp.setText('');
+    this.silSt.clear();
   }
 
   // ---- the Time Unit loop --------------------------------------------------------
@@ -677,8 +743,8 @@ export class BattleScene extends Phaser.Scene {
     this.tweens.killTweensOf(this.tamerHint);
     this.tamerHint.setAlpha(0);
     this.tweens.add({ targets: this.tamerHint, alpha: 0.16, yoyo: true, repeat: -1, duration: 1100, ease: 'Sine.easeInOut' });
-    this.caption.show(`* What will ${u.name} do?`);
     this.abilitySel = 0;
+    this.medalSel = -1;
     this.openAbilities(u);
   }
 
@@ -693,6 +759,12 @@ export class BattleScene extends Phaser.Scene {
   private closeUi() {
     this.menu?.close();
     this.menu = undefined;
+    this.deck?.close();
+    this.deck = undefined;
+    this.medals?.close();
+    this.medals = undefined;
+    this.onMedals = false;
+    this.caption.setHome(CAPTION_HOME.x, CAPTION_HOME.w);
     this.menuKind = '';
     this.clearTarget();
     if (this.cards) {
@@ -701,22 +773,139 @@ export class BattleScene extends Phaser.Scene {
     }
   }
 
+  /**
+   * The ally's turn, DIB style: its abilities as painted cards in the centre box and Kael's round
+   * medallions on the rim at the right. Tapping the portrait still opens the full tamer list.
+   */
   private openAbilities(u: Unit) {
     this.closeUi();
     this.showActor(u);
     this.phase = 'menu';
     this.menuKind = 'ability';
-    // the effect line is cut to fit one column of the docked list (phones use larger type)
-    const lim = Touch.active ? 40 : 50;
-    const items: MenuItem[] = u.moves.map((mv) => ({
-      text: mv.name,
-      right: `TU ${mv.tu}`,
-      sub: `${mv.desc.length > lim - mv.targetText.length ? mv.desc.slice(0, lim - 2 - mv.targetText.length).trimEnd() + '…' : mv.desc}  ·  ${mv.targetText}`,
+    const dock = Touch.active ? CAPTION_DOCKED.touch : CAPTION_DOCKED.desk;
+    // the cards fill the box under the strip: a wrapped line grows up over the grass, not onto them
+    this.caption.setHome(dock.x, dock.w, true);
+    const items: CardItem[] = u.moves.map((mv) => ({
+      name: mv.name,
+      tu: `TU:${mv.tu}`,
+      art: this.cardArt(mv),
+      tint: this.cardTint(mv.element ?? u.element),
+      tipTitle: mv.name,
+      tipSub: `TU ${mv.tu}  ·  ${mv.targetText}  ·  ${this.kindText(mv)}`,
+      tip: mv.full.replace(/([^.!?])$/, '$1.'),
       run: () => this.chooseMove(u, mv),
     }));
-    items.push({ text: 'Tamer...', sub: 'Item · Capture · Spare · Check · Flee', icon: 'ui_med_scroll', color: COLORS.gold, run: () => this.openTamer(u) });
-    this.menu = new Menu(this, DOCK, `${u.name}  ·  LV ${u.lv}`, u.base.color, items, null, D.menu, (i) => (this.abilitySel = i));
-    this.menu.select(Math.min(this.abilitySel, items.length - 1), false);
+    const locked = this.lockedOf(u);
+    for (let i = 0; i < locked.count; i++) {
+      items.push({
+        name: '???',
+        tu: 'TU:???',
+        art: 'ui_card_unknown',
+        locked: true,
+        tipTitle: 'Not yet learned',
+        tipSub: `Wakes as ${u.name} grows  ·  around LV ${locked.at}`,
+        tip: `A technique still asleep in ${u.name}'s blood. It cannot be used yet.`,
+        run: () => this.caption.show(`* ${u.name} has not learned this yet. It stirs around LV ${locked.at}.`),
+      });
+    }
+    this.deck = new CardDeck(this, DOCK, items, D.menu, {
+      hover: (i) => {
+        this.abilitySel = i;
+        if (!this.deck?.tipOpen) this.cardLine(u, i);
+      },
+      edge: () => this.focusMedals(true, 0),
+      grab: () => this.focusMedals(false),
+      // the info panel stands where the narration strip runs: one gives way to the other
+      tip: (open) => (open ? this.caption.hide() : this.cardLine(u, this.abilitySel)),
+    });
+    const foes = this.living('foe');
+    const ready = foes.some((f) => this.spareable(f));
+    const canCap = !this.nocap && foes.some((f) => this.capturable(f));
+    const med = (run: () => void) => () => {
+      this.tamerFrom = 'medal';
+      const at = this.medals?.sel ?? -1;
+      run();
+      // X from the satchel, the cards or a target brings the keys back to this medallion
+      if (this.menuKind !== 'ability') this.medalSel = at;
+    };
+    const meds: (MedalItem & { line: string })[] = [
+      { icon: 'ui_med_bag', label: 'Item', line: 'Use something from the satchel', run: med(() => this.openItems(u)) },
+      { icon: 'ui_med_capture', label: 'Capture', line: canCap ? 'Throw a Capture Card' : 'No card can hold these', disabled: !canCap, run: med(() => this.openCards(u)) },
+      { icon: 'ui_med_spare', label: 'Spare', line: ready ? 'A foe is ready to yield' : 'A worn-down foe may yield', hot: ready, run: med(() => this.openSpare(u)) },
+      { icon: 'ui_med_flee', label: 'Flee', line: this.canFlee() ? 'Escape with your team' : 'There is no escaping this', disabled: !this.canFlee(), run: med(() => this.tryFlee(u, 100)) },
+    ];
+    const m = Touch.active ? MEDALS.touch : MEDALS.desk;
+    this.medals = new MedalRow(this, m.right, PANEL_Y - 12 - m.size / 2, m.size, meds, D.menu, {
+      // phones keep it to one line: the docked strip is narrow there
+      hover: (i) => this.caption.show(`* ${meds[i].label}: ${meds[i].line}.${Touch.active ? '' : ` (Uses ${u.name}'s turn.)`}`),
+      leave: (to) => {
+        this.focusMedals(false);
+        if (to !== 'keep') this.deck?.select(to === 'first' ? 0 : items.length - 1, false);
+      },
+      grab: () => this.focusMedals(true),
+    });
+    this.onMedals = false;
+    this.deck.select(Math.min(this.abilitySel, items.length - 1), false);
+    if (this.medalSel >= 0) this.focusMedals(true, this.medalSel);
+    this.medalSel = -1;
+  }
+
+  /** The narration strip under the cards: the chosen card's effect in one line. */
+  private cardLine(u: Unit, i: number) {
+    const mv = u.moves[i];
+    if (mv) this.caption.show(`* ${mv.name}: ${this.shortEffect(mv)}  ·  ${mv.targetText}`);
+    else this.caption.show(`* Not yet learned. (${Touch.active ? 'Tap' : 'Up or'} (i) to read more)`);
+  }
+
+  /** Hand the arrow keys between the ability cards and the medallions. */
+  private focusMedals(on: boolean, sel?: number) {
+    if (!this.deck || !this.medals) return;
+    if (on === this.onMedals && sel === undefined) return;
+    this.onMedals = on;
+    if (on && sel !== undefined) this.medals.sel = sel;
+    this.deck.focus(!on);
+    this.medals.focus(on);
+  }
+
+  /** Card art by what the ability does: magic bursts (the flame for Fire alone), blows, and the turned arrow of hexes and guards. */
+  private cardArt(mv: Move) {
+    if (mv.kind === 'damage') return !mv.magical ? 'ui_card_tail' : mv.element === 'Fire' ? 'ui_card_flame' : 'ui_card_burst';
+    if (mv.kind === 'generic') return 'ui_card_unknown';
+    if (mv.kind === 'escape') return 'ui_card_tail';
+    return 'ui_card_outrage';
+  }
+
+  /** A faint wash of the element's colour over the parchment card. */
+  private cardTint(el?: string) {
+    const t = el ? ELEMENT_TINT[el] : undefined;
+    if (t === undefined) return undefined;
+    const c = Phaser.Display.Color.Interpolate.ColorWithColor(Phaser.Display.Color.ValueToColor(0xffffff), Phaser.Display.Color.ValueToColor(t), 100, 20);
+    return Phaser.Display.Color.GetColor(c.r, c.g, c.b);
+  }
+
+  private kindText(mv: Move) {
+    if (mv.kind === 'damage') return `${mv.magical ? 'Magical' : 'Physical'}${mv.element ? ' · ' + mv.element : ''}`;
+    return { status: 'Status', buff: 'Boost', debuff: 'Weaken', cleanse: 'Cleanse', taunt: 'Taunt', stealth: 'Stealth', escape: 'Escape', analyze: 'Insight', generic: 'Special' }[mv.kind];
+  }
+
+  /** The effect cut to one line, never inside a bracket: the (i) panel keeps the whole text. */
+  private shortEffect(mv: Move) {
+    const lim = Touch.active ? 46 : 62;
+    if (mv.full.length <= lim) return mv.full;
+    let cut = mv.full.slice(0, lim - 1).replace(/[\s,.;:]+\S*$/, '');
+    const open = cut.lastIndexOf('(');
+    if (open > cut.lastIndexOf(')')) cut = cut.slice(0, open);
+    return cut.replace(/[\s,.;:]+$/, '') + '…';
+  }
+
+  /** The hatchling's techniques still to come (shown as locked "???" cards until it grows). */
+  private lockedOf(u: Unit) {
+    const none = { count: 0, at: 0 };
+    if (u.side !== 'ally' || !u.mon?.starter || evolvedOf(u.mon)) return none;
+    const st = STARTERS.find((x) => x.id === u.mon!.id);
+    if (!st) return none;
+    const fresh = st.evolution.next_abilities.filter((a) => Number(a.tu) > 0 && !st.abilities.some((b) => b.name === a.name));
+    return { count: fresh.length, at: st.evolution.at_level };
   }
 
   private chooseMove(u: Unit, mv: Move, direct?: Unit) {
@@ -1065,7 +1254,7 @@ export class BattleScene extends Phaser.Scene {
   private faint(t: Unit) {
     t.alive = false;
     t.st = this.newStatus();
-    t.stTag.setText('');
+    t.stTag.clear();
     const chip = t.chip;
     t.chip = undefined;
     if (chip) this.tweens.add({ targets: chip, alpha: 0, scale: 0.6, duration: 400, onComplete: () => chip.destroy() });
@@ -1300,12 +1489,19 @@ export class BattleScene extends Phaser.Scene {
     const items: MenuItem[] = [
       { text: 'Item', icon: 'ui_med_bag', sub: 'Use something from the satchel', run: () => this.openItems(u) },
       { text: 'Capture', icon: 'ui_capture_normal', sub: this.nocap ? 'Nothing here answers to a card' : 'Throw a Capture Card', disabled: this.nocap, run: () => this.openCards(u) },
-      { text: 'Spare', icon: 'ui_med_mercy', sub: ready ? 'A foe is ready to yield' : 'A worn-down foe may yield', color: ready ? COLORS.yellow : undefined, run: () => this.openSpare(u) },
+      { text: 'Spare', icon: 'ui_med_spare', sub: ready ? 'A foe is ready to yield' : 'A worn-down foe may yield', color: ready ? COLORS.yellow : undefined, run: () => this.openSpare(u) },
       { text: 'Check', icon: 'ui_med_scroll', sub: 'Study a foe', run: () => this.openCheck(u) },
-      { text: 'Flee', icon: 'ui_cursor_arrow', iconBack: 'ui_slot_round', iconFlip: true, sub: this.canFlee() ? 'Escape with your team' : 'There is no escaping this', disabled: !this.canFlee(), run: () => this.tryFlee(u, 100) },
+      { text: 'Flee', icon: 'ui_med_flee', sub: this.canFlee() ? 'Escape with your team' : 'There is no escaping this', disabled: !this.canFlee(), run: () => this.tryFlee(u, 100) },
     ];
+    this.tamerFrom = 'list';
     this.menu = new Menu(this, DOCK, `${State.get().name}  ·  Tamer`, COLORS.gold, items, () => this.openAbilities(u), D.menu);
     this.caption.show(`* ${State.get().name} steps forward. (This uses ${u.name}'s turn.)`);
+  }
+
+  /** Back from a tamer command: to the medallions' card row, or to the full list it came from. */
+  private tamerBack(u: Unit) {
+    if (this.tamerFrom === 'medal') this.openAbilities(u);
+    else this.openTamer(u);
   }
 
   private openItems(u: Unit) {
@@ -1329,7 +1525,7 @@ export class BattleScene extends Phaser.Scene {
         this.pickTarget(allies, 'one', ([t]) => this.useItem(u, id, t), () => this.openItems(u));
       },
     }));
-    this.menu = new Menu(this, DOCK, 'Satchel', COLORS.gold, items, () => this.openTamer(u), D.menu);
+    this.menu = new Menu(this, DOCK, 'Satchel', COLORS.gold, items, () => this.tamerBack(u), D.menu);
   }
 
   private useItem(u: Unit, id: string, t: Unit) {
@@ -1337,7 +1533,7 @@ export class BattleScene extends Phaser.Scene {
       this.caption.show('* A fainted monster cannot drink a tonic.');
       return this.openItems(u);
     }
-    if (!State.useItem(id)) return this.openTamer(u);
+    if (!State.useItem(id)) return this.tamerBack(u);
     this.endAllyTurn();
     this.phase = 'busy';
     Sound.heal();
@@ -1364,7 +1560,7 @@ export class BattleScene extends Phaser.Scene {
         }
         this.spare(u, f);
       },
-      () => this.openTamer(u),
+      () => this.tamerBack(u),
       (f) => (this.spareable(f) ? { text: 'Ready to yield', color: COLORS.yellow } : { text: 'Not yet', color: '#c9b98a' }),
     );
   }
@@ -1385,7 +1581,7 @@ export class BattleScene extends Phaser.Scene {
     sparkleBurst(this, f.homeX, f.homeY - f.sprite.displayHeight / 2, 22, D.fx, 200);
     this.tweens.add({ targets: f.sprite, alpha: 0, y: f.homeY - 40, duration: 1200, ease: 'Sine.easeIn' });
     this.tweens.add({ targets: [f.nameText, f.bar, f.shadow, f.stTag, ...f.extras], alpha: 0, duration: 900 });
-    f.stTag.setText('');
+    f.stTag.clear();
     this.tamerCost(u);
     this.caption.show(f.def?.spareText ?? `* ${f.name} leaves peacefully.`);
     this.hold(2200, () => this.afterAction());
@@ -1397,7 +1593,7 @@ export class BattleScene extends Phaser.Scene {
       this.tamerCost(u);
       const text = (f.def?.check ?? `${f.name}.`).split('\n').filter(Boolean).map((l) => (l.startsWith('*') ? l : '* ' + l));
       this.pages([[`* ${f.name}  ·  LV ${f.lv}  ·  ${f.base.element}  ·  HP ${f.hp}/${f.maxHp}`, ...text].join('\n')], () => this.afterAction());
-    }, () => this.openTamer(u));
+    }, () => this.tamerBack(u));
   }
 
   private tryFlee(u: Unit, tu: number) {
@@ -1517,7 +1713,7 @@ export class BattleScene extends Phaser.Scene {
     else if (c.pressed('confirm')) this.chooseCard();
     else if (c.pressed('cancel')) {
       Sound.cancel();
-      this.openTamer(cs.actor);
+      this.tamerBack(cs.actor);
     }
   }
 
@@ -1609,7 +1805,7 @@ export class BattleScene extends Phaser.Scene {
                 f.alive = false;
                 f.fate = 'bound';
                 f.zone.disableInteractive();
-                f.stTag.setText('');
+                f.stTag.clear();
                 const chip = f.chip;
                 f.chip = undefined;
                 if (chip) this.tweens.add({ targets: chip, alpha: 0, duration: 400, onComplete: () => chip.destroy() });
@@ -1810,6 +2006,11 @@ export class BattleScene extends Phaser.Scene {
           Sound.confirm();
           if (this.menuKind === 'ability') this.openTamer(this.turnUnit);
           else this.openAbilities(this.turnUnit);
+          return;
+        }
+        if (this.menuKind === 'ability') {
+          if (this.onMedals) this.medals?.update(c);
+          else this.deck?.update(c);
           return;
         }
         this.menu?.update(c);

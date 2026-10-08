@@ -175,6 +175,7 @@ export interface Move {
   stats: Partial<Record<StatKey, number>>;
   cleanse: StatusKind[] | 'all' | null;
   desc: string; // one line for the menu
+  full: string; // the whole effect text (the card's info panel)
   targetText: string;
 }
 
@@ -226,7 +227,7 @@ export function parseAbility(a: Ability): Move | undefined {
   // Anything after "The wiki..." is research notes, not part of the effect.
   const effect = full.split(/\.\s+(?=The wiki|Note)/)[0] || full;
   const desc = effect.replace(/\.$/, '').slice(0, 64) || 'No listed effect';
-  const mv: Move = { name: a.name, tu, target: 'foe', kind: 'generic', magical: false, drain: 0, statuses: [], stats: {}, cleanse: null, desc, targetText: '' };
+  const mv: Move = { name: a.name, tu, target: 'foe', kind: 'generic', magical: false, drain: 0, statuses: [], stats: {}, cleanse: null, desc, full: effect.replace(/\.$/, '') || 'No listed effect', targetText: '' };
   const low = effect.toLowerCase();
   try {
     for (const clause of effect.split(/,\s*|\.\s+/)) {

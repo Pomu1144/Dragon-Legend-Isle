@@ -43,7 +43,8 @@ export class BootScene extends Phaser.Scene {
       if (params.get('battle')) {
         // ?battle=goblin,sludge,bitewing — up to three on the field, any more step in as reinforcements
         const foes = params.get('battle')!.split(',').map((x) => x.trim()).filter(Boolean);
-        const start: BattleStart = { foes, room: params.get('room') ?? 'forest', debug: true };
+        const party = params.get('party')?.split(',').map((x) => x.trim()).filter(Boolean);
+        const start: BattleStart = { foes, room: params.get('room') ?? 'forest', debug: true, party };
         this.scene.start('Battle', start);
       } else if (params.get('room')) {
         this.scene.start('World', { room: params.get('room'), spawn: params.get('spawn') ?? undefined, debug: true });
