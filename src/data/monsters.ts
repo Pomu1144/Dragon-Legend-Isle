@@ -90,7 +90,7 @@ function nameColor(hex: string) {
 // DIB: "The more damaged a monster is, the higher the capture chance." Rarer (higher-star)
 // creatures resist more; rare sightings and guardians resist far more; Dragon Overlords never yield.
 function baseCapture(k: Kit) {
-  if (k.role === 'boss' || k.role === 'ending') return 0;
+  if (k.role === 'boss' || k.role === 'ending' || k.role === 'deity') return 0;
   let c = Math.max(0.12, Math.min(0.65, 0.78 - 0.11 * k.wiki.stars));
   if (k.role === 'miniboss') c *= 0.35;
   if (k.rarity === 'rare') c *= 0.45;
@@ -99,18 +99,19 @@ function baseCapture(k: Kit) {
 
 // Real DIB level-1 stats are converted into Undertale-scale numbers, keeping their ratios.
 function fromKit(k: Kit): MonsterDef {
-  const boss = k.role === 'boss' || k.role === 'miniboss';
+  const boss = k.role === 'boss' || k.role === 'miniboss' || k.role === 'deity';
   const s = k.wiki.lv1;
   const offense = Math.max(s.attack, s.magic);
-  const hp = k.role === 'boss' ? 170 : k.role === 'miniboss' ? 110 : Math.round(s.hp * 1.1);
-  const atk = k.role === 'boss' ? 7 : k.role === 'miniboss' ? 6 : Math.max(3, Math.min(5, Math.round(offense / 2.2)));
+  // Deities outrank Dragon Overlords.
+  const hp = k.role === 'deity' ? 260 : k.role === 'boss' ? 170 : k.role === 'miniboss' ? 110 : Math.round(s.hp * 1.1);
+  const atk = k.role === 'deity' ? 8 : k.role === 'boss' ? 7 : k.role === 'miniboss' ? 6 : Math.max(3, Math.min(5, Math.round(offense / 2.2)));
   const def = boss ? 3 : Math.round(s.defense / 5);
   return {
     id: k.id,
     name: k.name,
     color: nameColor(k.sprite.dominant_color_hex),
     art: k.id === 'divine' ? 'mon_divine' : 'mon_' + k.id,
-    height: k.role === 'boss' ? 380 : k.role === 'miniboss' || k.role === 'formula' ? 340 : 280,
+    height: k.role === 'deity' ? 420 : k.role === 'boss' ? 380 : k.role === 'miniboss' || k.role === 'formula' ? 340 : 280,
     hp,
     atk,
     def,

@@ -8,3 +8,4 @@ export const REGION_STORY: RegionStory = { room_entries: {}, npc_dialogue: {}, b
 export const REGION_NPC_SHEETS: string[] = [];
 export const REGION_SPAWN_PATCHES: { room: string; name: string; spawn: { at: [number, number]; dir: 'up' | 'down' | 'left' | 'right' } }[] = [];
 export const REGION_ENTRANCES: { room: string; rect: [number, number, number, number]; to: string; spawn: string }[] = [];
+export const REGION_TABLES: Record<string, { id: string; w: number; depth?: [number, number]; nocap?: boolean }[]> = {};

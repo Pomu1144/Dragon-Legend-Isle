@@ -1,7 +1,7 @@
 import { DIB_KITS } from './dibCreatures';
 import { EXPANSION_ROOMS, WAYSTONE_EXITS, WAYSTONE_SPAWNS } from './expansion';
 import { MISSION_ENTRANCES, MISSION_ROOMS } from './missions';
-import { REGION_ENTRANCES, REGION_ROOMS, REGION_SPAWN_PATCHES, REGION_UNLOCKS } from './regions';
+import { REGION_ENTRANCES, REGION_ROOMS, REGION_SPAWN_PATCHES, REGION_TABLES, REGION_UNLOCKS } from './regions';
 import { FRONTIER_TEXT, LANDMARK_TEXT } from './landmarkText';
 
 // Overworld rooms. Every coordinate is in the source painting's pixel space,
@@ -54,6 +54,7 @@ export interface Encounter {
   id: string;
   w: number;
   depth?: [number, number];
+  nocap?: boolean; // this room's wild ones cannot be captured
 }
 
 export interface RoomDef {
@@ -384,6 +385,8 @@ const FOREST: Record<string, Encounter[]> = {
 // the rooms its wiki location data places it in (see tools/dib_kits.json).
 const BUDGET: Record<string, number> = { outskirts: 4, forest: 5, mosswood: 5, waystone: 2 };
 const KIT_IDS = new Set(DIB_KITS.map((k) => k.id as string));
+// Region batches may set a room's table outright (weights, depth, uncapturable entries).
+for (const [room, table] of Object.entries(REGION_TABLES)) FOREST[room] = table;
 for (const [room, table] of Object.entries(FOREST)) {
   const t = table.filter((e) => KIT_IDS.has(e.id));
   if (t.length && ROOMS[room]) ROOMS[room].encounters = { table: t, budget: BUDGET[room] };
@@ -406,7 +409,7 @@ export function rollEncounter(table: Encounter[], depth: number, r = Math.random
   let x = r * total;
   for (const e of ok) {
     x -= e.w;
-    if (x < 0) return e.id;
+    if (x < 0) return e;
   }
-  return ok[ok.length - 1]?.id;
+  return ok[ok.length - 1];
 }

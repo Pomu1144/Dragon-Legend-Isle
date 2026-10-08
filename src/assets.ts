@@ -20,7 +20,7 @@ export const NPC_SHEETS = [...new Set([...EXPANSION_NPC_SHEETS, ...REGION_NPC_SH
 // Original Dragon Island Blue sprites, unaltered (tools/fetch_dib_sprites.py).
 export const MONSTER_ART = DIB_KITS.map((k) => k.id).filter((id) => id !== 'divine');
 // Painted high-resolution art (the user's): drawn smooth, not as scaled-up pixels.
-export const PAINTED_ART = new Set(['bloodgale']);
+export const PAINTED_ART = new Set(['bloodgale', 'yamata', 'aethrion', 'inferno', 'flame']);
 
 export function queueAll(load: Phaser.Loader.LoaderPlugin) {
   for (const k of UI_SPRITES) load.image('ui_' + k, `assets/ui/${k}.png`);

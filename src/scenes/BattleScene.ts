@@ -77,6 +77,7 @@ export class BattleScene extends Phaser.Scene {
   private captureCards: { c: Phaser.GameObjects.Container; card: CaptureCard; owned: number; canBuy: boolean; usable: boolean; pct: number }[] = [];
   private captureSel = 0;
   private wave?: Wave;
+  private nocap = false; // wild ones here cannot be captured
   private captureInfo?: Phaser.GameObjects.Text;
   private captureTitle?: Phaser.GameObjects.Text;
 
@@ -84,7 +85,8 @@ export class BattleScene extends Phaser.Scene {
     super('Battle');
   }
 
-  init(data: { monster: string; room?: string; debug?: boolean; wave?: Wave }) {
+  init(data: { monster: string; room?: string; debug?: boolean; wave?: Wave; nocap?: boolean }) {
+    this.nocap = !!data.nocap;
     this.m = MONSTERS[data.monster] ?? MONSTERS.bat_fiend;
     this.roomId = data.room ?? 'forest';
     this.debugStart = !!data.debug;
@@ -146,7 +148,7 @@ export class BattleScene extends Phaser.Scene {
     this.enemyBar = new Bar(this, 44, 92, 300, 'red', 34).setDepth(20);
     const nStars = Math.ceil(this.m.stars);
     starRow(this, this.nameText.x + this.nameText.width + 4 + (nStars * 24) / 2, 50, this.m.stars, nStars * 24, 24).setDepth(20);
-    if (this.m.boss) label(this, 44, 120, 'GUARDIAN', 18, COLORS.gold, 5).setDepth(20);
+    if (this.m.boss) label(this, 44, 120, this.m.role === 'deity' ? 'DEITY' : this.m.role === 'boss' ? 'DRAGON OVERLORD' : 'GUARDIAN', 18, this.m.role === 'deity' ? '#ffcf6a' : COLORS.gold, 5).setDepth(20);
     else if (this.m.rare) label(this, 44, 120, 'RARE SIGHTING', 18, '#9fd8ff', 5).setDepth(20);
     if (this.wave) {
       // the ritual group: which foe this is, of how many
@@ -238,7 +240,7 @@ export class BattleScene extends Phaser.Scene {
   }
 
   private spareable() {
-    return this.mercy >= 100 && (this.m.role !== 'boss' || this.turn >= 3);
+    return this.mercy >= 100 && (this.m.role !== 'boss' || this.turn >= 3) && (this.m.role !== 'deity' || this.turn >= 5);
   }
 
   private updateName() {
@@ -929,8 +931,8 @@ export class BattleScene extends Phaser.Scene {
   private openCapture() {
     this.clearList();
     this.boxText.setVisible(false);
-    if (this.m.capture <= 0) {
-      this.boxSay(['* No card can hold this one.', this.m.role === 'boss' ? '* A Dragon Overlord answers to no card. It can only be calmed.' : '* It is beyond capture.'], () => this.toMenu());
+    if (this.m.capture <= 0 || this.nocap) {
+      this.boxSay(['* No card can hold this one.', this.m.role === 'deity' ? '* A deity is held by nothing. It can only be calmed.' : this.nocap ? '* Not here. Whatever lives in this place answers to no card.' : this.m.role === 'boss' ? '* A Dragon Overlord answers to no card. It can only be calmed.' : '* It is beyond capture.'], () => this.toMenu());
       return;
     }
     this.phase = 'capture';

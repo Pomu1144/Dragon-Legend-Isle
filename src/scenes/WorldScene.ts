@@ -494,13 +494,13 @@ export class WorldScene extends Phaser.Scene {
     if (this.stepAcc < this.nextEncounter) return false;
     s.encountersLeft[this.room.id] = left - 1;
     const depth = 1 - Phaser.Math.Clamp(this.player.y / this.room.size[1], 0, 1);
-    const id = rollEncounter(enc.table, depth);
-    if (!id) return false;
-    this.startBattle(id);
+    const e = rollEncounter(enc.table, depth);
+    if (!e) return false;
+    this.startBattle(e.id, undefined, e.nocap);
     return true;
   }
 
-  startBattle(monster: string, wave?: Wave) {
+  startBattle(monster: string, wave?: Wave, nocap?: boolean) {
     this.busy = true;
     this.player.anims.stop();
     this.player.setFrame(this.frameFor(this.dir));
@@ -536,7 +536,7 @@ export class WorldScene extends Phaser.Scene {
           duration: 520,
           ease: 'Cubic.easeInOut',
           onComplete: () => {
-            this.scene.launch('Battle', { monster, room: this.room.id, wave });
+            this.scene.launch('Battle', { monster, room: this.room.id, wave, nocap });
             this.scene.sleep();
             black.destroy();
             soul.destroy();
