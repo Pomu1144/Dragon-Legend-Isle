@@ -124,6 +124,27 @@ export class WorldScene extends Phaser.Scene {
     const [RW, RH] = R.size;
 
     this.add.image(0, 0, R.bg).setOrigin(0).setDepth(0);
+    // Occluders: tall painted objects cut from the painting and drawn above the player when he is behind them.
+    (R.occluders ?? []).forEach((o, i) => {
+      const xs = o.poly.map((p) => p[0]);
+      const ys = o.poly.map((p) => p[1]);
+      const x0 = Math.floor(Math.min(...xs));
+      const y0 = Math.floor(Math.min(...ys));
+      const w = Math.ceil(Math.max(...xs)) - x0;
+      const h = Math.ceil(Math.max(...ys)) - y0;
+      const key = `occ_${R.id}_${i}`;
+      if (this.textures.exists(key)) this.textures.remove(key);
+      const c = this.textures.createCanvas(key, w, h);
+      if (!c) return;
+      const ctx = c.getContext();
+      ctx.beginPath();
+      o.poly.forEach(([x, y], k) => (k ? ctx.lineTo(x - x0, y - y0) : ctx.moveTo(x - x0, y - y0)));
+      ctx.closePath();
+      ctx.clip();
+      ctx.drawImage(this.textures.get(R.bg).getSourceImage() as HTMLImageElement, -x0, -y0);
+      c.refresh();
+      this.add.image(x0, y0, key).setOrigin(0).setDepth(10 + o.base);
+    });
     for (const l of R.lights ?? []) lightPool(this, l.at[0], l.at[1], l.r, l.color, l.flicker, 2);
     fireflies(this, 0, 0, RW, RH, R.fireflies ?? 0, 3000);
     this.add.image(0, 0, 'vignette').setOrigin(0).setScrollFactor(0).setDisplaySize(this.scale.width, this.scale.height).setDepth(4000).setAlpha(0.7);
@@ -468,6 +489,18 @@ export class WorldScene extends Phaser.Scene {
     return false;
   }
 
+  /** The walkable point nearest (x, y), so people who walk up to Kael never end up standing on scenery. */
+  private standNear(x: number, y: number): [number, number] {
+    if (this.canStand(x, y)) return [x, y];
+    for (let r = 12; r < 260; r += 12)
+      for (let k = 0; k < 24; k++) {
+        const px = x + r * Math.cos((k * Math.PI) / 12);
+        const py = y + r * Math.sin((k * Math.PI) / 12);
+        if (this.canStand(px, py) && Math.hypot(px - this.player.x, py - this.player.y) > 40) return [px, py];
+      }
+    return [this.player.x + 60, this.player.y];
+  }
+
   private pushBack(rect: [number, number, number, number]) {
     const p = this.player;
     const cx = rect[0] + rect[2] / 2;
@@ -631,7 +664,8 @@ export class WorldScene extends Phaser.Scene {
       if (!gm) return finish();
       gm.anims.stop();
       gm.setFrame(2);
-      this.tweens.add({ targets: gm, x: this.player.x + 70, y: this.player.y - 40, duration: 1200, ease: 'Sine.easeInOut', onComplete: finish });
+      const [tx, ty] = this.standNear(this.player.x + 70, this.player.y - 40);
+      this.tweens.add({ targets: gm, x: tx, y: ty, duration: 1200, ease: 'Sine.easeInOut', onComplete: finish });
       return;
     }
     if (id === 'gate_sign') {

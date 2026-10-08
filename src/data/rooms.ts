@@ -3,6 +3,7 @@ import { EXPANSION_ROOMS, WAYSTONE_EXITS, WAYSTONE_SPAWNS } from './expansion';
 import { MISSION_ENTRANCES, MISSION_ROOMS } from './missions';
 import { REGION_ENTRANCES, REGION_ROOMS, REGION_SPAWN_PATCHES, REGION_TABLES, REGION_UNLOCKS } from './regions';
 import { FRONTIER_TEXT, LANDMARK_TEXT } from './landmarkText';
+import { ROOM_FIXES } from './roomFixes';
 
 // Overworld rooms. Every coordinate is in the source painting's pixel space,
 // so the painting is drawn 1:1 and these polygons describe where feet can go.
@@ -57,6 +58,12 @@ export interface Encounter {
   nocap?: boolean; // this room's wild ones cannot be captured
 }
 
+/** A tall painted object: its silhouette is redrawn above the player whenever they stand behind (north of) its base. */
+export interface Occluder {
+  poly: Pt[]; // the object's visible outline in image pixels
+  base: number; // y of the object's front foot line
+}
+
 export interface RoomDef {
   id: string;
   name: string;
@@ -73,6 +80,7 @@ export interface RoomDef {
   lights?: Light[];
   encounters?: { table: Encounter[]; budget: number };
   triggers?: Trigger[];
+  occluders?: Occluder[];
   music: string;
   fireflies?: number;
   tint?: number;
@@ -412,4 +420,13 @@ export function rollEncounter(table: Encounter[], depth: number, r = Math.random
     if (x < 0) return e;
   }
   return ok[ok.length - 1];
+}
+
+// Walk-map fixes from the room audits (src/data/roomFixes.ts): occluders, extra blocks, corrected walk areas.
+for (const [id, f] of Object.entries(ROOM_FIXES)) {
+  const r = ROOMS[id];
+  if (!r) continue;
+  if (f.walk) r.walk = f.walk;
+  if (f.block) r.block = [...r.block, ...f.block];
+  if (f.occluders) r.occluders = [...(r.occluders ?? []), ...f.occluders];
 }
