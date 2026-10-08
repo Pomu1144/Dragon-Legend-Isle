@@ -95,7 +95,9 @@ export class TitleScene extends Phaser.Scene {
       if (c.pressed('confirm')) this.openMenu();
       return;
     }
+    if (c.pressed('cancel')) this.disarm();
     if (c.pressed('up') || c.pressed('down')) {
+      this.disarm();
       this.sel = (this.sel + 1) % this.options.length;
       Sound.move();
       this.refresh();
@@ -112,7 +114,22 @@ export class TitleScene extends Phaser.Scene {
     }
   }
 
+  private armed = false;
+
+  private disarm() {
+    if (!this.armed) return;
+    this.armed = false;
+    this.options[0].text.setText('New Journey');
+  }
+
   private newGame() {
+    // A saved journey is never wiped by one stray press: ask once more.
+    if (State.hasSave() && !this.armed) {
+      this.armed = true;
+      this.options[0].text.setText('Start over?  Z');
+      this.ready = true;
+      return;
+    }
     State.reset();
     Sound.stopMusic(1);
     this.cameras.main.fadeOut(900, 0, 0, 0);

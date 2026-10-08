@@ -96,6 +96,9 @@ export class WorldScene extends Phaser.Scene {
   private followerShadow?: Phaser.GameObjects.Image;
   private trail: Pt[] = [];
   private timeAcc = 0;
+  private saveAcc = 0;
+  private hold = false;
+  private busyFor = 0;
 
   constructor() {
     super('World');
@@ -237,6 +240,21 @@ export class WorldScene extends Phaser.Scene {
     this.events.off('starterChosen');
     this.events.on('starterChosen', (id: string) => this.onStarter(id));
 
+    // Progress is kept as you play: on arriving in a room, every few seconds, and when the page is hidden or closed.
+    this.saveAcc = 0;
+    this.busyFor = 0;
+    this.hold = false;
+    if (!WorldScene.hooked) {
+      WorldScene.hooked = true;
+      const flush = () => {
+        const w = this.game.scene.getScene('World') as WorldScene;
+        if (w.sys.settings.status >= Phaser.Scenes.RUNNING && w.sys.settings.status <= Phaser.Scenes.SLEEPING) w.autosave();
+      };
+      window.addEventListener('pagehide', flush);
+      document.addEventListener('visibilitychange', () => document.visibilityState === 'hidden' && flush());
+    }
+    this.autosave();
+
     const entry = EXPANSION_STORY.room_entries[R.id] ?? MISSIONS?.room_entries[R.id] ?? REGION_STORY.room_entries[R.id];
     if (entry?.length && !State.flag('entered_' + R.id)) {
       State.setFlag('entered_' + R.id);
@@ -255,6 +273,20 @@ export class WorldScene extends Phaser.Scene {
       this.busy = true;
       this.time.delayedCall(900, () => this.say(scene('wake_aftermath')));
     }
+  }
+
+  private static hooked = false;
+
+  /** Write the run to the save slot with Kael where he stands (debug starts never touch the slot). */
+  autosave() {
+    if (this.dataIn.debug || !this.player || !this.room) return;
+    const s = State.get();
+    s.room = this.room.id;
+    if (this.canStand(this.player.x, this.player.y)) {
+      s.x = Math.round(this.player.x);
+      s.y = Math.round(this.player.y);
+    }
+    State.save();
   }
 
   private starterKey(): string | undefined {
@@ -301,7 +333,8 @@ export class WorldScene extends Phaser.Scene {
     this.ySortedObjs.push({ obj: this.follower, base: 0 });
     sparkleBurst(this, this.follower.x, this.follower.y - 30, 16, 3600, 70);
     this.cameras.main.fadeIn(500);
-    this.say([...scene('after_choice'), ...scene('items_handover'), { text: '* (You also received 3 Capture Cards and a Silver Card. Use them from MERCY > Capture.)' }]);
+    this.autosave();
+    this.say([...scene('after_choice'), ...scene('items_handover'), { text: '* (You also received 3 Capture Cards and a Silver Card. Use them from MERCY > Capture.)' }], () => this.autosave());
   }
 
   private showRoomName() {
@@ -382,10 +415,29 @@ export class WorldScene extends Phaser.Scene {
     this.shadow.setDepth(9 + this.player.y);
     if (this.controls.pressed('debug')) this.toggleDebug();
     if (this.dialogue.active) {
+      this.busyFor = 0;
       this.dialogue.update(dt);
       return;
     }
-    if (this.busy) return;
+    if (this.hold) return;
+    if (this.busy) {
+      // Watchdog: nothing on screen is holding Kael (no dialogue, no other screen, no fade, nobody walking),
+      // yet input is still locked. Give control back rather than leave the game frozen.
+      const holding = this.game.scene.getScenes(true).some((sc) => sc !== this) || this.cameras.main.fadeEffect.isRunning || this.tweens.getTweensOf([this.player, ...Object.values(this.npcs)]).length > 0;
+      this.busyFor = holding ? 0 : this.busyFor + dt;
+      if (this.busyFor > 5000) {
+        this.busyFor = 0;
+        this.busy = false;
+        this.controls.reset();
+      }
+      return;
+    }
+    this.busyFor = 0;
+    this.saveAcc += dt;
+    if (this.saveAcc > 10000) {
+      this.saveAcc = 0;
+      this.autosave();
+    }
 
     if (this.controls.pressed('menu')) {
       Sound.confirm();
@@ -759,7 +811,10 @@ export class WorldScene extends Phaser.Scene {
   /** Inside the Guild Hall: the hatchery. */
   private openHatchery() {
     this.say(scene('guild_hall_choice_intro'), () => {
-      this.time.delayedCall(80, () => {
+      // hold Kael still (a mashed Z must not reopen the door) while the box fades, then open the Hatchery
+      this.hold = true;
+      this.time.delayedCall(200, () => {
+        this.hold = false;
         this.busy = true;
         this.scene.launch('Hatchling');
         this.scene.pause();

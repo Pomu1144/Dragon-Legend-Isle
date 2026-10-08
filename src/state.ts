@@ -1,4 +1,5 @@
-// Persistent run state. One save slot in localStorage, written at candles.
+// Persistent run state. One save slot in localStorage, kept up to date as you play (WorldScene.autosave)
+// and on resting at candles.
 
 export interface Inventory {
   [itemId: string]: number;
