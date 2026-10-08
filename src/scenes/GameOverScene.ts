@@ -2,7 +2,10 @@ import Phaser from 'phaser';
 import { Sound } from '../audio/Sound';
 import { State } from '../state';
 import { STORY } from '../data/story';
+import { ROOMS } from '../data/rooms';
+import { nearestWaypoint } from '../data/waypoints';
 import { Controls } from '../ui/input';
+import { Touch } from '../ui/touch';
 import { body, title, COLORS } from '../ui/widgets';
 
 export class GameOverScene extends Phaser.Scene {
@@ -12,6 +15,7 @@ export class GameOverScene extends Phaser.Scene {
   private full = '';
   private shown = 0;
   private acc = 0;
+  private wake!: Phaser.GameObjects.Text;
 
   constructor() {
     super('GameOver');
@@ -35,6 +39,9 @@ export class GameOverScene extends Phaser.Scene {
     this.full = (STORY.scenes.gameover_line?.[0]?.text ?? 'Get up.').replace(/\{HERO\}/g, State.get().name);
     this.shown = 0;
     this.acc = -2800;
+    // Defeat keeps the journey: the team wakes, healed, at the nearest candle.
+    const wp = nearestWaypoint(State.get().room);
+    this.wake = body(this, W / 2, 610, `${Touch.active ? 'OK' : 'Z'}  —  rise at the candle in ${ROOMS[wp.room].name}`, 22, '#a8a090', 1000).setOrigin(0.5, 0).setAlign('center').setAlpha(0);
   }
 
   update(_t: number, dt: number) {
@@ -46,22 +53,25 @@ export class GameOverScene extends Phaser.Scene {
         if (this.shown % 2 === 0) Sound.blip(1.25);
       }
       this.text.setText(this.full.slice(0, this.shown));
-      if (this.shown >= this.full.length) this.ready = true;
+      if (this.shown >= this.full.length) {
+        this.ready = true;
+        this.tweens.add({ targets: this.wake, alpha: 1, duration: 600 });
+      }
       return;
     }
     if (this.ready && this.controls.pressed('confirm')) {
       this.ready = false;
       this.cameras.main.fadeOut(900, 0, 0, 0);
       this.cameras.main.once('camerafadeoutcomplete', () => {
-        if (State.load()) {
-          const s = State.get();
-          s.hp = s.maxHp;
-          State.healParty();
-          this.scene.start('World', { room: s.room, at: [s.x, s.y] });
-        } else {
-          State.reset();
-          this.scene.start('World', { room: 'plaza', spawn: 'start' });
-        }
+        const s = State.get();
+        const wp = nearestWaypoint(s.room);
+        s.hp = s.maxHp;
+        State.healParty();
+        s.room = wp.room;
+        s.x = wp.at[0];
+        s.y = wp.at[1];
+        State.save();
+        this.scene.start('World', { room: wp.room, at: wp.at });
       });
     }
   }
