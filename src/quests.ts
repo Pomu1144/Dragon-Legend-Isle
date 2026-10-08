@@ -32,7 +32,9 @@ export const Quests = {
       if (q.id === 'formula') {
         const n = (['blood', 'wind'] as MissionId[]).filter((m) => this.done(m)).length;
         if (n === 0) continue;
-        rows.push({ title: q.title, text: q.stages[Math.min(n - 1, q.stages.length - 1)], done: n === 2 });
+        const made = State.flag('bloodgaleFormed');
+        const stage = made ? 2 : n === 2 ? 1 : 0;
+        rows.push({ title: q.title, text: q.stages[Math.min(stage, q.stages.length - 1)], done: made });
         continue;
       }
       if (!this.accepted(q.id)) continue;

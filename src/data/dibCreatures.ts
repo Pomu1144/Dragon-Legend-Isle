@@ -271,7 +271,10 @@ export const DIB_KITS = [
    "outskirts",
    "norwoods_scorched_road",
    "norwoods_serpent_hollow",
-   "mangal_east_road"
+   "mangal_east_road",
+   "graveyard_gate",
+   "graveyard_rows",
+   "graveyard_ritual_circle"
   ],
   "name": "Bones",
   "id": "bones",
@@ -684,7 +687,9 @@ export const DIB_KITS = [
   "role": "encounter",
   "rooms": [
    "norwoods_scorched_road",
-   "norwoods_mangal_roots"
+   "norwoods_mangal_roots",
+   "graveyard_gate",
+   "graveyard_rows"
   ],
   "name": "Devil Worm",
   "id": "devil_worm",
@@ -1463,7 +1468,8 @@ export const DIB_KITS = [
   "rooms": [
    "outskirts",
    "mangal_east_road",
-   "safaris_riverbank"
+   "safaris_riverbank",
+   "east_valley_road"
   ],
   "name": "Slime",
   "id": "slime",
@@ -1862,7 +1868,11 @@ export const DIB_KITS = [
  {
   "role": "encounter",
   "rooms": [
-   "safaris_grassland"
+   "safaris_grassland",
+   "east_valley_road",
+   "safaris_far_shore",
+   "wind_cult_terraces",
+   "wind_cult_shrine"
   ],
   "name": "Cockatrice",
   "id": "cockatrice",
@@ -2019,7 +2029,8 @@ export const DIB_KITS = [
   "rooms": [
    "norwoods_scorched_road",
    "norwoods_mangal_roots",
-   "safaris_grassland"
+   "safaris_grassland",
+   "east_valley_road"
   ],
   "name": "Beast Knight",
   "id": "beast_knight",
@@ -2712,7 +2723,8 @@ export const DIB_KITS = [
   "role": "encounter",
   "rooms": [
    "norwoods_serpent_hollow",
-   "norwoods_mangal_roots"
+   "norwoods_mangal_roots",
+   "wind_cult_terraces"
   ],
   "name": "Manticore",
   "id": "manticore",
@@ -3039,7 +3051,10 @@ export const DIB_KITS = [
   "rooms": [
    "norwoods_serpent_hollow",
    "norwoods_mangal_roots",
-   "mangal_crossroads"
+   "mangal_crossroads",
+   "graveyard_gate",
+   "graveyard_rows",
+   "graveyard_ritual_circle"
   ],
   "name": "Imp",
   "id": "imp",
@@ -4877,7 +4892,9 @@ export const DIB_KITS = [
   "rooms": [
    "giant_mangal_f1",
    "mangal_east_road",
-   "safaris_grassland"
+   "safaris_grassland",
+   "wind_cult_terraces",
+   "wind_cult_shrine"
   ],
   "name": "Spark",
   "id": "spark",
@@ -5638,7 +5655,8 @@ export const DIB_KITS = [
  {
   "role": "encounter",
   "rooms": [
-   "safaris_grassland"
+   "safaris_grassland",
+   "east_valley_road"
   ],
   "name": "Iron Sludge",
   "id": "iron_sludge",
@@ -6009,7 +6027,9 @@ export const DIB_KITS = [
  {
   "role": "encounter",
   "rooms": [
-   "safaris_riverbank"
+   "safaris_riverbank",
+   "east_valley_road",
+   "safaris_far_shore"
   ],
   "name": "Reptilo",
   "id": "reptilo",
@@ -6233,7 +6253,8 @@ export const DIB_KITS = [
  {
   "role": "encounter",
   "rooms": [
-   "safaris_riverbank"
+   "safaris_riverbank",
+   "safaris_far_shore"
   ],
   "name": "Kappa",
   "id": "kappa",
@@ -6642,5 +6663,502 @@ export const DIB_KITS = [
     }
    ]
   }
+ },
+ {
+  "role": "encounter",
+  "rooms": [],
+  "name": "Blood Warrior",
+  "id": "blood_warrior",
+  "wiki": {
+   "number": "148",
+   "stars": 4,
+   "element": "Fire",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/0/03/Blood_Warrior.png",
+   "image_size": [
+    115,
+    102
+   ],
+   "lv1": {
+    "hp": 35,
+    "attack": 12,
+    "magic": 9,
+    "speed": 5,
+    "defense": 21,
+    "resist": 16
+   },
+   "abilities": [
+    {
+     "name": "Assault",
+     "tu": "160",
+     "target": "1 Foe",
+     "effect": "16-19 Physical Damage (Fire)"
+    },
+    {
+     "name": "Axe",
+     "tu": "50",
+     "target": "1 Foe",
+     "effect": "6-7 Physical Damage (Fire)"
+    },
+    {
+     "name": "Slay",
+     "tu": "130",
+     "target": "1 Foe",
+     "effect": "12-15 Physical Damage (Fire), +100% Damage vs. Humanoid"
+    }
+   ],
+   "evolution": "Blood Priest (1st Form, evolves at level 17) -> Blood Warrior (2nd Form, evolves at level 37) -> Blood Rogue (3rd Form)",
+   "obtain": "Found in Giant Mangal in Norwoods."
+  },
+  "sprite": {
+   "description": "A hulking, hunched humanoid wrapped in a heavy charcoal-black cloak that flares wide at the shoulders and hangs in long pleated folds to the ground. Blood-red veining and spatter run through the cloak's lining and edges. Its head is a dark, horned helm-like mass with a glowing red face area set low between the shoulders. A dark axe with a red-edged blade hangs from the hand on the viewer's left, held low near the ground. It faces the viewer, standing on the ground (no wings, does not float).",
+   "dominant_color_hex": "#2E2828",
+   "faces": "front",
+   "flier": false
+  },
+  "battle": {
+   "check": "* BLOOD WARRIOR - No. 148 - FIRE - 4 STARS.\n* ATK 12, DEF 21. Slow on its feet, but very hard to wound.\n* Its Slay strikes twice as hard against humanoids. Against you.",
+   "intro": "* A cloaked shape rises from between the gravestones.\n* Blood Warrior drags its axe through the dirt toward you.",
+   "idle": [
+    "* Blood Warrior stands over the graves like a sentry. It does not blink.",
+    "* The red on its axe has dried black. Fresh red is creeping over it.",
+    "* Somewhere behind it, the chanting of the circle rises and falls.",
+    "* Blood Warrior's breath steams in the cold air, slow and even."
+   ],
+   "talk": [
+    "Stand aside.",
+    "The rite\nis not\nfinished.",
+    "Fourteen\nkneel. I\nkeep watch.",
+    "I was a\npriest once.",
+    "The axe\nremembers\nfor me."
+   ],
+   "spare_text": "* Blood Warrior lowers its axe and lets the blade rest on the ground.\n* It steps back among the graves and does not follow.",
+   "lore": "No. 148 - Blood Warrior. Fire element, 4 stars, Humanoid. Lv1: HP 35, ATK 12, MAG 9, SPD 5, DEF 21, RES 16. Assault (160 TU, 1 foe, 16-19 physical Fire damage), Axe (50 TU, 1 foe, 6-7 physical Fire damage), Slay (130 TU, 1 foe, 12-15 physical Fire damage, +100% damage vs. Humanoid). Evolves from Blood Priest at level 17 and into Blood Rogue at level 37. Found in Giant Mangal in Norwoods.",
+   "capture_fail": [
+    "* The card's light cracks against its cloak. Blood Warrior tears free.",
+    "* It does not even look at you. Behind it, the circle is still chanting."
+   ],
+   "acts": [
+    {
+     "name": "Lower Weapon",
+     "text": [
+      "* You lower your blade and keep your hands where it can see them.",
+      "* Blood Warrior's grip on the axe loosens, just slightly."
+     ],
+     "mercy": 40,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Name the Dead",
+     "text": [
+      "* You read aloud the name worn into the nearest gravestone.",
+      "* Blood Warrior turns its head toward the grave. It stays turned for a long while."
+     ],
+     "mercy": 35,
+     "once": true,
+     "calm": 2
+    },
+    {
+     "name": "Hold Ground",
+     "text": [
+      "* You plant your feet and do not step back.",
+      "* Blood Warrior studies you. Something in its stance changes from hunter to guard."
+     ],
+     "mercy": 30,
+     "once": true,
+     "calm": 0
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Assault",
+     "tu": 160,
+     "base_pattern": "swoop",
+     "projectile": "orb_blood",
+     "tint_hex": "#B3121F",
+     "twist": "none",
+     "box": [
+      480,
+      240
+     ],
+     "intensity": 1.2,
+     "flavor": "* Blood Warrior charges across the graves, cloak spreading like a wing of soot."
+    },
+    {
+     "ability": "Axe",
+     "tu": 50,
+     "base_pattern": "telegraph_lines",
+     "projectile": "fx_silverring",
+     "tint_hex": "#E04A2A",
+     "twist": "none",
+     "box": [
+      320,
+      230
+     ],
+     "intensity": 0.9,
+     "flavor": "* Blood Warrior swings its axe in short, heavy arcs."
+    },
+    {
+     "ability": "Slay",
+     "tu": 130,
+     "base_pattern": "column_drop",
+     "projectile": "orb_blood",
+     "tint_hex": "#8E0A14",
+     "twist": "none",
+     "box": [
+      400,
+      250
+     ],
+     "intensity": 1.3,
+     "flavor": "* Blood Warrior raises the axe high. It knows exactly what you are."
+    }
+   ]
+  }
+ },
+ {
+  "role": "miniboss",
+  "rooms": [],
+  "name": "Blood Rogue",
+  "id": "blood_rogue",
+  "wiki": {
+   "number": "149",
+   "stars": 5.5,
+   "element": "Fire",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/7/70/Blood_Rogue.png",
+   "image_size": [
+    59,
+    95
+   ],
+   "lv1": {
+    "hp": 37,
+    "attack": 17,
+    "magic": 14,
+    "speed": 36,
+    "defense": 30,
+    "resist": 25
+   },
+   "abilities": [
+    {
+     "name": "Assault",
+     "tu": "160",
+     "target": "1 Foe",
+     "effect": "22-27 Physical Damage (Fire)"
+    },
+    {
+     "name": "Dagger",
+     "tu": "50",
+     "target": "2 Foes",
+     "effect": "5-6 Physical Damage (Fire)"
+    },
+    {
+     "name": "Slay",
+     "tu": "130",
+     "target": "1 Foe",
+     "effect": "17-20 Physical Damage (Fire), +100% Damage vs. Humanoid"
+    },
+    {
+     "name": "Vengeance",
+     "tu": "250",
+     "target": "1 Foe",
+     "effect": "30-37 Physical Damage (Fire), +10.00% Damage per friendly casualty in a battle"
+    }
+   ],
+   "evolution": "Blood Priest (1st Form) -> Blood Warrior (evolves at level 17) -> Blood Rogue (Blood Warrior evolves at level 37; final form)",
+   "obtain": "Evolve a Blood Warrior to level 37. Can be found on the first spot on the southside of the white Saintspring bridge. Even if 3 sludges appear, with a large number following them, there can be better monsters at the end of the team. Found in the Underworld."
+  },
+  "sprite": {
+   "description": "A tall hooded humanoid in a long charcoal-black coat, its face lost in the shadow of a deep cowl. Crimson lining and red seams run down the coat and sleeves; one red-gloved hand is raised beside the hood, fingers crooked, and a thin curved blade hangs low at its side. The coat's hem is ragged and splits around dark boots.",
+   "dominant_color_hex": "#2B2A2F",
+   "faces": "front",
+   "flier": false
+  },
+  "battle": {
+   "check": "* BLOOD ROGUE - No. 149 - FIRE - 5.5 STARS.\n* SPD 36, DEF 30. Its Slay cuts twice as deep into humanoid flesh.\n* Its Vengeance grows heavier for every one of its own that has fallen.",
+   "intro": "* The chanting among the graves stops all at once.\n* A hooded figure steps out from the circle of priests.\n* Blood Rogue draws its blade. The rite will wait for you.",
+   "idle": [
+    "* Blood Rogue stands between you and the open grave. It does not move aside.",
+    "* Red light seeps from the seams of its coat, like a wound that will not close.",
+    "* Behind it, the ritual fire gutters. Somewhere a priest is still whispering the litany.",
+    "* Blood Rogue turns its hood toward the fallen. It seems to be counting them."
+   ],
+   "talk": [
+    "Kneel among\nthe graves.",
+    "The rite\nis not\nfinished.",
+    "Each one\nthat falls\nfeeds me.",
+    "You are\nflesh. You\nwill do.",
+    "I was a\npriest once.\nLike them."
+   ],
+   "spare_text": "* Blood Rogue lowers its blade.\n* It looks long at the priests and warriors still standing.\n* Then it puts out the ritual fire with its own hand, and walks into the dark between the stones.",
+   "lore": "No. 149 - Blood Rogue. Fire element, 5.5 stars (Category: 5.5 Stars Monsters). Level 1 stats as listed on the wiki: HP 37, ATK 17, MAG 14, SPD 36, DEF 30, RES 25. Abilities: Assault (160 TU, 1 foe, 22-27 physical Fire damage), Dagger (50 TU, 2 foes, 5-6 physical Fire damage), Slay (130 TU, 1 foe, 17-20 physical Fire damage, +100% damage vs. Humanoid) and Vengeance (250 TU, 1 foe, 30-37 physical Fire damage, +10.00% damage per friendly casualty in a battle). Final form of the Blood line: Blood Priest evolves into Blood Warrior at level 17, which evolves into Blood Rogue at level 37. Obtained by evolving a Blood Warrior to level 37; also found on the first spot on the southside of the white Saintspring bridge, and in the Underworld. In the graveyard it leads the blood rite, fourteen priests and three warriors gathered at its back. Every one of them that falls makes its blade heavier.",
+   "capture_fail": [
+    "* Blood Rogue cuts through the binding before it closes.",
+    "* Blood Rogue steps back into the circle of priests. The binding finds nothing to hold."
+   ],
+   "acts": [
+    {
+     "name": "Spare Its Kin",
+     "text": [
+      "* You lower your weapon toward the priests behind it.",
+      "* You do not strike the ones still kneeling.",
+      "* Blood Rogue watches. Its grip on the blade loosens, slightly."
+     ],
+     "mercy": 30,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Name the Dead",
+     "text": [
+      "* You read the names cut into the nearest gravestones, aloud and slowly.",
+      "* The litany behind Blood Rogue falters.",
+      "* For a moment the red light in its coat dims."
+     ],
+     "mercy": 25,
+     "once": true,
+     "calm": 2
+    },
+    {
+     "name": "Stand Your Ground",
+     "text": [
+      "* You plant your feet between Blood Rogue and the open grave.",
+      "* You do not kneel.",
+      "* Blood Rogue tilts its hood. It has not been refused in a long time."
+     ],
+     "mercy": 20,
+     "once": true,
+     "calm": 0
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Assault",
+     "tu": 160,
+     "base_pattern": "swoop",
+     "projectile": "fx_sparkle",
+     "tint_hex": "#C4161C",
+     "twist": "burn",
+     "box": [
+      420,
+      240
+     ],
+     "intensity": 1.1,
+     "flavor": "* Blood Rogue lunges across the grave in one long stride. Its coat trails sparks."
+    },
+    {
+     "ability": "Dagger",
+     "tu": 50,
+     "base_pattern": "aimed_volley",
+     "projectile": "fx_silverring",
+     "tint_hex": "#B33A3A",
+     "twist": "all_foes_wide",
+     "box": [
+      480,
+      230
+     ],
+     "intensity": 0.95,
+     "flavor": "* Blood Rogue's hand flicks out twice. Two short blades come for you both."
+    },
+    {
+     "ability": "Slay",
+     "tu": 130,
+     "base_pattern": "homing",
+     "projectile": "orb_blood",
+     "tint_hex": "#8E0F14",
+     "twist": "none",
+     "box": [
+      340,
+      240
+     ],
+     "intensity": 1.2,
+     "flavor": "* Blood Rogue fixes on you. It knows exactly where a living body is weakest."
+    },
+    {
+     "ability": "Vengeance",
+     "tu": 250,
+     "base_pattern": "rift_bursts",
+     "projectile": "orb_blood",
+     "tint_hex": "#E01E1E",
+     "twist": "none",
+     "box": [
+      460,
+      250
+     ],
+     "intensity": 1.3,
+     "flavor": "* Blood Rogue raises its blade over the fallen priests. The ground beneath them splits red."
+    }
+   ]
+  }
+ },
+ {
+  "role": "miniboss",
+  "rooms": [],
+  "name": "Cult Rogue",
+  "id": "cult_rogue",
+  "wiki": {
+   "number": "???",
+   "stars": 4.5,
+   "element": "Air",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/0/09/Cult_Rogue.png",
+   "image_size": [
+    59,
+    95
+   ],
+   "lv1": {
+    "hp": 34,
+    "attack": 15,
+    "magic": 9,
+    "speed": 31,
+    "defense": 16,
+    "resist": 9
+   },
+   "abilities": [
+    {
+     "name": "Assault",
+     "tu": "160",
+     "target": "1 foe",
+     "effect": "Deals 278-339 Physical damage (Air)"
+    },
+    {
+     "name": "Cheer",
+     "tu": "100",
+     "target": "All friends",
+     "effect": "Increases Defense by 51, Increases Attack by 34"
+    },
+    {
+     "name": "Cross Strike",
+     "tu": "70",
+     "target": "1 foe",
+     "effect": "Deals 122-149 Physical damage (Air)"
+    },
+    {
+     "name": "Haste",
+     "tu": "100",
+     "target": "All friends",
+     "effect": "Speeds up actions by -38%"
+    }
+   ],
+   "evolution": "Cult Priest evolves into Cult Warrior at level 17, which evolves into Cult Rogue at level 33. Cult Rogue is the final form.",
+   "obtain": "Found in Saintspring, Applefield, and the Cave of Earlsome in North Earlsome. Found in Sanctuary. Evolve a Cult Warrior to level 33."
+  },
+  "sprite": {
+   "description": "A tall hooded figure in a long grey-white coat that falls in heavy folds to its boots, the deep hood shadowing a pale face turned to the viewer's left. A violet beaded sash binds its waist. Its left hand (on the viewer's right) holds a long curved blade low and angled across the skirt of the coat. Greyscale palette apart from the violet sash. Transparent background.",
+   "dominant_color_hex": "#9C9CA4",
+   "faces": "left",
+   "flier": false
+  },
+  "battle": {
+   "check": "* CULT ROGUE - AIR - 4.5 STARS.\n* It leads the wind priests. Its word strengthens and hastens its kin.\n* Its blade strikes quickly, or slowly and very hard.",
+   "intro": "* The cultists part. A grey-hooded figure walks through them, blade lowered.",
+   "idle": [
+    "* The Cult Rogue does not move. The wind moves around it.",
+    "* The violet sash stirs, though the air is still.",
+    "* Behind it, the priests keep up their low chant.",
+    "* The curved blade tilts, catching what little light there is."
+   ],
+   "talk": [
+    "The wind\nchose me\nto lead.",
+    "They kneel\nbecause\nI kneel.",
+    "Leave this\nplace to\nthe wind.",
+    "My brothers\nwill not\nscatter.",
+    "Strike, and\nthe wind\nanswers."
+   ],
+   "spare_text": "* The Cult Rogue sheathes its blade. Without a word, the cult disperses into the wind.",
+   "lore": "The leader of the wind priests' cult near Dundean. Its kind is also known in Saintspring, Applefield and the Cave of Earlsome in North Earlsome, and in Sanctuary. It is what a Cult Warrior becomes at level 33. It fights with a curved blade and drives its brothers on with blessing and speed. Stats are its level-1 values from the wiki; the wiki lists its ability figures as if it were level 34.",
+   "capture_fail": [
+    "* The Cult Rogue cuts its way free. The wind closes around it again.",
+    "* It stands back up. The chant behind it has not stopped."
+   ],
+   "acts": [
+    {
+     "name": "Hold Ground",
+     "text": [
+      "* You plant your feet and do not give way.",
+      "* The Cult Rogue studies you. Its blade lowers a little."
+     ],
+     "mercy": 30,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Name Dundean",
+     "text": [
+      "* You tell it the people of Dundean fear the wind priests.",
+      "* The hood turns toward its followers. For a moment, it says nothing."
+     ],
+     "mercy": 40,
+     "once": true,
+     "calm": 1
+    },
+    {
+     "name": "Lower Weapon",
+     "text": [
+      "* You lower your weapon and wait.",
+      "* The chant falters. The Cult Rogue raises a hand, and its priests fall silent."
+     ],
+     "mercy": 30,
+     "once": false,
+     "calm": 2
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Assault",
+     "tu": 160,
+     "base_pattern": "aimed_volley",
+     "projectile": "fx_tornado",
+     "tint_hex": "#B8C4D0",
+     "twist": "none",
+     "box": [
+      400,
+      240
+     ],
+     "intensity": 1.25,
+     "flavor": "* The Cult Rogue draws back its blade. The wind gathers behind the blow."
+    },
+    {
+     "ability": "Cheer",
+     "tu": 100,
+     "base_pattern": "orbit_ring",
+     "projectile": "fx_silverring",
+     "tint_hex": "#D8D8E4",
+     "twist": "none",
+     "box": [
+      360,
+      230
+     ],
+     "intensity": 0.9,
+     "flavor": "* The Cult Rogue speaks one word to its brothers. Their guard hardens and their blows grow heavier."
+    },
+    {
+     "ability": "Cross Strike",
+     "tu": 70,
+     "base_pattern": "telegraph_lines",
+     "projectile": "fx_silverring",
+     "tint_hex": "#A8A8B8",
+     "twist": "none",
+     "box": [
+      440,
+      230
+     ],
+     "intensity": 1.1,
+     "flavor": "* Two quick cuts cross through the air."
+    },
+    {
+     "ability": "Haste",
+     "tu": 100,
+     "base_pattern": "spiral",
+     "projectile": "fx_tornado",
+     "tint_hex": "#9C8CC8",
+     "twist": "none",
+     "box": [
+      380,
+      240
+     ],
+     "intensity": 1,
+     "flavor": "* A wind rises around the cult. They begin to move faster."
+    }
+   ]
+  },
+  "sprite_check": "viewed"
  }
 ] as const;

@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import { DIB_KITS } from './data/dibCreatures';
 import { EXPANSION_NPC_SHEETS, EXPANSION_ROOMS } from './data/expansion';
+import { MISSION_ROOMS } from './data/missions';
 
 export const UI_SPRITES = [
   'arrow_down', 'arrow_up', 'banner_header', 'bar_empty', 'bar_orange', 'bar_red', 'btn_ff', 'btn_fff', 'btn_hex',
@@ -13,7 +14,7 @@ export const UI_SPRITES = [
   'tab_trophy', 'tab_world', 'tag_blue', 'capture_normal', 'capture_silver', 'capture_gold',
 ];
 
-export const ROOM_BGS = ['plaza', 'gate', 'outskirts', 'forest', 'mosswood', 'waystone', 'gate_talk', ...EXPANSION_ROOMS.map((r) => r.id)];
+export const ROOM_BGS = ['plaza', 'gate', 'outskirts', 'forest', 'mosswood', 'waystone', 'gate_talk', ...EXPANSION_ROOMS.map((r) => r.id), ...MISSION_ROOMS.map((r) => r.id)];
 // Original Dragon Island Blue sprites, unaltered (tools/fetch_dib_sprites.py).
 export const MONSTER_ART = DIB_KITS.map((k) => k.id).filter((id) => id !== 'divine');
 // Painted high-resolution art (the user's): drawn smooth, not as scaled-up pixels.

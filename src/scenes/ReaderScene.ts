@@ -58,7 +58,7 @@ export class ReaderScene extends Phaser.Scene {
     y += 52;
     if (p.image && this.textures.exists(p.image)) {
       const img = this.add.image(W / 2, y, p.image).setOrigin(0.5, 0);
-      img.setScale(Math.min((W - 340) / img.width, (p.image.startsWith('mon_') ? 220 : 300) / img.height));
+      img.setScale(Math.min((W - 340) / img.width, (p.image.startsWith('mon_') ? 190 : 300) / img.height));
       img.setTint(0xd8ccb4);
       this.content.add(img);
       y += img.displayHeight + 16;
