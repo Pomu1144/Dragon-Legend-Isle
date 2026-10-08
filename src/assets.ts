@@ -26,7 +26,9 @@ export function queueAll(load: Phaser.Loader.LoaderPlugin) {
   for (const k of UI_SPRITES) load.image('ui_' + k, `assets/ui/${k}.png`);
   load.image('logo', 'assets/ui/logo.webp');
   load.image('ui_monster_card_blank', 'assets/ui/monster_card_blank.png');
-  for (const k of ROOM_BGS) load.image('bg_' + k, `assets/bg/${k}.jpg`);
+  // Room paintings are big (about 6 MB of GPU memory each): only the title's is loaded up front;
+  // the rest load when their room is entered (see loadRoomArt) so phones are not overwhelmed.
+  load.image('bg_plaza', 'assets/bg/plaza.jpg');
   for (const k of MONSTER_ART) load.image('mon_' + k, `assets/monsters/${k}.png`);
   load.image('mon_divine', 'assets/monsters/divine.webp');
   for (const id of ['fire_hatchling', 'gold_hatchling', 'spark_hatchling', 'water_hatchling']) {
@@ -44,6 +46,16 @@ export function queueAll(load: Phaser.Loader.LoaderPlugin) {
   }
   load.image('hero_portrait', 'assets/chars/hero_portrait.webp');
   load.image('wren_portrait', 'assets/chars/wren_portrait.webp');
+}
+
+/** Queue the paintings a scene needs and free the ones no longer in use. Call from a scene's preload(). */
+export function loadRoomArt(scene: Phaser.Scene, keys: string[]) {
+  const want = new Set(keys);
+  for (const k of keys) if (!scene.textures.exists(k) && k.startsWith('bg_')) scene.load.image(k, `assets/bg/${k.slice(3)}.jpg`);
+  scene.load.once('complete', () => {
+    for (const k of scene.textures.getTextureKeys())
+      if (k.startsWith('bg_') && k !== 'bg_plaza' && !want.has(k)) scene.textures.remove(k);
+  });
 }
 
 /** Procedural helper textures: soft light, particles, vignette, bar fills. */

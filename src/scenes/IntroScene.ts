@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { loadRoomArt } from '../assets';
 import { Sound } from '../audio/Sound';
 import { STORY } from '../data/story';
 import { Controls } from '../ui/input';
@@ -25,6 +26,10 @@ export class IntroScene extends Phaser.Scene {
 
   constructor() {
     super('Intro');
+  }
+
+  preload() {
+    loadRoomArt(this, [...new Set(PAGES.map((p) => p.bg))]);
   }
 
   create() {

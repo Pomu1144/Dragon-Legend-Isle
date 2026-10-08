@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import { Sound } from '../audio/Sound';
 import { ROOMS, RoomDef, Dir, Pt, rollEncounter } from '../data/rooms';
+import { loadRoomArt } from '../assets';
 import { State } from '../state';
 import { Dialogue, Line } from '../ui/Dialogue';
 import { Controls } from '../ui/input';
@@ -99,6 +100,11 @@ export class WorldScene extends Phaser.Scene {
 
   init(data: WorldData) {
     this.dataIn = data ?? {};
+  }
+
+  preload() {
+    const id = this.dataIn.room ?? State.get().room ?? 'plaza';
+    loadRoomArt(this, [(ROOMS[id] ?? ROOMS.plaza).bg]);
   }
 
   create() {
@@ -360,7 +366,7 @@ export class WorldScene extends Phaser.Scene {
     if (moving) {
       if (Math.abs(ax.x) > 0 && (ax.y === 0 || Math.abs(ax.x) >= Math.abs(ax.y))) this.dir = ax.x < 0 ? 'left' : 'right';
       if (ax.y !== 0 && ax.x === 0) this.dir = ax.y < 0 ? 'up' : 'down';
-      const len = Math.hypot(ax.x, ax.y);
+      const len = Math.max(1, Math.hypot(ax.x, ax.y)); // keyboard diagonals normalise; a half-pushed stick walks slower
       const sc = this.scaleAt(this.player.y) / 0.45;
       const speed = (this.controls.down('run') ? 290 : 190) * sc;
       const dx = (ax.x / len) * speed * (dt / 1000);

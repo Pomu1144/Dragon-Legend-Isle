@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { PAINTED_ART } from '../assets';
+import { loadRoomArt, PAINTED_ART } from '../assets';
 import { Sound } from '../audio/Sound';
 import { BulletField, PATTERNS, BASE_PATTERNS, Box } from '../battle/patterns';
 import { AttackDef, CAPTURE_CARDS, CaptureCard, captureChance, ITEMS, MONSTERS, MonsterDef, SkillDef, skillFrom } from '../data/monsters';
@@ -89,6 +89,10 @@ export class BattleScene extends Phaser.Scene {
     this.roomId = data.room ?? 'forest';
     this.debugStart = !!data.debug;
     this.wave = data.wave;
+  }
+
+  preload() {
+    loadRoomArt(this, [ROOMS[this.roomId]?.bg ?? 'bg_forest']);
   }
 
   create() {
@@ -794,7 +798,7 @@ export class BattleScene extends Phaser.Scene {
     }
     const slow = d.atk.twist === 'slow' ? 0.62 : 1;
     const sp = (this.controls.down('cancel') ? 120 : 230) * slow * (dt / 1000);
-    const len = Math.hypot(ax.x, ax.y) || 1;
+    const len = Math.max(1, Math.hypot(ax.x, ax.y));
     const r = 11;
     this.soul.x = Phaser.Math.Clamp(this.soul.x + (ax.x / len) * sp, b.x + r, b.x + b.w - r);
     this.soul.y = Phaser.Math.Clamp(this.soul.y + (ax.y / len) * sp, b.y + r, b.y + b.h - r);

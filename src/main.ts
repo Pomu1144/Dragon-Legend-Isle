@@ -1,5 +1,7 @@
 import Phaser from 'phaser';
+import { Sound } from './audio/Sound';
 import { State } from './state';
+import { installTouchControls } from './ui/touch';
 import '@fontsource/cinzel/700.css';
 import '@fontsource/cinzel/900.css';
 import '@fontsource/cormorant-garamond/600.css';
@@ -39,4 +41,7 @@ async function start() {
   (window as unknown as { __state: typeof State }).__state = State; // for headless tests
 }
 
+installTouchControls();
+// Browsers only allow audio after a gesture: wake the synth on the first touch or key.
+for (const ev of ['pointerdown', 'keydown'] as const) window.addEventListener(ev, () => Sound.ensure(), { once: true, capture: true });
 start();
