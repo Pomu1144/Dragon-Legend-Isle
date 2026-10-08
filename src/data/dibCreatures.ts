@@ -992,10 +992,147 @@ export const DIB_KITS = [
   }
  },
  {
-  "role": "boss",
+  "role": "miniboss",
   "rooms": [
    "waystone"
   ],
+  "name": "Noko",
+  "id": "noko",
+  "wiki": {
+   "number": "079",
+   "stars": 3,
+   "element": "Fire",
+   "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/b/bd/Noko.png",
+   "image_size": [
+    56,
+    110
+   ],
+   "lv1": {
+    "hp": 31,
+    "attack": 8,
+    "magic": 8,
+    "speed": 19,
+    "defense": 13,
+    "resist": 13
+   },
+   "abilities": [
+    {
+     "name": "Flame",
+     "tu": "130",
+     "target": "1 Foe",
+     "effect": "9-11 Magical Damage (Fire)"
+    },
+    {
+     "name": "Wiggle",
+     "tu": "130",
+     "target": "1 Foe",
+     "effect": "9-11 Physical Damage (Fire)"
+    }
+   ],
+   "evolution": "Noko (1st form, evolves at level 34) -> Orochi (2nd form)",
+   "obtain": "Found in Southern Alvalon (rare), in the forest three spots west of Corova"
+  },
+  "sprite": {
+   "description": "A single slender young serpent with one small head and no limbs, rearing upright in a tall, narrow S-curve, seen from the side with its head at the top right pointing up. Two or three long, thin, swept-back dark horns or antennae with pale grey-white edges rise from the back of its head. The upper body is a tight coil of dark brown and near-black scales crossed by pale cream-white bands, with a bright red zigzag stripe along the back of the upper coil and a row of round dark scales below it. In the middle, broad diagonal tan-brown and silvery-white bands on the left and a cluster of rough, knobbly black-brown scales on the right. The lower body widens into a heavy, smooth, matte deep indigo-violet base that bends to the right into a flat, rounded tail marked with two hollow red-orange rings like eye-spots.",
+   "dominant_color_hex": "#3E394B",
+   "faces": "right",
+   "flier": false
+  },
+  "battle": {
+   "check": "* NOKO - No. 079 - FIRE - 3 STARS.\n* ATK 8, MAG 8, SPD 19. Flame and Wiggle, both fire.\n* The first form of Orochi. It should have grown into one long ago.",
+   "intro": "* Noko is coiled around the foot of the great darkened Waystone.\n* It rears up the stone's face. The rings on its tail glow like coals.",
+   "idle": [
+    "* Noko sways against the Waystone. Its scales smoke where they touch the stone.",
+    "* Black veins pulse along its back, in time with the Waystone.",
+    "* Smoke and the smell of scorched scales hang in the air.",
+    "* The red rings on its tail flare, then dim, then flare again.",
+    "* A single deep furrow runs down the north road behind it, as if it was dragged here."
+   ],
+   "talk": [
+    "I am\nNoko.",
+    "Keeper of\nthis stone.",
+    "The stone\nspeaks\nthrough me.",
+    "It burns.\nIt always\nburns.",
+    "A hundred\nyears. I\nhave not\ngrown.",
+    "The grey\none spoke\nmy name.",
+    "Turn your\nback. I\nam owed."
+   ],
+   "spare_text": "* Noko's hissing falls silent.\n* It lowers itself to the ground and draws its coils back around the Waystone.\n* The black veins along its back begin to fade. It does not look relieved.",
+   "lore": "#079 Noko - Fire element, 3 stars (the wiki notes it is not a dragon). Found in Southern Alvalon, rare, in the forest three spots west of Corova. Lv1: HP 31, ATK 8, MAG 8, SPD 19, DEF 13, RES 13. Abilities: Flame (130 TU, 9-11 magical Fire damage to one foe), Wiggle (130 TU, 9-11 physical Fire damage to one foe). The first form of Orochi: it evolves into Orochi at level 34.",
+   "capture_fail": [
+    "* The card's light sputters against its hot scales and goes out.",
+    "* Noko coils tighter around the Waystone. The stone does not let go of it."
+   ],
+   "acts": [
+    {
+     "name": "Kneel by the Stone",
+     "text": [
+      "* You kneel at the foot of the Waystone, within reach of its jaws.",
+      "* Noko sways over you. It does not strike.",
+      "* The fire in its throat burns lower."
+     ],
+     "mercy": 30,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Speak Softly",
+     "text": [
+      "* You speak to it quietly, the way you would to a frightened animal.",
+      "* Its hissing thins. Nothing has spoken to it gently in a long time.",
+      "* Its tail stops lashing the ash."
+     ],
+     "mercy": 35,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Say Its Name",
+     "text": [
+      "* You say its name, softly: Noko.",
+      "* It goes still at once. Someone has said that name to it lately.",
+      "* Somewhere in those small coils, something remembers not burning."
+     ],
+     "mercy": 40,
+     "once": true,
+     "calm": 2
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Flame",
+     "tu": 130,
+     "base_pattern": "aimed_volley",
+     "projectile": "fx_sparkle",
+     "tint_hex": "#FF8A1E",
+     "twist": "none",
+     "box": [
+      340,
+      280
+     ],
+     "intensity": 1.0,
+     "flavor": "* Noko draws its head back and spits fire. Noko uses Flame."
+    },
+    {
+     "ability": "Wiggle",
+     "tu": 130,
+     "base_pattern": "swoop",
+     "projectile": "orb_blood",
+     "tint_hex": "#C8501E",
+     "twist": "none",
+     "box": [
+      360,
+      260
+     ],
+     "intensity": 0.9,
+     "flavor": "* Noko's striped coils whip outward. Noko uses Wiggle."
+    }
+   ]
+  }
+ },
+ {
+  "role": "boss",
+  "rooms": [],
   "name": "Orochi",
   "id": "orochi",
   "wiki": {
@@ -1052,13 +1189,13 @@ export const DIB_KITS = [
   },
   "battle": {
    "check": "* OROCHI - No. 080 - FIRE - 8.5 STARS.\n* The Overlord of Norwoods. An eight-headed serpent, evolved from Noko.\n* Eight heads. Each one is in pain.",
-   "intro": "* Orochi is coiled around the great darkened Waystone.\n* One head turns toward you. Then all eight.",
+   "intro": "* Orochi rises out of the dark, coil over coil.\n* One head turns toward you. Then all eight.",
    "idle": [
     "* Orochi's heads hiss over one another. None of them sound like their own.",
-    "* Black veins pulse along its coils, in time with the Waystone.",
+    "* Black veins pulse along its coils, in time with something far below.",
     "* Smoke and the smell of scorched scales hang in the air.",
     "* Embers drift up between the heads and die in the dark.",
-    "* Deep furrows run south through the trees behind it, as if something very heavy was dragged here."
+    "* Deep furrows run through the trees behind it, as if something very heavy was dragged there."
    ],
    "talk": [
     "We are\nOrochi.",
@@ -1069,8 +1206,8 @@ export const DIB_KITS = [
     "The grey\none spoke\nour name.",
     "Turn your\nback. We\nare owed."
    ],
-   "spare_text": "* The heads fall silent, one by one.\n* Orochi lowers itself to the ground and draws its coils back around the Waystone.\n* The black veins along its scales begin to fade. It does not look relieved.",
-   "lore": "#080 Orochi - Fire element, 8.5 stars. The Overlord of Norwoods. The second and final form of Noko (evolves at level 34); also found rarely in the Saintspring forest. Lv1: HP 62, ATK 40, MAG 40, SPD 34, DEF 55, RES 55. Abilities: Dragon Rage (250 TU, 31-38 physical Fire damage to all foes), Flame (130 TU, 45-55 magical Fire damage to one foe), Inferno (200 TU, 26-31 magical Fire damage to all foes), Wiggle (130 TU, 45-55 physical Fire damage to one foe). Named after Yamata no Orochi, the eight-headed, eight-tailed serpent of Japanese myth; it is a serpent, not a dragon. Bound to the darkened waystone, it guards the corruption it was meant to keep out.",
+   "spare_text": "* The heads fall silent, one by one.\n* Orochi lowers itself to the ground and draws its coils back into the dark.\n* The black veins along its scales begin to fade. It does not look relieved.",
+   "lore": "#080 Orochi - Fire element, 8.5 stars. The Overlord of Norwoods. The second and final form of Noko (evolves at level 34); also found rarely in the Saintspring forest. Lv1: HP 62, ATK 40, MAG 40, SPD 34, DEF 55, RES 55. Abilities: Dragon Rage (250 TU, 31-38 physical Fire damage to all foes), Flame (130 TU, 45-55 magical Fire damage to one foe), Inferno (200 TU, 26-31 magical Fire damage to all foes), Wiggle (130 TU, 45-55 physical Fire damage to one foe). Named after Yamata no Orochi, the eight-headed, eight-tailed serpent of Japanese myth; it is a serpent, not a dragon.",
    "acts": [
     {
      "name": "Name the Heads",

@@ -315,7 +315,7 @@ export const ROOMS: Record<string, RoomDef> = {
     ],
     things: [{ id: 'waystone', at: [830, 410], r: 70, lines: ['* The great Waystone. Its four-pointed star is cold and dark.'] }],
     lights: [{ at: [830, 300], r: 200, color: 0x9fd8ff }, { at: [820, 820], r: 240, color: 0xff9a4a }],
-    triggers: [{ id: 'orochi', rect: [640, 420, 380, 120], once: 'orochiDone' }],
+    triggers: [{ id: 'noko', rect: [640, 420, 380, 120], once: 'orochiDone' }],
   },
 };
 
@@ -324,8 +324,8 @@ for (const r of EXPANSION_ROOMS) ROOMS[r.id] = r;
 Object.assign(ROOMS.waystone.spawns, WAYSTONE_SPAWNS);
 if (WAYSTONE_EXITS) {
   const ex = ROOMS.waystone.exits;
-  ex[1] = { rect: [100, 50, 150, 22], to: WAYSTONE_EXITS.topLeft, spawn: WAYSTONE_EXITS.topLeftSpawn, locked: 'orochiDone', lockedText: ['* The northern road is choked with grey ash and the coils of something vast.', '* Not while the Waystone is guarded.'] };
-  ex[2] = { rect: [1450, 60, 110, 22], to: WAYSTONE_EXITS.topRight, spawn: WAYSTONE_EXITS.topRightSpawn, locked: 'orochiDone', lockedText: ['* The eastern road is blocked by eight great coils of scale.', '* Not while the Waystone is guarded.'] };
+  ex[1] = { rect: [100, 50, 150, 22], to: WAYSTONE_EXITS.topLeft, spawn: WAYSTONE_EXITS.topLeftSpawn, locked: 'orochiDone', lockedText: ['* The northern road is choked with grey ash. Behind you, at the stone, something hisses. You can feel it watching your back.', '* Not while the Waystone is guarded.'] };
+  ex[2] = { rect: [1450, 60, 110, 22], to: WAYSTONE_EXITS.topRight, spawn: WAYSTONE_EXITS.topRightSpawn, locked: 'orochiDone', lockedText: ['* As you step toward the eastern road, the serpent at the stone swings its head around to follow you. Its red-ringed tail lashes the way shut.', '* Not while the Waystone is guarded.'] };
 }
 
 // The Dundean missions (graveyard blood rite, wind priests' cult): their rooms, and the

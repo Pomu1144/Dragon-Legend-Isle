@@ -3211,7 +3211,7 @@ export const MISSIONS: MissionData | null = {
    {
     "speaker": "Brann",
     "portrait": "hunter_portrait",
-    "text": "The lodge will not send hunters into a rite. There are enough names crossed out on the board this season. But you walked here from the Norwoods. You came past Orochi."
+    "text": "The lodge will not send hunters into a rite. There are enough names crossed out on the board this season. But you walked here from the Norwoods. You came past the Waystone, and what was coiled at it."
    },
    {
     "speaker": "Kael",

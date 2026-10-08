@@ -28,6 +28,7 @@ export interface BattleStart {
   owner?: string; // a criminal's team: "<owner>'s <monster>"
   between?: string[]; // "* " lines as reinforcements step in; {N} = foes remaining
   lv?: number; // foe level (default: from the party's level)
+  lvOffset?: number; // foe level relative to the party's average, in place of the role's bonus
   party?: string[]; // debug starts only: the test team (MONSTERS or STARTERS ids)
 }
 
@@ -441,6 +442,7 @@ export class BattleScene extends Phaser.Scene {
     const party = this.units.filter((u) => u.side === 'ally');
     const avg = party.length ? Math.round(party.reduce((a, u) => a + u.lv, 0) / party.length) : 1;
     const t = tierOf(def.role);
+    if (this.data0.lvOffset !== undefined) return Math.max(1, avg + Math.round(this.data0.lvOffset));
     return Math.max(1, avg + (t === 'deity' ? 4 : t ? 2 : Phaser.Math.Between(0, 1)));
   }
 

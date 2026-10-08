@@ -76,8 +76,8 @@ export const LANDMARK_TEXT: Record<string, Record<string, string[]>> = {
  },
  "norwoods_scorched_road": {
   "furrows": [
-   "* Eight furrows, burned into the road side by side.",
-   "* They come down from the north, from the Hollow, and run south toward the Waystone. Whatever made them was dragged, not walking."
+   "* One furrow, burned deep into the road.",
+   "* It comes down from the north, from the Hollow, and runs south toward the Waystone. Whatever made it was dragged, not walking."
   ],
   "fork_lantern": [
    "* A trail lantern. It is dark, but someone refilled it, not long ago.",
@@ -85,13 +85,13 @@ export const LANDMARK_TEXT: Record<string, Record<string, string[]>> = {
   ],
   "signpost": [
    "* The signpost has been scorched blank.",
-   "* The left arm points along the furrows. The right one points toward a dark shape rising over the trees."
+   "* The left arm points along the furrow. The right one points toward a dark shape rising over the trees."
   ]
  },
  "norwoods_serpent_hollow": {
   "serpent_bed": [
-   "* A great coil pressed into the earth, still warm under the ash.",
-   "* Orochi slept here, until something pulled it south. The earth at the south rim is torn, as if it held on."
+   "* A great coil pressed into the earth, eight coils deep, far too wide for anything Kael met at the Waystone. Nothing that size has lain here in a long time.",
+   "* In the middle of it lies a small fresh hollow, still warm under the ash. Its south rim is torn, as if what lay there was pulled south and held on."
   ],
   "cold_camp": [
    "* A cold fire ring. One bedroll, and two small blankets folded beside it.",

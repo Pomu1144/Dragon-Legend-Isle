@@ -3900,7 +3900,7 @@ export const REGION_STORY: RegionStory = {
    {
     "speaker": "Kael",
     "portrait": "hero_portrait",
-    "text": "His ash, carried all the way from the Norwoods. The night he woke Orochi, it reached even this coast. But he did not come this way."
+    "text": "His ash, carried all the way from the Norwoods. The night he put out the Waystone, it reached even this coast. But he did not come this way."
    }
   ],
   "south_earlsome_valley": [

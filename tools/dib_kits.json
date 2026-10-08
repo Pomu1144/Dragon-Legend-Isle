@@ -62,11 +62,17 @@
     "why": "#159, 3 stars, Death; two of the three proposals picked it. It has the best location fit: the wiki says Liches 'can also be found in a single spot in Greater Wesing occasionally (Lich here will be levels 13 to 16). The spot is the leftmost spot in the forest section', the same region every encounter above comes from, at a much higher level. Its page also gives No Man's Castle. Stats exist only at Lv23: HP294 Atk25 Mag99 Spd74 Def74 Res173; the Lv1 column is blank, so scale the fight and do not present Lv1 numbers as wiki facts. The raw table has four abilities (the parser dropped Awaken and every effect): Awaken (100 TU, All Allies, Removes Sleep), Dark Matter (160 TU, 1 foe, 118-145 Damage), Disaster (100 TU, 2 foes, 46-57 Damage) and Enlighten (200 TU, All Allies, Increase magic by 16). I viewed the sprite: a clean transparent sprite of a tall crimson-robed, hooded sorcerer with a pale skull face and a staff. It looks menacing and works as a mini-boss. Sprite: https://static.wikia.nocookie.net/dragonislandblue/images/8/86/Lich.png"
    },
    {
-    "name": "Orochi",
-    "role": "boss",
+    "name": "Noko",
+    "role": "miniboss",
     "rooms": [
      "waystone"
     ],
+    "why": "#079, 3 stars, Fire (Category:Fire, Category:3 Stars Monsters; the page notes '(Not a Dragon)'). The Waystone guardian: an early, fair Guardian fight in place of Orochi, which it evolves into at level 34. Found rarely in Southern Alvalon, three spots west of Corova in the forest; the wiki's Tips and Tricks page recommends it as an early catch. Lv1: HP31 Atk8 Mag8 Spd19 Def13 Res13. Abilities: Flame (130 TU, 1 Foe, 9-11 Magical Damage (Fire)) and Wiggle (130 TU, 1 Foe, 9-11 Physical Damage (Fire)). Sprite: https://static.wikia.nocookie.net/dragonislandblue/images/b/bd/Noko.png (56x110)."
+   },
+   {
+    "name": "Orochi",
+    "role": "boss",
+    "rooms": [],
     "why": "#080, 8.5 stars, Fire. The raw infobox has 8 star icons plus a half star and the page is in Category:8.5 Stars Monsters; the parser's 9.5 is wrong. The Norwoods field page names Orochi under its '==Dragon Overlord==' heading, and Norwoods is the forest region with Giant Mangal that also lists Bones and Devil Worm. Its own page adds 'Saintspring (forest, rare)'. It is NOT in the official Dragon Overlords category, and its page notes '(Not a dragon)', so call it 'the Overlord of Norwoods' or the eight-headed serpent, never an official Dragon Overlord or a dragon. It has the full data set: Lv1 HP62 Atk40 Mag40 Spd34 Def55 Res55, about 2x the HP and 4-13x the Atk of the encounters. Abilities from the raw wikitext: Dragon Rage (250 TU, All Foes, 31-38 Physical Damage (Fire)), Flame (130 TU, One Foe, 45-55 Magical Damage (Fire)), Inferno (200 TU, All Foes, 26-31 Magical Damage (Fire)) and Wiggle (130 TU, One Foe, 45-55 Physical Damage (Fire); the parser left this blank). Evolves from Noko at Lv34. I viewed the sprite: a clean transparent multi-headed grey-green hydra on a coiled scaly body. It looks imposing. I chose it over Quetzalcoatl, which two proposals preferred, for two reasons. First, Quetzalcoatl's image_url is a battle screenshot with a forest background, a name banner, an HP bar and star icons baked in, so it cannot be used as a battle sprite. Second, Quetzalcoatl has no number and no stats. Sprite: https://static.wikia.nocookie.net/dragonislandblue/images/1/12/Orochi.png"
    },
    {
@@ -78,7 +84,7 @@
     "why": "Required (in the user's files; ending cameo, never fought). #202, 9 stars (raw {{Star/9}}; the parser read 0), Life element (from the raw infobox; the parser left it empty), Type: Spirit. 'Located in the Sanctuary in Applefield, 18th Floor.' Abilities from the raw wikitext (verify Holy there before using it): Holy (160 TU, 1 Foe, 1758-2149 Magical Damage), Immunity (passive, Self, immune to all negative status effects), Judgement (250 TU, All Foes, 1024-1251 Magical Damage), Justice (100 TU, 1 Foe, 1056-1291 Physical Damage, +100% Damage vs. Demonic) and Neutralize (130 TU, All Foes, Removes all effects, good or bad, from targets). Neutralize is the real ability that fits 'cleansing and relighting the waystone'. Stats run from rank F- to S+: HP 1835-2595, Atk and Mag 1304-1844, Spd, Def and Res 1641-2321. Sprite: https://static.wikia.nocookie.net/dragonislandblue/images/f/f9/Divine.png"
    }
   ],
-  "notes": "The final roster has 9 creatures, all verified in monsters.json and pages.json. Every one has an image_url and an ability table.\n\nROOM POOLS\n- outskirts: Bat Fiend, Blood Priest, Bones. These are the Greater Wesing 'Southwest of Wesing' field list, so the three required UI-sheet monsters appear together, as they do in DIB.\n- forest: Bat Fiend, Dark Priest, Scale Knight, Devil Worm. These come from 'Southeast Forest'; Dark Priest is listed in both the field and the forest.\n- mosswood: Bones, Scale Knight, Devil Worm, plus the Lich mini-boss. Lich is the wiki's rare Lv13-16 Lich at the leftmost spot of the Greater Wesing forest section.\n- waystone: Orochi as boss (the Dragon Overlord named on the Norwoods page). Divine appears in the mercy ending (Sanctuary, Applefield).\n\nThe difficulty curve follows the wiki's star ratings and stats:\n- 2 stars: Bat Fiend, Blood Priest, Bones, Dark Priest.\n- 2.5 stars: Scale Knight, Devil Worm.\n- 3 stars: Lich.\n- 8.5 stars: Orochi.\n- 9 stars: Divine.\n\nSPRITES VIEWED (saved in /tmp/claude-0/-home-user-Dragon-Legend-Isle/86652487-ad2d-5573-9073-e75d477ed090/scratchpad/dib/agent_tmp/judge/)\nThe wiki serves WebP data under .png names. I converted each file to v_*.png to view it.\n- Lich: a clean crimson-robed skull sorcerer. Good.\n- Orochi: a clean multi-headed hydra. Good.\n- Cult Warrior: a small grey armored figure with an axe. It is less imposing, and it is 2 stars, so I rejected it as mini-boss.\n- Quetzalcoatl: the image is a 250x220 in-game screenshot with a forest background, a 'Quetzalcoatl' banner, an HP bar and stars baked in. It is unusable as a battle sprite, so I rejected it as boss.\n\nPARSER BUGS TO FIX FROM RAW WIKITEXT\n1. Missing first ability rows:\n   - Bones: Plague (130 TU, 1 Foe, 7-8 Magical Damage (Death)).\n   - Devil Worm: Clasp (130 TU, 1 Foe, 9-12 Physical Damage (Earth)).\n   - Dark Priest: Flame (130 TU, 1 Foe, 11-14 Magical Damage (Fire)). None of the proposals caught this one.\n   - Lich: Awaken (100 TU, All Allies, Removes Sleep).\n   - Divine: Holy.\n2. Half-star ratings come out one star too high. Scale Knight and Devil Worm are 2.5, not 3.5. Orochi is 8.5, not 9.5.\n3. Divine reads 0 stars and has no element. The real values are 9 stars, Life, Spirit.\n4. Effects left blank: Orochi's Wiggle is 45-55 Physical Damage (Fire), Scale Knight's Venom Sting is 8-9 physical (earth) plus 8-9 earth over 500, and all of Lich's effects are blank.\n5. Lich has no Lv1 stats; only Lv23 stats exist.\n\nFIXES TO THE PROPOSALS\n- Proposal 3's Bat Squirrel has no wiki location and a blank element. Sludge and Giant Ant have no Greater Wesing or forest-route tie. I dropped all three.\n- Proposal 1's Cult Warrior is only 2 stars with a small sprite, and Imp is 4 stars, which is harder than the mini-boss slot. I dropped both in favor of the Greater Wesing set plus the Lich.\n\nLORE CAUTIONS\n- Do not call Orochi an official Dragon Overlord or a dragon. Its page says '(Not a dragon)'. 'Overlord of Norwoods' or 'eight-headed serpent' is safe.\n- Blood Priest's own page says 'No Man's Cave' (likely a typo). Dark Priest's own page says 'Western Gracia(?)'. The Greater Wesing page is the reliable location source for both.\n\nALTERNATIVES\n- Boss: Quetzalcoatl is an official Dragon Overlord, Earth, 8.5 stars, with 4 abilities. Use it only if you crop or redraw its screenshot sprite. Note that it has no number and no stats."
+  "notes": "The final roster has 9 creatures, all verified in monsters.json and pages.json. Every one has an image_url and an ability table.\n\nROOM POOLS\n- outskirts: Bat Fiend, Blood Priest, Bones. These are the Greater Wesing 'Southwest of Wesing' field list, so the three required UI-sheet monsters appear together, as they do in DIB.\n- forest: Bat Fiend, Dark Priest, Scale Knight, Devil Worm. These come from 'Southeast Forest'; Dark Priest is listed in both the field and the forest.\n- mosswood: Bones, Scale Knight, Devil Worm, plus the Lich mini-boss. Lich is the wiki's rare Lv13-16 Lich at the leftmost spot of the Greater Wesing forest section.\n- waystone: Noko as the Guardian (#079, 3 stars, the first form of Orochi). Orochi, the Overlord named on the Norwoods page, is kept for later. Divine appears after the merciful outcome (Sanctuary, Applefield).\n\nThe difficulty curve follows the wiki's star ratings and stats:\n- 2 stars: Bat Fiend, Blood Priest, Bones, Dark Priest.\n- 2.5 stars: Scale Knight, Devil Worm.\n- 3 stars: Lich.\n- 8.5 stars: Orochi.\n- 9 stars: Divine.\n\nSPRITES VIEWED (saved in /tmp/claude-0/-home-user-Dragon-Legend-Isle/86652487-ad2d-5573-9073-e75d477ed090/scratchpad/dib/agent_tmp/judge/)\nThe wiki serves WebP data under .png names. I converted each file to v_*.png to view it.\n- Lich: a clean crimson-robed skull sorcerer. Good.\n- Orochi: a clean multi-headed hydra. Good.\n- Cult Warrior: a small grey armored figure with an axe. It is less imposing, and it is 2 stars, so I rejected it as mini-boss.\n- Quetzalcoatl: the image is a 250x220 in-game screenshot with a forest background, a 'Quetzalcoatl' banner, an HP bar and stars baked in. It is unusable as a battle sprite, so I rejected it as boss.\n\nPARSER BUGS TO FIX FROM RAW WIKITEXT\n1. Missing first ability rows:\n   - Bones: Plague (130 TU, 1 Foe, 7-8 Magical Damage (Death)).\n   - Devil Worm: Clasp (130 TU, 1 Foe, 9-12 Physical Damage (Earth)).\n   - Dark Priest: Flame (130 TU, 1 Foe, 11-14 Magical Damage (Fire)). None of the proposals caught this one.\n   - Lich: Awaken (100 TU, All Allies, Removes Sleep).\n   - Divine: Holy.\n2. Half-star ratings come out one star too high. Scale Knight and Devil Worm are 2.5, not 3.5. Orochi is 8.5, not 9.5.\n3. Divine reads 0 stars and has no element. The real values are 9 stars, Life, Spirit.\n4. Effects left blank: Orochi's Wiggle is 45-55 Physical Damage (Fire), Scale Knight's Venom Sting is 8-9 physical (earth) plus 8-9 earth over 500, and all of Lich's effects are blank.\n5. Lich has no Lv1 stats; only Lv23 stats exist.\n\nFIXES TO THE PROPOSALS\n- Proposal 3's Bat Squirrel has no wiki location and a blank element. Sludge and Giant Ant have no Greater Wesing or forest-route tie. I dropped all three.\n- Proposal 1's Cult Warrior is only 2 stars with a small sprite, and Imp is 4 stars, which is harder than the mini-boss slot. I dropped both in favor of the Greater Wesing set plus the Lich.\n\nLORE CAUTIONS\n- Do not call Orochi an official Dragon Overlord or a dragon. Its page says '(Not a dragon)'. 'Overlord of Norwoods' or 'eight-headed serpent' is safe.\n- Blood Priest's own page says 'No Man's Cave' (likely a typo). Dark Priest's own page says 'Western Gracia(?)'. The Greater Wesing page is the reliable location source for both.\n\nALTERNATIVES\n- Boss: Quetzalcoatl is an official Dragon Overlord, Earth, 8.5 stars, with 4 abilities. Use it only if you crop or redraw its screenshot sprite. Note that it has no number and no stats."
  },
  "kits": [
   {
@@ -1188,6 +1194,162 @@
   },
   {
    "kit": {
+    "name": "Noko",
+    "id": "noko",
+    "wiki": {
+     "number": "079",
+     "stars": 3,
+     "element": "Fire",
+     "image_url": "https://static.wikia.nocookie.net/dragonislandblue/images/b/bd/Noko.png",
+     "image_size": [
+      56,
+      110
+     ],
+     "lv1": {
+      "hp": 31,
+      "attack": 8,
+      "magic": 8,
+      "speed": 19,
+      "defense": 13,
+      "resist": 13
+     },
+     "abilities": [
+      {
+       "name": "Flame",
+       "tu": "130",
+       "target": "1 Foe",
+       "effect": "9-11 Magical Damage (Fire)"
+      },
+      {
+       "name": "Wiggle",
+       "tu": "130",
+       "target": "1 Foe",
+       "effect": "9-11 Physical Damage (Fire)"
+      }
+     ],
+     "evolution": "Noko (1st form, evolves at level 34) -> Orochi (2nd form)",
+     "obtain": "Found in Southern Alvalon (rare), in the forest three spots west of Corova"
+    },
+    "sprite": {
+     "description": "A single slender young serpent with one small head and no limbs, rearing upright in a tall, narrow S-curve, seen from the side with its head at the top right pointing up. Two or three long, thin, swept-back dark horns or antennae with pale grey-white edges rise from the back of its head. The upper body is a tight coil of dark brown and near-black scales crossed by pale cream-white bands, with a bright red zigzag stripe along the back of the upper coil and a row of round dark scales below it. In the middle, broad diagonal tan-brown and silvery-white bands on the left and a cluster of rough, knobbly black-brown scales on the right. The lower body widens into a heavy, smooth, matte deep indigo-violet base that bends to the right into a flat, rounded tail marked with two hollow red-orange rings like eye-spots.",
+     "dominant_color_hex": "#3E394B",
+     "faces": "right",
+     "flier": false
+    },
+    "battle": {
+     "check": "* NOKO - No. 079 - FIRE - 3 STARS.\n* ATK 8, MAG 8, SPD 19. Flame and Wiggle, both fire.\n* The first form of Orochi. It should have grown into one long ago.",
+     "intro": "* Noko is coiled around the foot of the great darkened Waystone.\n* It rears up the stone's face. The rings on its tail glow like coals.",
+     "idle": [
+      "* Noko sways against the Waystone. Its scales smoke where they touch the stone.",
+      "* Black veins pulse along its back, in time with the Waystone.",
+      "* Smoke and the smell of scorched scales hang in the air.",
+      "* The red rings on its tail flare, then dim, then flare again.",
+      "* A single deep furrow runs down the north road behind it, as if it was dragged here."
+     ],
+     "talk": [
+      "I am\nNoko.",
+      "Keeper of\nthis stone.",
+      "The stone\nspeaks\nthrough me.",
+      "It burns.\nIt always\nburns.",
+      "A hundred\nyears. I\nhave not\ngrown.",
+      "The grey\none spoke\nmy name.",
+      "Turn your\nback. I\nam owed."
+     ],
+     "spare_text": "* Noko's hissing falls silent.\n* It lowers itself to the ground and draws its coils back around the Waystone.\n* The black veins along its back begin to fade. It does not look relieved.",
+     "lore": "#079 Noko - Fire element, 3 stars (the wiki notes it is not a dragon). Found in Southern Alvalon, rare, in the forest three spots west of Corova. Lv1: HP 31, ATK 8, MAG 8, SPD 19, DEF 13, RES 13. Abilities: Flame (130 TU, 9-11 magical Fire damage to one foe), Wiggle (130 TU, 9-11 physical Fire damage to one foe). The first form of Orochi: it evolves into Orochi at level 34.",
+     "capture_fail": [
+      "* The card's light sputters against its hot scales and goes out.",
+      "* Noko coils tighter around the Waystone. The stone does not let go of it."
+     ],
+     "acts": [
+      {
+       "name": "Kneel by the Stone",
+       "text": [
+        "* You kneel at the foot of the Waystone, within reach of its jaws.",
+        "* Noko sways over you. It does not strike.",
+        "* The fire in its throat burns lower."
+       ],
+       "mercy": 30,
+       "once": false,
+       "calm": 1
+      },
+      {
+       "name": "Speak Softly",
+       "text": [
+        "* You speak to it quietly, the way you would to a frightened animal.",
+        "* Its hissing thins. Nothing has spoken to it gently in a long time.",
+        "* Its tail stops lashing the ash."
+       ],
+       "mercy": 35,
+       "once": false,
+       "calm": 1
+      },
+      {
+       "name": "Say Its Name",
+       "text": [
+        "* You say its name, softly: Noko.",
+        "* It goes still at once. Someone has said that name to it lately.",
+        "* Somewhere in those small coils, something remembers not burning."
+       ],
+       "mercy": 40,
+       "once": true,
+       "calm": 2
+      }
+     ],
+     "attacks": [
+      {
+       "ability": "Flame",
+       "tu": 130,
+       "base_pattern": "aimed_volley",
+       "projectile": "fx_sparkle",
+       "tint_hex": "#FF8A1E",
+       "twist": "none",
+       "box": [
+        340,
+        280
+       ],
+       "intensity": 1.0,
+       "flavor": "* Noko draws its head back and spits fire. Noko uses Flame."
+      },
+      {
+       "ability": "Wiggle",
+       "tu": 130,
+       "base_pattern": "swoop",
+       "projectile": "orb_blood",
+       "tint_hex": "#C8501E",
+       "twist": "none",
+       "box": [
+        360,
+        260
+       ],
+       "intensity": 0.9,
+       "flavor": "* Noko's striped coils whip outward. Noko uses Wiggle."
+      }
+     ]
+    }
+   },
+   "verdict": {
+    "ok": true,
+    "issues": [
+     {
+      "field": "wiki.number (note only)",
+      "problem": "Advisory. The raw infobox gives the number as 79; it is written 079 here to match the other three-digit numbers (Orochi is 080).",
+      "correct_value": "079"
+     },
+     {
+      "field": "wiki.image_url (note only)",
+      "problem": "Advisory. The CDN serves the sprite as WebP under the .png name unless '?format=original' is added; the original is a 56x110 RGBA PNG with a transparent background.",
+      "correct_value": "56x110"
+     }
+    ]
+   },
+   "role": "miniboss",
+   "rooms": [
+    "waystone"
+   ]
+  },
+  {
+   "kit": {
     "name": "Orochi",
     "id": "orochi",
     "wiki": {
@@ -1244,13 +1406,13 @@
     },
     "battle": {
      "check": "* OROCHI - No. 080 - FIRE - 8.5 STARS.\n* The Overlord of Norwoods. An eight-headed serpent, evolved from Noko.\n* Eight heads. Each one is in pain.",
-     "intro": "* Orochi is coiled around the great darkened Waystone.\n* One head turns toward you. Then all eight.",
+     "intro": "* Orochi rises out of the dark, coil over coil.\n* One head turns toward you. Then all eight.",
      "idle": [
       "* Orochi's heads hiss over one another. None of them sound like their own.",
-      "* Black veins pulse along its coils, in time with the Waystone.",
+      "* Black veins pulse along its coils, in time with something far below.",
       "* Smoke and the smell of scorched scales hang in the air.",
       "* Embers drift up between the heads and die in the dark.",
-      "* Deep furrows run south through the trees behind it, as if something very heavy was dragged here."
+      "* Deep furrows run through the trees behind it, as if something very heavy was dragged there."
      ],
      "talk": [
       "We are\nOrochi.",
@@ -1261,8 +1423,8 @@
       "The grey\none spoke\nour name.",
       "Turn your\nback. We\nare owed."
      ],
-     "spare_text": "* The heads fall silent, one by one.\n* Orochi lowers itself to the ground and draws its coils back around the Waystone.\n* The black veins along its scales begin to fade. It does not look relieved.",
-     "lore": "#080 Orochi - Fire element, 8.5 stars. The Overlord of Norwoods. The second and final form of Noko (evolves at level 34); also found rarely in the Saintspring forest. Lv1: HP 62, ATK 40, MAG 40, SPD 34, DEF 55, RES 55. Abilities: Dragon Rage (250 TU, 31-38 physical Fire damage to all foes), Flame (130 TU, 45-55 magical Fire damage to one foe), Inferno (200 TU, 26-31 magical Fire damage to all foes), Wiggle (130 TU, 45-55 physical Fire damage to one foe). Named after Yamata no Orochi, the eight-headed, eight-tailed serpent of Japanese myth; it is a serpent, not a dragon. Bound to the darkened waystone, it guards the corruption it was meant to keep out.",
+     "spare_text": "* The heads fall silent, one by one.\n* Orochi lowers itself to the ground and draws its coils back into the dark.\n* The black veins along its scales begin to fade. It does not look relieved.",
+     "lore": "#080 Orochi - Fire element, 8.5 stars. The Overlord of Norwoods. The second and final form of Noko (evolves at level 34); also found rarely in the Saintspring forest. Lv1: HP 62, ATK 40, MAG 40, SPD 34, DEF 55, RES 55. Abilities: Dragon Rage (250 TU, 31-38 physical Fire damage to all foes), Flame (130 TU, 45-55 magical Fire damage to one foe), Inferno (200 TU, 26-31 magical Fire damage to all foes), Wiggle (130 TU, 45-55 physical Fire damage to one foe). Named after Yamata no Orochi, the eight-headed, eight-tailed serpent of Japanese myth; it is a serpent, not a dragon.",
      "acts": [
       {
        "name": "Name the Heads",
@@ -1389,9 +1551,7 @@
     ]
    },
    "role": "boss",
-   "rooms": [
-    "waystone"
-   ]
+   "rooms": []
   },
   {
    "kit": {

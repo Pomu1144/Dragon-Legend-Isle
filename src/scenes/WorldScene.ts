@@ -31,6 +31,10 @@ interface WorldData {
 
 // Villager dialogue from every generated region (past the Waystone, and through the old frontiers).
 const npcLines = { ...EXPANSION_STORY.npc_dialogue, ...REGION_STORY.npc_dialogue };
+/** The Guardian coiled at the Waystone fork (a DIB Guardian, not an Overlord). */
+const WAYSTONE_GUARDIAN = 'noko';
+/** Its level against the party's average: an early, fair Guardian (a hatchling and one capture win most of the time). */
+const WAYSTONE_LV_OFFSET = -2;
 
 export interface BattleResult {
   monster: string;
@@ -717,7 +721,8 @@ export class WorldScene extends Phaser.Scene {
     if (result.fight?.startsWith('bounty:')) return this.afterBounty(result);
     if (result.fight) return this.afterMissionFight(result);
     if (REGION_STORY.bosses[result.monster]) return this.afterRegionBoss(result);
-    if ((result.monster === 'lich' || result.monster === 'orochi') && result.outcome === 'fled') {
+    const waystone = result.monster === WAYSTONE_GUARDIAN && this.room.id === 'waystone';
+    if ((result.monster === 'lich' || waystone) && result.outcome === 'fled') {
       // breaking off is no ending: Kael steps back out of the trigger and it waits for him
       if (this.fightReturn) this.player.setPosition(this.fightReturn[0], this.fightReturn[1]);
       this.applyScale();
@@ -728,8 +733,9 @@ export class WorldScene extends Phaser.Scene {
       State.setFlag('metLich');
       this.say(scene(result.outcome === 'won' ? 'after_lich_won' : 'after_lich_peace'));
     }
-    if (result.monster === 'orochi') {
+    if (waystone) {
       // Not an ending: the Waystone falls quiet and the roads beyond open.
+      // (The flag names predate the Guardian's id; old saves keep their open roads.)
       State.setFlag('orochiDone');
       const peaceful = result.outcome !== 'won';
       State.setFlag(peaceful ? 'orochiSpared' : 'orochiSlain');
@@ -800,12 +806,12 @@ export class WorldScene extends Phaser.Scene {
       this.cameras.main.shake(300, 0.004);
       this.say(scene('lich_encounter'), () => this.startBattle(['lich']));
     }
-    if (id === 'orochi') {
+    if (id === 'noko' || id === 'orochi') {
       this.busy = true;
       this.fightReturn = this.trail[0] ? [this.trail[0][0], this.trail[0][1]] : [this.lastSafe[0], this.lastSafe[1]];
       Sound.stopMusic(0.5);
       this.cameras.main.shake(900, 0.008);
-      this.say(scene('orochi_awakens'), () => this.startBattle(['orochi']));
+      this.say(scene('orochi_awakens'), () => this.startBattle([WAYSTONE_GUARDIAN], { nocap: true, lvOffset: WAYSTONE_LV_OFFSET }));
     }
   }
 

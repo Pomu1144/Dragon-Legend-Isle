@@ -620,7 +620,7 @@ export const STORY: StoryData = {
    {
     "speaker": "",
     "portrait": "none",
-    "text": "* The ground shifts. Beneath the fork, something vast is uncoiling. One serpent head rises from the dark. Then another. Then eight."
+    "text": "* The ground shifts. From the roots at the foot of the stone, something uncoils: a young serpent, its back striped red, its tail ringed like coals. It rears up the stone's face, hissing."
    },
    {
     "speaker": "Kael",
@@ -628,14 +628,14 @@ export const STORY: StoryData = {
     "text": "He did this. He woke it, so no one could follow him."
    },
    {
-    "speaker": "Orochi",
+    "speaker": "Noko",
     "portrait": "none",
     "text": "Who walks the roots of the Norwoods... The grey one promised me the first to follow. A boy. How small."
    },
    {
-    "speaker": "Orochi",
+    "speaker": "Noko",
     "portrait": "none",
-    "text": "I am Orochi, Overlord of the Norwoods. Turn your back, and I will take you quickly."
+    "text": "I am Noko, keeper of this stone. A hundred years it has burned me, and I have not grown. Turn your back, and I will take you quickly."
    },
    {
     "speaker": "Kael",
@@ -647,7 +647,7 @@ export const STORY: StoryData = {
    {
     "speaker": "",
     "portrait": "none",
-    "text": "* Orochi lowers its eight heads and sinks back into the roots, silent, the way a chained thing goes silent. The ash fades from the Waystone..."
+    "text": "* Noko lowers its small head and sinks back around the foot of the stone, silent, the way a chained thing goes silent. The ash fades from the Waystone..."
    },
    {
     "speaker": "",
@@ -662,7 +662,7 @@ export const STORY: StoryData = {
    {
     "speaker": "Divine",
     "portrait": "mon_divine",
-    "text": "The one you hunt did not break the Overlord's sleep by force. He bargained with it. Remember that. He makes bargains."
+    "text": "The one you hunt did not wake the stone's keeper by force. He bargained with it. Remember that. He makes bargains."
    },
    {
     "speaker": "Divine",
@@ -704,7 +704,7 @@ export const STORY: StoryData = {
    {
     "speaker": "",
     "portrait": "none",
-    "text": "* As the last head goes down, it breathes one word: ...free..."
+    "text": "* As Noko goes down, it breathes one word: ...free..."
    },
    {
     "speaker": "",

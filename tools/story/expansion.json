@@ -3,7 +3,7 @@
   {
    "speaker": "",
    "portrait": "none",
-   "text": "* Orochi lowers its eight heads and sinks back into the roots, silent, the way a chained thing goes silent. The ash fades from the Waystone..."
+   "text": "* Noko lowers its small head and sinks back around the foot of the stone, silent, the way a chained thing goes silent. The ash fades from the Waystone..."
   },
   {
    "speaker": "",
@@ -18,7 +18,7 @@
   {
    "speaker": "Divine",
    "portrait": "mon_divine",
-   "text": "The one you hunt did not break the Overlord's sleep by force. He bargained with it. Remember that. He makes bargains."
+   "text": "The one you hunt did not wake the stone's keeper by force. He bargained with it. Remember that. He makes bargains."
   },
   {
    "speaker": "Divine",
@@ -60,12 +60,17 @@
   {
    "speaker": "",
    "portrait": "none",
-   "text": "* As the last head goes down, it breathes one word: ...free..."
+   "text": "* As Noko goes down, it breathes one word: ...free..."
   },
   {
    "speaker": "",
    "portrait": "none",
    "text": "* Then the forest is silent. The Waystone stays dark, the grey handprint still pressed into its face."
+  },
+  {
+   "speaker": "",
+   "portrait": "none",
+   "text": "* Far off to the north, deep under the Norwoods, something much larger turns over in its sleep."
   },
   {
    "speaker": "",
@@ -93,7 +98,7 @@
    {
     "speaker": "",
     "portrait": "none",
-    "text": "* The road is scorched in long black furrows, as if something huge and burning had been dragged along it, south toward the fork. The trail lantern at the fork is dark."
+    "text": "* The road is scorched in one long black furrow, as if something burning had been dragged along it, south toward the fork. The trail lantern at the fork is dark."
    },
    {
     "speaker": "",
@@ -110,7 +115,7 @@
    {
     "speaker": "",
     "portrait": "none",
-    "text": "* The ground sinks into a great coiled hollow where Orochi slept. Above it, under a split tree, the remains of a camp. The fire was put out with ash, not water."
+    "text": "* The ground sinks into a great coiled hollow, far too wide for anything Kael met at the Waystone. Above it, under a split tree, the remains of a camp. The fire was put out with ash, not water."
    },
    {
     "speaker": "",
@@ -281,5 +286,5 @@
   "The valley gate is barred from the inside. Brann's mark is on the bar. The road beyond runs east, up the valley, toward the dragon that keeps the pass.",
   "He took them this way. Kael presses his hand to the cold wood. Not yet. But soon."
  ],
- "map_text_addendum": "Beyond the Waystone fork, two high roads climb out of the hollow. The left road crosses the scorched part of the Norwoods, past Serpent's Hollow where Orochi slept, to the roots of the Giant Mangal. The dungeon rises eight floors, but the Dundean lodge has barred it above the first. The right road winds into the Forest of Mangal, past an abandoned building site, to a crossroads whose north road to Ringfeld is blocked by a fallen trunk. The two roads meet again in the Safaris, open grassland cut by a river, with a small house on its bank. Dundean stands at the heart of the Safaris. From its valley gate, a road runs east up the South Earlsome valley to a pass the hunters say a dragon keeps, and beyond it to Longdale. The hunters lift the bars when they judge it safe. The map does not end here. It has only been drawn this far."
+ "map_text_addendum": "Beyond the Waystone fork, two high roads climb out of the hollow. The left road crosses the scorched part of the Norwoods, past Serpent's Hollow, where the Overlord Orochi once slept, to the roots of the Giant Mangal. The dungeon rises eight floors, but the Dundean lodge has barred it above the first. The right road winds into the Forest of Mangal, past an abandoned building site, to a crossroads whose north road to Ringfeld is blocked by a fallen trunk. The two roads meet again in the Safaris, open grassland cut by a river, with a small house on its bank. Dundean stands at the heart of the Safaris. From its valley gate, a road runs east up the South Earlsome valley to a pass the hunters say a dragon keeps, and beyond it to Longdale. The hunters lift the bars when they judge it safe. The map does not end here. It has only been drawn this far."
 }

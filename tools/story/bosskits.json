@@ -46,15 +46,62 @@
    }
   ]
  },
+ "noko": {
+  "check": "* NOKO - No. 079 - FIRE - 3 STARS.\n* ATK 8, MAG 8, SPD 19. Flame and Wiggle, both fire.\n* The first form of Orochi. It should have grown into one long ago.",
+  "intro": "* Noko is coiled around the foot of the great darkened Waystone.\n* It rears up the stone's face. The rings on its tail glow like coals.",
+  "idle": [
+   "* Noko sways against the Waystone. Its scales smoke where they touch the stone.",
+   "* Black veins pulse along its back, in time with the Waystone.",
+   "* Smoke and the smell of scorched scales hang in the air.",
+   "* The red rings on its tail flare, then dim, then flare again.",
+   "* A single deep furrow runs down the north road behind it, as if it was dragged here."
+  ],
+  "talk": [
+   "I am\nNoko.",
+   "Keeper of\nthis stone.",
+   "The stone\nspeaks\nthrough me.",
+   "It burns.\nIt always\nburns.",
+   "A hundred\nyears. I\nhave not\ngrown.",
+   "The grey\none spoke\nmy name.",
+   "Turn your\nback. I\nam owed."
+  ],
+  "spare_text": "* Noko's hissing falls silent.\n* It lowers itself to the ground and draws its coils back around the Waystone.\n* The black veins along its back begin to fade. It does not look relieved.",
+  "acts": [
+   {
+    "name": "Kneel by the Stone",
+    "text": [
+     "* You kneel at the foot of the Waystone, within reach of its jaws.",
+     "* Noko sways over you. It does not strike.",
+     "* The fire in its throat burns lower."
+    ]
+   },
+   {
+    "name": "Speak Softly",
+    "text": [
+     "* You speak to it quietly, the way you would to a frightened animal.",
+     "* Its hissing thins. Nothing has spoken to it gently in a long time.",
+     "* Its tail stops lashing the ash."
+    ]
+   },
+   {
+    "name": "Say Its Name",
+    "text": [
+     "* You say its name, softly: Noko.",
+     "* It goes still at once. Someone has said that name to it lately.",
+     "* Somewhere in those small coils, something remembers not burning."
+    ]
+   }
+  ]
+ },
  "orochi": {
   "check": "* OROCHI - No. 080 - FIRE - 8.5 STARS.\n* The Overlord of Norwoods. An eight-headed serpent, evolved from Noko.\n* Eight heads. Each one is in pain.",
-  "intro": "* Orochi is coiled around the great darkened Waystone.\n* One head turns toward you. Then all eight.",
+  "intro": "* Orochi rises out of the dark, coil over coil.\n* One head turns toward you. Then all eight.",
   "idle": [
    "* Orochi's heads hiss over one another. None of them sound like their own.",
-   "* Black veins pulse along its coils, in time with the Waystone.",
+   "* Black veins pulse along its coils, in time with something far below.",
    "* Smoke and the smell of scorched scales hang in the air.",
    "* Embers drift up between the heads and die in the dark.",
-   "* Deep furrows run south through the trees behind it, as if something very heavy was dragged here."
+   "* Deep furrows run through the trees behind it, as if something very heavy was dragged there."
   ],
   "talk": [
    "We are\nOrochi.",
@@ -65,7 +112,7 @@
    "The grey\none spoke\nour name.",
    "Turn your\nback. We\nare owed."
   ],
-  "spare_text": "* The heads fall silent, one by one.\n* Orochi lowers itself to the ground and draws its coils back around the Waystone.\n* The black veins along its scales begin to fade. It does not look relieved.",
+  "spare_text": "* The heads fall silent, one by one.\n* Orochi lowers itself to the ground and draws its coils back into the dark.\n* The black veins along its scales begin to fade. It does not look relieved.",
   "acts": [
    {
     "name": "Name the Heads",
