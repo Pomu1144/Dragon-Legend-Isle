@@ -110,7 +110,7 @@ function fromKit(k: Kit): MonsterDef {
     name: k.name,
     color: nameColor(k.sprite.dominant_color_hex),
     art: k.id === 'divine' ? 'mon_divine' : 'mon_' + k.id,
-    height: k.role === 'boss' ? 380 : k.role === 'miniboss' ? 330 : 280,
+    height: k.role === 'boss' ? 380 : k.role === 'miniboss' || k.role === 'formula' ? 340 : 280,
     hp,
     atk,
     def,
@@ -154,7 +154,7 @@ export const MONSTERS: Record<string, MonsterDef> = Object.fromEntries(DIB_KITS.
 
 /** Bestiary order follows the original DIB monster numbers. */
 export const BESTIARY_ORDER = Object.values(MONSTERS)
-  .sort((a, b) => Number(a.number) - Number(b.number))
+  .sort((a, b) => (Number(a.number) || 9999) - (Number(b.number) || 9999)) // formula creatures (F01...) last
   .map((m) => m.id);
 
 export interface ItemDef {

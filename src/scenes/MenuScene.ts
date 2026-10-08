@@ -10,6 +10,12 @@ import type { ReaderPage } from './ReaderScene';
 const PER_PAGE = 10;
 
 /** First sentences of the bestiary entry that fit in the two lines under the cards. */
+/** The Rogue Formula can be performed once a Blood Rogue and a Cult Rogue have both been captured. */
+function canFuse() {
+  const b = State.get().bestiary;
+  return !!b.blood_rogue?.bound && !!b.cult_rogue?.bound && !b.bloodgale?.bound;
+}
+
 function shortLore(lore: string, max = 130) {
   // The header line already gives number / element / stars, so drop a lore opener that repeats them.
   const parts = lore.replace(/^No\. \d+[^.]*\.\s*/, '').split(/(?<=\.)\s+(?=[A-Z])/).filter((p, i) => i > 0 || !/\b(No\.|number)\s*\d+/i.test(p));
@@ -54,6 +60,8 @@ export class MenuScene extends Phaser.Scene {
     const W = this.scale.width;
     const H = this.scale.height;
     this.controls = new Controls(this);
+    this.events.off('readerAction');
+    this.events.on('readerAction', () => this.performFormula());
     this.tab = 0;
     this.sel = 0;
     this.closing = false;
@@ -232,7 +240,7 @@ export class MenuScene extends Phaser.Scene {
     this.itemTexts.forEach((t, i) => t.setColor(i === this.sel ? '#a8410a' : COLORS.ink));
   }
 
-  private readerFor(id: string): { title: string; pages: ReaderPage[] } {
+  private readerFor(id: string): { title: string; pages: ReaderPage[]; action?: string } {
     const it = STORY.items;
     if (MISSIONS) {
       const fr = Object.entries(MISSIONS.fragments).find(([, f]) => f.item === id);
@@ -244,8 +252,9 @@ export class MenuScene extends Phaser.Scene {
           pages: [
             { heading: 'Blood Rogue', text: 'The first half, in dried dark ink.', image: 'mon_blood_rogue' },
             { heading: 'Cult Rogue', text: 'The second half, in a wind-faded hand.', image: 'mon_cult_rogue' },
-            { heading: '= ???', text: fo.page },
+            { heading: '= Bloodgale', text: fo.page + '\n\nThe burned ink reads clearer with both halves together: BLOODGALE. Twin Fang, Gale Rite, Severance, Red Requiem.', image: 'mon_bloodgale' },
           ],
+          action: canFuse() ? 'Perform the formula: Blood Rogue + Cult Rogue' : undefined,
         };
     }
     if (id === 'manual') return { title: it.manual.title, pages: it.manual.pages.map((p) => ({ heading: p.heading, text: p.text })) };
@@ -269,6 +278,24 @@ export class MenuScene extends Phaser.Scene {
         ...(EXPANSION_STORY.map_text_addendum && State.get().flags.orochiDone ? [{ heading: 'Beyond the Waystone', text: EXPANSION_STORY.map_text_addendum }] : []),
       ],
     };
+  }
+
+  /** Blood Rogue + Cult Rogue = Bloodgale. Like a DIB recipe, the two are used up. */
+  private performFormula() {
+    if (!canFuse()) return;
+    State.record('blood_rogue').bound = false;
+    State.record('cult_rogue').bound = false;
+    const r = State.record('bloodgale');
+    r.seen = true;
+    r.bound = true;
+    State.setFlag('bloodgaleFormed');
+    Sound.save();
+    this.tab = 1;
+    this.sel = BESTIARY_ORDER.indexOf('bloodgale');
+    this.build();
+    const W = this.scale.width;
+    const t = title(this, W / 2 - 60, 360, 'Bloodgale joins you', 40, COLORS.gold).setOrigin(0.5).setDepth(50).setAlpha(0);
+    this.tweens.add({ targets: t, alpha: 1, duration: 300, yoyo: true, hold: 1600, onComplete: () => t.destroy() });
   }
 
   private buildQuests() {

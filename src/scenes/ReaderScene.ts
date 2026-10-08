@@ -18,13 +18,15 @@ export class ReaderScene extends Phaser.Scene {
   private content!: Phaser.GameObjects.Container;
   private resumeKey = 'Menu';
   private closing = false;
+  private action?: string; // offered on the last page; reported to the resumed scene as 'readerAction'
 
   constructor() {
     super('Reader');
   }
 
-  init(data: { title: string; pages: ReaderPage[]; resume?: string }) {
+  init(data: { title: string; pages: ReaderPage[]; resume?: string; action?: string }) {
     this.bookTitle = data.title;
+    this.action = data.action;
     this.pages = data.pages;
     this.resumeKey = data.resume ?? 'Menu';
     this.page = 0;
@@ -62,6 +64,8 @@ export class ReaderScene extends Phaser.Scene {
       y += img.displayHeight + 16;
     }
     this.content.add(ink(150, y, p.text, 22, W - 300));
+    if (this.action && this.page === this.pages.length - 1)
+      this.content.add(label(this, W / 2, this.scale.height - 108, `Z  ${this.action}`, 22, '#8a2a0a', 0).setOrigin(0.5).setStroke('#f6e3b8', 3));
     this.content.add(label(this, W / 2, this.scale.height - 72, `${this.page + 1} / ${this.pages.length}`, 16, COLORS.ink, 0).setOrigin(0.5).setStroke('#f6e3b8', 2));
   }
 
@@ -88,6 +92,7 @@ export class ReaderScene extends Phaser.Scene {
       Sound.cancel();
       this.scene.stop();
       this.scene.resume(this.resumeKey);
+      if (z && this.action) this.scene.get(this.resumeKey).events.emit('readerAction', this.action);
     }
   }
 }

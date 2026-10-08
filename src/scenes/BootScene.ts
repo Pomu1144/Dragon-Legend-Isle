@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { queueAll, makeRuntimeTextures, MONSTER_ART } from '../assets';
+import { queueAll, makeRuntimeTextures, MONSTER_ART, PAINTED_ART } from '../assets';
 import { FONT_LABEL } from '../ui/widgets';
 import { EXPANSION_NPC_SHEETS } from '../data/expansion';
 
@@ -36,7 +36,7 @@ export class BootScene extends Phaser.Scene {
     this.load.once('complete', () => {
       makeRuntimeTextures(this);
       // Keep the small original DIB sprites crisp when scaled up.
-      for (const k of MONSTER_ART) this.textures.get('mon_' + k).setFilter(Phaser.Textures.FilterMode.NEAREST);
+      for (const k of MONSTER_ART) if (!PAINTED_ART.has(k)) this.textures.get('mon_' + k).setFilter(Phaser.Textures.FilterMode.NEAREST);
       this.makeAnims();
       txt.setText('Ready');
       const params = new URLSearchParams(location.search);

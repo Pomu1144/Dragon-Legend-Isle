@@ -6470,5 +6470,177 @@ export const DIB_KITS = [
     }
    ]
   }
+ },
+ {
+  "role": "formula",
+  "rooms": [],
+  "name": "Bloodgale",
+  "id": "bloodgale",
+  "original": true,
+  "wiki": {
+   "number": "F01",
+   "stars": 6.5,
+   "element": "Fire",
+   "image_url": "",
+   "image_size": [
+    561,
+    460
+   ],
+   "lv1": {
+    "hp": 40,
+    "attack": 19,
+    "magic": 13,
+    "speed": 38,
+    "defense": 26,
+    "resist": 20
+   },
+   "abilities": [
+    {
+     "name": "Twin Fang",
+     "tu": "50",
+     "target": "2 Foes",
+     "effect": "7-8 Physical Damage (Fire)"
+    },
+    {
+     "name": "Gale Rite",
+     "tu": "100",
+     "target": "All Friends",
+     "effect": "Speeds up actions by 38% and increases Attack by 34"
+    },
+    {
+     "name": "Severance",
+     "tu": "130",
+     "target": "1 Foe",
+     "effect": "20-24 Physical Damage (Air), +100% Damage vs. Humanoid"
+    },
+    {
+     "name": "Red Requiem",
+     "tu": "250",
+     "target": "All Foes",
+     "effect": "28-34 Physical Damage (Fire), +10% Damage per friendly casualty in a battle"
+    }
+   ],
+   "evolution": "Formed by the Rogue Formula: Blood Rogue + Cult Rogue.",
+   "obtain": "Not found in the wild. Made from a Blood Rogue and a Cult Rogue with the Rogue Formula."
+  },
+  "sprite": {
+   "description": "A hooded rogue in torn white robes veined with blood-red cracks, a purple sash, a blood-red blade wreathed in red smoke in one hand and a pale katana in the other.",
+   "dominant_color_hex": "#c8bfb8",
+   "faces": "front",
+   "flier": false
+  },
+  "battle": {
+   "check": "* BLOODGALE - FIRE - 6.5 STARS.\n* Two rogues, one shape. One blade bleeds; the other carries the wind.",
+   "intro": "* The wind turns red. Bloodgale steps out of it.",
+   "idle": [
+    "* Torn white cloth lifts in a wind you cannot feel.",
+    "* Red smoke coils along the left blade and does not drift.",
+    "* Bloodgale lowers both swords. It is not resting.",
+    "* The purple sash is the only thing that does not move."
+   ],
+   "talk": [
+    "...",
+    "two rites.\none blade.",
+    "the wind\nremembers\nthe blood.",
+    "stand.\nor kneel.",
+    "i was\nmade.\nnot born."
+   ],
+   "spare_text": "* Bloodgale sheathes the pale sword. The red one it keeps drawn, pointed at the ground.",
+   "lore": "An original creature, not from Dragon Island Blue: the result of the Rogue Formula, which joins a Blood Rogue and a Cult Rogue. It keeps the Blood Rogue's vengeance and the Cult Rogue's wind rites. Stats are its level-1 values.",
+   "capture_fail": [
+    "* The card tears on the red blade.",
+    "* Bloodgale does not even look at it."
+   ],
+   "acts": [
+    {
+     "name": "Name the Rites",
+     "text": [
+      "* You name both rites aloud: the blood and the wind.",
+      "* Bloodgale's blades dip, one after the other."
+     ],
+     "mercy": 30,
+     "once": true,
+     "calm": 1
+    },
+    {
+     "name": "Stand Fast",
+     "text": [
+      "* You plant your feet and do not step back.",
+      "* The red smoke slows around it."
+     ],
+     "mercy": 25,
+     "once": false,
+     "calm": 1
+    },
+    {
+     "name": "Lower Weapon",
+     "text": [
+      "* You lower your hands. Your hatchling does the same.",
+      "* Bloodgale watches a long time."
+     ],
+     "mercy": 25,
+     "once": false,
+     "calm": 2
+    }
+   ],
+   "attacks": [
+    {
+     "ability": "Twin Fang",
+     "tu": 50,
+     "base_pattern": "telegraph_lines",
+     "projectile": "orb_blood",
+     "tint_hex": "#c0182a",
+     "twist": "multi_hit",
+     "box": [
+      420,
+      240
+     ],
+     "intensity": 1.1,
+     "flavor": "* Two blades cross the air at once."
+    },
+    {
+     "ability": "Gale Rite",
+     "tu": 100,
+     "base_pattern": "tornado_sweep",
+     "projectile": "fx_tornado",
+     "tint_hex": "#e8e2d8",
+     "twist": "none",
+     "box": [
+      460,
+      240
+     ],
+     "intensity": 1.0,
+     "flavor": "* Torn cloth whirls up. It moves faster now."
+    },
+    {
+     "ability": "Severance",
+     "tu": 130,
+     "base_pattern": "aimed_volley",
+     "projectile": "fx_silverring",
+     "tint_hex": "#f2f2f2",
+     "twist": "none",
+     "box": [
+      380,
+      240
+     ],
+     "intensity": 1.2,
+     "flavor": "* A single white line. Then the cut."
+    },
+    {
+     "ability": "Red Requiem",
+     "tu": 250,
+     "base_pattern": "radial_burst",
+     "projectile": "orb_blood",
+     "tint_hex": "#b0101e",
+     "twist": "all_foes_wide",
+     "box": [
+      480,
+      250
+     ],
+     "intensity": 1.3,
+     "flavor": "* Red rings open from the ground and fill everything."
+    }
+   ]
+  }
  }
 ] as const;

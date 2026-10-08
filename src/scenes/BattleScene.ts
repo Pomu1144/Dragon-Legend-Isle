@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { PAINTED_ART } from '../assets';
 import { Sound } from '../audio/Sound';
 import { BulletField, PATTERNS, BASE_PATTERNS, Box } from '../battle/patterns';
 import { AttackDef, CAPTURE_CARDS, CaptureCard, captureChance, ITEMS, MONSTERS, MonsterDef, SkillDef, skillFrom } from '../data/monsters';
@@ -128,7 +129,7 @@ export class BattleScene extends Phaser.Scene {
     this.tweens.add({ targets: this.monsterGlow, alpha: 0.3, scale: 2.6, yoyo: true, repeat: -1, duration: 1800, ease: 'Sine.easeInOut' });
     this.monster = this.add.image(W / 2, 376, this.m.art).setOrigin(0.5, 1).setDepth(4);
     // Original DIB sprites are small: show them unaltered at a crisp integer scale.
-    this.monster.texture.setFilter(Phaser.Textures.FilterMode.NEAREST);
+    if (!PAINTED_ART.has(this.m.id)) this.monster.texture.setFilter(Phaser.Textures.FilterMode.NEAREST);
     const fit = Math.min(this.m.height / this.monster.height, 520 / this.monster.width);
     const sc = fit >= 2 ? Math.max(2, Math.min(Math.round(fit), Math.floor(360 / this.monster.height))) : fit;
     if (this.m.faces === 'right') this.monster.setFlipX(false);
