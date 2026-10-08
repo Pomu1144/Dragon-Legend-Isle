@@ -8,6 +8,7 @@ import { fireflies, lightPool, sparkleBurst } from '../ui/fx';
 import { label, title, COLORS } from '../ui/widgets';
 import { scene } from '../data/script';
 import { STARTERS } from '../data/starters';
+import { ITEMS } from '../data/monsters';
 import { STORY } from '../data/story';
 import { EXPANSION_STORY } from '../data/expansion';
 import { MISSIONS } from '../data/missions';
@@ -168,6 +169,7 @@ export class WorldScene extends Phaser.Scene {
     for (const t of R.things ?? []) {
       const run = () => {
         if (t.id === 'guild' && State.flag('briefed') && !State.flag('hasStarter')) return this.openHatchery();
+        if (R.id === 'dundean_square' && t.id === 'lodge') return this.say(t.lines.map((text) => ({ text })), () => this.openShop());
         this.say(t.lines.map((text) => ({ text, speaker: t.speaker, portrait: t.portrait })));
       };
       this.interacts.push({ x: t.at[0], y: t.at[1], r: t.r, promptY: t.at[1] - 70, run });
@@ -740,6 +742,36 @@ export class WorldScene extends Phaser.Scene {
           this.say([...this.toLines(M.formula.joined), { text: `* (The two fragments became the ${M.formula.item_name}. Read it from the Satchel.)` }]);
         });
       }),
+    );
+  }
+
+  /** The quartermaster at the Dundean hunters' lodge: capture cards and tonics, for gold. */
+  private openShop(greeted = false) {
+    const STOCK = [
+      { item: 'orb', price: 25 },
+      { item: 'silver_card', price: 120 },
+      { item: 'tonic', price: 20 },
+    ];
+    const s = State.get();
+    const ask = greeted ? '* Anything else?' : `* The quartermaster looks up. "Cards and tonics. Gold only."`;
+    const prices = STOCK.map((x) => `${ITEMS[x.item].name} ${x.price} G`).join('  ·  ');
+    this.say(
+      [
+        { text: ask, speaker: 'Quartermaster', portrait: 'none' },
+        { text: `* ${prices}\n* (You have ${s.gold} G.)`, choices: ['Capture Card', 'Silver Card', 'Tonic', 'Leave'] },
+      ],
+      (c) => {
+        const x = STOCK[c];
+        if (!x) return;
+        if (s.gold < x.price) {
+          Sound.cancel();
+          return this.say([{ text: '* "Come back with the gold."', speaker: 'Quartermaster', portrait: 'none' }], () => this.openShop(true));
+        }
+        s.gold -= x.price;
+        State.addItem(x.item, 1);
+        Sound.save();
+        this.say([{ text: `* (You bought a ${ITEMS[x.item].name}. ${s.gold} G left.)` }], () => this.openShop(true));
+      },
     );
   }
 
