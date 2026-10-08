@@ -39,3 +39,10 @@ Debug URLs: `?room=forest`, `?battle=orochi&room=waystone`.
 - `fetch_starters.py` / `gen_story.py`: download the starter hatchlings and Dragonlings plus the world map, and generate `src/data/story.ts` and `starters.ts`.
 
 Creature art and data belong to the creators of Dragon Island Blue; this is a fan project.
+
+## Spoiler warning
+
+The story is meant to be discovered by playing. Everything under `tools/story/` and the story data in
+`src/data/` (`story.ts`, `expansion.ts`, `missions.ts`, `regions.ts`, `landmarkText.ts`) contains the plot,
+and `tools/story/BIBLE.SPOILERS.json` explains all of it. `tools/apply_story.py` re-applies the story text
+after any generator re-runs.

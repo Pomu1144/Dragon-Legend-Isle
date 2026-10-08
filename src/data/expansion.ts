@@ -3744,12 +3744,12 @@ export const EXPANSION_STORY: {
   {
    "speaker": "",
    "portrait": "none",
-   "text": "Orochi lowers its eight heads and sinks back into the roots. The ash fades from the Waystone, and its old carvings glow again, faint and gold."
+   "text": "* Orochi lowers its eight heads and sinks back into the roots, silent, the way a chained thing goes silent. The ash fades from the Waystone..."
   },
   {
    "speaker": "",
    "portrait": "none",
-   "text": "A pale light comes down through the trees. A celestial form, calm and silent, hangs above the fork."
+   "text": "* ...and its old carvings glow again, faint and gold. A pale light comes down through the trees and hangs above the fork, calm and silent."
   },
   {
    "speaker": "Divine",
@@ -3764,12 +3764,22 @@ export const EXPANSION_STORY: {
   {
    "speaker": "Divine",
    "portrait": "mon_divine",
-   "text": "Your sister and brother live. He took them up the high roads. Both roads meet again in the Safaris. Look for them there, near Dundean."
+   "text": "The stone will burn again. Until the moon is new. No longer."
+  },
+  {
+   "speaker": "Divine",
+   "portrait": "mon_divine",
+   "text": "Your sister and brother live. He took them up the high roads. Both roads meet again in the Safaris. Ask after them in Dundean."
   },
   {
    "speaker": "",
    "portrait": "none",
-   "text": "At the foot of the Waystone lies a small blue ribbon. Lira's. It is tied in a careful knot, like a signal."
+   "text": "* For a moment the light rests on Kael's hands, warm, the way a hand rests on a child's head. Then it lifts."
+  },
+  {
+   "speaker": "",
+   "portrait": "none",
+   "text": "* At the foot of the Waystone lies a small blue ribbon. Lira's. It is tied in a careful knot."
   },
   {
    "speaker": "Kael",
@@ -3779,24 +3789,29 @@ export const EXPANSION_STORY: {
   {
    "speaker": "Divine",
    "portrait": "mon_divine",
-   "text": "Then do not keep her waiting. This is only the first of many roads, and he does not rest."
+   "text": "Then go. She is still on the road, and the road is long."
   },
   {
    "speaker": "",
    "portrait": "none",
-   "text": "The light fades. Beyond the Waystone, the two roads leading up and away are clear now. The forest lets him pass."
+   "text": "* Kael folds the ribbon into his coat. The light fades. Beyond the Waystone, the two high roads lie clear, and the forest lets him pass."
   }
  ],
  "after_orochi_won": [
   {
    "speaker": "",
    "portrait": "none",
-   "text": "Orochi falls, and the forest goes silent. The Waystone stays dark, the ash handprint still burned into its face."
+   "text": "* As the last head goes down, it breathes one word: ...free..."
   },
   {
    "speaker": "",
    "portrait": "none",
-   "text": "In the ash at its foot lies a small blue ribbon. Lira's. It is tied in a careful knot and points up the high roads."
+   "text": "* Then the forest is silent. The Waystone stays dark, the grey handprint still pressed into its face."
+  },
+  {
+   "speaker": "",
+   "portrait": "none",
+   "text": "* In the ash at the foot of the stone lies a small blue ribbon. Lira's. It is tied in a careful knot."
   },
   {
    "speaker": "Kael",
@@ -3806,7 +3821,7 @@ export const EXPANSION_STORY: {
   {
    "speaker": "",
    "portrait": "none",
-   "text": "With the serpent gone, the two roads above the fork lie open. Far off, a thin line of grey smoke drifts toward the Safaris."
+   "text": "* Kael folds the ribbon into his coat. With the serpent gone, the two roads above the fork lie open. Far off, a thin grey haze hangs over the Safaris."
   },
   {
    "speaker": "Kael",
@@ -3819,12 +3834,12 @@ export const EXPANSION_STORY: {
    {
     "speaker": "",
     "portrait": "none",
-    "text": "The road is scorched in long black furrows, as if something hot was dragged along it. The trail lantern at the fork has burned out."
+    "text": "* The road is scorched in long black furrows, as if something huge and burning had been dragged along it, south toward the fork. The trail lantern at the fork is dark."
    },
    {
     "speaker": "",
     "portrait": "none",
-    "text": "In the soft earth at the edge of the burn, Kael finds two sets of small footprints. They walk close together."
+    "text": "* In the soft earth at the edge of the burn, Kael finds two sets of small footprints. They walk close together. A little ahead of them, a man's long, even stride."
    },
    {
     "speaker": "Kael",
@@ -3836,12 +3851,12 @@ export const EXPANSION_STORY: {
    {
     "speaker": "",
     "portrait": "none",
-    "text": "The ground sinks into a great coiled hollow where Orochi slept. Above it, under a split tree, the remains of a camp. The fire was put out with ash, not water."
+    "text": "* The ground sinks into a great coiled hollow where Orochi slept. Above it, under a split tree, the remains of a camp. The fire was put out with ash, not water."
    },
    {
     "speaker": "",
     "portrait": "none",
-    "text": "Two small hollows have been pressed into the moss beside the cold fire. Lira and Tobin slept here, or tried to."
+    "text": "* Beside a single bedroll, two small blankets lie folded. Lira and Tobin slept here, or tried to."
    },
    {
     "speaker": "Kael",
@@ -3853,36 +3868,36 @@ export const EXPANSION_STORY: {
    {
     "speaker": "",
     "portrait": "none",
-    "text": "The Giant Mangal rises above the canopy, older than any tree Kael has seen. Its roots are as thick as houses."
+    "text": "* The Giant Mangal rises above the canopy, older than any tree Kael has seen. Its roots are as thick as houses."
    },
    {
     "speaker": "",
     "portrait": "none",
-    "text": "A notice from the Dundean hunters is nailed to the board: GIANT MANGAL CLOSED. BARBARIAN SIGHTED ON THE UPPER FLOORS. BY ORDER OF THE LODGE."
+    "text": "* A notice from the Dundean hunters is nailed to the board: GIANT MANGAL CLOSED. BARBARIAN SIGHTED ON THE UPPER FLOORS. BY ORDER OF THE LODGE."
    },
    {
     "speaker": "",
     "portrait": "none",
-    "text": "The barricade at the root door has been pushed aside, just far enough for a man to pass. The edges of the planks are grey with ash."
+    "text": "* The barricade at the root door has been pushed aside, just far enough for a man to pass. The edges of the planks are grey with ash, going in and coming out."
    }
   ],
   "mangal_crossroads": [
    {
     "speaker": "",
     "portrait": "none",
-    "text": "At the shrine, every candle has gone out. The wax is still soft. Someone pinched them out one by one."
+    "text": "* At the shrine, every candle is dark. The wicks are pinched flat. Someone put them out one by one."
    },
    {
     "speaker": "",
     "portrait": "none",
-    "text": "A fallen mangal trunk lies across the north road. Beyond it, the earth has slid away into a ravine."
+    "text": "* The crossroads sign has lost one of its arms. A fallen mangal trunk lies across the north road, and beyond it the earth has slid away into a ravine."
    }
   ],
   "safaris_riverbank": [
    {
     "speaker": "",
     "portrait": "none",
-    "text": "The small house by the river stands empty. On the jetty, half under a plank, lies a little carved wooden dragon."
+    "text": "* The small house by the river stands empty. On the jetty, pushed under a plank where someone walking ahead would not see it, lies a little carved wooden dragon."
    },
    {
     "speaker": "Kael",
@@ -3890,16 +3905,21 @@ export const EXPANSION_STORY: {
     "text": "Tobin's. I carved this for him last winter. He never lets it out of his hand."
    },
    {
+    "speaker": "Kael",
+    "portrait": "hero_portrait",
+    "text": "He hid it. Not from me. From him."
+   },
+   {
     "speaker": "",
     "portrait": "none",
-    "text": "Kael puts it in his coat, beside the ribbon. The river runs on, quiet and cold."
+    "text": "* Kael puts it in his coat, beside the ribbon. The river runs on, quiet and cold."
    }
   ],
   "dundean_square": [
    {
     "speaker": "",
     "portrait": "none",
-    "text": "Dundean is quiet. Shutters are closed in daylight, and the hunters at the lodge door watch the road with their hands on their weapons."
+    "text": "* Dundean is quiet. Shutters are closed in daylight, and the hunters at the lodge door watch the road with their hands on their weapons."
    },
    {
     "speaker": "Kael",
@@ -3914,7 +3934,7 @@ export const EXPANSION_STORY: {
     {
      "speaker": "Old Edda",
      "portrait": "innkeeper_portrait",
-     "text": "Dun ar, open road. You came in from the Norwoods? On foot, at your age? Sit down before you fall down."
+     "text": "Dun ar, open road. Out of the Norwoods, on foot, at your age, with a guild hatchling at your heel. Sit down before you fall down."
     },
     {
      "speaker": "Kael",
@@ -3924,12 +3944,12 @@ export const EXPANSION_STORY: {
     {
      "speaker": "Old Edda",
      "portrait": "innkeeper_portrait",
-     "text": "...Then you have had a worse night than any of us. Brann at the valley gate saw something at first light. Talk to him. He will not lie to you."
+     "text": "...Then you have had a worse road than any of us. Brann at the valley gate saw something, three mornings ago. Talk to him. He will not lie to you."
     },
     {
      "speaker": "Old Edda",
      "portrait": "innkeeper_portrait",
-     "text": "The lodge has barred the Giant Mangal stair and the east valley gate. Only the hunters can lift those bars, and they do not do it lightly."
+     "text": "The lodge has barred the Giant Mangal stair and the east valley gate. Only the hunters can lift those bars, and they lift them when the lodge says. Not before."
     },
     {
      "speaker": "Old Edda",
@@ -3940,7 +3960,8 @@ export const EXPANSION_STORY: {
    "repeat": [
     "The grass hears. Keep your voice low on the roads, boy. The Safaris are not as empty as they look.",
     "The hunters lift the barricades when they judge it safe. Not before. Arguing with the lodge has never moved a bar in this town.",
-    "Eat something. I have buried hunters braver than you who forgot to."
+    "Eat something. I have buried hunters braver than you who forgot to.",
+    "Forty years I have kept this house. Everyone who comes in off that road comes in hungry."
    ],
    "name": "Old Edda",
    "portrait": "innkeeper_portrait"
@@ -3960,12 +3981,12 @@ export const EXPANSION_STORY: {
     {
      "speaker": "Brann",
      "portrait": "hunter_portrait",
-     "text": "At first light, across the Safaris. Grey, like a burnt-out fire walking. A girl at his side, and a small boy who kept looking back."
+     "text": "At first light, three mornings ago, across the Safaris. Grey, like a burnt-out fire walking. A girl at his side, and a small boy who kept looking back."
     },
     {
      "speaker": "Brann",
      "portrait": "hunter_portrait",
-     "text": "He took the valley road east, toward Longdale. Past it, there is a dragon guarding the passway. That is why I barred the gate behind him."
+     "text": "He took the valley road east. At the top of the valley, a dragon keeps the pass to Longdale. The lodge barred this gate behind him."
     },
     {
      "speaker": "Kael",
@@ -3975,27 +3996,33 @@ export const EXPANSION_STORY: {
     {
      "speaker": "Brann",
      "portrait": "hunter_portrait",
-     "text": "I am sorry. I had three hunters with me and none of us moved. That gate stays shut until the lodge says otherwise. I will not send a boy to die."
+     "text": "...Perhaps."
+    },
+    {
+     "speaker": "Brann",
+     "portrait": "hunter_portrait",
+     "text": "I had three hunters with me, and none of us moved. That gate stays shut until the lodge says otherwise. I am sorry."
     }
    ],
    "repeat": [
-    "The valley road runs east to Longdale. Past that, the dragon on the passway. Nobody walks it alone.",
-    "He did not hurry. That frightened me most. He walked like he knew nothing in the Safaris could stop him.",
-    "Show the lodge you can survive out there, and maybe they will lift the bar. Until then, I keep this gate."
+    "The valley road runs east to the pass, and the dragon that keeps it. Longdale lies beyond. Nobody walks it alone.",
+    "He did not hurry. He walked like a man who knew nothing in the Safaris would try to stop him.",
+    "He never once looked behind him. The boy did that for both of them.",
+    "The bar comes up when the lodge says. I have kept this gate twenty years, and my father kept it before me."
    ],
    "name": "Brann",
    "portrait": "hunter_portrait"
   }
  },
  "frontier_lines": [
-  "The stair to the second floor of the Giant Mangal is barred with lashed spears. A lodge mark is cut into the wood: BARBARIAN ALERT. NO PASSAGE ABOVE THE FIRST FLOOR.",
-  "Seven more floors rise above this one, and something on the upper floors has made the Dundean hunters afraid. The way up will have to wait for now.",
-  "The north road to Ringfeld is buried under a fallen mangal trunk. Beyond it, the earth has slid into a ravine. No one is getting through this way yet.",
-  "Past the ravine, the road goes on toward Ringfeld and the sea. It will be cleared one day. Not today.",
-  "The valley gate is barred from the inside. Brann's mark is on the bar. The road beyond runs east toward Longdale, and the dragon that guards the passway.",
+  "The stair to the second floor is lashed shut with rope and timber. A lodge mark: BARBARIAN ALERT. NO PASSAGE ABOVE THE FIRST FLOOR.",
+  "Seven more floors rise above this one, and something up there has made the Dundean hunters afraid. The way up will have to wait until the lodge lifts the bar.",
+  "The north road to Ringfeld is buried under a fallen mangal trunk. Beyond it, the earth has slid into a ravine. No one is getting through this way.",
+  "Past the ravine, the road goes on toward Ringfeld and the sea. There must be another way round to the coast.",
+  "The valley gate is barred from the inside. Brann's mark is on the bar. The road beyond runs east, up the valley, toward the dragon that keeps the pass.",
   "He took them this way. Kael presses his hand to the cold wood. Not yet. But soon."
  ],
- "map_text_addendum": "Beyond the Waystone fork, two high roads climb out of the hollow. The left road crosses the scorched part of the Norwoods, past Serpent's Hollow where Orochi slept, to the roots of the Giant Mangal. The dungeon rises eight floors, but the Dundean hunters have barred it above the first. The right road winds into the Forest of Mangal, past an abandoned building site, to a crossroads whose north road to Ringfeld is blocked by a fallen trunk. The two roads meet again in the Safaris, open grassland cut by a river, with a small house on its bank. Dundean stands at the heart of the Safaris. From its valley gate, a road runs east toward Longdale in South Earlsome. The hunters say a dragon guards the passway there. The map does not end here. It has only been drawn this far."
+ "map_text_addendum": "Beyond the Waystone fork, two high roads climb out of the hollow. The left road crosses the scorched part of the Norwoods, past Serpent's Hollow where Orochi slept, to the roots of the Giant Mangal. The dungeon rises eight floors, but the Dundean lodge has barred it above the first. The right road winds into the Forest of Mangal, past an abandoned building site, to a crossroads whose north road to Ringfeld is blocked by a fallen trunk. The two roads meet again in the Safaris, open grassland cut by a river, with a small house on its bank. Dundean stands at the heart of the Safaris. From its valley gate, a road runs east up the South Earlsome valley to a pass the hunters say a dragon keeps, and beyond it to Longdale. The hunters lift the bars when they judge it safe. The map does not end here. It has only been drawn this far."
 };
 
 export const EXPANSION_NPC_SHEETS: string[] = ["hunter", "innkeeper"];

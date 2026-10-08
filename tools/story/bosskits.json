@@ -1,0 +1,277 @@
+{
+ "lich": {
+  "check": "* LICH - No. 159 - DEATH - 3 STARS.\n* MAG 99, RES 173, ATK 25.\n* It does not touch what it destroys. It has not left this wood in a long time.",
+  "intro": "* The moss goes cold. A crimson robe drifts out between the trees.\n* LICH blocks the way.",
+  "idle": [
+   "* Lich hovers above the trail. The moss beneath it withers.",
+   "* Lich murmurs an incantation in a language older than Wesing.",
+   "* The smell of tallow and crumbling pages.",
+   "* The void beneath its hood turns toward the Waystone, then back to you.",
+   "* Lich speaks a few words very quietly, the way a man repeats a lesson he was made to learn."
+  ],
+  "talk": [
+   "Mortal.\nTurn back.",
+   "Dark Matter\nwill find\nyou.",
+   "I kept\nthe old\nbooks.",
+   "The stone\nhas begun\nto speak.",
+   "I can no\nlonger\nrefuse it.",
+   "Go home.\nThis is the\nlast time."
+  ],
+  "spare_text": "* Lich lowers its staff.\n* It drifts back into the Mosswood, its incantation falling silent.\n* It does not watch you go. It watches the road behind you.\n* Lich was spared.",
+  "acts": [
+   {
+    "name": "Bow",
+    "text": [
+     "* You bow before Lich as one would before an elder.",
+     "* The void beneath its hood regards you for a long while.",
+     "* Its hostility wanes."
+    ]
+   },
+   {
+    "name": "Ask of the Books",
+    "text": [
+     "* You ask Lich what was written in the books it kept.",
+     "* It begins to answer. The words come slowly, half-forgotten.",
+     "* Then it stops, as if it has read ahead to the last page.",
+     "* For a moment, it remembers itself."
+    ]
+   },
+   {
+    "name": "Resist Sleep",
+    "text": [
+     "* The cold makes your eyes heavy. You force them open.",
+     "* Lich watches you fight it. It knows what Awaken is for.",
+     "* It seems to respect the effort. It seems, too, to be sorry for it."
+    ]
+   }
+  ]
+ },
+ "orochi": {
+  "check": "* OROCHI - No. 080 - FIRE - 8.5 STARS.\n* The Overlord of Norwoods. An eight-headed serpent, evolved from Noko.\n* Eight heads. Each one is in pain.",
+  "intro": "* Orochi is coiled around the great darkened Waystone.\n* One head turns toward you. Then all eight.",
+  "idle": [
+   "* Orochi's heads hiss over one another. None of them sound like their own.",
+   "* Black veins pulse along its coils, in time with the Waystone.",
+   "* Smoke and the smell of scorched scales hang in the air.",
+   "* Embers drift up between the heads and die in the dark.",
+   "* Deep furrows run south through the trees behind it, as if something very heavy was dragged here."
+  ],
+  "talk": [
+   "We are\nOrochi.",
+   "Overlord\nof the\nNorwoods.",
+   "The stone\nspeaks\nthrough us.",
+   "It burns.\nIt always\nburns.",
+   "Once we\nwere only\nNoko.",
+   "The grey\none spoke\nour name.",
+   "Turn your\nback. We\nare owed."
+  ],
+  "spare_text": "* The heads fall silent, one by one.\n* Orochi lowers itself to the ground and draws its coils back around the Waystone.\n* The black veins along its scales begin to fade. It does not look relieved.",
+  "acts": [
+   {
+    "name": "Name the Heads",
+    "text": [
+     "* You speak to each head in turn, slowly, one at a time.",
+     "* ...five, six, seven, eight.",
+     "* The hissing thins. Each head was waiting to be heard."
+    ]
+   },
+   {
+    "name": "Stand Unarmed",
+    "text": [
+     "* You lower your hands and stand within reach of its jaws.",
+     "* Eight heads hover over you. None of them strike.",
+     "* The fire in its throats burns lower."
+    ]
+   },
+   {
+    "name": "Recall Noko",
+    "text": [
+     "* You tell Orochi of Noko, the small serpent it once was.",
+     "* All eight heads go still at once. Someone has said that name to it lately.",
+     "* Somewhere in those coils, something remembers being small, and not burning."
+    ]
+   }
+  ]
+ },
+ "divine": {
+  "check": "* DIVINE - No. 202 - LIFE - 9 STARS.\n* A Spirit of the Sanctuary. Immune to all negative status effects.\n* It does not regard you as a foe.",
+  "intro": "* Light pours down from above.\n* Divine descends.",
+  "idle": [
+   "* Divine hovers in perfect silence. Its wings do not move.",
+   "* The light around its head is steady and warm.",
+   "* The Waystone's shadow draws back from it.",
+   "* The air is still and clean, like the Sanctuary at dawn.",
+   "* Divine looks at you the way a lamplighter looks at a lamp that has been filled."
+  ],
+  "talk": [
+   "...",
+   "THE STONE\nREMEMBERS\nTHE SUN.",
+   "MERCY IS\nALSO A\nLIGHT.",
+   "BE STILL.",
+   "UNTIL THE\nMOON IS\nNEW.",
+   "THE ROAD\nIS STILL\nOPEN."
+  ],
+  "spare_text": "* Divine lowers its wings.\n* The Waystone drinks its light and burns again. Not as bright as it once did.",
+  "acts": [
+   {
+    "name": "Pray",
+    "text": [
+     "* You fold your hands and pray.",
+     "* Divine's glow softens."
+    ]
+   },
+   {
+    "name": "Bow",
+    "text": [
+     "* You bow low before the winged spirit.",
+     "* Divine inclines its head, as if marking something down."
+    ]
+   },
+   {
+    "name": "Show Mercy",
+    "text": [
+     "* You tell Divine you spared the one at the Waystone.",
+     "* For a moment, the light feels warm instead of blinding.",
+     "* It is pleased with you. It is very pleased with you."
+    ]
+   }
+  ]
+ },
+ "blood_rogue": {
+  "check": "* BLOOD ROGUE - No. 149 - FIRE - 5.5 STARS.\n* SPD 36, DEF 30. Its Slay cuts twice as deep into humanoid flesh.\n* Its Vengeance grows heavier for every one of its own that has fallen.",
+  "intro": "* The silence among the graves is complete.\n* A hooded figure rises from the altar steps.\n* Blood Rogue draws its blade. The rite will wait for you.",
+  "idle": [
+   "* Blood Rogue stands between you and the altar. It does not move aside.",
+   "* Red light seeps from the seams of its coat, like a wound that will not close.",
+   "* Behind it, the ritual fire gutters. No one is left to feed it.",
+   "* Blood Rogue turns its hood toward the fallen. It seems to be counting them.",
+   "* On the hand it keeps on the altar, a ring of carved horn.",
+   "* Its head is bowed a little to one side, as if it is listening for someone very small."
+  ],
+  "talk": [
+   "Kneel among\nthe graves.",
+   "The rite\nis not\nfinished.",
+   "Each one\nthat falls\nfeeds me.",
+   "Be quiet.\nI am\nlistening.",
+   "I was a\npriest once.\nLike them.",
+   "She is\nalmost\nhere."
+  ],
+  "spare_text": "* Blood Rogue lowers its blade.\n* It looks long at the priests lying in the ring.\n* Then it puts out the ritual fire with its own hand, and walks into the dark between the stones.",
+  "acts": [
+   {
+    "name": "Spare Its Kin",
+    "text": [
+     "* You turn your blade away from the fallen priests in the ring.",
+     "* You do not strike the ones who are down.",
+     "* Blood Rogue watches. Its grip on the blade loosens, slightly."
+    ]
+   },
+   {
+    "name": "Name the Dead",
+    "text": [
+     "* You call down the steps the names you read on the stones below, aloud and slowly.",
+     "* Blood Rogue's hood lifts at each name.",
+     "* You name the stone with the hunting horn cut beside it. Blood Rogue stops counting.",
+     "* For a moment the red light in its coat dims."
+    ]
+   },
+   {
+    "name": "Stand Your Ground",
+    "text": [
+     "* You plant your feet between Blood Rogue and the altar.",
+     "* You do not kneel.",
+     "* Blood Rogue tilts its hood. It has not been refused in a long time."
+    ]
+   }
+  ]
+ },
+ "cult_rogue": {
+  "check": "* CULT ROGUE - No. 089 - AIR - 4.5 STARS.\n* It leads the wind priests. Its word strengthens and hastens its kin.\n* Its blade strikes quickly, or slowly and very hard.",
+  "intro": "* The figure before the shrine rises from its knees. A hooded shape, blade lowered.",
+  "idle": [
+   "* The Cult Rogue does not move. The wind moves around it.",
+   "* The violet sash stirs, though the air is still.",
+   "* Behind it, the feathers in the basin stir. There is no one left to chant.",
+   "* The curved blade tilts, catching what little light there is.",
+   "* Its hands are broad and calloused across the palms, the way a rower's are."
+  ],
+  "talk": [
+   "The wind\nchose me\nto lead.",
+   "They kneel\nbecause\nI kneel.",
+   "Leave this\nplace to\nthe wind.",
+   "My brothers\nwill not\nscatter.",
+   "Strike, and\nthe wind\nanswers.",
+   "The river\nis wide.\nI stayed."
+  ],
+  "spare_text": "* The Cult Rogue sheathes its blade. Without a word, the cult disperses into the wind.\n* It goes last, and it does not look east.",
+  "acts": [
+   {
+    "name": "Hold Ground",
+    "text": [
+     "* You plant your feet and do not give way.",
+     "* The Cult Rogue studies you. Its blade lowers a little."
+    ]
+   },
+   {
+    "name": "Name Dundean",
+    "text": [
+     "* You tell it the people of Dundean fear the wind priests.",
+     "* The hood turns east, toward the roofs of Dundean. For a moment, it says nothing."
+    ]
+   },
+   {
+    "name": "Lower Weapon",
+    "text": [
+     "* You lower your weapon and wait.",
+     "* The chant falters. The Cult Rogue raises a hand, and its priests fall silent."
+    ]
+   }
+  ]
+ },
+ "apalala": {
+  "check": "* APALALA - WATER - STARS UNRECORDED.\n* A Dragon Overlord. Its true form is a Blue Wyrm.\n* Attack Break leaves your arms heavy. Ocean Ruler strikes Water twice as hard.",
+  "intro": "* Water runs down the cliff where no stream should be.\n* Something vast shifts on the pass above you.\n* Apalala lowers its head into the road.",
+  "idle": [
+   "* Apalala breathes slowly. Each breath sounds like surf on stone.",
+   "* Water beads on its scales and runs off into the dust.",
+   "* The red glow in the cliffs shows on its wings and nowhere else.",
+   "* It has not moved from the mouth of the pass.",
+   "* Its eyes keep going to your hands."
+  ],
+  "talk": [
+   "Turn back.\nThe pass\nis closed.",
+   "I was\nApalala\nof the river.",
+   "I keep\nthe pass.\nI keep it.",
+   "Ash came\nup this\nroad.",
+   "Someone\ncame after\nhim, once.",
+   "Turn back,\nor be taken\nby the water."
+  ],
+  "spare_text": "* Apalala's breathing slows until you cannot hear it over the wind.\n* It draws its wings in and moves aside from the road.\n* The water stops running down the cliff.",
+  "acts": [
+   {
+    "name": "Kneel",
+    "text": [
+     "* You kneel in the road below its head and stay there.",
+     "* Apalala watches you for a long time.",
+     "* Its breathing slows a little."
+    ]
+   },
+   {
+    "name": "Speak of Water",
+    "text": [
+     "* You tell it about the rivers you crossed, and the lake at home.",
+     "* Its head tilts, the way a hatchling's does when it hears its name.",
+     "* For a moment it seems to be somewhere else."
+    ]
+   },
+   {
+    "name": "Show Empty Hands",
+    "text": [
+     "* You open your hands. There is no ash on them.",
+     "* Apalala lowers its head and breathes over your palms.",
+     "* It finds nothing it is looking for. Its jaws close."
+    ]
+   }
+  ]
+ }
+}

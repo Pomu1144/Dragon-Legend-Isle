@@ -2802,6 +2802,11 @@ export const MISSIONS: MissionData | null = {
      "text": "* Blood Priests. A line of fresh red has been drawn across the flagstones at their feet. Kael's boot is already on it."
     },
     {
+     "speaker": "",
+     "portrait": "none",
+     "text": "* Under the hems of their robes, their feet are bare on the cold stone."
+    },
+    {
      "speaker": "Kael",
      "portrait": "hero_portrait",
      "text": "You are guarding the gate. Then whatever you are guarding is further in."
@@ -2816,7 +2821,7 @@ export const MISSIONS: MissionData | null = {
     {
      "speaker": "",
      "portrait": "none",
-     "text": "* The last priest falls against the fence. The braziers burn lower, but they do not go out."
+     "text": "* The last priest sinks against the fence. The braziers burn lower, but they do not go out."
     },
     {
      "speaker": "",
@@ -2841,6 +2846,11 @@ export const MISSIONS: MissionData | null = {
      "speaker": "",
      "portrait": "none",
      "text": "* Five Blood Priests kneel among the headstones before the open crypt, each with a hand pressed flat against a grave. The earth beneath their palms is dark and wet."
+    },
+    {
+     "speaker": "",
+     "portrait": "none",
+     "text": "* Each kneels at a different stone, as if each had chosen one. One kneels at a stone with a fresh name, and keeps its hand there longest."
     },
     {
      "speaker": "",
@@ -2899,7 +2909,7 @@ export const MISSIONS: MissionData | null = {
     {
      "speaker": "",
      "portrait": "none",
-     "text": "* At the edge of the ring, a handful of grey ash has been scattered in a careful line. Someone stood here, and watched, and left."
+     "text": "* At the edge of the ring, grey ash has been laid in a careful line, just beyond the reach of the rest candle's light. Someone stood here, and watched, and left."
     },
     {
      "speaker": "Kael",
@@ -2950,19 +2960,29 @@ export const MISSIONS: MissionData | null = {
      "text": "* A Blood Rogue. The last shape of the line that begins with the Blood Priest. The air around it is hot, as if the stones themselves were bleeding fire."
     },
     {
+     "speaker": "",
+     "portrait": "none",
+     "text": "* On the hand it rests on the altar, a ring of carved horn."
+    },
+    {
+     "speaker": "",
+     "portrait": "none",
+     "text": "* It turns its hood down the steps, toward the lichgate, toward one small grave beside a larger stone, and then back to Kael."
+    },
+    {
      "speaker": "Kael",
      "portrait": "hero_portrait",
      "text": "Whatever he promised you, it ends here."
     }
    ],
    "between": [
-    "* The Blood Rogue stands alone before the altar."
+    "* The Blood Rogue stands alone before the altar, one hand still on the stone."
    ],
    "after": [
     {
      "speaker": "",
      "portrait": "none",
-     "text": "* The Blood Rogue falls across the dais steps. The red light drains out of the standing stones, one by one, until only the candle on the rest stone is left burning."
+     "text": "* The Blood Rogue is gone from the dais steps. The red light drains out of the standing stones, one by one, until only the candle on the rest stone is left burning."
     },
     {
      "speaker": "",
@@ -2995,7 +3015,7 @@ export const MISSIONS: MissionData | null = {
     {
      "speaker": "",
      "portrait": "none",
-     "text": "* Cult Priests. Their faces are hidden under hoods sewn with feathers. They move without hurry, spreading out along the slope above the landing."
+     "text": "* Cult Priests. Their faces are hidden under hoods sewn with feathers. They walk barefoot over the stones, spreading out along the slope above the landing."
     },
     {
      "speaker": "Kael",
@@ -3012,12 +3032,12 @@ export const MISSIONS: MissionData | null = {
     {
      "speaker": "",
      "portrait": "none",
-     "text": "* The last priest falls among the poles. Its torn banner keeps flying, though no hand holds the pole anymore."
+     "text": "* The last priest goes down among the poles. Its torn banner keeps flying, though no hand holds the pole anymore."
     },
     {
      "speaker": "",
      "portrait": "none",
-     "text": "* Higher up the hill, the stone chimes are ringing. Slow, low notes, like a warning passed from terrace to terrace."
+     "text": "* Higher up the hill, the stone chimes are ringing. Slow, low notes, passed from terrace to terrace like word sent ahead."
     }
    ]
   },
@@ -3057,12 +3077,12 @@ export const MISSIONS: MissionData | null = {
     {
      "speaker": "",
      "portrait": "none",
-     "text": "* The chimes fall silent one by one as their ringers fall. The last note fades over the valley."
+     "text": "* The chimes fall silent one by one as their ringers fall away. The last note fades over the valley."
     },
     {
      "speaker": "",
      "portrait": "none",
-     "text": "* From the shrine above, there is no answering sound. Whoever waits there no longer needs to warn anyone."
+     "text": "* From the shrine above, there is no answering sound. Whoever waits there already knows he is coming."
     }
    ]
   },
@@ -3085,7 +3105,7 @@ export const MISSIONS: MissionData | null = {
     {
      "speaker": "",
      "portrait": "none",
-     "text": "* Pressed into the dust on the platform stone is a single mark that does not belong to the cult: a handprint, in grey ash."
+     "text": "* Pressed into the dust on the platform stone is a single mark that does not belong to the cult: a handprint, in grey ash. The ring stands around it, as if guarding it."
     },
     {
      "speaker": "Kael",
@@ -3102,7 +3122,7 @@ export const MISSIONS: MissionData | null = {
     {
      "speaker": "",
      "portrait": "none",
-     "text": "* The ring is broken. The last of them falls across the ash handprint, and the wind scatters the grey dust over the edge of the hill."
+     "text": "* The ring is broken. The wind takes the ash handprint off the stone and scatters it over the edge of the hill."
     },
     {
      "speaker": "",
@@ -3122,12 +3142,12 @@ export const MISSIONS: MissionData | null = {
     {
      "speaker": "",
      "portrait": "none",
-     "text": "* Before the open shrine, beside the stone basin of feathers, a lone figure turns to face the path. Taller than the priests. Lighter on its feet than the warriors."
+     "text": "* Before the open shrine, beside the stone basin of feathers, a lone figure kneels toward the place where the handprint was. Then it rises and turns to face the path."
     },
     {
      "speaker": "",
      "portrait": "none",
-     "text": "* A Cult Rogue. The wind seems to bend around it. The feathers in the basin lift and settle with every breath it takes."
+     "text": "* A Cult Rogue. Taller than the priests. Lighter on its feet than the warriors. The wind bends around it, and the feathers in the basin lift and settle with every breath."
     },
     {
      "speaker": "Kael",
@@ -3142,12 +3162,12 @@ export const MISSIONS: MissionData | null = {
     {
      "speaker": "",
      "portrait": "none",
-     "text": "* The Cult Rogue falls before the shrine, and the wind dies with it. For the first time, Wind Hill is completely still."
+     "text": "* The Cult Rogue is gone from the shrine, and the wind dies with it. For the first time, Wind Hill is completely still."
     },
     {
      "speaker": "",
      "portrait": "none",
-     "text": "* Down the hill, the last few priests drop their banners and run for the far side of the slope. They do not look back."
+     "text": "* Down the hill, the last few priests drop their banners and go over the far side of the slope. They do not look back."
     },
     {
      "speaker": "",
@@ -3166,7 +3186,7 @@ export const MISSIONS: MissionData | null = {
    {
     "speaker": "Brann",
     "portrait": "hunter_portrait",
-    "text": "You are still here. Good. Then listen, because the lodge has decided something, and I do not like it."
+    "text": "One more thing, before you go back to Edda's fire. The lodge has decided something. I do not like it, and I will do it anyway."
    },
    {
     "speaker": "Brann",
@@ -3186,17 +3206,27 @@ export const MISSIONS: MissionData | null = {
    {
     "speaker": "Brann",
     "portrait": "hunter_portrait",
-    "text": "No. One of my hunters crept close on the first night. He says the ground by the lichgate was grey with ash. The same grey as your man."
+    "text": "No. One of my hunters went close on the first night. He says the ground by the lichgate was grey with ash. The same grey as your man."
    },
    {
     "speaker": "Brann",
     "portrait": "hunter_portrait",
-    "text": "The lodge will not send hunters into a rite. There are enough names crossed out on the board this season. But you walked here from the Norwoods. You came through Orochi's hollow."
+    "text": "The lodge will not send hunters into a rite. There are enough names crossed out on the board this season. But you walked here from the Norwoods. You came past Orochi."
+   },
+   {
+    "speaker": "Kael",
+    "portrait": "hero_portrait",
+    "text": "And you? You are a hunter. It is your father's grave."
    },
    {
     "speaker": "Brann",
     "portrait": "hunter_portrait",
-    "text": "Break the rite. Put out the circle. I will open the gate, but only as far as the graveyard fork. The dead on that road are Dundean's. Longdale stays closed."
+    "text": "...I cannot go in there. Do not ask me again."
+   },
+   {
+    "speaker": "Brann",
+    "portrait": "hunter_portrait",
+    "text": "Break the rite. Put out the circle. I will open the gate, but only as far as the graveyard fork. Longdale stays closed until the lodge says otherwise."
    },
    {
     "speaker": "Kael",
@@ -3211,14 +3241,14 @@ export const MISSIONS: MissionData | null = {
    {
     "speaker": "",
     "portrait": "none",
-    "text": "* Brann walks to the east gate and lifts the beam from its brackets. The gate swings out onto the valley road."
+    "text": "* Brann walks to the east gate and lifts the beam from its brackets. He does not look down the side track. The gate swings out onto the valley road."
    }
   ],
   "wind": [
    {
     "speaker": "Old Edda",
     "portrait": "innkeeper_portrait",
-    "text": "Sit down, boy. There is something I have not told you, because I did not want you walking into it. I see now you will walk into everything anyway."
+    "text": "And there is something else. I would rather not send you into it, but you will walk into everything anyway. I can see that much."
    },
    {
     "speaker": "Old Edda",
@@ -3228,12 +3258,17 @@ export const MISSIONS: MissionData | null = {
    {
     "speaker": "Old Edda",
     "portrait": "innkeeper_portrait",
-    "text": "Cult Priests have taken it. Wind priests, the old people called them. They hang banners on the slope and ring their stone chimes until the whole valley hums."
+    "text": "Cult Priests keep it. Wind priests, the old people called them. They hang banners on the slope and ring their stone chimes until the whole valley hums."
    },
    {
     "speaker": "Old Edda",
     "portrait": "innkeeper_portrait",
     "text": "They were few and quiet for years. Then, a few days ago, they grew bold. They took a fishing boat at the riverbank. They have warriors with them now."
+   },
+   {
+    "speaker": "Old Edda",
+    "portrait": "innkeeper_portrait",
+    "text": "Three of our young ones went up after them. They have not come down."
    },
    {
     "speaker": "Kael",
@@ -3248,17 +3283,22 @@ export const MISSIONS: MissionData | null = {
    {
     "speaker": "Old Edda",
     "portrait": "innkeeper_portrait",
-    "text": "Break them up, Kael. Drive them off Wind Hill. The house by the river has a rowboat, but its oars are gone. Take these. They were my husband's."
+    "text": "Break them up, Kael. Drive them off Wind Hill. The house by the river has a rowboat, but no oars. Take these. They were my husband's."
    },
    {
     "speaker": "",
     "portrait": "none",
-    "text": "* Old Edda sets a pair of worn oars against the table. The wood is dark with years of river water."
+    "text": "* Old Edda sets a pair of worn oars against the table. The wood is dark with years of river water, and dry now. A small wheel is burned into each blade, worn almost smooth."
+   },
+   {
+    "speaker": "Old Edda",
+    "portrait": "innkeeper_portrait",
+    "text": "They have not been in the water for four years. They will still hold."
    },
    {
     "speaker": "Kael",
     "portrait": "hero_portrait",
-    "text": "I will bring them back, Edda. And I will find out what he wanted with them."
+    "text": "I will bring them back, Edda. And I will find out what he wanted with that hill."
    }
   ]
  },
@@ -3267,13 +3307,15 @@ export const MISSIONS: MissionData | null = {
    "The graveyard is down the side track at the fork. Follow the red fires. You will not miss them.",
    "The road to Longdale is still closed. The hunters felled a pine across it. The graveyard, and no further.",
    "Blood Priests feed the rite, but the circle needs a heart. Whatever stands at the altar, that is what holds it together.",
-   "If you see my father's stone, near the lichgate, the one with the hunting horn cut in it... no. Just break the rite."
+   "If you see my father's stone, near the lichgate, the one with the hunting horn cut in it... no. Just break the rite.",
+   "I keep this gate. That is what I am for. Go on."
   ],
   "wind": [
    "The jetty by the river house. Fit the oars, row across, and follow the banners up the hill.",
    "Wind priests do not fight like hunters. They wait on high ground and let you come to them. Do not climb that hill tired.",
    "Whoever leads them will be at the shrine. Break that one, and the others will scatter like chaff.",
-   "Eat before you row. The river is colder than it looks."
+   "Eat before you row. The river is colder than it looks.",
+   "The oars know the way across. Let them."
   ]
  },
  "done": {
@@ -3289,14 +3331,24 @@ export const MISSIONS: MissionData | null = {
     "text": "The circle is broken. Fourteen priests, three warriors, and a Blood Rogue at the altar. None of them will chant over your dead again."
    },
    {
+    "speaker": "Kael",
+    "portrait": "hero_portrait",
+    "text": "It wore a ring. Carved horn, like the stone by the lichgate."
+   },
+   {
+    "speaker": "",
+    "portrait": "none",
+    "text": "* Brann is quiet for a long moment. He does not ask what became of it."
+   },
+   {
     "speaker": "Brann",
     "portrait": "hunter_portrait",
-    "text": "...Fourteen. And you are standing here. The lodge will hear of this, and they will not believe it."
+    "text": "...Fourteen. And you are standing here. The lodge will hear of this, and they will believe it."
    },
    {
     "speaker": "Kael",
     "portrait": "hero_portrait",
-    "text": "This was on the altar, under the ash. Half a page. Someone tore it on purpose."
+    "text": "This was on the altar, in the ash. Half a page. Someone tore it on purpose."
    },
    {
     "speaker": "Brann",
@@ -3321,6 +3373,11 @@ export const MISSIONS: MissionData | null = {
     "text": "The priests are scattered. Their leader, a Cult Rogue, stood at the shrine. It will not ring those chimes again."
    },
    {
+    "speaker": "",
+    "portrait": "none",
+    "text": "* Edda nods once. She does not ask what became of it."
+   },
+   {
     "speaker": "Kael",
     "portrait": "hero_portrait",
     "text": "It kept this in the shrine, behind the wind-wheel. A torn page. Half of something."
@@ -3338,7 +3395,7 @@ export const MISSIONS: MissionData | null = {
    {
     "speaker": "Old Edda",
     "portrait": "innkeeper_portrait",
-    "text": "Keep it with your sister's ribbon. And keep the oars. You may need the river again before this is over."
+    "text": "Keep it with your sister's ribbon. And keep the oars."
    }
   ]
  },
@@ -3346,17 +3403,22 @@ export const MISSIONS: MissionData | null = {
   "blood": {
    "item": "fragment_blood",
    "item_name": "Torn Page (Blood Rite)",
-   "desc": "Half of an old page, torn down the middle, found on the altar of the Blood Circle under a layer of grey ash. The edge is stained red.",
+   "desc": "Half of an old page, torn down the middle, found on the altar of the Blood Circle, half buried in grey ash. Careful brown ink. The edge is stained red.",
    "found": [
     {
      "speaker": "",
      "portrait": "none",
-     "text": "* Under the ash on the altar lies half a page of thick, old paper. It has been torn cleanly down the middle. One corner is stained red where it lay against the stone."
+     "text": "* Half buried in the ash on the altar lies half a page of thick, old paper. It has been torn cleanly down the middle. One corner is stained red where it lay against the stone."
     },
     {
      "speaker": "",
      "portrait": "none",
-     "text": "* The writing is careful and even, in brown ink. The first word is a name Kael knows: the name of the thing he just killed."
+     "text": "* The writing is careful and even, in brown ink. The first word is a name Kael knows: the name of the thing that stood at this altar."
+    },
+    {
+     "speaker": "",
+     "portrait": "none",
+     "text": "* One edge is not torn but cut, straight and clean, as if with a blade along a rule."
     },
     {
      "speaker": "Kael",
@@ -3364,12 +3426,12 @@ export const MISSIONS: MissionData | null = {
      "text": "This was not left by priests. Someone wrote this, tore it in two, and gave half to the rite. The other half is somewhere else."
     }
    ],
-   "page": "BLOOD ROGUE - of the Fire. The last of its line: Blood Priest, then Blood Warrior, then Blood Rogue.\n\nBLOOD ROGUE  +  ...\n\nThe rest of the page is torn away. Along the tear, a few strokes of a second word remain. They cannot be read."
+   "page": "BLOOD ROGUE - of the Fire. The last of its line: Blood Priest, then Blood Warrior, then Blood Rogue.\n\nBLOOD ROGUE  +  ...\n\nCareful brown ink. The rest of the page is torn away. Along the tear, a few strokes of a second word remain. They cannot be read."
   },
   "wind": {
    "item": "fragment_wind",
    "item_name": "Torn Page (Cult)",
-   "desc": "Half of an old page, torn down the middle, found pressed into a crack in the Wind Hill shrine. A small feather is caught in the fold.",
+   "desc": "Half of an old page, found in a crack behind the Wind Hill wind-wheel. Careful brown ink. A small feather is caught in the fold.",
    "found": [
     {
      "speaker": "",
@@ -3379,7 +3441,12 @@ export const MISSIONS: MissionData | null = {
     {
      "speaker": "",
      "portrait": "none",
-     "text": "* It is torn cleanly down the middle. The writing is careful and even, in brown ink. The last word is a name Kael knows: the name of the thing he just killed."
+     "text": "* It is torn cleanly down the middle. The writing is careful and even, in brown ink. The last word is a name Kael knows: the name of the thing that stood before this shrine."
+    },
+    {
+     "speaker": "",
+     "portrait": "none",
+     "text": "* Its outer edge is trimmed square and smooth, the way the pages of a bound book are trimmed. This leaf belonged to a book once."
     },
     {
      "speaker": "Kael",
@@ -3387,13 +3454,13 @@ export const MISSIONS: MissionData | null = {
      "text": "The cult did not write this. Someone gave it to them to keep, and told them to keep it from people like me. The other half is somewhere else."
     }
    ],
-   "page": "...  +  CULT ROGUE - of the Air. The last of its line: Cult Priest, then Cult Warrior, then Cult Rogue.\n\nThe first part of the page is torn away. Before the name, only the edge of a plus sign and the tail of another word remain. They cannot be read."
+   "page": "...  +  CULT ROGUE - of the Air. The last of its line: Cult Priest, then Cult Warrior, then Cult Rogue.\n\nCareful brown ink. The first part of the page is torn away. Below the name, a small round scorch, grey at the edges, has eaten through the ink. Before the name, only the edge of a plus sign and the tail of another word remain."
   }
  },
  "formula": {
   "item": "rogue_formula",
   "item_name": "Rogue Formula",
-  "desc": "Two halves of one old page, fitted along their tear: Blood Rogue + Cult Rogue = Bloodgale.",
+  "desc": "Two halves of one leaf, fitted along their tear, in the same brown ink as the last page of Kael's Manual: Blood Rogue + Cult Rogue = Bloodgale.",
   "joined": [
    {
     "speaker": "",
@@ -3403,7 +3470,17 @@ export const MISSIONS: MissionData | null = {
    {
     "speaker": "",
     "portrait": "none",
-    "text": "* Fire and Air. The rite in the graveyard and the cult on the hill. Each was given one half and told to guard it. Neither knew the other existed."
+    "text": "* Fire and Air. The rite in the graveyard and the cult on the hill. Each kept one half, a day's walk apart, across a river."
+   },
+   {
+    "speaker": "",
+    "portrait": "none",
+    "text": "* The cut edge is familiar. Kael opens the Manual to its last page. The same brown ink. The same steady hand. The inner edge of the leaf fits the cut stub in the spine."
+   },
+   {
+    "speaker": "Kael",
+    "portrait": "hero_portrait",
+    "text": "Halvard wrote this. He cut it out of my own book before he gave it to me. He knew they would be waiting."
    },
    {
     "speaker": "Kael",
@@ -3431,7 +3508,7 @@ export const MISSIONS: MissionData | null = {
     "text": "Bloodgale. A Blood Rogue and a Cult Rogue, made one. If I can catch them both..."
    }
   ],
-  "page": "BLOOD ROGUE  +  CULT ROGUE  =  BLOODGALE\n\nOf the Fire and of the Air. Each the last of its line.\n\nThe name was burned out on purpose, but the heat pressed the letters into the paper. Capture a Blood Rogue and a Cult Rogue, then perform the formula on the last page."
+  "page": "BLOOD ROGUE  +  CULT ROGUE  =  BLOODGALE\n\nOf the Fire and of the Air. Each the last of its line.\n\nIn brown ink, in Master Halvard's hand, on a leaf cut from the Manual. The name was burned out on purpose, but the heat pressed the letters into the paper. Capture a Blood Rogue and a Cult Rogue, then perform the formula from the Satchel."
  },
  "quests": [
   {
@@ -3440,24 +3517,24 @@ export const MISSIONS: MissionData | null = {
    "stages": [
     "Brann says a Blood Priest rite has taken the old Dundean graveyard past the east gate. He has opened the gate as far as the graveyard fork. Break the rite.",
     "Kael has entered the old graveyard. The rite's chant leads deeper in, toward the Blood Circle at the top of the steps.",
-    "The Blood Circle is broken: fourteen Blood Priests, three Blood Warriors and the Blood Rogue at the altar. Kael found half of a torn page in the ash. Tell Brann."
+    "The Blood Circle is broken: fourteen priests, three warriors, and the Blood Rogue is gone from the altar. Kael found half a torn page in the ash. Tell Brann."
    ]
   },
   {
    "id": "wind",
    "title": "The Cult on Wind Hill",
    "stages": [
-    "Old Edda says Cult Priests have taken Wind Hill, across the river from the house by the jetty. She gave Kael oars for the rowboat. Break up the cult.",
+    "Old Edda says Cult Priests hold Wind Hill, across the river from the house by the jetty. She gave Kael her husband's oars for the rowboat. Break up the cult.",
     "Kael has crossed to the far shore. The cult's chimes ring from the terraces above. Their leader waits at the shrine.",
-    "The cult on Wind Hill is broken and its Cult Rogue defeated. Kael found half of a torn page in the shrine. Tell Old Edda."
+    "The cult on Wind Hill is broken and its Cult Rogue is gone from the shrine. Kael found half of a torn page behind the wind-wheel. Tell Old Edda."
    ]
   },
   {
    "id": "formula",
    "title": "The Torn Formula",
    "stages": [
-    "Kael found half of a torn page in a careful, old hand. The other half must be somewhere else.",
-    "The two halves fit: Blood Rogue + Cult Rogue = Bloodgale. Capture a Blood Rogue and a Cult Rogue, then perform the formula from the Satchel.",
+    "Kael found half of a torn page in a careful, old hand, in brown ink. The other half must be somewhere else.",
+    "The halves fit: Blood Rogue + Cult Rogue = Bloodgale, in Halvard's hand, cut from Kael's Manual. Capture both Rogues, then use the formula.",
     "Bloodgale was made from the Rogue Formula."
    ]
   }
@@ -3472,24 +3549,24 @@ export const MISSIONS: MissionData | null = {
    {
     "speaker": "",
     "portrait": "none",
-    "text": "* Up the main road, a great pine has been felled across the way. Brann's lodge mark is cut into the stump. Longdale is still closed."
+    "text": "* Up the main road, a great pine has been felled across the way. Brann's lodge mark is cut into the trunk. Longdale is still closed."
    },
    {
     "speaker": "",
     "portrait": "none",
-    "text": "* In the mud of the side track, among the hunters' boot prints, are bare footprints. Many of them, all walking toward the graveyard."
+    "text": "* In the mud of the side track, among the hunters' boot prints, are bare footprints. Many of them, all walking toward the graveyard. None of them come back up."
    }
   ],
   "graveyard_gate": [
    {
     "speaker": "",
     "portrait": "none",
-    "text": "* The lichgate sags on its posts. Beyond it, two braziers burn red on either side of the path. Nobody in Dundean lit them."
+    "text": "* The lichgate sags on its posts. Beyond it, two braziers burn red on either side of the path. No one in Dundean has said who lit them."
    },
    {
     "speaker": "",
     "portrait": "none",
-    "text": "* The ground under the gate is dusted grey. Ash, fine as flour, trodden into the earth by many feet."
+    "text": "* The ground under the gate is dusted grey. Ash, fine as flour, trodden into the earth by many bare feet."
    },
    {
     "speaker": "Kael",
@@ -3506,7 +3583,7 @@ export const MISSIONS: MissionData | null = {
    {
     "speaker": "",
     "portrait": "none",
-    "text": "* Strips of red cloth have been tied to every branch of a bare tree. They do not move, though the wind is blowing."
+    "text": "* Strips of red cloth have been tied to every branch of a bare tree, each one knotted with care. They barely move, though the wind is blowing."
    }
   ],
   "graveyard_ritual_circle": [
@@ -3518,14 +3595,14 @@ export const MISSIONS: MissionData | null = {
    {
     "speaker": "",
     "portrait": "none",
-    "text": "* Between the ring and the dais sits a flat rest stone with a single candle. It is the only light here that is not red."
+    "text": "* Between the ring and the dais sits a flat rest stone with a single candle, its wick freshly trimmed. It is the only light here that is not red."
    }
   ],
   "safaris_far_shore": [
    {
     "speaker": "",
     "portrait": "none",
-    "text": "* The rowboat bumps against the far jetty. Kael ties it off. The bank rises steeply into a bare hill where no grass grows."
+    "text": "* The rowboat bumps against the far jetty. Kael ties it off. The rope slides into a groove worn deep in the mooring post, as if one boat had tied up here for years."
    },
    {
     "speaker": "",
@@ -3548,6 +3625,11 @@ export const MISSIONS: MissionData | null = {
     "speaker": "",
     "portrait": "none",
     "text": "* The hut on the left terrace has lost its roof. Inside, a bedroll, a cold fire, and a single grey footprint on the hearthstone."
+   },
+   {
+    "speaker": "",
+    "portrait": "none",
+    "text": "* By the door stands a pair of Dundean boots, laced, set side by side, as if someone meant to come back for them."
    },
    {
     "speaker": "Kael",

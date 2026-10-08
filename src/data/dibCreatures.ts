@@ -876,22 +876,24 @@ export const DIB_KITS = [
    "flier": true
   },
   "battle": {
-   "check": "* LICH - No. 159 - DEATH - 3 STARS.\n* (Wiki Lv23 stats) MAG 99, RES 173, ATK 25.\n* It does not touch what it destroys.",
+   "check": "* LICH - No. 159 - DEATH - 3 STARS.\n* MAG 99, RES 173, ATK 25.\n* It does not touch what it destroys. It has not left this wood in a long time.",
    "intro": "* The moss goes cold. A crimson robe drifts out between the trees.\n* LICH blocks the way.",
    "idle": [
     "* Lich hovers above the trail. The moss beneath it withers.",
     "* Lich murmurs an incantation in a language older than Wesing.",
     "* The smell of tallow and crumbling pages.",
-    "* The void beneath its hood turns toward the waystone, then back to you."
+    "* The void beneath its hood turns toward the Waystone, then back to you.",
+    "* Lich speaks a few words very quietly, the way a man repeats a lesson he was made to learn."
    ],
    "talk": [
     "Mortal.\nTurn back.",
     "Dark Matter\nwill find\nyou.",
     "I kept\nthe old\nbooks.",
     "The stone\nhas begun\nto speak.",
-    "I can no\nlonger\nrefuse it."
+    "I can no\nlonger\nrefuse it.",
+    "Go home.\nThis is the\nlast time."
    ],
-   "spare_text": "* Lich lowers its staff.\n* It drifts back into the mosswood, its incantation falling silent.\n* Lich was spared.",
+   "spare_text": "* Lich lowers its staff.\n* It drifts back into the Mosswood, its incantation falling silent.\n* It does not watch you go. It watches the road behind you.\n* Lich was spared.",
    "lore": "LICH (#159) - Death element, 3 stars. Found in No Man's Castle, and occasionally at one spot in Greater Wesing (the leftmost spot in the forest section, Lv13-16). Abilities: Awaken (100 TU, removes Sleep from all allies), Dark Matter (160 TU, 118-145 damage to 1 foe), Disaster (100 TU, 46-57 damage to 2 foes), Enlighten (200 TU, raises all allies' magic by 16). Wiki stats (Lv23 column; the Lv1 column is blank): HP 294, ATK 25, MAG 99, SPD 74, DEF 74, RES 173. No evolution listed. Once a keeper of forbidden learning, it now answers to a voice from the darkened waystone.",
    "acts": [
     {
@@ -910,6 +912,7 @@ export const DIB_KITS = [
      "text": [
       "* You ask Lich what was written in the books it kept.",
       "* It begins to answer. The words come slowly, half-forgotten.",
+      "* Then it stops, as if it has read ahead to the last page.",
       "* For a moment, it remembers itself."
      ],
      "mercy": 30,
@@ -921,7 +924,7 @@ export const DIB_KITS = [
      "text": [
       "* The cold makes your eyes heavy. You force them open.",
       "* Lich watches you fight it. It knows what Awaken is for.",
-      "* It seems to respect the effort."
+      "* It seems to respect the effort. It seems, too, to be sorry for it."
      ],
      "mercy": 25,
      "once": false,
@@ -1049,21 +1052,24 @@ export const DIB_KITS = [
   },
   "battle": {
    "check": "* OROCHI - No. 080 - FIRE - 8.5 STARS.\n* The Overlord of Norwoods. An eight-headed serpent, evolved from Noko.\n* Eight heads. Each one is in pain.",
-   "intro": "* Orochi is coiled around the great darkened waystone.\n* One head turns toward you. Then all eight.",
+   "intro": "* Orochi is coiled around the great darkened Waystone.\n* One head turns toward you. Then all eight.",
    "idle": [
     "* Orochi's heads hiss over one another. None of them sound like their own.",
-    "* Black veins pulse along its coils, in time with the waystone.",
+    "* Black veins pulse along its coils, in time with the Waystone.",
     "* Smoke and the smell of scorched scales hang in the air.",
-    "* Embers drift up between the heads and die in the dark."
+    "* Embers drift up between the heads and die in the dark.",
+    "* Deep furrows run south through the trees behind it, as if something very heavy was dragged here."
    ],
    "talk": [
     "We are\nOrochi.",
     "Overlord\nof the\nNorwoods.",
     "The stone\nspeaks\nthrough us.",
     "It burns.\nIt always\nburns.",
-    "Once we\nwere only\nNoko."
+    "Once we\nwere only\nNoko.",
+    "The grey\none spoke\nour name.",
+    "Turn your\nback. We\nare owed."
    ],
-   "spare_text": "* The heads fall silent, one by one.\n* Orochi uncoils from the waystone and lowers itself to the ground.\n* The black veins along its scales begin to fade.",
+   "spare_text": "* The heads fall silent, one by one.\n* Orochi lowers itself to the ground and draws its coils back around the Waystone.\n* The black veins along its scales begin to fade. It does not look relieved.",
    "lore": "#080 Orochi - Fire element, 8.5 stars. The Overlord of Norwoods. The second and final form of Noko (evolves at level 34); also found rarely in the Saintspring forest. Lv1: HP 62, ATK 40, MAG 40, SPD 34, DEF 55, RES 55. Abilities: Dragon Rage (250 TU, 31-38 physical Fire damage to all foes), Flame (130 TU, 45-55 magical Fire damage to one foe), Inferno (200 TU, 26-31 magical Fire damage to all foes), Wiggle (130 TU, 45-55 physical Fire damage to one foe). Named after Yamata no Orochi, the eight-headed, eight-tailed serpent of Japanese myth; it is a serpent, not a dragon. Bound to the darkened waystone, it guards the corruption it was meant to keep out.",
    "acts": [
     {
@@ -1092,8 +1098,8 @@ export const DIB_KITS = [
      "name": "Recall Noko",
      "text": [
       "* You tell Orochi of Noko, the small serpent it once was.",
-      "* All eight heads go still at once.",
-      "* Somewhere in those coils, something remembers being small."
+      "* All eight heads go still at once. Someone has said that name to it lately.",
+      "* Somewhere in those coils, something remembers being small, and not burning."
      ],
      "mercy": 35,
      "once": true,
@@ -1231,16 +1237,19 @@ export const DIB_KITS = [
    "idle": [
     "* Divine hovers in perfect silence. Its wings do not move.",
     "* The light around its head is steady and warm.",
-    "* The waystone's shadow draws back from it.",
-    "* The air is still and clean, like the Sanctuary at dawn."
+    "* The Waystone's shadow draws back from it.",
+    "* The air is still and clean, like the Sanctuary at dawn.",
+    "* Divine looks at you the way a lamplighter looks at a lamp that has been filled."
    ],
    "talk": [
     "...",
     "THE STONE\nREMEMBERS\nTHE SUN.",
     "MERCY IS\nALSO A\nLIGHT.",
-    "BE STILL."
+    "BE STILL.",
+    "UNTIL THE\nMOON IS\nNEW.",
+    "THE ROAD\nIS STILL\nOPEN."
    ],
-   "spare_text": "* Divine lowers its wings.\n* The waystone drinks its light and burns bright again.",
+   "spare_text": "* Divine lowers its wings.\n* The Waystone drinks its light and burns again. Not as bright as it once did.",
    "lore": "No. 202 - Divine. Life element, 9 stars, Type: Spirit. Found in the Sanctuary in Applefield, 18th Floor. Abilities: Holy, Immunity, Judgement, Justice, Neutralize (Justice deals +100% damage vs. Demonic). Has no evolutions. Its wings are dark, but nothing it touches stays that way.",
    "acts": [
     {
@@ -1257,7 +1266,7 @@ export const DIB_KITS = [
      "name": "Bow",
      "text": [
       "* You bow low before the winged spirit.",
-      "* Divine inclines its head."
+      "* Divine inclines its head, as if marking something down."
      ],
      "mercy": 20,
      "once": false,
@@ -1266,8 +1275,9 @@ export const DIB_KITS = [
     {
      "name": "Show Mercy",
      "text": [
-      "* You tell Divine you spared the one at the waystone.",
-      "* For a moment, the light feels warm instead of blinding."
+      "* You tell Divine you spared the one at the Waystone.",
+      "* For a moment, the light feels warm instead of blinding.",
+      "* It is pleased with you. It is very pleased with you."
      ],
      "mercy": 40,
      "once": true,
@@ -6894,21 +6904,24 @@ export const DIB_KITS = [
   },
   "battle": {
    "check": "* BLOOD ROGUE - No. 149 - FIRE - 5.5 STARS.\n* SPD 36, DEF 30. Its Slay cuts twice as deep into humanoid flesh.\n* Its Vengeance grows heavier for every one of its own that has fallen.",
-   "intro": "* The chanting among the graves stops all at once.\n* A hooded figure steps out from the circle of priests.\n* Blood Rogue draws its blade. The rite will wait for you.",
+   "intro": "* The silence among the graves is complete.\n* A hooded figure rises from the altar steps.\n* Blood Rogue draws its blade. The rite will wait for you.",
    "idle": [
-    "* Blood Rogue stands between you and the open grave. It does not move aside.",
+    "* Blood Rogue stands between you and the altar. It does not move aside.",
     "* Red light seeps from the seams of its coat, like a wound that will not close.",
-    "* Behind it, the ritual fire gutters. Somewhere a priest is still whispering the litany.",
-    "* Blood Rogue turns its hood toward the fallen. It seems to be counting them."
+    "* Behind it, the ritual fire gutters. No one is left to feed it.",
+    "* Blood Rogue turns its hood toward the fallen. It seems to be counting them.",
+    "* On the hand it keeps on the altar, a ring of carved horn.",
+    "* Its head is bowed a little to one side, as if it is listening for someone very small."
    ],
    "talk": [
     "Kneel among\nthe graves.",
     "The rite\nis not\nfinished.",
     "Each one\nthat falls\nfeeds me.",
-    "You are\nflesh. You\nwill do.",
-    "I was a\npriest once.\nLike them."
+    "Be quiet.\nI am\nlistening.",
+    "I was a\npriest once.\nLike them.",
+    "She is\nalmost\nhere."
    ],
-   "spare_text": "* Blood Rogue lowers its blade.\n* It looks long at the priests and warriors still standing.\n* Then it puts out the ritual fire with its own hand, and walks into the dark between the stones.",
+   "spare_text": "* Blood Rogue lowers its blade.\n* It looks long at the priests lying in the ring.\n* Then it puts out the ritual fire with its own hand, and walks into the dark between the stones.",
    "lore": "No. 149 - Blood Rogue. Fire element, 5.5 stars (Category: 5.5 Stars Monsters). Level 1 stats as listed on the wiki: HP 37, ATK 17, MAG 14, SPD 36, DEF 30, RES 25. Abilities: Assault (160 TU, 1 foe, 22-27 physical Fire damage), Dagger (50 TU, 2 foes, 5-6 physical Fire damage), Slay (130 TU, 1 foe, 17-20 physical Fire damage, +100% damage vs. Humanoid) and Vengeance (250 TU, 1 foe, 30-37 physical Fire damage, +10.00% damage per friendly casualty in a battle). Final form of the Blood line: Blood Priest evolves into Blood Warrior at level 17, which evolves into Blood Rogue at level 37. Obtained by evolving a Blood Warrior to level 37; also found on the first spot on the southside of the white Saintspring bridge, and in the Underworld. In the graveyard it leads the blood rite, fourteen priests and three warriors gathered at its back. Every one of them that falls makes its blade heavier.",
    "capture_fail": [
     "* Blood Rogue cuts through the binding before it closes.",
@@ -6918,8 +6931,8 @@ export const DIB_KITS = [
     {
      "name": "Spare Its Kin",
      "text": [
-      "* You lower your weapon toward the priests behind it.",
-      "* You do not strike the ones still kneeling.",
+      "* You turn your blade away from the fallen priests in the ring.",
+      "* You do not strike the ones who are down.",
       "* Blood Rogue watches. Its grip on the blade loosens, slightly."
      ],
      "mercy": 30,
@@ -6929,8 +6942,9 @@ export const DIB_KITS = [
     {
      "name": "Name the Dead",
      "text": [
-      "* You read the names cut into the nearest gravestones, aloud and slowly.",
-      "* The litany behind Blood Rogue falters.",
+      "* You call down the steps the names you read on the stones below, aloud and slowly.",
+      "* Blood Rogue's hood lifts at each name.",
+      "* You name the stone with the hunting horn cut beside it. Blood Rogue stops counting.",
       "* For a moment the red light in its coat dims."
      ],
      "mercy": 25,
@@ -6940,7 +6954,7 @@ export const DIB_KITS = [
     {
      "name": "Stand Your Ground",
      "text": [
-      "* You plant your feet between Blood Rogue and the open grave.",
+      "* You plant your feet between Blood Rogue and the altar.",
       "* You do not kneel.",
       "* Blood Rogue tilts its hood. It has not been refused in a long time."
      ],
@@ -7067,22 +7081,24 @@ export const DIB_KITS = [
    "flier": false
   },
   "battle": {
-   "check": "* CULT ROGUE - AIR - 4.5 STARS.\n* It leads the wind priests. Its word strengthens and hastens its kin.\n* Its blade strikes quickly, or slowly and very hard.",
-   "intro": "* The cultists part. A grey-hooded figure walks through them, blade lowered.",
+   "check": "* CULT ROGUE - No. 089 - AIR - 4.5 STARS.\n* It leads the wind priests. Its word strengthens and hastens its kin.\n* Its blade strikes quickly, or slowly and very hard.",
+   "intro": "* The figure before the shrine rises from its knees. A hooded shape, blade lowered.",
    "idle": [
     "* The Cult Rogue does not move. The wind moves around it.",
     "* The violet sash stirs, though the air is still.",
-    "* Behind it, the priests keep up their low chant.",
-    "* The curved blade tilts, catching what little light there is."
+    "* Behind it, the feathers in the basin stir. There is no one left to chant.",
+    "* The curved blade tilts, catching what little light there is.",
+    "* Its hands are broad and calloused across the palms, the way a rower's are."
    ],
    "talk": [
     "The wind\nchose me\nto lead.",
     "They kneel\nbecause\nI kneel.",
     "Leave this\nplace to\nthe wind.",
     "My brothers\nwill not\nscatter.",
-    "Strike, and\nthe wind\nanswers."
+    "Strike, and\nthe wind\nanswers.",
+    "The river\nis wide.\nI stayed."
    ],
-   "spare_text": "* The Cult Rogue sheathes its blade. Without a word, the cult disperses into the wind.",
+   "spare_text": "* The Cult Rogue sheathes its blade. Without a word, the cult disperses into the wind.\n* It goes last, and it does not look east.",
    "lore": "The leader of the wind priests' cult near Dundean. Its kind is also known in Saintspring, Applefield and the Cave of Earlsome in North Earlsome, and in Sanctuary. It is what a Cult Warrior becomes at level 33. It fights with a curved blade and drives its brothers on with blessing and speed. Stats are its level-1 values from the wiki; the wiki lists its ability figures as if it were level 34.",
    "capture_fail": [
     "* The Cult Rogue cuts its way free. The wind closes around it again.",
@@ -7103,7 +7119,7 @@ export const DIB_KITS = [
      "name": "Name Dundean",
      "text": [
       "* You tell it the people of Dundean fear the wind priests.",
-      "* The hood turns toward its followers. For a moment, it says nothing."
+      "* The hood turns east, toward the roofs of Dundean. For a moment, it says nothing."
      ],
      "mercy": 40,
      "once": true,
@@ -8621,14 +8637,16 @@ export const DIB_KITS = [
     "* Apalala breathes slowly. Each breath sounds like surf on stone.",
     "* Water beads on its scales and runs off into the dust.",
     "* The red glow in the cliffs shows on its wings and nowhere else.",
-    "* It has not moved from the mouth of the pass."
+    "* It has not moved from the mouth of the pass.",
+    "* Its eyes keep going to your hands."
    ],
    "talk": [
     "Turn back.\nThe pass\nis closed.",
     "I was\nApalala\nof the river.",
     "I keep\nthe pass.\nI keep it.",
     "Ash came\nup this\nroad.",
-    "The river\nremembers\nwho drowned."
+    "Someone\ncame after\nhim, once.",
+    "Turn back,\nor be taken\nby the water."
    ],
    "spare_text": "* Apalala's breathing slows until you cannot hear it over the wind.\n* It draws its wings in and moves aside from the road.\n* The water stops running down the cliff.",
    "lore": "Apalala is a Dragon Overlord found in South Earlsome. Its record lists no number, no stars and no element; its real identity is a Blue Wyrm, and every one of its techniques is marked as Water. The record gives only its stats as met, not at level 1: HP 4104, Attack 929, Magic 929, Speed 657, Defense 1435, Resist 1435 (the record writes the last value as a second \"Magic\"). Techniques, also not given at level 1: Attack Break (130 TU, one foe, decreases attack by 82, 943-1152 physical Water damage), Ocean Ruler (130 TU, one foe, effect increased by 100% against Water, 943-1152 physical Water damage), Outrage (160 TU, one foe, 1252-1531 physical Water damage), Tidal Wave (130 TU, all foes, 415-508 magical Water damage). In old Buddhist tales, Apalala was a water dragon who lived by the Swat River and was converted by the Buddha. Hunters in Dundean say a dragon guards the pass above Longdale.",
@@ -8651,8 +8669,8 @@ export const DIB_KITS = [
     {
      "name": "Speak of Water",
      "text": [
-      "* You tell it about the rivers you crossed to get here.",
-      "* Its head tilts, the way a listener's does.",
+      "* You tell it about the rivers you crossed, and the lake at home.",
+      "* Its head tilts, the way a hatchling's does when it hears its name.",
       "* For a moment it seems to be somewhere else."
      ],
      "mercy": 24,

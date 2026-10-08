@@ -1,0 +1,878 @@
+{
+  "fights": [
+    {
+      "id": "blood_rite_lichgate",
+      "mission": "blood",
+      "room": "graveyard_gate",
+      "foes": [
+        "blood_priest",
+        "blood_priest",
+        "blood_priest",
+        "blood_priest"
+      ],
+      "before": [
+        {
+          "speaker": "",
+          "portrait": "none",
+          "text": "* Between the two red braziers, four figures in dark red robes stand in a line across the path. Their heads are bowed. They chant the same low word, over and over."
+        },
+        {
+          "speaker": "",
+          "portrait": "none",
+          "text": "* Blood Priests. A line of fresh red has been drawn across the flagstones at their feet. Kael's boot is already on it."
+        },
+        {
+          "speaker": "",
+          "portrait": "none",
+          "text": "* Under the hems of their robes, their feet are bare on the cold stone."
+        },
+        {
+          "speaker": "Kael",
+          "portrait": "hero_portrait",
+          "text": "You are guarding the gate. Then whatever you are guarding is further in."
+        }
+      ],
+      "between": [
+        "* Another Blood Priest steps over the red line. Remaining: {N}.",
+        "* The chant does not stop. A Blood Priest takes the fallen one's place. Remaining: {N}.",
+        "* The braziers flare. Another priest comes forward. Remaining: {N}."
+      ],
+      "after": [
+        {
+          "speaker": "",
+          "portrait": "none",
+          "text": "* The last priest sinks against the fence. The braziers burn lower, but they do not go out."
+        },
+        {
+          "speaker": "",
+          "portrait": "none",
+          "text": "* Further in, among the headstones, the chant goes on. More voices than before."
+        }
+      ]
+    },
+    {
+      "id": "blood_rite_rows",
+      "mission": "blood",
+      "room": "graveyard_rows",
+      "foes": [
+        "blood_priest",
+        "blood_priest",
+        "blood_priest",
+        "blood_priest",
+        "blood_priest"
+      ],
+      "before": [
+        {
+          "speaker": "",
+          "portrait": "none",
+          "text": "* Five Blood Priests kneel among the headstones before the open crypt, each with a hand pressed flat against a grave. The earth beneath their palms is dark and wet."
+        },
+        {
+          "speaker": "",
+          "portrait": "none",
+          "text": "* Each kneels at a different stone, as if each had chosen one. One kneels at a stone with a fresh name, and keeps its hand there longest."
+        },
+        {
+          "speaker": "",
+          "portrait": "none",
+          "text": "* They rise together, without a signal. None of them looks at Kael. They look at the steps behind him, as if he were in the way of something."
+        },
+        {
+          "speaker": "Kael",
+          "portrait": "hero_portrait",
+          "text": "These are Dundean's dead. Get your hands off them."
+        }
+      ],
+      "between": [
+        "* A Blood Priest rises from between the graves. Remaining: {N}.",
+        "* Red cloth hangs still on the bare tree. Another priest comes on. Remaining: {N}.",
+        "* Another Blood Priest leaves its grave and steps into the path. Remaining: {N}."
+      ],
+      "after": [
+        {
+          "speaker": "",
+          "portrait": "none",
+          "text": "* The rows fall quiet. The dark stains on the graves have stopped spreading."
+        },
+        {
+          "speaker": "",
+          "portrait": "none",
+          "text": "* Above, at the top of the cracked steps, red light pulses against the low clouds. The chant is louder there. Heavier."
+        }
+      ]
+    },
+    {
+      "id": "blood_rite_circle",
+      "mission": "blood",
+      "room": "graveyard_ritual_circle",
+      "foes": [
+        "blood_priest",
+        "blood_priest",
+        "blood_priest",
+        "blood_priest",
+        "blood_priest",
+        "blood_warrior",
+        "blood_warrior",
+        "blood_warrior"
+      ],
+      "before": [
+        {
+          "speaker": "",
+          "portrait": "none",
+          "text": "* The path runs straight through a ring of standing stones. Inside it, five Blood Priests stand at the points of a drawn star, chanting toward the dais."
+        },
+        {
+          "speaker": "",
+          "portrait": "none",
+          "text": "* Three larger shapes stand between them, armoured and still. Blood Warriors. They were priests once. The rite has made them into something that does not kneel."
+        },
+        {
+          "speaker": "",
+          "portrait": "none",
+          "text": "* At the edge of the ring, grey ash has been laid in a careful line, just beyond the reach of the rest candle's light. Someone stood here, and watched, and left."
+        },
+        {
+          "speaker": "Kael",
+          "portrait": "hero_portrait",
+          "text": "He was here. He set you to this, and he walked away. Then I will break what he started."
+        }
+      ],
+      "between": [
+        "* The star is broken at one point. Another figure closes the gap. Remaining: {N}.",
+        "* The stones hum. Another shape steps out of the ring's shadow. Remaining: {N}.",
+        "* The chant falters, then rises again. Another foe comes forward. Remaining: {N}.",
+        "* Fewer voices now. The ones left chant harder. Remaining: {N}."
+      ],
+      "after": [
+        {
+          "speaker": "",
+          "portrait": "none",
+          "text": "* The last of them goes down on one knee inside the ring and does not rise. The drawn star is smeared and broken."
+        },
+        {
+          "speaker": "",
+          "portrait": "none",
+          "text": "* The chant has stopped. In the silence, Kael hears something breathing on the dais. Slow. Patient. Not afraid."
+        },
+        {
+          "speaker": "Kael",
+          "portrait": "hero_portrait",
+          "text": "Fourteen priests, and three warriors. And still it waited. The heart of the rite is up there."
+        }
+      ]
+    },
+    {
+      "id": "blood_rite_altar",
+      "mission": "blood",
+      "room": "graveyard_ritual_circle",
+      "foes": [
+        "blood_rogue"
+      ],
+      "before": [
+        {
+          "speaker": "",
+          "portrait": "none",
+          "text": "* A tall figure in red rises from the steps before the stained altar. It does not chant. It has no need to. The rite was always for it."
+        },
+        {
+          "speaker": "",
+          "portrait": "none",
+          "text": "* A Blood Rogue. The last shape of the line that begins with the Blood Priest. The air around it is hot, as if the stones themselves were bleeding fire."
+        },
+        {
+          "speaker": "",
+          "portrait": "none",
+          "text": "* On the hand it rests on the altar, a ring of carved horn."
+        },
+        {
+          "speaker": "",
+          "portrait": "none",
+          "text": "* It turns its hood down the steps, toward the lichgate, toward one small grave beside a larger stone, and then back to Kael."
+        },
+        {
+          "speaker": "Kael",
+          "portrait": "hero_portrait",
+          "text": "Whatever he promised you, it ends here."
+        }
+      ],
+      "between": [
+        "* The Blood Rogue stands alone before the altar, one hand still on the stone."
+      ],
+      "after": [
+        {
+          "speaker": "",
+          "portrait": "none",
+          "text": "* The Blood Rogue is gone from the dais steps. The red light drains out of the standing stones, one by one, until only the candle on the rest stone is left burning."
+        },
+        {
+          "speaker": "",
+          "portrait": "none",
+          "text": "* The graveyard is cold again. Somewhere below, a crow calls once and goes quiet."
+        },
+        {
+          "speaker": "",
+          "portrait": "none",
+          "text": "* On the altar, half buried in grey ash, something pale catches the candlelight."
+        }
+      ]
+    },
+    {
+      "id": "wind_cult_landing",
+      "mission": "wind",
+      "room": "safaris_far_shore",
+      "foes": [
+        "cult_priest",
+        "cult_priest",
+        "cult_priest",
+        "cult_priest"
+      ],
+      "before": [
+        {
+          "speaker": "",
+          "portrait": "none",
+          "text": "* The wind comes down the slope all at once, cold and steady. The banners on the poles snap and twist. Four figures in pale robes walk out from between them."
+        },
+        {
+          "speaker": "",
+          "portrait": "none",
+          "text": "* Cult Priests. Their faces are hidden under hoods sewn with feathers. They walk barefoot over the stones, spreading out along the slope above the landing."
+        },
+        {
+          "speaker": "Kael",
+          "portrait": "hero_portrait",
+          "text": "You have been waiting for someone to cross. I am not the one you expected."
+        }
+      ],
+      "between": [
+        "* The banners crack in the wind. Another Cult Priest steps out. Remaining: {N}.",
+        "* A Cult Priest comes down the slope against the wind. Remaining: {N}.",
+        "* The grass bends flat. Another priest comes forward. Remaining: {N}."
+      ],
+      "after": [
+        {
+          "speaker": "",
+          "portrait": "none",
+          "text": "* The last priest goes down among the poles. Its torn banner keeps flying, though no hand holds the pole anymore."
+        },
+        {
+          "speaker": "",
+          "portrait": "none",
+          "text": "* Higher up the hill, the stone chimes are ringing. Slow, low notes, passed from terrace to terrace like word sent ahead."
+        }
+      ]
+    },
+    {
+      "id": "wind_cult_terraces",
+      "mission": "wind",
+      "room": "wind_cult_terraces",
+      "foes": [
+        "cult_priest",
+        "cult_priest",
+        "cult_priest",
+        "cult_warrior"
+      ],
+      "before": [
+        {
+          "speaker": "",
+          "portrait": "none",
+          "text": "* On the middle terrace, three Cult Priests stand before the stone wind-chime frames, striking them in turn. Each note hangs in the air longer than it should."
+        },
+        {
+          "speaker": "",
+          "portrait": "none",
+          "text": "* Behind them, a broader figure waits with folded arms. A Cult Warrior. It watches Kael climb the last steps and makes no sound."
+        },
+        {
+          "speaker": "Kael",
+          "portrait": "hero_portrait",
+          "text": "Ring them all you want. I am still coming up."
+        }
+      ],
+      "between": [
+        "* A chime sounds. Another figure steps from the terrace wall. Remaining: {N}.",
+        "* The notes deepen. Another foe comes down the terrace. Remaining: {N}.",
+        "* Another foe comes out of the wind. Remaining: {N}."
+      ],
+      "after": [
+        {
+          "speaker": "",
+          "portrait": "none",
+          "text": "* The chimes fall silent one by one as their ringers fall away. The last note fades over the valley."
+        },
+        {
+          "speaker": "",
+          "portrait": "none",
+          "text": "* From the shrine above, there is no answering sound. Whoever waits there already knows he is coming."
+        }
+      ]
+    },
+    {
+      "id": "wind_cult_platform",
+      "mission": "wind",
+      "room": "wind_cult_shrine",
+      "foes": [
+        "cult_priest",
+        "cult_priest",
+        "cult_warrior",
+        "cult_warrior"
+      ],
+      "before": [
+        {
+          "speaker": "",
+          "portrait": "none",
+          "text": "* On the round stone platform before the shrine, two Cult Priests and two Cult Warriors stand in a ring among the banner posts, facing outward."
+        },
+        {
+          "speaker": "",
+          "portrait": "none",
+          "text": "* Pressed into the dust on the platform stone is a single mark that does not belong to the cult: a handprint, in grey ash. The ring stands around it, as if guarding it."
+        },
+        {
+          "speaker": "Kael",
+          "portrait": "hero_portrait",
+          "text": "He stood here. He left his mark on your holy place, and you let him."
+        }
+      ],
+      "between": [
+        "* The ring closes. Another figure steps into the gap. Remaining: {N}.",
+        "* Another of the ring turns to face Kael. Remaining: {N}.",
+        "* The banners strain at their posts. Another foe comes on. Remaining: {N}."
+      ],
+      "after": [
+        {
+          "speaker": "",
+          "portrait": "none",
+          "text": "* The ring is broken. The wind takes the ash handprint off the stone and scatters it over the edge of the hill."
+        },
+        {
+          "speaker": "",
+          "portrait": "none",
+          "text": "* Only the shrine is left, and the one who stands alone before it."
+        }
+      ]
+    },
+    {
+      "id": "wind_cult_leader",
+      "mission": "wind",
+      "room": "wind_cult_shrine",
+      "foes": [
+        "cult_rogue"
+      ],
+      "before": [
+        {
+          "speaker": "",
+          "portrait": "none",
+          "text": "* Before the open shrine, beside the stone basin of feathers, a lone figure kneels toward the place where the handprint was. Then it rises and turns to face the path."
+        },
+        {
+          "speaker": "",
+          "portrait": "none",
+          "text": "* A Cult Rogue. Taller than the priests. Lighter on its feet than the warriors. The wind bends around it, and the feathers in the basin lift and settle with every breath."
+        },
+        {
+          "speaker": "Kael",
+          "portrait": "hero_portrait",
+          "text": "Your cult is gone. Whatever the grey man promised you, he is not here to keep it."
+        }
+      ],
+      "between": [
+        "* The Cult Rogue stands alone before the shrine."
+      ],
+      "after": [
+        {
+          "speaker": "",
+          "portrait": "none",
+          "text": "* The Cult Rogue is gone from the shrine, and the wind dies with it. For the first time, Wind Hill is completely still."
+        },
+        {
+          "speaker": "",
+          "portrait": "none",
+          "text": "* Down the hill, the last few priests drop their banners and go over the far side of the slope. They do not look back."
+        },
+        {
+          "speaker": "",
+          "portrait": "none",
+          "text": "* In the shrine, behind the wind-wheel relief, something has been pressed into a crack in the stone."
+        }
+      ]
+    }
+  ],
+  "giver": {
+    "blood": "brann",
+    "wind": "edda"
+  },
+  "offer": {
+    "blood": [
+      {
+        "speaker": "Brann",
+        "portrait": "hunter_portrait",
+        "text": "One more thing, before you go back to Edda's fire. The lodge has decided something. I do not like it, and I will do it anyway."
+      },
+      {
+        "speaker": "Brann",
+        "portrait": "hunter_portrait",
+        "text": "Past the east gate, where the valley road forks, there is the old graveyard. Dundean buried its dead there before the lodge was built. My father lies there."
+      },
+      {
+        "speaker": "Brann",
+        "portrait": "hunter_portrait",
+        "text": "Three nights now there have been red fires among the stones. Blood Priests, a whole circle of them, chanting over our graves. Warriors with them. And something worse."
+      },
+      {
+        "speaker": "Kael",
+        "portrait": "hero_portrait",
+        "text": "Blood Priests do not gather like that on their own."
+      },
+      {
+        "speaker": "Brann",
+        "portrait": "hunter_portrait",
+        "text": "No. One of my hunters went close on the first night. He says the ground by the lichgate was grey with ash. The same grey as your man."
+      },
+      {
+        "speaker": "Brann",
+        "portrait": "hunter_portrait",
+        "text": "The lodge will not send hunters into a rite. There are enough names crossed out on the board this season. But you walked here from the Norwoods. You came past Orochi."
+      },
+      {
+        "speaker": "Kael",
+        "portrait": "hero_portrait",
+        "text": "And you? You are a hunter. It is your father's grave."
+      },
+      {
+        "speaker": "Brann",
+        "portrait": "hunter_portrait",
+        "text": "...I cannot go in there. Do not ask me again."
+      },
+      {
+        "speaker": "Brann",
+        "portrait": "hunter_portrait",
+        "text": "Break the rite. Put out the circle. I will open the gate, but only as far as the graveyard fork. Longdale stays closed until the lodge says otherwise."
+      },
+      {
+        "speaker": "Kael",
+        "portrait": "hero_portrait",
+        "text": "He went that way. If he stopped at the graveyard, I want to know why. I will go."
+      },
+      {
+        "speaker": "Brann",
+        "portrait": "hunter_portrait",
+        "text": "Then the bar comes up. Dun ar, open road. Come back the same way you leave."
+      },
+      {
+        "speaker": "",
+        "portrait": "none",
+        "text": "* Brann walks to the east gate and lifts the beam from its brackets. He does not look down the side track. The gate swings out onto the valley road."
+      }
+    ],
+    "wind": [
+      {
+        "speaker": "Old Edda",
+        "portrait": "innkeeper_portrait",
+        "text": "And there is something else. I would rather not send you into it, but you will walk into everything anyway. I can see that much."
+      },
+      {
+        "speaker": "Old Edda",
+        "portrait": "innkeeper_portrait",
+        "text": "Across the river from the little house by the jetty, there is a hill the grass will not grow on. We call it Wind Hill. The old shrine sits at the top."
+      },
+      {
+        "speaker": "Old Edda",
+        "portrait": "innkeeper_portrait",
+        "text": "Cult Priests keep it. Wind priests, the old people called them. They hang banners on the slope and ring their stone chimes until the whole valley hums."
+      },
+      {
+        "speaker": "Old Edda",
+        "portrait": "innkeeper_portrait",
+        "text": "They were few and quiet for years. Then, a few days ago, they grew bold. They took a fishing boat at the riverbank. They have warriors with them now."
+      },
+      {
+        "speaker": "Old Edda",
+        "portrait": "innkeeper_portrait",
+        "text": "Three of our young ones went up after them. They have not come down."
+      },
+      {
+        "speaker": "Kael",
+        "portrait": "hero_portrait",
+        "text": "A few days ago. When he came through the Safaris."
+      },
+      {
+        "speaker": "Old Edda",
+        "portrait": "innkeeper_portrait",
+        "text": "The grass hears, and so do I. A trader saw a grey man on the far shore, speaking with the one who leads them. He did not stay long. He never seems to."
+      },
+      {
+        "speaker": "Old Edda",
+        "portrait": "innkeeper_portrait",
+        "text": "Break them up, Kael. Drive them off Wind Hill. The house by the river has a rowboat, but no oars. Take these. They were my husband's."
+      },
+      {
+        "speaker": "",
+        "portrait": "none",
+        "text": "* Old Edda sets a pair of worn oars against the table. The wood is dark with years of river water, and dry now. A small wheel is burned into each blade, worn almost smooth."
+      },
+      {
+        "speaker": "Old Edda",
+        "portrait": "innkeeper_portrait",
+        "text": "They have not been in the water for four years. They will still hold."
+      },
+      {
+        "speaker": "Kael",
+        "portrait": "hero_portrait",
+        "text": "I will bring them back, Edda. And I will find out what he wanted with that hill."
+      }
+    ]
+  },
+  "waiting": {
+    "blood": [
+      "The graveyard is down the side track at the fork. Follow the red fires. You will not miss them.",
+      "The road to Longdale is still closed. The hunters felled a pine across it. The graveyard, and no further.",
+      "Blood Priests feed the rite, but the circle needs a heart. Whatever stands at the altar, that is what holds it together.",
+      "If you see my father's stone, near the lichgate, the one with the hunting horn cut in it... no. Just break the rite.",
+      "I keep this gate. That is what I am for. Go on."
+    ],
+    "wind": [
+      "The jetty by the river house. Fit the oars, row across, and follow the banners up the hill.",
+      "Wind priests do not fight like hunters. They wait on high ground and let you come to them. Do not climb that hill tired.",
+      "Whoever leads them will be at the shrine. Break that one, and the others will scatter like chaff.",
+      "Eat before you row. The river is colder than it looks.",
+      "The oars know the way across. Let them."
+    ]
+  },
+  "done": {
+    "blood": [
+      {
+        "speaker": "Brann",
+        "portrait": "hunter_portrait",
+        "text": "The fires went out last night. We saw it from the wall. Every one of them, at once."
+      },
+      {
+        "speaker": "Kael",
+        "portrait": "hero_portrait",
+        "text": "The circle is broken. Fourteen priests, three warriors, and a Blood Rogue at the altar. None of them will chant over your dead again."
+      },
+      {
+        "speaker": "Kael",
+        "portrait": "hero_portrait",
+        "text": "It wore a ring. Carved horn, like the stone by the lichgate."
+      },
+      {
+        "speaker": "",
+        "portrait": "none",
+        "text": "* Brann is quiet for a long moment. He does not ask what became of it."
+      },
+      {
+        "speaker": "Brann",
+        "portrait": "hunter_portrait",
+        "text": "...Fourteen. And you are standing here. The lodge will hear of this, and they will believe it."
+      },
+      {
+        "speaker": "Kael",
+        "portrait": "hero_portrait",
+        "text": "This was on the altar, in the ash. Half a page. Someone tore it on purpose."
+      },
+      {
+        "speaker": "Brann",
+        "portrait": "hunter_portrait",
+        "text": "I am a hunter, not a scholar. But that is not priest-writing. It is too careful. Someone made that page, and someone gave it to them to guard."
+      },
+      {
+        "speaker": "Brann",
+        "portrait": "hunter_portrait",
+        "text": "Keep it close. A thing that was guarded that well will be missed. My father's stone is still standing. Thank you, Kael."
+      }
+    ],
+    "wind": [
+      {
+        "speaker": "Old Edda",
+        "portrait": "innkeeper_portrait",
+        "text": "The chimes stopped at noon. I have not heard the valley this quiet in years. You did that."
+      },
+      {
+        "speaker": "Kael",
+        "portrait": "hero_portrait",
+        "text": "The priests are scattered. Their leader, a Cult Rogue, stood at the shrine. It will not ring those chimes again."
+      },
+      {
+        "speaker": "",
+        "portrait": "none",
+        "text": "* Edda nods once. She does not ask what became of it."
+      },
+      {
+        "speaker": "Kael",
+        "portrait": "hero_portrait",
+        "text": "It kept this in the shrine, behind the wind-wheel. A torn page. Half of something."
+      },
+      {
+        "speaker": "Old Edda",
+        "portrait": "innkeeper_portrait",
+        "text": "Let me see. ...That hand is old, and steady. That was written by someone who knew exactly what they were doing. Not by a wind priest."
+      },
+      {
+        "speaker": "Old Edda",
+        "portrait": "innkeeper_portrait",
+        "text": "I cannot tell you what it is for. But I know this much: a thing worth tearing in two is a thing someone was afraid of."
+      },
+      {
+        "speaker": "Old Edda",
+        "portrait": "innkeeper_portrait",
+        "text": "Keep it with your sister's ribbon. And keep the oars."
+      }
+    ]
+  },
+  "fragments": {
+    "blood": {
+      "item": "fragment_blood",
+      "item_name": "Torn Page (Blood Rite)",
+      "desc": "Half of an old page, torn down the middle, found on the altar of the Blood Circle, half buried in grey ash. Careful brown ink. The edge is stained red.",
+      "found": [
+        {
+          "speaker": "",
+          "portrait": "none",
+          "text": "* Half buried in the ash on the altar lies half a page of thick, old paper. It has been torn cleanly down the middle. One corner is stained red where it lay against the stone."
+        },
+        {
+          "speaker": "",
+          "portrait": "none",
+          "text": "* The writing is careful and even, in brown ink. The first word is a name Kael knows: the name of the thing that stood at this altar."
+        },
+        {
+          "speaker": "",
+          "portrait": "none",
+          "text": "* One edge is not torn but cut, straight and clean, as if with a blade along a rule."
+        },
+        {
+          "speaker": "Kael",
+          "portrait": "hero_portrait",
+          "text": "This was not left by priests. Someone wrote this, tore it in two, and gave half to the rite. The other half is somewhere else."
+        }
+      ],
+      "page": "BLOOD ROGUE - of the Fire. The last of its line: Blood Priest, then Blood Warrior, then Blood Rogue.\n\nBLOOD ROGUE  +  ...\n\nCareful brown ink. The rest of the page is torn away. Along the tear, a few strokes of a second word remain. They cannot be read."
+    },
+    "wind": {
+      "item": "fragment_wind",
+      "item_name": "Torn Page (Cult)",
+      "desc": "Half of an old page, found in a crack behind the Wind Hill wind-wheel. Careful brown ink. A small feather is caught in the fold.",
+      "found": [
+        {
+          "speaker": "",
+          "portrait": "none",
+          "text": "* Pressed deep into a crack behind the wind-wheel relief is a folded half-page of thick, old paper. A small grey feather is caught in the fold."
+        },
+        {
+          "speaker": "",
+          "portrait": "none",
+          "text": "* It is torn cleanly down the middle. The writing is careful and even, in brown ink. The last word is a name Kael knows: the name of the thing that stood before this shrine."
+        },
+        {
+          "speaker": "",
+          "portrait": "none",
+          "text": "* Its outer edge is trimmed square and smooth, the way the pages of a bound book are trimmed. This leaf belonged to a book once."
+        },
+        {
+          "speaker": "Kael",
+          "portrait": "hero_portrait",
+          "text": "The cult did not write this. Someone gave it to them to keep, and told them to keep it from people like me. The other half is somewhere else."
+        }
+      ],
+      "page": "...  +  CULT ROGUE - of the Air. The last of its line: Cult Priest, then Cult Warrior, then Cult Rogue.\n\nCareful brown ink. The first part of the page is torn away. Below the name, a small round scorch, grey at the edges, has eaten through the ink. Before the name, only the edge of a plus sign and the tail of another word remain."
+    }
+  },
+  "formula": {
+    "item": "rogue_formula",
+    "item_name": "Rogue Formula",
+    "desc": "Two halves of one leaf, fitted along their tear, in the same brown ink as the last page of Kael's Manual: Blood Rogue + Cult Rogue = Bloodgale.",
+    "joined": [
+      {
+        "speaker": "",
+        "portrait": "none",
+        "text": "* Kael lays the new half-page beside the one he already carries. The torn edges meet. Every tooth of the tear fits the other, as if it had been ripped a moment ago."
+      },
+      {
+        "speaker": "",
+        "portrait": "none",
+        "text": "* Fire and Air. The rite in the graveyard and the cult on the hill. Each kept one half, a day's walk apart, across a river."
+      },
+      {
+        "speaker": "",
+        "portrait": "none",
+        "text": "* The cut edge is familiar. Kael opens the Manual to its last page. The same brown ink. The same steady hand. The inner edge of the leaf fits the cut stub in the spine."
+      },
+      {
+        "speaker": "Kael",
+        "portrait": "hero_portrait",
+        "text": "Halvard wrote this. He cut it out of my own book before he gave it to me. He knew they would be waiting."
+      },
+      {
+        "speaker": "Kael",
+        "portrait": "hero_portrait",
+        "text": "A formula. Blood Rogue and Cult Rogue, together. And where it says what they make..."
+      },
+      {
+        "speaker": "",
+        "portrait": "none",
+        "text": "* Below the two names, where the result should be, the ink has been burned away. A small round scorch, grey at the edges. Deliberate."
+      },
+      {
+        "speaker": "Kael",
+        "portrait": "hero_portrait",
+        "text": "Grey at the edges. Like his ash. He burned the one part that mattered."
+      },
+      {
+        "speaker": "",
+        "portrait": "none",
+        "text": "* But the heat pressed the letters into the paper before it took the ink. Held to the light, the scorch still shows them: BLOODGALE."
+      },
+      {
+        "speaker": "Kael",
+        "portrait": "hero_portrait",
+        "text": "Bloodgale. A Blood Rogue and a Cult Rogue, made one. If I can catch them both..."
+      }
+    ],
+    "page": "BLOOD ROGUE  +  CULT ROGUE  =  BLOODGALE\n\nOf the Fire and of the Air. Each the last of its line.\n\nIn brown ink, in Master Halvard's hand, on a leaf cut from the Manual. The name was burned out on purpose, but the heat pressed the letters into the paper. Capture a Blood Rogue and a Cult Rogue, then perform the formula from the Satchel."
+  },
+  "quests": [
+    {
+      "id": "blood",
+      "title": "The Blood Rite",
+      "stages": [
+        "Brann says a Blood Priest rite has taken the old Dundean graveyard past the east gate. He has opened the gate as far as the graveyard fork. Break the rite.",
+        "Kael has entered the old graveyard. The rite's chant leads deeper in, toward the Blood Circle at the top of the steps.",
+        "The Blood Circle is broken: fourteen priests, three warriors, and the Blood Rogue is gone from the altar. Kael found half a torn page in the ash. Tell Brann."
+      ]
+    },
+    {
+      "id": "wind",
+      "title": "The Cult on Wind Hill",
+      "stages": [
+        "Old Edda says Cult Priests hold Wind Hill, across the river from the house by the jetty. She gave Kael her husband's oars for the rowboat. Break up the cult.",
+        "Kael has crossed to the far shore. The cult's chimes ring from the terraces above. Their leader waits at the shrine.",
+        "The cult on Wind Hill is broken and its Cult Rogue is gone from the shrine. Kael found half of a torn page behind the wind-wheel. Tell Old Edda."
+      ]
+    },
+    {
+      "id": "formula",
+      "title": "The Torn Formula",
+      "stages": [
+        "Kael found half of a torn page in a careful, old hand, in brown ink. The other half must be somewhere else.",
+        "The halves fit: Blood Rogue + Cult Rogue = Bloodgale, in Halvard's hand, cut from Kael's Manual. Capture both Rogues, then use the formula.",
+        "Bloodgale was made from the Rogue Formula."
+      ]
+    }
+  ],
+  "room_entries": {
+    "east_valley_road": [
+      {
+        "speaker": "",
+        "portrait": "none",
+        "text": "* The valley road climbs east between dark pines. At the fork, a waymarker leans with its paint worn off. The side track drops toward a low iron fence and a lichgate."
+      },
+      {
+        "speaker": "",
+        "portrait": "none",
+        "text": "* Up the main road, a great pine has been felled across the way. Brann's lodge mark is cut into the trunk. Longdale is still closed."
+      },
+      {
+        "speaker": "",
+        "portrait": "none",
+        "text": "* In the mud of the side track, among the hunters' boot prints, are bare footprints. Many of them, all walking toward the graveyard. None of them come back up."
+      }
+    ],
+    "graveyard_gate": [
+      {
+        "speaker": "",
+        "portrait": "none",
+        "text": "* The lichgate sags on its posts. Beyond it, two braziers burn red on either side of the path. No one in Dundean has said who lit them."
+      },
+      {
+        "speaker": "",
+        "portrait": "none",
+        "text": "* The ground under the gate is dusted grey. Ash, fine as flour, trodden into the earth by many bare feet."
+      },
+      {
+        "speaker": "Kael",
+        "portrait": "hero_portrait",
+        "text": "His ash. He came this way before the rite began. Or he is the reason it began."
+      }
+    ],
+    "graveyard_rows": [
+      {
+        "speaker": "",
+        "portrait": "none",
+        "text": "* The headstones run in crooked rows toward an old crypt. Its iron door hangs open. The air inside smells of cold stone and something like rust."
+      },
+      {
+        "speaker": "",
+        "portrait": "none",
+        "text": "* Strips of red cloth have been tied to every branch of a bare tree, each one knotted with care. They barely move, though the wind is blowing."
+      }
+    ],
+    "graveyard_ritual_circle": [
+      {
+        "speaker": "",
+        "portrait": "none",
+        "text": "* At the top of the steps, a ring of standing stones stands around a drawn star of dark red. Beyond it, on a raised dais, a slab altar glistens wet in the firelight."
+      },
+      {
+        "speaker": "",
+        "portrait": "none",
+        "text": "* Between the ring and the dais sits a flat rest stone with a single candle, its wick freshly trimmed. It is the only light here that is not red."
+      }
+    ],
+    "safaris_far_shore": [
+      {
+        "speaker": "",
+        "portrait": "none",
+        "text": "* The rowboat bumps against the far jetty. Kael ties it off. The rope slides into a groove worn deep in the mooring post, as if one boat had tied up here for years."
+      },
+      {
+        "speaker": "",
+        "portrait": "none",
+        "text": "* Tattered prayer banners hang from poles all along the path. Each one is painted with the same sign: a wheel of feathers turning in the wind."
+      },
+      {
+        "speaker": "",
+        "portrait": "none",
+        "text": "* At the lantern post on the slope, someone has hung a fishing net, cut to pieces. The boat Edda spoke of lies overturned in the reeds."
+      }
+    ],
+    "wind_cult_terraces": [
+      {
+        "speaker": "",
+        "portrait": "none",
+        "text": "* The hill is cut into stone terraces. On each one stands a frame of hanging stone chimes. They ring low and slow, though no one seems to touch them."
+      },
+      {
+        "speaker": "",
+        "portrait": "none",
+        "text": "* The hut on the left terrace has lost its roof. Inside, a bedroll, a cold fire, and a single grey footprint on the hearthstone."
+      },
+      {
+        "speaker": "",
+        "portrait": "none",
+        "text": "* By the door stands a pair of Dundean boots, laced, set side by side, as if someone meant to come back for them."
+      },
+      {
+        "speaker": "Kael",
+        "portrait": "hero_portrait",
+        "text": "He slept here. One night, maybe less. Then he moved on, and they rang their chimes for him."
+      }
+    ],
+    "wind_cult_shrine": [
+      {
+        "speaker": "",
+        "portrait": "none",
+        "text": "* The top of Wind Hill is a round stone platform among banner posts. Beyond it, an open shrine with a great wind-wheel carved into its back wall."
+      },
+      {
+        "speaker": "",
+        "portrait": "none",
+        "text": "* Before the shrine, a stone basin is heaped with feathers. They stir and settle, stir and settle, like something breathing."
+      },
+      {
+        "speaker": "",
+        "portrait": "none",
+        "text": "* From here the whole valley lies open: the river, the roofs of Dundean, and far to the east, the dark line of the Longdale road."
+      }
+    ]
+  }
+}

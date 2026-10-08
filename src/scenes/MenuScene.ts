@@ -251,8 +251,8 @@ export class MenuScene extends Phaser.Scene {
         return {
           title: fo.item_name,
           pages: [
-            { heading: 'Blood Rogue', text: 'The first half, in dried dark ink.', image: 'mon_blood_rogue' },
-            { heading: 'Cult Rogue', text: 'The second half, in a wind-faded hand.', image: 'mon_cult_rogue' },
+            { heading: 'Blood Rogue', text: 'The first half, in careful brown ink.', image: 'mon_blood_rogue' },
+            { heading: 'Cult Rogue', text: 'The second half, in the same brown ink, the same hand.', image: 'mon_cult_rogue' },
             { heading: '= Bloodgale', text: fo.page, image: 'mon_bloodgale' },
             { heading: 'Bloodgale', text: 'Fire · 8★\n\nTwin Fang — 50 TU, 2 foes: 7-8 Physical Damage (Fire)\nGale Rite — 100 TU, all friends: speeds up actions by 38%, Attack +34\nSeverance — 130 TU, 1 foe: 20-24 Physical Damage (Air), +100% vs. Humanoid\nRed Requiem — 250 TU, all foes: 28-34 Physical Damage (Fire), +10% per friendly casualty' },
           ],

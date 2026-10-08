@@ -1,0 +1,558 @@
+{
+ "room_entries": {
+  "giant_mangal_f2": [
+   {
+    "speaker": "",
+    "portrait": "none",
+    "text": "* The second floor is a hollow chamber cut into living wood. A hunters' spear-rack lies on its side by a ring of fire stones. The ashes in the ring are black and wet, not grey."
+   },
+   {
+    "speaker": "",
+    "portrait": "none",
+    "text": "* Snapped spear-shafts lie scattered down the treads of the upper stair. They were not dropped. Something broke them and threw them back down."
+   },
+   {
+    "speaker": "",
+    "portrait": "none",
+    "text": "* Along one wall, a stripe of glowing fungus has been scraped away at shoulder height, as if someone felt his way along it in the dark."
+   },
+   {
+    "speaker": "Kael",
+    "portrait": "hero_portrait",
+    "text": "Hunters camped here, and something drove them out. This is not his work. Whatever lives above did this."
+   }
+  ],
+  "giant_mangal_f3": [
+   {
+    "speaker": "",
+    "portrait": "none",
+    "text": "* A round carved stone sits in a dais of heartwood, its marks worn smooth by old hands. A Waypoint. The air around it is still and faintly warm."
+   },
+   {
+    "speaker": "",
+    "portrait": "none",
+    "text": "* Notches are cut into a root beside the dais, one row for each day. The last row stops in the middle. Nobody came back to finish it."
+   },
+   {
+    "speaker": "",
+    "portrait": "none",
+    "text": "* Where the stair to the fourth floor should be, the trunk is split open. The treads have been torn out of the wood and lie in splinters far below. The sap is still running."
+   }
+  ],
+  "ringfeld_lower_road": [
+   {
+    "speaker": "",
+    "portrait": "none",
+    "text": "* North of the fallen trunk, the road comes out of the trees onto open fields. A path of planks and rope has been laid around the slide. The knots are new."
+   },
+   {
+    "speaker": "",
+    "portrait": "none",
+    "text": "* The air smells of salt. Along the field wall, a fine grey dust lies in the cracks between the stones, old and dry. It came on the wind, not on anyone's boots."
+   }
+  ],
+  "ringfeld_shelter": [
+   {
+    "speaker": "",
+    "portrait": "none",
+    "text": "* A longhouse, a covered well and a stable lean-to stand inside a low wall. Smoke rises from the chimney. Past the sea gate, the Lighthouse stands dark on its rock."
+   },
+   {
+    "speaker": "Kael",
+    "portrait": "hero_portrait",
+    "text": "There is no town on this coast, the hunters said. Only the keepers. If anyone here has news, it is them."
+   }
+  ],
+  "ringfeld_shore_road": [
+   {
+    "speaker": "",
+    "portrait": "none",
+    "text": "* The shore road runs down to a stone causeway. At its landward end, a lantern on a post burns low, though the keepers filled it at dusk. The causeway runs out toward the dark Lighthouse."
+   },
+   {
+    "speaker": "",
+    "portrait": "none",
+    "text": "* A thin line of grey lies along the tide mark, left by the sea. Further out, the water is too still. Once, something vast moves beneath it, and the surface does not break."
+   },
+   {
+    "speaker": "Kael",
+    "portrait": "hero_portrait",
+    "text": "His ash, carried all the way from the Norwoods. The night he woke Orochi, it reached even this coast. But he did not come this way."
+   }
+  ],
+  "south_earlsome_valley": [
+   {
+    "speaker": "",
+    "portrait": "none",
+    "text": "* Past the stump of Brann's pine, the valley road climbs between steep cliffs. By the ruined drovers' hut, three sets of prints: one long stride, two small ones keeping pace."
+   },
+   {
+    "speaker": "",
+    "portrait": "none",
+    "text": "* The prints are days old, their edges crumbled. Grey ash lies in each heel mark, as if it fell from him with every step."
+   },
+   {
+    "speaker": "Kael",
+    "portrait": "hero_portrait",
+    "text": "Still walking. Still together. Above, the cliffs glow red. Whatever guards this pass, he went straight toward it."
+   }
+  ],
+  "earlsome_dragon_pass": [
+   {
+    "speaker": "",
+    "portrait": "none",
+    "text": "* The road ends at a stone basin below a falls. A pool lies in it, black and perfectly still, though the water pours in from above. High in the cliff, a shrine glows red."
+   },
+   {
+    "speaker": "",
+    "portrait": "none",
+    "text": "* Footprints cross the stone weir toward the rock stair: one long stride, two small. They do not hurry. They do not stop."
+   }
+  ],
+  "longdale_road": [
+   {
+    "speaker": "",
+    "portrait": "none",
+    "text": "* Below the pass, the road runs down into a green dale. An old milestone stands at the roadside. Around its base, someone has tied a single strand of blue thread."
+   },
+   {
+    "speaker": "Kael",
+    "portrait": "hero_portrait",
+    "text": "Blue, like her ribbon. Lira pulled a thread from her sleeve and tied it where I would see it. She is still telling me which way."
+   },
+   {
+    "speaker": "",
+    "portrait": "none",
+    "text": "* In the shrine niche beside it, the old wick has been pinched out. A new one has been threaded beside it, and the oil is fresh. No one lit it."
+   }
+  ],
+  "longdale_square": [
+   {
+    "speaker": "",
+    "portrait": "none",
+    "text": "* Longdale is busy, even now. Hunters crowd the guild notice board, and the stone trough steams in the cold. Up the street, the north gate is shut."
+   },
+   {
+    "speaker": "",
+    "portrait": "none",
+    "text": "* A faint line of grey ash runs along the cobbles, days old and nearly trodden away. It leads up the street and under the north gate."
+   }
+  ]
+ },
+ "npc_dialogue": {
+  "maren": {
+   "first": [
+    {
+     "speaker": "Maren",
+     "portrait": "innkeeper_portrait",
+     "text": "You came up the slide road? Then Osk's planks held. Come in from the wind. The well is clean and the fire is lit, and nobody here asks a traveller's business."
+    },
+    {
+     "speaker": "Kael",
+     "portrait": "hero_portrait",
+     "text": "I am looking for a man covered in grey ash. He has two children with him. A girl and a small boy."
+    },
+    {
+     "speaker": "Maren",
+     "portrait": "innkeeper_portrait",
+     "text": "The Lighthouse had gone dark some nights before it came. Then, the night the ground shook in the Norwoods, grey ash fell on this coast for an hour. On the well and the sea."
+    },
+    {
+     "speaker": "Maren",
+     "portrait": "innkeeper_portrait",
+     "text": "Days later a hunter came up from the Safaris. He spoke of a grey man walking east toward Dundean with two children. He did not come this way. The coast was not his road."
+    },
+    {
+     "speaker": "Maren",
+     "portrait": "innkeeper_portrait",
+     "text": "If you want him, go back to the Safaris. Ask in Dundean. I am sorry. I wish I had better news to give you."
+    }
+   ],
+   "repeat": [
+    "Rest while you can. The road back to the Safaris is long, and it does not get kinder.",
+    "The Lighthouse went dark and has stayed dark. I will not say what is in the water. Only that it is old, and it is waiting.",
+    "Draw from the well before you go. Whatever else you find on the road, you will not find water as clean.",
+    "My mother kept the shelter before me. She said the Lighthouse goes dark once in seven years, for a moon, then burns again. Not what lights it."
+   ],
+   "name": "Maren",
+   "portrait": "innkeeper_portrait"
+  },
+  "osk": {
+   "first": [
+    {
+     "speaker": "Osk",
+     "portrait": "hunter_portrait",
+     "text": "Stop there. ...You came round the slide. Good. I laid those planks myself. The keepers could not wait for spring, and neither could the people who need this shelter."
+    },
+    {
+     "speaker": "Kael",
+     "portrait": "hero_portrait",
+     "text": "Where does the shore road go?"
+    },
+    {
+     "speaker": "Osk",
+     "portrait": "hunter_portrait",
+     "text": "Down to the causeway and the Lighthouse. You can walk the shore. You cannot cross. The overlord in the water lets nothing across. Archelon, the old ones call it."
+    },
+    {
+     "speaker": "Osk",
+     "portrait": "hunter_portrait",
+     "text": "I have watched boats try. I have pulled what was left of them out of the cove. Look at the water if you must. Do not set foot on the causeway."
+    }
+   ],
+   "repeat": [
+    "The sea gate stays open in daylight. After dark, I bar it. Be back inside by then.",
+    "Archelon does not hunt the shore. It guards the causeway. As long as you stay on land, it lets you be.",
+    "The ribs in the cove were a keeper's boat. He meant to light the Lighthouse again himself. He thought the fog would hide him."
+   ],
+   "name": "Osk",
+   "portrait": "hunter_portrait"
+  },
+  "hild": {
+   "first": [
+    {
+     "speaker": "Hild",
+     "portrait": "innkeeper_portrait",
+     "text": "Long day, short road. Sit, traveller. You look like you came down from the pass, and nobody comes down from the pass looking rested."
+    },
+    {
+     "speaker": "Kael",
+     "portrait": "hero_portrait",
+     "text": "A man in grey ash, with a girl and a small boy. Did they come through Longdale?"
+    },
+    {
+     "speaker": "Hild",
+     "portrait": "innkeeper_portrait",
+     "text": "Some nights ago. He came down from the pass with them at evening. The dragon in the pool did not rise for him. It rises for everyone. Not for him."
+    },
+    {
+     "speaker": "Hild",
+     "portrait": "innkeeper_portrait",
+     "text": "He paid for nothing and slept nowhere. The children ate what I gave them standing in the doorway. The girl thanked me. He never once looked at me."
+    },
+    {
+     "speaker": "Hild",
+     "portrait": "innkeeper_portrait",
+     "text": "The girl asked me for a cup of lamp oil. For the road, she said. I gave it to her."
+    },
+    {
+     "speaker": "Hild",
+     "portrait": "innkeeper_portrait",
+     "text": "The guild's notice about them went up on the board the day before they came."
+    },
+    {
+     "speaker": "Hild",
+     "portrait": "innkeeper_portrait",
+     "text": "He left by the north gate before it shut. Tamsin keeps that gate. Ask her, if she will talk. She has not said much since."
+    }
+   ],
+   "repeat": [
+    "Long day, short road. There is soup on the fire and a bed upstairs. Use both.",
+    "The guild board has more work on it than any board in the land. None of it pays well enough for the north road at night.",
+    "The girl kept the boy's hand in hers the whole time. She did not let go even to eat."
+   ],
+   "name": "Hild",
+   "portrait": "innkeeper_portrait"
+  },
+  "tamsin": {
+   "first": [
+    {
+     "speaker": "Tamsin",
+     "portrait": "hunter_portrait",
+     "text": "Dale-ward closes at dusk. The north gate is barred, and it stays barred until morning. That is the law here, and I keep it."
+    },
+    {
+     "speaker": "Kael",
+     "portrait": "hero_portrait",
+     "text": "The grey man went through this gate. With two children. You saw him."
+    },
+    {
+     "speaker": "Tamsin",
+     "portrait": "hunter_portrait",
+     "text": "I saw him. He went out with the children just before I barred it. The light was going. I had my bow in my hand, and I did not raise it."
+    },
+    {
+     "speaker": "Kael",
+     "portrait": "hero_portrait",
+     "text": "Why not?"
+    },
+    {
+     "speaker": "Tamsin",
+     "portrait": "hunter_portrait",
+     "text": "...Years ago I hunted these passes with a man from Azurelake, before he went home to the lake. He talked of nothing but his boy."
+    },
+    {
+     "speaker": "Tamsin",
+     "portrait": "hunter_portrait",
+     "text": "What is your name?"
+    },
+    {
+     "speaker": "Kael",
+     "portrait": "hero_portrait",
+     "text": "Kael."
+    },
+    {
+     "speaker": "Tamsin",
+     "portrait": "hunter_portrait",
+     "text": "The girl held his sleeve at this gate and said: Father, will Kael be all right? He said: He always comes."
+    },
+    {
+     "speaker": "Tamsin",
+     "portrait": "hunter_portrait",
+     "text": "I called him by his name. He looked at me as if I were a gatepost."
+    },
+    {
+     "speaker": "Kael",
+     "portrait": "hero_portrait",
+     "text": "...Father."
+    },
+    {
+     "speaker": "",
+     "portrait": "none",
+     "text": "* Tamsin takes a folded paper from inside her coat. The guild's seal is broken on it."
+    },
+    {
+     "speaker": "Tamsin",
+     "portrait": "hunter_portrait",
+     "text": "This came from your guild, the long way, by Wesing, the day before he did. Do not raise a bow to the man. The boy is to be let through the north gate at whatever hour he comes."
+    },
+    {
+     "speaker": "Tamsin",
+     "portrait": "hunter_portrait",
+     "text": "I barred it anyway. Dale-ward closes at dusk. That is the law here, and I keep it. One night is all I can give you."
+    },
+    {
+     "speaker": "Kael",
+     "portrait": "hero_portrait",
+     "text": "The day before..."
+    },
+    {
+     "speaker": "Tamsin",
+     "portrait": "hunter_portrait",
+     "text": "The north road runs past the cave al-Rashid fled into. The guild says a breeder blocks the path beyond it. Go at first light, if you go."
+    }
+   ],
+   "repeat": [
+    "Dale-ward closes at dusk. I will not open it at night. Not for you, not for anyone.",
+    "The guild posted a notice about the breeder on the mountain path. Nobody has taken it.",
+    "He did not look back when he went out. The boy did."
+   ],
+   "name": "Tamsin",
+   "portrait": "hunter_portrait"
+  }
+ },
+ "bosses": {
+  "apalala": {
+   "before": [
+    {
+     "speaker": "",
+     "portrait": "none",
+     "text": "* As Kael steps onto the weir, the still pool breaks. A long blue shape rises from the basin, scaled like deep water, and the falls part around it."
+    },
+    {
+     "speaker": "",
+     "portrait": "none",
+     "text": "* Apalala. The Dragon Overlord of South Earlsome. Its body coils across the rock stair, and water streams from it onto the stones."
+    },
+    {
+     "speaker": "Apalala",
+     "portrait": "none",
+     "text": "This pass is mine. No one goes down to the dale without my leave. Turn back, or be taken by the water."
+    },
+    {
+     "speaker": "Kael",
+     "portrait": "hero_portrait",
+     "text": "Someone went down before me. With two children. I am following them, and I am not turning back."
+    }
+   ],
+   "after_peace": [
+    {
+     "speaker": "",
+     "portrait": "none",
+     "text": "* Apalala lowers its head to the water. The waves in the basin settle, and the pool grows still again."
+    },
+    {
+     "speaker": "Apalala",
+     "portrait": "none",
+     "text": "You did not come for my blood. Few who reach this weir can say that. Go down, then."
+    },
+    {
+     "speaker": "Apalala",
+     "portrait": "none",
+     "text": "The grey one crossed here with the little ones. I did not rise for him. There was nothing in him I could take that he had not already given away."
+    },
+    {
+     "speaker": "Kael",
+     "portrait": "hero_portrait",
+     "text": "What does that mean? What did he give away?"
+    },
+    {
+     "speaker": "Apalala",
+     "portrait": "none",
+     "text": "...Not even you."
+    },
+    {
+     "speaker": "",
+     "portrait": "none",
+     "text": "* It sinks into the pool without another word. The rock stair to Longdale lies open."
+    }
+   ],
+   "after_won": [
+    {
+     "speaker": "",
+     "portrait": "none",
+     "text": "* Apalala sinks across the weir, beaten. The water it held drains back into the basin, and the falls pour down unbroken again."
+    },
+    {
+     "speaker": "",
+     "portrait": "none",
+     "text": "* The red glow in the cliff shrine dims, but does not go out. Beyond the weir, the rock stair to Longdale lies open."
+    },
+    {
+     "speaker": "Kael",
+     "portrait": "hero_portrait",
+     "text": "It let him pass. It fought me. Whatever he is, even the dragons treat him differently."
+    }
+   ]
+  }
+ },
+ "unlock_lines": {
+  "giant_mangal_f2": [
+   {
+    "speaker": "Kael",
+    "portrait": "hero_portrait",
+    "text": "My sister's ribbon. I never showed it to you, Edda."
+   },
+   {
+    "speaker": "Old Edda",
+    "portrait": "innkeeper_portrait",
+    "text": "Not mine to tell, boy. Eat first."
+   },
+   {
+    "speaker": "",
+    "portrait": "none",
+    "text": "* She sets a bowl in front of him and does not sit down. For a while, the only sound is the fire."
+   },
+   {
+    "speaker": "Old Edda",
+    "portrait": "innkeeper_portrait",
+    "text": "The one at the shrine was my husband. Twenty years he rowed those oars to that hill."
+   },
+   {
+    "speaker": "Old Edda",
+    "portrait": "innkeeper_portrait",
+    "text": "Four years ago the boat came back across the river empty, with the oars shipped inside it."
+   },
+   {
+    "speaker": "Old Edda",
+    "portrait": "innkeeper_portrait",
+    "text": "The boots in the hut were my grandson's. He went up to bring his grandfather home."
+   },
+   {
+    "speaker": "Old Edda",
+    "portrait": "innkeeper_portrait",
+    "text": "So keep the oars. I want nothing of his back in this house."
+   },
+   {
+    "speaker": "Old Edda",
+    "portrait": "innkeeper_portrait",
+    "text": "The lodge met this morning. They have cut the lashings on the Giant Mangal stair. You served Dundean, and the hunters pay their debts."
+   },
+   {
+    "speaker": "Old Edda",
+    "portrait": "innkeeper_portrait",
+    "text": "Before the bar went up, two of ours climbed after the barbarian. They have not come down. If you go up, look for them. Bring back what you find."
+   },
+   {
+    "speaker": "Kael",
+    "portrait": "hero_portrait",
+    "text": "I will look. Whatever is up there."
+   }
+  ],
+  "ringfeld_lower_road": [
+   {
+    "speaker": "Old Edda",
+    "portrait": "innkeeper_portrait",
+    "text": "Word came down from the coast. The keepers at Ringfeld have laid a plank path round the slide, past the fallen trunk at the Mangal crossroads."
+   },
+   {
+    "speaker": "Old Edda",
+    "portrait": "innkeeper_portrait",
+    "text": "The lodge has marked the north road open. It is a narrow way, and the ravine is deep. Walk it in daylight."
+   },
+   {
+    "speaker": "Kael",
+    "portrait": "hero_portrait",
+    "text": "Then I will see the coast. If anyone there saw him, I need to know."
+   }
+  ],
+  "south_earlsome_valley": [
+   {
+    "speaker": "Brann",
+    "portrait": "hunter_portrait",
+    "text": "I had the pine hauled off the valley road this morning. Four of us and a team of oxen. The road to Longdale is open."
+   },
+   {
+    "speaker": "Kael",
+    "portrait": "hero_portrait",
+    "text": "You know who made that page."
+   },
+   {
+    "speaker": "Brann",
+    "portrait": "hunter_portrait",
+    "text": "That is not mine to say."
+   },
+   {
+    "speaker": "Brann",
+    "portrait": "hunter_portrait",
+    "text": "The ring was Seren's. My wife. I cut it from my father's hunting horn, the one carved on his stone."
+   },
+   {
+    "speaker": "Brann",
+    "portrait": "hunter_portrait",
+    "text": "The small grave beside it is our daughter's. She went to Azurelake as a guild apprentice when she was six. A letter came back that said fever."
+   },
+   {
+    "speaker": "Brann",
+    "portrait": "hunter_portrait",
+    "text": "There was never anything in it to bury. Seren dug it open, years ago, and found that out for herself."
+   },
+   {
+    "speaker": "Brann",
+    "portrait": "hunter_portrait",
+    "text": "The first night of the fires, she walked down the south track barefoot, and I crossed her name off the board myself."
+   },
+   {
+    "speaker": "Brann",
+    "portrait": "hunter_portrait",
+    "text": "I thanked you for my father's stone. I should have told you whose hand was on the grave beside it."
+   },
+   {
+    "speaker": "Brann",
+    "portrait": "hunter_portrait",
+    "text": "Listen to me. Between here and Longdale, the road climbs to a pass. A dragon guards it, in the pool below the falls. Do not think it will let you walk by."
+   },
+   {
+    "speaker": "Kael",
+    "portrait": "hero_portrait",
+    "text": "He walked by. With them. I will find a way."
+   },
+   {
+    "speaker": "Brann",
+    "portrait": "hunter_portrait",
+    "text": "Then go. Dun vael. Keep to the trail, and come back the same way you..."
+   },
+   {
+    "speaker": "",
+    "portrait": "none",
+    "text": "* He stops, and looks down the valley toward the graveyard."
+   },
+   {
+    "speaker": "Brann",
+    "portrait": "hunter_portrait",
+    "text": "Dun vael."
+   }
+  ]
+ },
+ "map_text_addendum": "Three roads now lead on from the lands around Dundean. In the Norwoods, the stair of the Giant Mangal climbs to its second floor and to a Waypoint on the third, where the way up is torn out of the trunk. North of the Mangal crossroads, a plank path skirts the slide into Ringfeld, open coastal fields where the keepers' shelter stands. Its shore road ends at the causeway to the dark Lighthouse, which Archelon guards from the water. East of Dundean, the valley road climbs into South Earlsome. A dragon, Apalala, guards the pass between the valley and Longdale, the guild town of the dale. Longdale's north gate shuts at dusk, and the road beyond runs on toward North Earlsome. The map does not end here. It has only been drawn this far."
+}

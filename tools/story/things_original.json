@@ -1,0 +1,94 @@
+{
+ "plaza": {
+  "name": "Azurelake — Spawn Plaza",
+  "things": {
+   "inn": [
+    "* The Tankard Inn.",
+    "* The shutters are barred. A notice nailed to the door: \"Closed until the western road is safe.\"",
+    "* The nail is old. The notice has been taken down and put back up before."
+   ],
+   "shop": [
+    "* Azure Provisions. Rows of tonics glow faintly behind the glass.",
+    "* The lamps inside are out. Whoever keeps this shop left in a hurry."
+   ],
+   "guild": [
+    "* The Tamers' Guild Hall. Wounded hunters are being carried inside.",
+    "* Every one of them is breathing. Their dragons are cut and limping, but none were killed.",
+    "* The anchor banners hang heavy and still."
+   ],
+   "fountain": [
+    "* The white blossoms around the fountain glow faintly.",
+    "* The lamp on the fountain's rim burns steady and low. Its flame leans west, though the air is still.",
+    "* Beneath the water's murmur, you hear the sea grinding against the harbor wall."
+   ],
+   "stalls": [
+    "* Night market stalls, abandoned mid-trade. Coins still sit on the counters.",
+    "* Nobody stayed to collect them."
+   ]
+  }
+ },
+ "gate": {
+  "name": "Azurelake — West Gate",
+  "things": {
+   "banner": [
+    "* The anchor of Azurelake.",
+    "* Stitched beneath it: \"Every tide returns.\""
+   ],
+   "bench": [
+    "* A cold stone bench, slick with dew, under the gate lamp.",
+    "* Its lamp is the only one at the gate still lit. The stone beneath it is worn smooth, as if someone sits here to wait."
+   ],
+   "gatehouse": [
+    "* The West Gate stands open. Claw marks score the posts, high and low, and the cobbles are spattered dark.",
+    "* All of the blood is on this side of the bridge. None of it leads west.",
+    "* Beyond the bridge, the forest road waits in the dark."
+   ]
+  }
+ },
+ "outskirts": {
+  "name": "Western Outskirts",
+  "things": {
+   "lamp": [
+    "* A trail lamp. Its oil is nearly spent.",
+    "* Someone has kept these burning, night after night. For now."
+   ],
+   "fence": [
+    "* A split-rail fence. Beyond it, the grass is flattened in long lines where the wounded were dragged back toward town.",
+    "* Further on, past where the watchman stood, two sets of small footprints begin. They walk. They do not stumble."
+   ]
+  }
+ },
+ "forest": {
+  "name": "Western Forest — Entrance",
+  "things": {
+   "stoneL": [
+    "* A waystone carved with a sun.",
+    "* \"When the Waystones sleep, the island forgets itself.\""
+   ],
+   "stoneR": [
+    "* Another sun-carved waystone. Its glow is weak, like a candle in wind.",
+    "* Deeper in the forest, something bigger has gone dark."
+   ]
+  }
+ },
+ "mosswood": {
+  "name": "Mosswood Trail",
+  "things": {
+   "log": [
+    "* Moss has swallowed an old cart. Bones, picked clean, lie beneath the wheel.",
+    "* Its bed is stacked with rotted ledgers. The anchor of the Azurelake guild is stamped on every cover.",
+    "* The bones are not human. Whoever drove this cart did not die with it."
+   ]
+  }
+ },
+ "waystone": {
+  "name": "The Waystone Fork",
+  "things": {
+   "waystone": [
+    "* The great Waystone. Its four-pointed star is cut deep into the rock.",
+    "* Cold grey ash clings to its face. In the middle of it, at a grown man's height, the print of one open hand.",
+    "* Low at its foot, where a child could reach, the moss is creased in a ring, as if something was tied there."
+   ]
+  }
+ }
+}

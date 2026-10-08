@@ -3827,12 +3827,17 @@ export const REGION_STORY: RegionStory = {
    {
     "speaker": "",
     "portrait": "none",
-    "text": "* The second floor is a hollow chamber cut into living wood. A hunters' spear-rack lies on its side by a ring of fire stones. The ashes in the ring are cold and black, not grey."
+    "text": "* The second floor is a hollow chamber cut into living wood. A hunters' spear-rack lies on its side by a ring of fire stones. The ashes in the ring are black and wet, not grey."
    },
    {
     "speaker": "",
     "portrait": "none",
     "text": "* Snapped spear-shafts lie scattered down the treads of the upper stair. They were not dropped. Something broke them and threw them back down."
+   },
+   {
+    "speaker": "",
+    "portrait": "none",
+    "text": "* Along one wall, a stripe of glowing fungus has been scraped away at shoulder height, as if someone felt his way along it in the dark."
    },
    {
     "speaker": "Kael",
@@ -3854,7 +3859,7 @@ export const REGION_STORY: RegionStory = {
    {
     "speaker": "",
     "portrait": "none",
-    "text": "* Where the stair to the fourth floor should be, the trunk is split open. The treads have been torn out of the wood and lie in splinters far below."
+    "text": "* Where the stair to the fourth floor should be, the trunk is split open. The treads have been torn out of the wood and lie in splinters far below. The sap is still running."
    }
   ],
   "ringfeld_lower_road": [
@@ -3885,7 +3890,7 @@ export const REGION_STORY: RegionStory = {
    {
     "speaker": "",
     "portrait": "none",
-    "text": "* The shore road runs down to a stone causeway. At its landward end, the lantern on its post is cold. The causeway runs out across the water toward the dark Lighthouse."
+    "text": "* The shore road runs down to a stone causeway. At its landward end, a lantern on a post burns low, though the keepers filled it at dusk. The causeway runs out toward the dark Lighthouse."
    },
    {
     "speaker": "",
@@ -3895,7 +3900,7 @@ export const REGION_STORY: RegionStory = {
    {
     "speaker": "Kael",
     "portrait": "hero_portrait",
-    "text": "His ash, carried all the way from the Norwoods. Even here, the night he woke Orochi reached the coast. But he did not come this way."
+    "text": "His ash, carried all the way from the Norwoods. The night he woke Orochi, it reached even this coast. But he did not come this way."
    }
   ],
   "south_earlsome_valley": [
@@ -3941,7 +3946,7 @@ export const REGION_STORY: RegionStory = {
    {
     "speaker": "",
     "portrait": "none",
-    "text": "* In the shrine niche beside it, the lamp is cold. Its wick has been pinched out, like the candles at the Mangal crossroads."
+    "text": "* In the shrine niche beside it, the old wick has been pinched out. A new one has been threaded beside it, and the oil is fresh. No one lit it."
    }
   ],
   "longdale_square": [
@@ -3973,7 +3978,7 @@ export const REGION_STORY: RegionStory = {
     {
      "speaker": "Maren",
      "portrait": "innkeeper_portrait",
-     "text": "Grey ash. The night the ground shook in the Norwoods, it fell on this coast for an hour. On the well cover, on the fields, on the sea. Then it stopped."
+     "text": "The Lighthouse had gone dark some nights before it came. Then, the night the ground shook in the Norwoods, grey ash fell on this coast for an hour. On the well and the sea."
     },
     {
      "speaker": "Maren",
@@ -3989,7 +3994,8 @@ export const REGION_STORY: RegionStory = {
    "repeat": [
     "Rest while you can. The road back to the Safaris is long, and it does not get kinder.",
     "The Lighthouse went dark and has stayed dark. I will not say what is in the water. Only that it is old, and it is waiting.",
-    "Draw from the well before you go. Whatever else you find on the road, you will not find water as clean."
+    "Draw from the well before you go. Whatever else you find on the road, you will not find water as clean.",
+    "My mother kept the shelter before me. She said the Lighthouse goes dark once in seven years, for a moon, then burns again. Not what lights it."
    ],
    "name": "Maren",
    "portrait": "innkeeper_portrait"
@@ -4020,7 +4026,7 @@ export const REGION_STORY: RegionStory = {
    "repeat": [
     "The sea gate stays open in daylight. After dark, I bar it. Be back inside by then.",
     "Archelon does not hunt the shore. It guards the causeway. As long as you stay on land, it lets you be.",
-    "The ribs in the cove were a keeper's boat. He thought the fog would hide him."
+    "The ribs in the cove were a keeper's boat. He meant to light the Lighthouse again himself. He thought the fog would hide him."
    ],
    "name": "Osk",
    "portrait": "hunter_portrait"
@@ -4046,6 +4052,16 @@ export const REGION_STORY: RegionStory = {
      "speaker": "Hild",
      "portrait": "innkeeper_portrait",
      "text": "He paid for nothing and slept nowhere. The children ate what I gave them standing in the doorway. The girl thanked me. He never once looked at me."
+    },
+    {
+     "speaker": "Hild",
+     "portrait": "innkeeper_portrait",
+     "text": "The girl asked me for a cup of lamp oil. For the road, she said. I gave it to her."
+    },
+    {
+     "speaker": "Hild",
+     "portrait": "innkeeper_portrait",
+     "text": "The guild's notice about them went up on the board the day before they came."
     },
     {
      "speaker": "Hild",
@@ -4086,7 +4102,57 @@ export const REGION_STORY: RegionStory = {
     {
      "speaker": "Tamsin",
      "portrait": "hunter_portrait",
-     "text": "...Do not ask me that. The north road runs past the cave al-Rashid fled into. The guild says a breeder blocks the mountain path beyond it. That is all I will say."
+     "text": "...Years ago I hunted these passes with a man from Azurelake, before he went home to the lake. He talked of nothing but his boy."
+    },
+    {
+     "speaker": "Tamsin",
+     "portrait": "hunter_portrait",
+     "text": "What is your name?"
+    },
+    {
+     "speaker": "Kael",
+     "portrait": "hero_portrait",
+     "text": "Kael."
+    },
+    {
+     "speaker": "Tamsin",
+     "portrait": "hunter_portrait",
+     "text": "The girl held his sleeve at this gate and said: Father, will Kael be all right? He said: He always comes."
+    },
+    {
+     "speaker": "Tamsin",
+     "portrait": "hunter_portrait",
+     "text": "I called him by his name. He looked at me as if I were a gatepost."
+    },
+    {
+     "speaker": "Kael",
+     "portrait": "hero_portrait",
+     "text": "...Father."
+    },
+    {
+     "speaker": "",
+     "portrait": "none",
+     "text": "* Tamsin takes a folded paper from inside her coat. The guild's seal is broken on it."
+    },
+    {
+     "speaker": "Tamsin",
+     "portrait": "hunter_portrait",
+     "text": "This came from your guild, the long way, by Wesing, the day before he did. Do not raise a bow to the man. The boy is to be let through the north gate at whatever hour he comes."
+    },
+    {
+     "speaker": "Tamsin",
+     "portrait": "hunter_portrait",
+     "text": "I barred it anyway. Dale-ward closes at dusk. That is the law here, and I keep it. One night is all I can give you."
+    },
+    {
+     "speaker": "Kael",
+     "portrait": "hero_portrait",
+     "text": "The day before..."
+    },
+    {
+     "speaker": "Tamsin",
+     "portrait": "hunter_portrait",
+     "text": "The north road runs past the cave al-Rashid fled into. The guild says a breeder blocks the path beyond it. Go at first light, if you go."
     }
    ],
    "repeat": [
@@ -4144,9 +4210,14 @@ export const REGION_STORY: RegionStory = {
      "text": "What does that mean? What did he give away?"
     },
     {
+     "speaker": "Apalala",
+     "portrait": "none",
+     "text": "...Not even you."
+    },
+    {
      "speaker": "",
      "portrait": "none",
-     "text": "* Apalala does not answer. It sinks into the pool without a sound. The rock stair to Longdale lies open."
+     "text": "* It sinks into the pool without another word. The rock stair to Longdale lies open."
     }
    ],
    "after_won": [
@@ -4170,6 +4241,41 @@ export const REGION_STORY: RegionStory = {
  },
  "unlock_lines": {
   "giant_mangal_f2": [
+   {
+    "speaker": "Kael",
+    "portrait": "hero_portrait",
+    "text": "My sister's ribbon. I never showed it to you, Edda."
+   },
+   {
+    "speaker": "Old Edda",
+    "portrait": "innkeeper_portrait",
+    "text": "Not mine to tell, boy. Eat first."
+   },
+   {
+    "speaker": "",
+    "portrait": "none",
+    "text": "* She sets a bowl in front of him and does not sit down. For a while, the only sound is the fire."
+   },
+   {
+    "speaker": "Old Edda",
+    "portrait": "innkeeper_portrait",
+    "text": "The one at the shrine was my husband. Twenty years he rowed those oars to that hill."
+   },
+   {
+    "speaker": "Old Edda",
+    "portrait": "innkeeper_portrait",
+    "text": "Four years ago the boat came back across the river empty, with the oars shipped inside it."
+   },
+   {
+    "speaker": "Old Edda",
+    "portrait": "innkeeper_portrait",
+    "text": "The boots in the hut were my grandson's. He went up to bring his grandfather home."
+   },
+   {
+    "speaker": "Old Edda",
+    "portrait": "innkeeper_portrait",
+    "text": "So keep the oars. I want nothing of his back in this house."
+   },
    {
     "speaker": "Old Edda",
     "portrait": "innkeeper_portrait",
@@ -4210,6 +4316,41 @@ export const REGION_STORY: RegionStory = {
     "text": "I had the pine hauled off the valley road this morning. Four of us and a team of oxen. The road to Longdale is open."
    },
    {
+    "speaker": "Kael",
+    "portrait": "hero_portrait",
+    "text": "You know who made that page."
+   },
+   {
+    "speaker": "Brann",
+    "portrait": "hunter_portrait",
+    "text": "That is not mine to say."
+   },
+   {
+    "speaker": "Brann",
+    "portrait": "hunter_portrait",
+    "text": "The ring was Seren's. My wife. I cut it from my father's hunting horn, the one carved on his stone."
+   },
+   {
+    "speaker": "Brann",
+    "portrait": "hunter_portrait",
+    "text": "The small grave beside it is our daughter's. She went to Azurelake as a guild apprentice when she was six. A letter came back that said fever."
+   },
+   {
+    "speaker": "Brann",
+    "portrait": "hunter_portrait",
+    "text": "There was never anything in it to bury. Seren dug it open, years ago, and found that out for herself."
+   },
+   {
+    "speaker": "Brann",
+    "portrait": "hunter_portrait",
+    "text": "The first night of the fires, she walked down the south track barefoot, and I crossed her name off the board myself."
+   },
+   {
+    "speaker": "Brann",
+    "portrait": "hunter_portrait",
+    "text": "I thanked you for my father's stone. I should have told you whose hand was on the grave beside it."
+   },
+   {
     "speaker": "Brann",
     "portrait": "hunter_portrait",
     "text": "Listen to me. Between here and Longdale, the road climbs to a pass. A dragon guards it, in the pool below the falls. Do not think it will let you walk by."
@@ -4222,7 +4363,17 @@ export const REGION_STORY: RegionStory = {
    {
     "speaker": "Brann",
     "portrait": "hunter_portrait",
-    "text": "Then go. Dun ar, open road. Keep to the trail, and come back the same way you leave."
+    "text": "Then go. Dun vael. Keep to the trail, and come back the same way you..."
+   },
+   {
+    "speaker": "",
+    "portrait": "none",
+    "text": "* He stops, and looks down the valley toward the graveyard."
+   },
+   {
+    "speaker": "Brann",
+    "portrait": "hunter_portrait",
+    "text": "Dun vael."
    }
   ]
  },
