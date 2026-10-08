@@ -8,10 +8,11 @@ import { fireflies, lightPool, sparkleBurst } from '../ui/fx';
 import { label, title, COLORS } from '../ui/widgets';
 import { scene } from '../data/script';
 import { STARTERS } from '../data/starters';
-import { ITEMS } from '../data/monsters';
+import { ITEMS, MONSTERS as MONSTERS_BY_ID } from '../data/monsters';
 import { STORY } from '../data/story';
 import { EXPANSION_STORY } from '../data/expansion';
 import { MISSIONS } from '../data/missions';
+import { REGION_STORY, REGION_UNLOCKS } from '../data/regions';
 import type { MissionId } from '../data/missionTypes';
 import { Quests } from '../quests';
 
@@ -22,6 +23,9 @@ interface WorldData {
   fresh?: boolean;
   debug?: boolean;
 }
+
+// Villager dialogue from every generated region (past the Waystone, and through the old frontiers).
+const npcLines = { ...EXPANSION_STORY.npc_dialogue, ...REGION_STORY.npc_dialogue };
 
 export interface BattleResult {
   monster: string;
@@ -200,7 +204,7 @@ export class WorldScene extends Phaser.Scene {
     this.events.off('starterChosen');
     this.events.on('starterChosen', (id: string) => this.onStarter(id));
 
-    const entry = EXPANSION_STORY.room_entries[R.id] ?? MISSIONS?.room_entries[R.id];
+    const entry = EXPANSION_STORY.room_entries[R.id] ?? MISSIONS?.room_entries[R.id] ?? REGION_STORY.room_entries[R.id];
     if (entry?.length && !State.flag('entered_' + R.id)) {
       State.setFlag('entered_' + R.id);
       this.busy = true;
@@ -544,6 +548,7 @@ export class WorldScene extends Phaser.Scene {
     this.busy = false;
     if (!result) return;
     if (result.fight) return this.afterMissionFight(result);
+    if (REGION_STORY.bosses[result.monster]) return this.afterRegionBoss(result);
     if (result.monster === 'lich') {
       State.setFlag('metLich');
       this.say(scene(result.outcome === 'won' ? 'after_lich_won' : 'after_lich_peace'));
@@ -589,6 +594,7 @@ export class WorldScene extends Phaser.Scene {
 
   private runTrigger(id: string) {
     if (id.startsWith('m:')) return this.missionFight(id.slice(2));
+    if (id.startsWith('b:')) return this.regionBoss(id.slice(2));
     if (id === 'gm_stop') {
       // Master Halvard crosses the plaza to block the stairs.
       this.busy = true;
@@ -647,7 +653,7 @@ export class WorldScene extends Phaser.Scene {
     }
     const mission = Quests.givenBy(id);
     if (mission && MISSIONS && this.missionTalk(id, mission)) return;
-    const ex = EXPANSION_STORY.npc_dialogue[id];
+    const ex = npcLines[id];
     if (ex) {
       const flag = 'met_' + id;
       if (!State.flag(flag)) {
@@ -675,7 +681,7 @@ export class WorldScene extends Phaser.Scene {
     const M = MISSIONS!;
     if (!Quests.accepted(m)) {
       // first meeting: their greeting, then the request
-      const ex = EXPANSION_STORY.npc_dialogue[npc];
+      const ex = npcLines[npc];
       const greet = ex && !State.flag('met_' + npc) ? this.toLines(ex.first) : [];
       State.setFlag('met_' + npc);
       State.setFlag('quest_' + m);
@@ -684,13 +690,15 @@ export class WorldScene extends Phaser.Scene {
     }
     if (!Quests.done(m)) {
       const w = M.waiting[m];
-      const ex = EXPANSION_STORY.npc_dialogue[npc];
+      const ex = npcLines[npc];
       this.say([{ text: w[Phaser.Math.Between(0, Math.max(0, w.length - 1))] ?? '...', speaker: ex?.name ?? npc, portrait: ex?.portrait ?? 'none', voice: 0.85 }]);
       return true;
     }
     if (!State.flag('thanked_' + m)) {
       State.setFlag('thanked_' + m);
-      this.say(this.toLines(M.done[m]));
+      // the reward may include lifting a barrier on one of the old frontier roads
+      const lifted = REGION_UNLOCKS.filter((u) => u.requires === 'thanked_' + m).flatMap((u) => REGION_STORY.unlock_lines[u.exitTo] ?? []);
+      this.say([...this.toLines(M.done[m]), ...this.toLines(lifted)]);
       return true;
     }
     return false;
@@ -773,6 +781,31 @@ export class WorldScene extends Phaser.Scene {
         this.say([{ text: `* (You bought a ${ITEMS[x.item].name}. ${s.gold} G left.)` }], () => this.openShop(true));
       },
     );
+  }
+
+  // ---- Dragon Overlords and other region bosses -----------------------------------
+  private regionBoss(id: string) {
+    const b = REGION_STORY.bosses[id];
+    if (!b || !MONSTERS_BY_ID[id]) return;
+    this.busy = true;
+    this.fightReturn = this.trail[0] ? [this.trail[0][0], this.trail[0][1]] : [this.lastSafe[0], this.lastSafe[1]];
+    Sound.stopMusic(0.5);
+    this.cameras.main.shake(700, 0.006);
+    this.say(this.toLines(b.before), () => this.startBattle(id));
+  }
+
+  private afterRegionBoss(result: BattleResult) {
+    const b = REGION_STORY.bosses[result.monster];
+    if (result.outcome === 'fled') {
+      if (this.fightReturn) this.player.setPosition(this.fightReturn[0], this.fightReturn[1]);
+      this.applyScale();
+      this.say([{ text: '* You back away down the path. It does not follow. It does not need to.' }]);
+      return;
+    }
+    State.setFlag('boss_' + result.monster);
+    State.setFlag(result.outcome === 'won' ? 'slain_' + result.monster : 'spared_' + result.monster);
+    this.busy = true;
+    this.time.delayedCall(400, () => this.say(this.toLines(result.outcome === 'won' ? b.after_won : b.after_peace)));
   }
 
   /** A short banner, e.g. when a quest is accepted. */

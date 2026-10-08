@@ -926,7 +926,7 @@ export class BattleScene extends Phaser.Scene {
     this.clearList();
     this.boxText.setVisible(false);
     if (this.m.capture <= 0) {
-      this.boxSay(['* No card can hold this one.', this.m.role === 'boss' ? '* The Overlord of Norwoods can only be calmed.' : '* It is beyond capture.'], () => this.toMenu());
+      this.boxSay(['* No card can hold this one.', this.m.role === 'boss' ? '* A Dragon Overlord answers to no card. It can only be calmed.' : '* It is beyond capture.'], () => this.toMenu());
       return;
     }
     this.phase = 'capture';

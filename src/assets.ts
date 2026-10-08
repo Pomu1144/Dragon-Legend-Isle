@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import { DIB_KITS } from './data/dibCreatures';
 import { EXPANSION_NPC_SHEETS, EXPANSION_ROOMS } from './data/expansion';
 import { MISSION_ROOMS } from './data/missions';
+import { REGION_NPC_SHEETS, REGION_ROOMS } from './data/regions';
 
 export const UI_SPRITES = [
   'arrow_down', 'arrow_up', 'banner_header', 'bar_empty', 'bar_orange', 'bar_red', 'btn_ff', 'btn_fff', 'btn_hex',
@@ -14,7 +15,8 @@ export const UI_SPRITES = [
   'tab_trophy', 'tab_world', 'tag_blue', 'capture_normal', 'capture_silver', 'capture_gold',
 ];
 
-export const ROOM_BGS = ['plaza', 'gate', 'outskirts', 'forest', 'mosswood', 'waystone', 'gate_talk', ...EXPANSION_ROOMS.map((r) => r.id), ...MISSION_ROOMS.map((r) => r.id)];
+export const ROOM_BGS = ['plaza', 'gate', 'outskirts', 'forest', 'mosswood', 'waystone', 'gate_talk', ...EXPANSION_ROOMS.map((r) => r.id), ...MISSION_ROOMS.map((r) => r.id), ...REGION_ROOMS.map((r) => r.id)];
+export const NPC_SHEETS = [...new Set([...EXPANSION_NPC_SHEETS, ...REGION_NPC_SHEETS])];
 // Original Dragon Island Blue sprites, unaltered (tools/fetch_dib_sprites.py).
 export const MONSTER_ART = DIB_KITS.map((k) => k.id).filter((id) => id !== 'divine');
 // Painted high-resolution art (the user's): drawn smooth, not as scaled-up pixels.
@@ -36,7 +38,7 @@ export function queueAll(load: Phaser.Loader.LoaderPlugin) {
   load.spritesheet('wren_idle', 'assets/chars/wren_idle.png', { frameWidth: 128, frameHeight: 176 });
   load.spritesheet('guildmaster_idle', 'assets/chars/guildmaster_idle.png', { frameWidth: 128, frameHeight: 176 });
   load.image('guildmaster_portrait', 'assets/chars/guildmaster_portrait.webp');
-  for (const k of EXPANSION_NPC_SHEETS) {
+  for (const k of NPC_SHEETS) {
     load.spritesheet(k + '_idle', `assets/chars/${k}_idle.png`, { frameWidth: 128, frameHeight: 176 });
     load.image(k + '_portrait', `assets/chars/${k}_portrait.webp`);
   }

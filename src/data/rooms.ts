@@ -1,6 +1,7 @@
 import { DIB_KITS } from './dibCreatures';
 import { EXPANSION_ROOMS, WAYSTONE_EXITS, WAYSTONE_SPAWNS } from './expansion';
 import { MISSION_ENTRANCES, MISSION_ROOMS } from './missions';
+import { REGION_ROOMS, REGION_UNLOCKS } from './regions';
 
 // Overworld rooms. Every coordinate is in the source painting's pixel space,
 // so the painting is drawn 1:1 and these polygons describe where feet can go.
@@ -325,6 +326,19 @@ for (const e of MISSION_ENTRANCES) {
   if (i >= 0) r.exits[i] = e.exit;
   else r.exits.push(e.exit);
   r.spawns[e.spawnName] = e.spawn;
+}
+
+// The regions through the old frontiers (Giant Mangal's upper floors, Ringfeld, South Earlsome);
+// their entry exits already exist and open on the flags tools/gen_regions.py names.
+for (const r of REGION_ROOMS) ROOMS[r.id] = r;
+for (const u of REGION_UNLOCKS) {
+  if (!ROOMS[u.exitTo]) continue;
+  for (const r of Object.values(ROOMS))
+    for (const e of r.exits)
+      if (e.to === u.exitTo && e.locked === 'never') {
+        e.locked = u.requires || undefined;
+        if (u.lockedText.length) e.lockedText = u.lockedText;
+      }
 }
 
 // Dark Mage and Dark Priest come later in the story; keep them out of the wild for now.

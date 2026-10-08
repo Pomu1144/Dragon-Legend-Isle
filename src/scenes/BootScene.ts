@@ -1,7 +1,6 @@
 import Phaser from 'phaser';
-import { queueAll, makeRuntimeTextures, MONSTER_ART, PAINTED_ART } from '../assets';
+import { queueAll, makeRuntimeTextures, MONSTER_ART, NPC_SHEETS, PAINTED_ART } from '../assets';
 import { FONT_LABEL } from '../ui/widgets';
-import { EXPANSION_NPC_SHEETS } from '../data/expansion';
 
 export class BootScene extends Phaser.Scene {
   constructor() {
@@ -59,7 +58,7 @@ export class BootScene extends Phaser.Scene {
       this.anims.create({ key: `hero_walk_${dir}`, frames: this.anims.generateFrameNumbers('hero_walk', { frames: [r * 4, r * 4 + 1, r * 4 + 2, r * 4 + 3] }), frameRate: 8, repeat: -1 });
     }
     this.anims.create({ key: 'guildmaster_idle', frames: this.anims.generateFrameNumbers('guildmaster_idle', { frames: [0, 1] }), frameRate: 1.3, repeat: -1 });
-    for (const k of EXPANSION_NPC_SHEETS) this.anims.create({ key: k + '_idle', frames: this.anims.generateFrameNumbers(k + '_idle', { frames: [0, 1] }), frameRate: 1.4, repeat: -1 });
+    for (const k of NPC_SHEETS) this.anims.create({ key: k + '_idle', frames: this.anims.generateFrameNumbers(k + '_idle', { frames: [0, 1] }), frameRate: 1.4, repeat: -1 });
     this.anims.create({ key: 'wren_idle', frames: this.anims.generateFrameNumbers('wren_idle', { frames: [0, 1] }), frameRate: 1.6, repeat: -1 });
   }
 }

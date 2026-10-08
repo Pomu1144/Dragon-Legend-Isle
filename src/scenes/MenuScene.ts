@@ -3,6 +3,7 @@ import { Sound } from '../audio/Sound';
 import { BESTIARY_ORDER, CAPTURE_CARDS, ITEMS, MONSTERS } from '../data/monsters';
 import { STARTERS } from '../data/starters';
 import { EXPANSION_STORY } from '../data/expansion';
+import { REGION_STORY } from '../data/regions';
 import { MISSIONS } from '../data/missions';
 import { STORY } from '../data/story';
 import type { ReaderPage } from './ReaderScene';
@@ -277,6 +278,7 @@ export class MenuScene extends Phaser.Scene {
         { heading: 'The Nearest Villages', text: m.nearest.map((n) => `${n.name}  (${n.direction})\n      ${n.note}`).join('\n\n') },
         // Notes Kael pencils in once the roads past the Waystone open.
         ...(EXPANSION_STORY.map_text_addendum && State.get().flags.orochiDone ? [{ heading: 'Beyond the Waystone', text: EXPANSION_STORY.map_text_addendum }] : []),
+        ...(REGION_STORY.map_text_addendum && State.get().flags.entered_dundean_square ? [{ heading: 'Past Dundean', text: REGION_STORY.map_text_addendum }] : []),
       ],
     };
   }
