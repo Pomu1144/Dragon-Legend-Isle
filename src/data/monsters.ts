@@ -24,7 +24,27 @@ export interface AttackDef {
   flavor?: string;
 }
 
+/** A real DIB ability as listed on the wiki: TU cost, target text ("1 Foe", "All Allies", "Self"...) and effect text. */
+export interface Ability {
+  name: string;
+  tu: string;
+  target: string;
+  effect: string;
+}
+
+/** Real DIB level-1 stats. */
+export interface Stats {
+  hp: number;
+  attack: number;
+  magic: number;
+  speed: number;
+  defense: number;
+  resist: number;
+}
+
 export interface MonsterDef {
+  lv1: Stats; // real DIB Lv1 stats (team battles)
+  abilities: Ability[]; // real DIB abilities (team battles)
   attacks?: AttackDef[];
   faces?: 'left' | 'right' | 'front';
   flier?: boolean;
@@ -64,7 +84,7 @@ interface Kit {
   role: string;
   rarity?: string;
   rooms: readonly string[];
-  wiki: { number: string; stars: number; element: string; lv1: { hp: number; attack: number; magic: number; defense: number } };
+  wiki: { number: string; stars: number; element: string; lv1: Stats; abilities: readonly Ability[] };
   sprite: { dominant_color_hex: string; faces: string; flier: boolean };
   battle: {
     check: string;
@@ -142,6 +162,8 @@ function fromKit(k: Kit): MonsterDef {
       intensity: a.intensity,
       flavor: a.flavor,
     })),
+    lv1: { ...s },
+    abilities: k.wiki.abilities.map((a) => ({ ...a })),
     faces: k.sprite.faces as MonsterDef['faces'],
     flier: k.sprite.flier,
     number: k.wiki.number,

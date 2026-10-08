@@ -12,6 +12,18 @@ export interface MonsterRecord {
   bound: boolean;
 }
 
+/** One monster Kael owns: the hatchling or a captured creature. Fights in DIB-style team battles. */
+export interface PartyMon {
+  uid: string; // unique per owned monster
+  id: string; // MONSTERS id, or a STARTERS id for the hatchling
+  lv: number;
+  exp: number; // EXP toward the next level (resets on level-up)
+  hp: number; // current HP (0 = fainted); max HP comes from the battle unit model
+  starter?: boolean; // the Guild hatchling
+}
+
+export const PARTY_SIZE = 3;
+
 export interface GameState {
   name: string;
   lv: number;
@@ -31,6 +43,8 @@ export interface GameState {
   kills: number;
   spares: number;
   starter?: { id: string; evolved: boolean };
+  monsters: PartyMon[]; // every monster Kael owns
+  party: string[]; // uids of the (up to PARTY_SIZE) monsters that fight, in slot order
   playSeconds: number;
 }
 
@@ -52,6 +66,8 @@ export function newState(): GameState {
     flags: {},
     inventory: { tonic: 2, orb: 0 },
     starter: undefined,
+    monsters: [],
+    party: [],
     bestiary: {},
     encountersLeft: {},
     kills: 0,
