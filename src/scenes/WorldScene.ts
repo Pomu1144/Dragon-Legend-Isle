@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
 import { Sound } from '../audio/Sound';
-import { ROOMS, RoomDef, Dir, Pt, rollEncounter } from '../data/rooms';
+import { ROOMS, RoomDef, Dir, Pt, rollGroup } from '../data/rooms';
 import { loadRoomArt } from '../assets';
 import { State } from '../state';
 import { Dialogue, Line } from '../ui/Dialogue';
@@ -18,6 +18,8 @@ import type { MissionId } from '../data/missionTypes';
 import { Quests } from '../quests';
 import { BOUNTIES } from '../data/bounties';
 import type { Bounty } from '../data/bountyTypes';
+import { newPartyMon } from '../battle/units';
+import type { BattleStart } from './BattleScene';
 
 interface WorldData {
   room?: string;
@@ -33,8 +35,8 @@ const npcLines = { ...EXPANSION_STORY.npc_dialogue, ...REGION_STORY.npc_dialogue
 export interface BattleResult {
   monster: string;
   outcome: 'won' | 'spared' | 'bound' | 'fled' | 'lost';
-  fight?: string; // set when a whole wave (a ritual group) was fought
-  tally?: WaveTally;
+  fight?: string; // set for a mission group or a bounty team
+  tally?: WaveTally; // every foe of the battle
 }
 
 export interface WaveTally {
@@ -43,16 +45,8 @@ export interface WaveTally {
   bound: number;
 }
 
-/** A group fought one foe after another in a single battle (e.g. a ritual circle). */
-export interface Wave {
-  fight: string;
-  queue: string[]; // foes still to come after the current one
-  total: number;
-  between: string[]; // "* " lines shown as each next foe steps in; {N} = foes remaining
-  tally: WaveTally;
-  index: number; // 1-based number of the current foe
-  owner?: string; // a criminal's team: shown as "<owner>'s <monster>"
-}
+/** Extras for a battle beyond its foes (see BattleStart). */
+type BattleOpts = Omit<BattleStart, 'foes' | 'room' | 'debug'>;
 
 function inPoly(x: number, y: number, poly: Pt[]) {
   let inside = false;
@@ -293,6 +287,8 @@ export class WorldScene extends Phaser.Scene {
     State.setFlag('hasStarter');
     const st = STARTERS.find((x) => x.id === id);
     if (st) State.record(id).seen = true;
+    // The hatchling is Kael's first monster: it fights for him from now on.
+    if (!State.get().monsters.some((m) => m.starter)) State.addMonster(newPartyMon(id, 1, true));
     State.addItem('manual', 1);
     State.addItem('guide', 1);
     State.addItem('map', 1);
@@ -302,7 +298,7 @@ export class WorldScene extends Phaser.Scene {
     sparkleBurst(this, this.player.x, this.player.y - 60, 16, 3600, 70);
     this.cameras.main.fadeIn(500);
     this.autosave();
-    this.say([...scene('after_choice'), ...scene('items_handover'), { text: '* (You also received 3 Capture Cards and a Silver Card. Use them from MERCY > Capture.)' }], () => this.autosave());
+    this.say([...scene('after_choice'), ...scene('items_handover'), { text: '* (You also received 3 Capture Cards and a Silver Card. Use them from your portrait in battle: Capture.)' }], () => this.autosave());
   }
 
   private showRoomName() {
@@ -631,13 +627,16 @@ export class WorldScene extends Phaser.Scene {
     if (this.stepAcc < this.nextEncounter) return false;
     s.encountersLeft[this.room.id] = left - 1;
     const depth = 1 - Phaser.Math.Clamp(this.player.y / this.room.size[1], 0, 1);
-    const e = rollEncounter(enc.table, depth);
-    if (!e) return false;
-    this.startBattle(e.id, undefined, e.nocap);
+    const g = rollGroup(enc.table, depth);
+    if (!g) return false;
+    // a wild group never outnumbers Kael's standing monsters (a lone hatchling meets lone foes)
+    const standing = State.partyMons().filter((m) => m.hp > 0).length;
+    this.startBattle(g.foes.slice(0, Math.max(1, standing)), { nocap: g.nocap });
     return true;
   }
 
-  startBattle(monster: string, wave?: Wave, nocap?: boolean) {
+  /** DIB team battle: up to three foes on the field, the rest of the list stepping in as slots free up. */
+  startBattle(foes: string[], opts: BattleOpts = {}) {
     this.busy = true;
     this.player.anims.stop();
     this.player.setFrame(this.frameFor(this.dir));
@@ -673,7 +672,8 @@ export class WorldScene extends Phaser.Scene {
           duration: 520,
           ease: 'Cubic.easeInOut',
           onComplete: () => {
-            this.scene.launch('Battle', { monster, room: this.room.id, wave, nocap });
+            const start: BattleStart = { foes, room: this.room.id, ...opts };
+            this.scene.launch('Battle', start);
             this.scene.sleep();
             black.destroy();
             soul.destroy();
@@ -693,6 +693,13 @@ export class WorldScene extends Phaser.Scene {
     if (result.fight?.startsWith('bounty:')) return this.afterBounty(result);
     if (result.fight) return this.afterMissionFight(result);
     if (REGION_STORY.bosses[result.monster]) return this.afterRegionBoss(result);
+    if ((result.monster === 'lich' || result.monster === 'orochi') && result.outcome === 'fled') {
+      // breaking off is no ending: Kael steps back out of the trigger and it waits for him
+      if (this.fightReturn) this.player.setPosition(this.fightReturn[0], this.fightReturn[1]);
+      this.applyScale();
+      this.say([{ text: '* You back away. It does not follow. It does not need to.' }]);
+      return;
+    }
     if (result.monster === 'lich') {
       State.setFlag('metLich');
       this.say(scene(result.outcome === 'won' ? 'after_lich_won' : 'after_lich_peace'));
@@ -765,14 +772,16 @@ export class WorldScene extends Phaser.Scene {
     }
     if (id === 'lich') {
       this.busy = true;
+      this.fightReturn = this.trail[0] ? [this.trail[0][0], this.trail[0][1]] : [this.lastSafe[0], this.lastSafe[1]];
       this.cameras.main.shake(300, 0.004);
-      this.say(scene('lich_encounter'), () => this.startBattle('lich'));
+      this.say(scene('lich_encounter'), () => this.startBattle(['lich']));
     }
     if (id === 'orochi') {
       this.busy = true;
+      this.fightReturn = this.trail[0] ? [this.trail[0][0], this.trail[0][1]] : [this.lastSafe[0], this.lastSafe[1]];
       Sound.stopMusic(0.5);
       this.cameras.main.shake(900, 0.008);
-      this.say(scene('orochi_awakens'), () => this.startBattle('orochi'));
+      this.say(scene('orochi_awakens'), () => this.startBattle(['orochi']));
     }
   }
 
@@ -858,9 +867,7 @@ export class WorldScene extends Phaser.Scene {
     // where to put Kael back if he breaks off the fight
     this.fightReturn = this.trail[0] ? [this.trail[0][0], this.trail[0][1]] : [this.lastSafe[0], this.lastSafe[1]];
     this.cameras.main.shake(260, 0.003);
-    const [first, ...rest] = f.foes;
-    const wave: Wave = { fight: f.id, queue: rest, total: f.foes.length, between: f.between, tally: { won: 0, spared: 0, bound: 0 }, index: 1 };
-    this.say(this.toLines(f.before), () => this.startBattle(first, wave));
+    this.say(this.toLines(f.before), () => this.startBattle([...f.foes], { fight: f.id, between: [...f.between] }));
   }
 
   private afterMissionFight(result: BattleResult) {
@@ -957,9 +964,7 @@ export class WorldScene extends Phaser.Scene {
     this.player.anims.stop();
     this.fightReturn = [this.player.x, this.player.y];
     this.cameras.main.shake(220, 0.003);
-    const [first, ...rest] = b.team;
-    const wave: Wave = { fight: 'bounty:' + b.id, queue: rest, total: b.team.length, between: b.between, tally: { won: 0, spared: 0, bound: 0 }, index: 1, owner: b.criminal };
-    this.say(this.toLines(b.confront), () => this.startBattle(first, wave));
+    this.say(this.toLines(b.confront), () => this.startBattle([...b.team], { fight: 'bounty:' + b.id, owner: b.criminal, between: [...b.between] }));
   }
 
   private afterBounty(result: BattleResult) {
@@ -986,7 +991,7 @@ export class WorldScene extends Phaser.Scene {
     this.fightReturn = this.trail[0] ? [this.trail[0][0], this.trail[0][1]] : [this.lastSafe[0], this.lastSafe[1]];
     Sound.stopMusic(0.5);
     this.cameras.main.shake(700, 0.006);
-    this.say(this.toLines(b.before), () => this.startBattle(id));
+    this.say(this.toLines(b.before), () => this.startBattle([id]));
   }
 
   private afterRegionBoss(result: BattleResult) {
@@ -1012,6 +1017,7 @@ export class WorldScene extends Phaser.Scene {
   private useCandle(glow: Phaser.GameObjects.Image, at: Pt) {
     const s = State.get();
     s.hp = s.maxHp;
+    State.healParty();
     s.room = this.room.id;
     s.x = this.player.x;
     s.y = this.player.y;
@@ -1022,7 +1028,7 @@ export class WorldScene extends Phaser.Scene {
     this.say([
       { text: '* The candle burns steady in the wind, as if it has been waiting.' },
       { text: '* In its small light, your resolve hardens.' },
-      { text: `* (HP fully restored. Progress saved — ${this.room.name}.)` },
+      { text: `* (Your monsters are fully restored. Progress saved — ${this.room.name}.)` },
     ]);
   }
 

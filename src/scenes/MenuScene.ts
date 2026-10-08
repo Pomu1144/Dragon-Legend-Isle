@@ -1,7 +1,6 @@
 import Phaser from 'phaser';
 import { Sound } from '../audio/Sound';
 import { BESTIARY_ORDER, CAPTURE_CARDS, ITEMS, MONSTERS } from '../data/monsters';
-import { STARTERS } from '../data/starters';
 import { EXPANSION_STORY } from '../data/expansion';
 import { REGION_STORY } from '../data/regions';
 import { MISSIONS } from '../data/missions';
@@ -10,13 +9,44 @@ import type { ReaderPage } from './ReaderScene';
 
 const PER_PAGE = 10;
 
-/** First sentences of the bestiary entry that fit in the two lines under the cards. */
-/** The Rogue Formula can be performed once a Blood Rogue and a Cult Rogue have both been captured. */
+/** The Rogue Formula can be performed while Kael owns both a Blood Rogue and a Cult Rogue. */
 function canFuse() {
-  const b = State.get().bestiary;
-  return !!b.blood_rogue?.bound && !!b.cult_rogue?.bound && !b.bloodgale?.bound;
+  const own = State.get().monsters;
+  return own.some((m) => m.id === 'blood_rogue') && own.some((m) => m.id === 'cult_rogue');
 }
 
+/** Satchel healing grows with the monster's LV, like its max HP. A Tonic cannot wake a fainted monster; a Tart can. */
+function healAmount(item: string, lv: number) {
+  return Math.round((item === 'tart' ? 30 : 15) * (1 + 0.18 * (lv - 1)));
+}
+
+/** Fit monster art into a w x h box; the small pixel sprites keep whole-number scales once they are doubled. */
+function fitArt(img: Phaser.GameObjects.Image, w: number, h: number) {
+  if (img.texture.key.startsWith('starter_')) img.texture.setFilter(Phaser.Textures.FilterMode.NEAREST);
+  const k = Math.min(w / img.width, h / img.height);
+  const pixel = img.texture.source[0]?.scaleMode === Phaser.ScaleModes.NEAREST;
+  return img.setScale(pixel && k >= 2 ? Math.floor(k) : k);
+}
+
+/** One owned monster's display data: its form (the hatchling may have evolved), HP and EXP. */
+function view(mon: PartyMon) {
+  const evo = State.evolved(mon);
+  const base = baseOf(mon.id, evo);
+  const max = maxHpOf(mon.id, mon.lv, evo);
+  const abilities = [...new Map((base?.abilities ?? []).map((a) => [a.name, a])).values()];
+  return { base, name: base?.name ?? mon.id, art: base?.art ?? 'mon_' + mon.id, element: base?.element ?? '', stars: base?.stars ?? 1, max, hp: Math.min(mon.hp, max), next: expToNext(mon.lv), abilities };
+}
+
+interface PickOpt {
+  name: string;
+  art?: string;
+  sub?: string;
+  color?: string;
+  hp?: [number, number];
+  disabled?: boolean;
+}
+
+/** First sentences of the bestiary entry that fit in the two lines under the cards. */
 function shortLore(lore: string, max = 130) {
   // The header line already gives number / element / stars, so drop a lore opener that repeats them.
   const parts = lore.replace(/^No\. \d+[^.]*\.\s*/, '').split(/(?<=\.)\s+(?=[A-Z])/).filter((p, i) => i > 0 || !/\b(No\.|number)\s*\d+/i.test(p));
@@ -29,7 +59,8 @@ function shortLore(lore: string, max = 130) {
   return out || parts[0].slice(0, max);
 }
 import { Quests } from '../quests';
-import { EXP_TABLE, State } from '../state';
+import { PARTY_SIZE, PartyMon, State } from '../state';
+import { baseOf, elementColor, expToNext, maxHpOf, newPartyMon, ELEMENT_TINT } from '../battle/units';
 import { Controls } from '../ui/input';
 import { Bar, body, cardName, label, panel, starRow, title, COLORS } from '../ui/widgets';
 
@@ -52,6 +83,8 @@ export class MenuScene extends Phaser.Scene {
   private itemIds: string[] = [];
   private itemTexts: Phaser.GameObjects.Text[] = [];
   private closing = false;
+  private ownedIds: string[] = []; // My Monsters: owned monsters (uids) first, then the bestiary
+  private picker?: { root: Phaser.GameObjects.Container; boxes: Phaser.GameObjects.NineSlice[]; mark: Phaser.GameObjects.Container; sel: number; opts: PickOpt[]; pick: (i: number) => void };
 
   constructor() {
     super('Menu');
@@ -66,6 +99,7 @@ export class MenuScene extends Phaser.Scene {
     this.tab = 0;
     this.sel = 0;
     this.closing = false;
+    this.picker = undefined;
     this.tabImgs = [];
     const dim = this.add.rectangle(0, 0, W, H, 0x02040c, 0.72).setOrigin(0);
     const root = this.add.container(0, 0);
@@ -73,12 +107,21 @@ export class MenuScene extends Phaser.Scene {
     root.add(p);
     TABS.forEach((t, i) => {
       const img = this.add.image(1150, 112 + i * 104, t.key).setScale(0.82);
+      img.setInteractive({ useHandCursor: true }).on('pointerup', () => {
+        if (this.closing || this.picker || this.tab === i) return;
+        this.tab = i;
+        this.sel = 0;
+        Sound.move();
+        this.build();
+      });
       this.tabImgs.push(img);
       root.add(img);
     });
     this.content = this.add.container(0, 0);
     root.add(this.content);
-    root.add(label(this, 1070, 650, 'X  close', 18, COLORS.ink, 0).setOrigin(1, 0.5).setStroke('#fff4dc', 3));
+    const closeTxt = label(this, 1070, 650, 'X  close', 18, COLORS.ink, 0).setOrigin(1, 0.5).setStroke('#fff4dc', 3);
+    closeTxt.setInteractive({ useHandCursor: true }).on('pointerup', () => !this.closing && (this.picker ? this.closePicker() : this.close()));
+    root.add(closeTxt);
     root.setAlpha(0).setY(20);
     dim.setAlpha(0);
     this.tweens.add({ targets: root, alpha: 1, y: 0, duration: 220, ease: 'Cubic.easeOut' });
@@ -115,102 +158,328 @@ export class MenuScene extends Phaser.Scene {
 
   private buildParty() {
     const s = State.get();
-    const frame = this.add.image(130, 150, 'ui_frame_portrait').setTint(0x7c848e).setOrigin(0).setDisplaySize(250, 258);
-    const por = this.add.image(255, 263, 'hero_portrait');
-    por.setScale(Math.min(214 / por.width, 190 / por.height));
-    const nm = label(this, 255, 383, s.name, 24, COLORS.cream, 5).setOrigin(0.5);
-    this.content.add([frame, por, nm]);
-    this.ink(420, 160, `LV ${s.lv}   ·   Dragon Tamer`, 30);
-    this.ink(420, 214, 'HP', 26);
-    const bar = new Bar(this, 470, 232, 300, 'orange', 34);
-    bar.set(s.hp / s.maxHp, false);
-    this.content.add(bar);
-    this.ink(790, 214, `${s.hp} / ${s.maxHp}`, 26);
-    const next = s.lv < EXP_TABLE.length ? EXP_TABLE[s.lv] - s.exp : 0;
-    this.ink(420, 270, `ATK ${s.atk}     DEF ${s.def}`, 26);
-    this.ink(420, 316, `EXP ${s.exp}     NEXT ${next > 0 ? next : '—'}`, 26);
-    this.ink(420, 362, `GOLD ${s.gold}`, 26);
-    const comp = STARTERS.find((x) => x.id === s.starter?.id);
-    if (comp) {
-      const evo = !!s.starter?.evolved;
-      const key = 'starter_' + comp.id + (evo ? '_evo' : '');
-      const art = this.add.image(900, 410, key).setOrigin(0.5, 1);
-      art.texture.setFilter(Phaser.Textures.FilterMode.NEAREST);
-      art.setScale(Math.max(1, Math.floor(120 / art.height)));
-      this.content.add(art);
-      this.ink(900, 418, evo ? comp.evolution.next_name : comp.name, 22).setOrigin(0.5, 0);
-      this.ink(900, 448, evo ? `${comp.element} · Dragonling` : `${comp.element} · still in its shell`, 18).setOrigin(0.5, 0);
+    // Kael gives the commands; his monsters do the fighting.
+    const frame = this.add.image(130, 132, 'ui_frame_portrait').setTint(0x7c848e).setOrigin(0).setDisplaySize(108, 112);
+    const por = this.add.image(184, 182, 'hero_portrait');
+    por.setScale(Math.min(92 / por.width, 82 / por.height));
+    this.content.add([frame, por]);
+    this.ink(262, 134, s.name, 32);
+    this.ink(262, 178, `Dragon Tamer   ·   LV ${s.lv}`, 22);
+    this.ink(262, 210, `Gold ${s.gold}   ·   Monsters owned ${s.monsters.length}`, 20);
+    const team = State.partyMons();
+    this.sel = Phaser.Math.Clamp(this.sel, 0, PARTY_SIZE - 1);
+    for (let i = 0; i < PARTY_SIZE; i++) {
+      const c = this.partySlot(128 + i * 302, 262, team[i], i);
+      (c.getData('bg') as Phaser.GameObjects.NineSlice).setInteractive({ useHandCursor: true }).on('pointerup', () => {
+        if (this.picker) return;
+        if (this.sel === i) return this.partyConfirm();
+        this.sel = i;
+        Sound.move();
+        this.refreshCards();
+      });
+      this.cardObjs.push(c);
+      this.content.add(c);
     }
-    const bound = BESTIARY_ORDER.filter((id) => State.get().bestiary[id]?.bound);
-    this.ink(130, 440, 'Companions', 28);
-    if (!bound.length) this.ink(130, 486, 'No monsters captured yet. Wear one down, then use a Capture Card (MERCY > Capture).', 22, 820);
-    bound.forEach((id, i) => {
-      const x = 150 + i * 150;
-      const mc = this.add.image(x + 60, 560, 'ui_minicard').setScale(0.95);
-      const art = this.add.image(x + 60, 540, MONSTERS[id].art);
-      art.setScale(Math.min(110 / art.width, 80 / art.height));
-      const n = label(this, x + 60, 618, MONSTERS[id].name, 16, COLORS.cream, 4).setOrigin(0.5);
-      this.content.add([mc, art, n]);
-    });
+    const hint = team.length ? '← →  choose   ·   Z  manage in My Monsters' : 'Your hatchling waits at the Guild Hall.';
+    this.ink(130, 630, hint, 18);
+    this.refreshCards();
   }
 
+  /** One party slot: the monster standing on its own blue panel, with LV, HP, EXP and its DIB abilities. */
+  private partySlot(x: number, y: number, mon: PartyMon | undefined, i: number) {
+    const c = this.add.container(x, y);
+    const bg = panel(this, 0, 0, 290, 360, 'blue');
+    c.add(bg);
+    c.setData('bg', bg);
+    c.add(label(this, 22, 14, `${i + 1}`, 18, COLORS.gold, 3));
+    if (!mon) {
+      bg.setAlpha(0.6);
+      c.add(label(this, 145, 150, 'Empty', 24, COLORS.cream, 4).setOrigin(0.5).setAlpha(0.8));
+      c.add(body(this, 145, 186, 'Captured monsters can join from My Monsters.', 16, COLORS.cream, 230).setOrigin(0.5, 0).setAlign('center').setAlpha(0.75));
+      return c;
+    }
+    const v = view(mon);
+    const glow = this.add.image(145, 92, 'glow').setTint(ELEMENT_TINT[v.element] ?? 0xfff4dc).setAlpha(0.22).setScale(1.1).setBlendMode(Phaser.BlendModes.ADD);
+    const sh = this.add.image(145, 128, 'shadow').setScale(0.7, 0.5).setAlpha(0.7);
+    const art = fitArt(this.add.image(145, 128, v.art).setOrigin(0.5, 1), 200, 104);
+    c.add([glow, sh, art]);
+    if (v.hp <= 0) {
+      art.setTint(0x4a4f58).setAlpha(0.75);
+      c.add(label(this, 145, 76, 'FAINTED', 18, COLORS.red, 4).setOrigin(0.5));
+    }
+    const nm = label(this, 145, 132, v.name, 22, elementColor(v.element), 4).setOrigin(0.5, 0);
+    if (nm.width > 266) nm.setScale(266 / nm.width);
+    c.add(nm);
+    c.add(body(this, 145, 162, `LV ${mon.lv}${v.element ? '   ·   ' + v.element : ''}`, 16, COLORS.cream).setOrigin(0.5, 0));
+    c.add(label(this, 22, 188, 'HP', 14, COLORS.cream, 3));
+    c.add(label(this, 268, 188, `${v.hp} / ${v.max}`, 14, COLORS.cream, 3).setOrigin(1, 0));
+    const hp = new Bar(this, 20, 220, 250, 'red', 24);
+    hp.set(v.hp / v.max, false);
+    c.add(label(this, 22, 232, 'EXP', 12, COLORS.yellow, 3));
+    c.add(label(this, 268, 232, `${mon.exp} / ${v.next}`, 12, COLORS.yellow, 3).setOrigin(1, 0));
+    const xp = new Bar(this, 20, 258, 250, 'orange', 16);
+    xp.set(mon.exp / Math.max(1, v.next), false);
+    c.add([hp, xp]);
+    const rows = v.abilities.slice(0, 5);
+    rows.forEach((a, k) => {
+      const ry = 270 + k * 17;
+      c.add(body(this, 24, ry, a.name, 14, COLORS.cream));
+      c.add(body(this, 266, ry, /^\d+$/.test(a.tu) ? `${a.tu} TU` : '—', 13, COLORS.blue).setOrigin(1, 0));
+    });
+    if (v.abilities.length > rows.length) c.add(body(this, 266, 270 + rows.length * 17 - 4, `+${v.abilities.length - rows.length}`, 12, COLORS.blue).setOrigin(1, 0));
+    return c;
+  }
+
+  /** Z on a party slot: open My Monsters on that monster, where it can be swapped out. */
+  private partyConfirm() {
+    const uid = State.get().party[this.sel];
+    if (!State.get().monsters.length) return Sound.cancel();
+    Sound.confirm();
+    this.tab = 1;
+    this.ownedIds = this.ownedOrder();
+    this.sel = Math.max(0, this.ownedIds.indexOf(uid ?? ''));
+    this.build();
+  }
+
+  /** Owned monsters as My Monsters lists them: the party in slot order, then the rest in capture order. */
+  private ownedOrder() {
+    const s = State.get();
+    return [...s.party, ...s.monsters.map((m) => m.uid).filter((u) => !s.party.includes(u))];
+  }
+
+  /** My Monsters: Kael's own monsters on the first pages (Z places one in the party), then the bestiary. */
   private buildBestiary() {
+    this.ownedIds = this.ownedOrder();
+    const owned = this.ownedIds.length;
+    const ownPages = Math.ceil(owned / PER_PAGE);
+    const total = owned + BESTIARY_ORDER.length;
+    this.sel = Phaser.Math.Clamp(this.sel, 0, total - 1);
     const seen = BESTIARY_ORDER.filter((id) => State.get().bestiary[id]?.seen).length;
     const pct = Math.round((seen / BESTIARY_ORDER.length) * 100);
     const plaque = this.add.image(560, 96, 'ui_plaque_monsters').setScale(0.9);
     const page = this.add.image(930, 100, 'ui_panel_page').setScale(0.62);
-    const pages = Math.ceil(BESTIARY_ORDER.length / PER_PAGE);
-    const pageNo = Math.floor(this.sel / PER_PAGE);
+    const pages = ownPages + Math.ceil(BESTIARY_ORDER.length / PER_PAGE);
+    const pageNo = this.pageOf(this.sel);
+    const mine = pageNo < ownPages;
     const pg = label(this, 930, 86, `Pg ${pageNo + 1}/${pages}`, 22, COLORS.ink, 0).setOrigin(0.5).setStroke('#fff4dc', 2);
-    const fd = label(this, 930, 114, `Found ${pct}%`, 22, COLORS.ink, 0).setOrigin(0.5).setStroke('#fff4dc', 2);
+    const fd = label(this, 930, 114, mine ? `Owned ${owned}` : `Found ${pct}%`, 22, COLORS.ink, 0).setOrigin(0.5).setStroke('#fff4dc', 2);
     this.content.add([plaque, page, pg, fd]);
-    BESTIARY_ORDER.slice(pageNo * PER_PAGE, pageNo * PER_PAGE + PER_PAGE).forEach((id, i) => {
-      const m = MONSTERS[id];
-      const rec = State.get().bestiary[id];
-      const col = i % 5;
-      const row = Math.floor(i / 5);
-      const c = this.add.container(200 + col * 172, 262 + row * 196);
+    this.ink(132, 84, mine ? 'Your team' : 'Bestiary', 26);
+    const first = mine ? pageNo * PER_PAGE : owned + (pageNo - ownPages) * PER_PAGE;
+    const last = mine ? Math.min(owned, first + PER_PAGE) : Math.min(total, first + PER_PAGE);
+    for (let n = first; n < last; n++) {
+      const i = n - first;
+      const c = this.add.container(200 + (i % 5) * 172, 262 + Math.floor(i / 5) * 196);
       const card = this.add.image(0, 0, 'ui_monster_card_blank').setScale(0.42).setTint(0xb4b8bc);
-      const art = this.add.image(0, -20, m.art);
-      art.setScale(Math.min(118 / art.width, 88 / art.height));
-      if (!rec?.seen) art.setTintFill(0x0b1a2a).setAlpha(0.85);
-      const nm = cardName(this, 0.42, rec?.seen ? m.name : '???', 15);
-      c.add([card, art, nm]);
-      if (rec?.seen) c.add(starRow(this, -1, 36, m.stars, 60, 13));
-      if (rec?.bound) {
-        const crown = this.add.image(-46, 53, 'ui_crown').setScale(0.22);
-        c.add(crown);
-        this.tweens.add({ targets: crown, scale: 0.27, yoyo: true, repeat: -1, duration: 700 });
-      } else {
-        // dim the painted crown slot on unbound monsters
-        c.add(this.add.rectangle(-44, 55, 46, 33, 0x13202c, 0.6));
-      }
-      if (rec?.spared) c.add(this.add.image(44, 55, 'ui_fx_sparkle').setScale(0.27).setBlendMode(Phaser.BlendModes.ADD));
+      c.add(card);
+      if (mine) this.ownedCard(c, this.ownedIds[n]);
+      else this.bestiaryCard(c, BESTIARY_ORDER[n - owned]);
+      card.setInteractive({ useHandCursor: true }).on('pointerup', () => {
+        if (this.picker) return;
+        if (this.sel === n) return this.monstersConfirm();
+        this.sel = n;
+        Sound.move();
+        this.refreshCards();
+      });
       this.content.add(c);
       this.cardObjs.push(c);
-    });
+    }
     this.detail = this.ink(130, 580, '', 19, 860);
-    this.sel = Phaser.Math.Clamp(this.sel, 0, BESTIARY_ORDER.length - 1);
     this.refreshCards();
   }
 
+  /** Page of an entry in My Monsters: owned monsters fill their own pages, the bestiary starts on a fresh one. */
+  private pageOf(n: number) {
+    const owned = this.ownedIds.length;
+    return n < owned ? Math.floor(n / PER_PAGE) : Math.ceil(owned / PER_PAGE) + Math.floor((n - owned) / PER_PAGE);
+  }
+
+  private ownedCard(c: Phaser.GameObjects.Container, uid: string) {
+    const mon = State.get().monsters.find((m) => m.uid === uid)!;
+    const v = view(mon);
+    const art = fitArt(this.add.image(0, -20, v.art), 118, 88);
+    if (v.hp <= 0) art.setTint(0x4a4f58).setAlpha(0.8);
+    c.add([art, cardName(this, 0.42, v.name, 15), starRow(this, -1, 36, v.stars, 60, 13)]);
+    // party monsters light the crown and carry their slot number in the round seal; the rest are resting
+    const slot = State.get().party.indexOf(uid);
+    if (slot >= 0) {
+      const crown = this.add.image(-46, 53, 'ui_crown').setScale(0.22);
+      c.add([crown, label(this, 0, 54, `${slot + 1}`, 17, COLORS.yellow, 4).setOrigin(0.5)]);
+      this.tweens.add({ targets: crown, scale: 0.27, yoyo: true, repeat: -1, duration: 700 });
+    } else c.add(this.add.rectangle(-44, 55, 46, 33, 0x13202c, 0.6));
+    c.add(label(this, 44, 55, `LV ${mon.lv}`, 13, COLORS.cream, 3).setOrigin(0.5));
+  }
+
+  private bestiaryCard(c: Phaser.GameObjects.Container, id: string) {
+    const m = MONSTERS[id];
+    const rec = State.get().bestiary[id];
+    const art = this.add.image(0, -20, m.art);
+    art.setScale(Math.min(118 / art.width, 88 / art.height));
+    if (!rec?.seen) art.setTintFill(0x0b1a2a).setAlpha(0.85);
+    const nm = cardName(this, 0.42, rec?.seen ? m.name : '???', 15);
+    c.add([art, nm]);
+    if (rec?.seen) c.add(starRow(this, -1, 36, m.stars, 60, 13));
+    if (rec?.bound) {
+      const crown = this.add.image(-46, 53, 'ui_crown').setScale(0.22);
+      c.add(crown);
+      this.tweens.add({ targets: crown, scale: 0.27, yoyo: true, repeat: -1, duration: 700 });
+    } else {
+      // dim the painted crown slot on unbound monsters
+      c.add(this.add.rectangle(-44, 55, 46, 33, 0x13202c, 0.6));
+    }
+    if (rec?.spared) c.add(this.add.image(44, 55, 'ui_fx_sparkle').setScale(0.27).setBlendMode(Phaser.BlendModes.ADD));
+  }
+
   private refreshCards() {
-    const local = this.sel % PER_PAGE;
+    if (this.tab === 0) {
+      // party slots: the chosen one lifts and brightens
+      this.cardObjs.forEach((c, i) => {
+        this.tweens.killTweensOf(c);
+        this.tweens.add({ targets: c, y: i === this.sel ? 254 : 262, duration: 120 });
+        (c.getData('bg') as Phaser.GameObjects.NineSlice).setTint(i === this.sel ? 0x8e9cad : 0x5e6874);
+      });
+      return;
+    }
+    const owned = this.ownedIds.length;
+    const local = this.sel < owned ? this.sel % PER_PAGE : (this.sel - owned) % PER_PAGE;
     this.cardObjs.forEach((c, i) => {
       this.tweens.killTweensOf(c);
       this.tweens.add({ targets: c, scale: i === local ? 1.08 : 0.96, duration: 120 });
       c.setDepth(i === local ? 2 : 1);
     });
-    const id = BESTIARY_ORDER[this.sel];
+    if (!this.detail) return;
+    if (this.sel < owned) {
+      const uid = this.ownedIds[this.sel];
+      const mon = State.get().monsters.find((m) => m.uid === uid)!;
+      const v = view(mon);
+      const slot = State.get().party.indexOf(uid);
+      this.detail.setText(
+        `${v.name} · LV ${mon.lv} · ${v.element || '—'} · HP ${v.hp}/${v.max} · EXP ${mon.exp}/${v.next} · ${slot >= 0 ? `Party slot ${slot + 1}` : 'Resting'}\n` +
+          `${v.abilities.map((a) => a.name).join(', ')}   ·   Z  ${slot >= 0 ? 'move or rest' : 'place in the party'}`,
+      );
+      return;
+    }
+    const id = BESTIARY_ORDER[this.sel - owned];
     const rec = State.get().bestiary[id];
     const m = MONSTERS[id];
-    if (this.detail) {
-      this.detail.setText(
-        rec?.seen
-          ? `No. ${m.number} ${m.name} · ${m.affinity} · ${m.stars}★   Spared ${rec.spared} · Defeated ${rec.defeated}${rec.bound ? ' · CAPTURED' : ''}\n${shortLore(m.lore)}`
-          : 'Not yet encountered. Keep exploring the western roads.',
-      );
+    this.detail.setText(
+      rec?.seen
+        ? `No. ${m.number} ${m.name} · ${m.affinity} · ${m.stars}★   Spared ${rec.spared} · Defeated ${rec.defeated}${rec.bound ? ' · CAPTURED' : ''}\n${shortLore(m.lore)}`
+        : 'Not yet encountered. Keep exploring the western roads.',
+    );
+  }
+
+  /** Z on an owned monster: choose the party slot it takes (swapping with whoever stands there), or send it to rest. */
+  private monstersConfirm() {
+    const uid = this.ownedIds[this.sel];
+    if (!uid) return Sound.cancel();
+    const s = State.get();
+    const mon = s.monsters.find((m) => m.uid === uid)!;
+    const cur = s.party.indexOf(uid);
+    const opts: PickOpt[] = [];
+    for (let i = 0; i < PARTY_SIZE; i++) {
+      const other = s.monsters.find((m) => m.uid === s.party[i]);
+      if (!other) {
+        opts.push({ name: `Slot ${i + 1}`, sub: 'Empty', disabled: cur >= 0 && cur === s.party.length - 1 });
+        continue;
+      }
+      const v = view(other);
+      opts.push({ name: v.name, art: v.art, color: elementColor(v.element), sub: `Slot ${i + 1} · LV ${other.lv}`, hp: [v.hp, v.max], disabled: i === cur });
     }
+    if (cur >= 0) opts.push({ name: 'Rest', sub: 'Leave the party', disabled: s.party.length <= 1 });
+    Sound.confirm();
+    this.openPicker(`Where does ${view(mon).name} stand?`, opts, (i) => {
+      const party = s.party;
+      if (i >= PARTY_SIZE) party.splice(cur, 1);
+      else if (cur >= 0) {
+        if (party[i]) [party[cur], party[i]] = [party[i], party[cur]];
+        else party.push(...party.splice(cur, 1));
+      } else if (party[i]) party[i] = uid;
+      else party.push(uid);
+      Sound.save();
+      this.ownedIds = this.ownedOrder();
+      this.sel = Math.max(0, this.ownedIds.indexOf(uid));
+      this.build();
+    });
+  }
+
+  // ---- a small chooser over the page (party slots, who drinks the Tonic) ----------------
+  private openPicker(heading: string, opts: PickOpt[], pick: (i: number) => void) {
+    const W = this.scale.width;
+    const H = this.scale.height;
+    const bw = 196;
+    const gap = 14;
+    const w = opts.length * bw + (opts.length - 1) * gap + 64;
+    const h = 330;
+    const x0 = Math.round((W - 120 - w) / 2 + 10);
+    const y0 = 196;
+    const root = this.add.container(0, 0).setDepth(100);
+    const dim = this.add.rectangle(0, 0, W, H, 0x02040c, 0.6).setOrigin(0).setInteractive();
+    dim.on('pointerup', () => this.closePicker());
+    root.add([dim, panel(this, x0, y0, w, h, 'blue'), label(this, x0 + w / 2, y0 + 22, heading, 22, COLORS.gold, 4).setOrigin(0.5, 0)]);
+    const boxes: Phaser.GameObjects.NineSlice[] = [];
+    opts.forEach((o, i) => {
+      const bx = x0 + 32 + i * (bw + gap);
+      const by = y0 + 70;
+      const box = panel(this, bx, by, bw, 220, 'green');
+      box.setInteractive({ useHandCursor: true }).on('pointerup', () => {
+        if (!this.picker) return;
+        if (this.picker.sel === i) return this.pickerConfirm();
+        this.picker.sel = i;
+        Sound.move();
+        this.refreshPicker();
+      });
+      boxes.push(box);
+      const start = root.list.length;
+      root.add(box);
+      if (o.art) {
+        root.add(this.add.image(bx + bw / 2, by + 110, 'shadow').setScale(0.55, 0.4).setAlpha(0.6));
+        root.add(fitArt(this.add.image(bx + bw / 2, by + 112, o.art).setOrigin(0.5, 1), 150, 86));
+      } else root.add(this.add.image(bx + bw / 2, by + 74, o.name === 'Rest' ? 'ui_med_book' : 'ui_slot_round').setScale(o.name === 'Rest' ? 0.34 : 0.5).setAlpha(0.8));
+      const nm = label(this, bx + bw / 2, by + 122, o.name, 18, o.color ?? COLORS.cream, 4).setOrigin(0.5, 0);
+      if (nm.width > bw - 16) nm.setScale((bw - 16) / nm.width);
+      root.add(nm);
+      if (o.sub) root.add(body(this, bx + bw / 2, by + 150, o.sub, 15, COLORS.cream).setOrigin(0.5, 0));
+      if (o.hp) {
+        const bar = new Bar(this, bx + 16, by + 194, bw - 32, 'red', 20);
+        bar.set(o.hp[0] / Math.max(1, o.hp[1]), false);
+        root.add([bar, label(this, bx + bw - 16, by + 170, `${o.hp[0]}/${o.hp[1]}`, 12, COLORS.cream, 3).setOrigin(1, 0)]);
+      }
+      if (o.disabled) root.list.slice(start).forEach((g) => (g as Phaser.GameObjects.Image).setAlpha(0.42));
+    });
+    const mark = this.add.container(0, 0, [this.add.image(0, 0, 'ui_cursor_diamond').setScale(0.42)]);
+    this.tweens.add({ targets: mark.list[0], y: -6, yoyo: true, repeat: -1, duration: 420, ease: 'Sine.easeInOut' });
+    root.add(mark);
+    root.add(body(this, x0 + w / 2, y0 + h - 34, '← →  choose   ·   Z  confirm   ·   X  back', 15, COLORS.cream).setOrigin(0.5, 0).setAlpha(0.85));
+    const sel = Math.max(0, opts.findIndex((o) => !o.disabled));
+    this.picker = { root, boxes, mark, sel, opts, pick };
+    root.setAlpha(0);
+    this.tweens.add({ targets: root, alpha: 1, duration: 140 });
+    this.refreshPicker();
+  }
+
+  private refreshPicker() {
+    const p = this.picker;
+    if (!p) return;
+    p.boxes.forEach((b, i) => b.setTint(i === p.sel ? 0xeef6e2 : 0x6c7668));
+    const b = p.boxes[p.sel];
+    p.mark.setPosition(b.x + b.width / 2, b.y - 8);
+  }
+
+  private pickerConfirm() {
+    const p = this.picker;
+    if (!p) return;
+    if (p.opts[p.sel]?.disabled) return Sound.cancel();
+    this.closePicker(false);
+    p.pick(p.sel);
+  }
+
+  private closePicker(sound = true) {
+    if (!this.picker) return;
+    if (sound) Sound.cancel();
+    this.picker.root.destroy();
+    this.picker = undefined;
+    this.controls.reset();
   }
 
   private buildItems() {
@@ -229,6 +498,13 @@ export class MenuScene extends Phaser.Scene {
       const icon = cc ? this.add.image(170, y + 28 * k, cc.tex).setScale(0.3 * k) : this.add.image(170, y + 28 * k, id === 'tart' ? 'ui_star' : ITEMS[id]?.key ? 'ui_med_book' : 'ui_fx_waterring').setScale((ITEMS[id]?.key ? 0.3 : 0.5) * k);
       this.content.add([slot, icon]);
       const t = this.ink(240, y, `${ITEMS[id].name}  ×${inv[id]}`, gap < 90 ? 24 : 28);
+      t.setInteractive({ useHandCursor: true }).on('pointerup', () => {
+        if (this.picker) return;
+        if (this.sel === i) return this.useSelected();
+        this.sel = i;
+        Sound.move();
+        this.refreshItems();
+      });
       this.ink(240, y + (gap < 90 ? 30 : 38), ITEMS[id].desc, gap < 90 ? 17 : 20, 760);
       this.itemTexts.push(t);
     });
@@ -283,18 +559,30 @@ export class MenuScene extends Phaser.Scene {
     };
   }
 
-  /** Blood Rogue + Cult Rogue = Bloodgale. Like a DIB recipe, the two are used up. */
+  /** Blood Rogue + Cult Rogue = Bloodgale. Like a DIB recipe, the two are used up; Bloodgale stands at their average LV. */
   private performFormula() {
     if (!canFuse()) return;
-    State.record('blood_rogue').bound = false;
-    State.record('cult_rogue').bound = false;
+    const s = State.get();
+    const a = s.monsters.find((m) => m.id === 'blood_rogue')!;
+    const b = s.monsters.find((m) => m.id === 'cult_rogue')!;
+    const slots = [s.party.indexOf(a.uid), s.party.indexOf(b.uid)].filter((i) => i >= 0);
+    s.monsters = s.monsters.filter((m) => m !== a && m !== b);
+    s.party = s.party.filter((u) => u !== a.uid && u !== b.uid);
+    for (const id of ['blood_rogue', 'cult_rogue']) if (!s.monsters.some((m) => m.id === id)) State.record(id).bound = false;
+    const gale = newPartyMon('bloodgale', Math.max(1, Math.round((a.lv + b.lv) / 2)));
+    // Bloodgale takes the party slot the first rogue stood in
+    if (State.addMonster(gale) === 'party' && slots.length) {
+      s.party.pop();
+      s.party.splice(Math.min(...slots), 0, gale.uid);
+    }
     const r = State.record('bloodgale');
     r.seen = true;
     r.bound = true;
     State.setFlag('bloodgaleFormed');
     Sound.save();
     this.tab = 1;
-    this.sel = BESTIARY_ORDER.indexOf('bloodgale');
+    this.ownedIds = this.ownedOrder();
+    this.sel = Math.max(0, this.ownedIds.indexOf(gale.uid));
     this.build();
     const W = this.scale.width;
     const t = title(this, W / 2 - 60, 360, 'Bloodgale joins you', 40, COLORS.gold).setOrigin(0.5).setDepth(50).setAlpha(0);
@@ -343,6 +631,7 @@ export class MenuScene extends Phaser.Scene {
   update() {
     if (this.closing) return;
     const c = this.controls;
+    if (this.picker) return this.updatePicker();
     if (c.pressed('cancel') || c.pressed('menu')) return this.close();
     const goU = c.pressed('up');
     const goD = c.pressed('down');
@@ -355,12 +644,27 @@ export class MenuScene extends Phaser.Scene {
       this.build();
       return;
     }
-    if (this.tab === 1 && (goL || goR)) {
-      const before = Math.floor(this.sel / PER_PAGE);
-      this.sel = (this.sel + (goL ? BESTIARY_ORDER.length - 1 : 1)) % BESTIARY_ORDER.length;
-      Sound.move();
-      if (Math.floor(this.sel / PER_PAGE) !== before) this.build();
-      else this.refreshCards();
+    if (this.tab === 0) {
+      if (goL || goR) {
+        this.sel = (this.sel + (goL ? PARTY_SIZE - 1 : 1)) % PARTY_SIZE;
+        Sound.move();
+        this.refreshCards();
+      }
+      if (c.pressed('confirm')) this.partyConfirm();
+    }
+    if (this.tab === 1) {
+      const total = this.ownedIds.length + BESTIARY_ORDER.length;
+      if (goL || goR) {
+        const before = this.pageOf(this.sel);
+        this.sel = (this.sel + (goL ? total - 1 : 1)) % total;
+        Sound.move();
+        if (this.pageOf(this.sel) !== before) this.build();
+        else this.refreshCards();
+      }
+      if (c.pressed('confirm')) {
+        if (this.sel < this.ownedIds.length) this.monstersConfirm();
+        else Sound.cancel();
+      }
     }
     if (this.tab === 2 && this.itemIds.length) {
       if (goL || goR) {
@@ -368,29 +672,55 @@ export class MenuScene extends Phaser.Scene {
         Sound.move();
         this.refreshItems();
       }
-      if (c.pressed('confirm')) {
-        const id = this.itemIds[this.sel];
-        const s = State.get();
-        if (ITEMS[id]?.key) {
-          Sound.confirm();
-          this.scene.launch('Reader', this.readerFor(id));
-          this.scene.pause();
-          return;
-        }
-        if (id === 'tonic' || id === 'tart') {
-          if (s.hp >= s.maxHp) {
-            Sound.cancel();
-            return;
-          }
-          State.useItem(id);
-          s.hp = Math.min(s.maxHp, s.hp + (id === 'tart' ? 30 : 15));
-          Sound.heal();
-          this.build();
-        } else {
-          Sound.cancel();
-        }
-      }
+      if (c.pressed('confirm')) this.useSelected();
     }
+  }
+
+  /** Z in the Satchel: read a key item, or give a Tonic / Tart to one of the party. */
+  private useSelected() {
+    const id = this.itemIds[this.sel];
+    if (ITEMS[id]?.key) {
+      Sound.confirm();
+      this.scene.launch('Reader', this.readerFor(id));
+      this.scene.pause();
+      return;
+    }
+    if (id !== 'tonic' && id !== 'tart') return Sound.cancel();
+    const team = State.partyMons();
+    if (!team.length) return Sound.cancel();
+    const opts: PickOpt[] = team.map((m) => {
+      const v = view(m);
+      const fainted = v.hp <= 0;
+      return { name: v.name, art: v.art, color: elementColor(v.element), sub: fainted ? 'Fainted' : `LV ${m.lv}`, hp: [v.hp, v.max], disabled: v.hp >= v.max || (fainted && id === 'tonic') };
+    });
+    if (opts.every((o) => o.disabled)) return Sound.cancel();
+    Sound.confirm();
+    this.openPicker(`Give the ${ITEMS[id].name} to…`, opts, (i) => {
+      const m = team[i];
+      if (!State.useItem(id)) return Sound.cancel();
+      m.hp = Math.min(view(m).max, Math.max(0, m.hp) + healAmount(id, m.lv));
+      Sound.heal();
+      this.build();
+    });
+  }
+
+  private updatePicker() {
+    const c = this.controls;
+    const p = this.picker!;
+    if (c.pressed('cancel') || c.pressed('menu')) return this.closePicker();
+    const goL = c.pressed('left') || c.pressed('up');
+    const goR = c.pressed('right') || c.pressed('down');
+    if (goL || goR) {
+      // step over the choices that cannot be taken
+      const n = p.opts.length;
+      let k = p.sel;
+      do k = (k + (goL ? n - 1 : 1)) % n;
+      while (p.opts[k].disabled && k !== p.sel);
+      p.sel = k;
+      Sound.move();
+      this.refreshPicker();
+    }
+    if (c.pressed('confirm')) this.pickerConfirm();
   }
 
   private close() {

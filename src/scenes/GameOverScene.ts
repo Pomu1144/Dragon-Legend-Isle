@@ -56,6 +56,7 @@ export class GameOverScene extends Phaser.Scene {
         if (State.load()) {
           const s = State.get();
           s.hp = s.maxHp;
+          State.healParty();
           this.scene.start('World', { room: s.room, at: [s.x, s.y] });
         } else {
           State.reset();

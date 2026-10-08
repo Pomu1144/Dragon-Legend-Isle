@@ -1,5 +1,6 @@
 // Persistent run state. One save slot in localStorage, kept up to date as you play (WorldScene.autosave)
 // and on resting at candles.
+import { baseOf, maxHpOf, newPartyMon } from './battle/units';
 
 export interface Inventory {
   [itemId: string]: number;
@@ -103,11 +104,36 @@ export const State = {
     try {
       const raw = localStorage.getItem(KEY);
       if (!raw) return false;
-      current = { ...newState(), ...JSON.parse(raw) };
+      const saved = JSON.parse(raw) as Partial<GameState>;
+      current = { ...newState(), ...saved };
+      if (!Array.isArray(saved.monsters)) migrateToTeams();
+      current.party = (current.party ?? []).filter((uid) => current.monsters.some((m) => m.uid === uid)).slice(0, PARTY_SIZE);
       return true;
     } catch {
       return false;
     }
+  },
+  /** The monsters that fight, in slot order. */
+  partyMons(): PartyMon[] {
+    return current.party.map((uid) => current.monsters.find((m) => m.uid === uid)).filter((m): m is PartyMon => !!m);
+  },
+  /** Add a newly owned monster: it joins the party when a slot is free, otherwise it waits in storage. */
+  addMonster(mon: PartyMon): 'party' | 'stored' {
+    current.monsters.push(mon);
+    syncLv();
+    if (current.party.length < PARTY_SIZE) {
+      current.party.push(mon.uid);
+      return 'party';
+    }
+    return 'stored';
+  },
+  /** Every owned monster back to full HP (candles, waking after a defeat). */
+  healParty() {
+    for (const m of current.monsters) m.hp = maxHpOf(m.id, m.lv, isEvolved(m));
+  },
+  /** Whether this monster is the hatchling in its evolved (Dragonling) form. */
+  evolved(mon: PartyMon): boolean {
+    return isEvolved(mon);
   },
   flag(name: string): boolean {
     return !!current.flags[name];
@@ -129,21 +155,29 @@ export const State = {
   },
 };
 
-// LV 6 matters: that is when DIB hatchlings evolve into Dragonlings.
-export const EXP_TABLE = [0, 10, 26, 48, 76, 110, 160, 220];
+function isEvolved(mon: PartyMon) {
+  return !!mon.starter && !!current.starter?.evolved;
+}
 
-/** Apply EXP and return the number of level-ups gained. */
-export function gainExp(n: number): number {
+/** Kael's LV follows his strongest monster, so older LV checks keep working. It never drops. */
+function syncLv() {
+  current.lv = Math.max(current.lv, ...current.monsters.map((m) => m.lv));
+}
+
+// Saves from before team battles had the hatchling and captured monsters only as flags:
+// the hatchling becomes a monster at Kael's LV, and every captured species one LV below him.
+function migrateToTeams() {
   const s = current;
-  s.exp += n;
-  let ups = 0;
-  while (s.lv < EXP_TABLE.length && s.exp >= EXP_TABLE[s.lv]) {
-    s.lv += 1;
-    s.maxHp += 6;
-    s.atk += 2;
-    s.def += 1;
-    s.hp = s.maxHp;
-    ups++;
+  s.monsters = [];
+  s.party = [];
+  const add = (mon: PartyMon) => {
+    mon.hp = maxHpOf(mon.id, mon.lv, isEvolved(mon));
+    s.monsters.push(mon);
+    if (s.party.length < PARTY_SIZE) s.party.push(mon.uid);
+  };
+  if (s.starter) add(newPartyMon(s.starter.id, Math.max(1, s.lv), true));
+  for (const [id, rec] of Object.entries(s.bestiary)) {
+    if (!rec.bound || id === s.starter?.id || !baseOf(id) || s.monsters.some((m) => m.id === id)) continue;
+    add(newPartyMon(id, Math.max(1, s.lv - 1)));
   }
-  return ups;
 }

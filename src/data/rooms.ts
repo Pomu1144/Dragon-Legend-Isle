@@ -411,7 +411,7 @@ for (const k of DIB_KITS) {
 }
 
 /** Weighted pick from a room's table, given how deep (0-1) into the room the player is. */
-export function rollEncounter(table: Encounter[], depth: number, r = Math.random()) {
+export function rollEncounter(table: Encounter[], depth: number, r = Math.random()): Encounter | undefined {
   const ok = table.filter((e) => !e.depth || (depth >= e.depth[0] && depth <= e.depth[1]));
   const total = ok.reduce((a, e) => a + e.w, 0);
   let x = r * total;
@@ -420,6 +420,36 @@ export function rollEncounter(table: Encounter[], depth: number, r = Math.random
     if (x < 0) return e;
   }
   return ok[ok.length - 1];
+}
+
+// Who may join a wild group: Dragon Overlords, guardians and the like always stand alone.
+const KIT_INFO = new Map(DIB_KITS.map((k) => [k.id as string, { role: k.role as string, rare: (k as { rarity?: string }).rarity === 'rare' }]));
+const SOLO = new Set(['boss', 'miniboss', 'deity', 'ending']);
+
+/**
+ * A wild group, DIB style: 1-3 foes from the room's table (about 55% one, 30% two, 15% three).
+ * The lead decides whether the battle allows capture; extras share the lead's capture rule,
+ * are never bosses or minibosses, and a group holds at most one rare sighting.
+ */
+export function rollGroup(table: Encounter[], depth: number): { foes: string[]; nocap: boolean } | undefined {
+  const lead = rollEncounter(table, depth);
+  if (!lead) return undefined;
+  const foes = [lead.id];
+  if (SOLO.has(KIT_INFO.get(lead.id)?.role ?? '')) return { foes, nocap: !!lead.nocap };
+  const r = Math.random();
+  const size = r < 0.55 ? 1 : r < 0.85 ? 2 : 3;
+  let rare = !!KIT_INFO.get(lead.id)?.rare;
+  for (let n = 1; n < size; n++) {
+    const pool = table.filter((e) => {
+      const k = KIT_INFO.get(e.id);
+      return !!k && !SOLO.has(k.role) && !!e.nocap === !!lead.nocap && !(rare && k.rare);
+    });
+    const e = rollEncounter(pool, depth);
+    if (!e) break;
+    foes.push(e.id);
+    rare ||= !!KIT_INFO.get(e.id)?.rare;
+  }
+  return { foes, nocap: !!lead.nocap };
 }
 
 // Walk-map fixes from the room audits (src/data/roomFixes.ts): occluders, extra blocks, corrected walk areas.

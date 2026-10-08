@@ -1,5 +1,5 @@
 // Monster roster: the exact creatures from Dragon Island Blue (see dibCreatures.ts).
-// The battle model is Undertale's: talk (ACT) until they can be spared, or fight.
+// Battles are DIB team battles (see BattleScene): defeat, capture or spare each foe.
 import { DIB_KITS } from './dibCreatures';
 import { MISSIONS } from './missions';
 
@@ -10,18 +10,6 @@ export interface Act {
   once?: boolean; // only counts the first time
   calm?: number; // shortens the next attack (seconds)
   heal?: number;
-}
-
-export interface AttackDef {
-  ability: string; // real DIB ability name
-  tu: number; // real DIB Time Units
-  pattern: string;
-  projectile: string;
-  tint?: string;
-  twist: string;
-  box?: [number, number];
-  intensity?: number;
-  flavor?: string;
 }
 
 /** A real DIB ability as listed on the wiki: TU cost, target text ("1 Foe", "All Allies", "Self"...) and effect text. */
@@ -45,7 +33,6 @@ export interface Stats {
 export interface MonsterDef {
   lv1: Stats; // real DIB Lv1 stats (team battles)
   abilities: Ability[]; // real DIB abilities (team battles)
-  attacks?: AttackDef[];
   faces?: 'left' | 'right' | 'front';
   flier?: boolean;
   number?: string;
@@ -74,7 +61,6 @@ export interface MonsterDef {
   talk: string[]; // speech bubble lines, cycled each turn
   spareText: string;
   acts: Act[];
-  patterns: string[];
   lore: string;
 }
 
@@ -95,7 +81,6 @@ interface Kit {
     lore: string;
     capture_fail?: readonly string[];
     acts: readonly { name: string; text: readonly string[]; mercy: number; once: boolean; calm: number }[];
-    attacks: readonly { ability: string; tu: number; base_pattern: string; projectile: string; tint_hex: string; twist: string; box: readonly number[]; intensity: number; flavor: string }[];
   };
 }
 
@@ -150,18 +135,6 @@ function fromKit(k: Kit): MonsterDef {
     talk: [...k.battle.talk],
     spareText: k.battle.spare_text,
     acts: [{ name: 'Check', text: [], mercy: 0 }, ...k.battle.acts.map((a) => ({ name: a.name, text: [...a.text], mercy: a.mercy, once: a.once, calm: a.calm }))],
-    patterns: [],
-    attacks: k.battle.attacks.map((a) => ({
-      ability: a.ability,
-      tu: a.tu,
-      pattern: a.base_pattern,
-      projectile: a.projectile,
-      tint: a.tint_hex,
-      twist: a.twist,
-      box: [a.box[0], a.box[1]] as [number, number],
-      intensity: a.intensity,
-      flavor: a.flavor,
-    })),
     lv1: { ...s },
     abilities: k.wiki.abilities.map((a) => ({ ...a })),
     faces: k.sprite.faces as MonsterDef['faces'],
@@ -185,7 +158,7 @@ export interface ItemDef {
   name: string;
   desc: string;
   key?: boolean; // key items are read from the Satchel and never consumed
-  capture?: boolean; // capture cards are thrown from MERCY > Capture
+  capture?: boolean; // capture cards are thrown from the tamer's Capture command in battle
 }
 
 export interface CaptureCard {
@@ -211,7 +184,7 @@ export function captureChance(m: MonsterDef, hpFrac: number, calm: boolean, card
 }
 
 export const ITEMS: Record<string, ItemDef> = {
-  tonic: { id: 'tonic', name: 'Restoration Tonic', desc: 'Restores 15 HP. Tastes like blue.' },
+  tonic: { id: 'tonic', name: 'Restoration Tonic', desc: 'Heals one monster, more at a higher LV. Cannot wake a fainted one. Tastes like blue.' },
   // The three DIB capture cards. ('orb' keeps old saves working.)
   orb: { id: 'orb', name: 'Capture Card', desc: 'Captures a wild monster. Weaken it first: the more damaged it is, the higher the chance.', capture: true },
   silver_card: { id: 'silver_card', name: 'Silver Card', desc: 'A capture card with a much higher capture chance than a regular card.', capture: true },
@@ -219,45 +192,8 @@ export const ITEMS: Record<string, ItemDef> = {
   manual: { id: 'manual', name: "Tamer's Manual", desc: 'Training, capturing and the old ways of the Guild.', key: true },
   guide: { id: 'guide', name: 'Translation Guide', desc: 'Greetings and warnings in the tongues of the villages.', key: true },
   map: { id: 'map', name: 'Map of the Near Villages', desc: 'The roads beyond Azurelake.', key: true },
-  tart: { id: 'tart', name: 'Dragonfruit Tart', desc: 'Restores 30 HP. Half-eaten. Still delicious.' },
+  tart: { id: 'tart', name: 'Dragonfruit Tart', desc: 'Heals one monster a great deal, even a fainted one. Half-eaten. Still delicious.' },
 };
-
-export interface SkillDef {
-  id: string;
-  name: string;
-  card: string;
-  tu: number;
-  power: number;
-  minLv: number;
-  desc: string;
-  support?: boolean; // non-damaging ability (e.g. Mother): steadies the tamer instead
-}
-
-// FIGHT cards are the chosen hatchling's real DIB abilities (TU from the wiki).
-// TU sets how long the enemy's counter-attack lasts: heavier moves leave you open longer.
-// Cards use the painted art from the UI sheet (Tail, Outrage, Flame; anything else shows "???").
-export function cardFor(name: string) {
-  const n = name.toLowerCase();
-  if (n.includes('tail')) return 'ui_card_tail';
-  if (n.includes('flame') || n.includes('fire') || n.includes('inferno')) return 'ui_card_flame';
-  if (n.includes('rage') || n.includes('outrage') || n.includes('charge')) return 'ui_card_outrage';
-  return 'ui_card_unknown';
-}
-
-export function skillFrom(a: { name: string; tu: string; effect: string }, minLv = 1): SkillDef {
-  const tu = Number(a.tu) || 100;
-  const dmg = /damage/i.test(a.effect);
-  return {
-    id: a.name.toLowerCase().replace(/\W+/g, '_'),
-    name: a.name,
-    card: cardFor(a.name),
-    tu,
-    power: dmg ? 0.55 + tu / 110 : 0,
-    minLv,
-    desc: a.effect.split(/\.\s|:\s/)[0].replace(/\.$/, ''), // the wiki effect, without research notes
-    support: !dmg,
-  };
-}
 
 // The two halves of the torn formula, and the formula once joined (the Dundean missions).
 if (MISSIONS) {

@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import { queueAll, makeRuntimeTextures, MONSTER_ART, NPC_SHEETS, PAINTED_ART } from '../assets';
 import { FONT_LABEL } from '../ui/widgets';
+import type { BattleStart } from './BattleScene';
 
 export class BootScene extends Phaser.Scene {
   constructor() {
@@ -40,7 +41,10 @@ export class BootScene extends Phaser.Scene {
       txt.setText('Ready');
       const params = new URLSearchParams(location.search);
       if (params.get('battle')) {
-        this.scene.start('Battle', { monster: params.get('battle'), room: params.get('room') ?? 'forest', debug: true });
+        // ?battle=goblin,sludge,bitewing — up to three on the field, any more step in as reinforcements
+        const foes = params.get('battle')!.split(',').map((x) => x.trim()).filter(Boolean);
+        const start: BattleStart = { foes, room: params.get('room') ?? 'forest', debug: true };
+        this.scene.start('Battle', start);
       } else if (params.get('room')) {
         this.scene.start('World', { room: params.get('room'), spawn: params.get('spawn') ?? undefined, debug: true });
       } else if (params.get('scene')) {
