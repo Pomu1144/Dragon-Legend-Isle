@@ -1,7 +1,7 @@
 import { DIB_KITS } from './dibCreatures';
 import { EXPANSION_ROOMS, WAYSTONE_EXITS, WAYSTONE_SPAWNS } from './expansion';
 import { MISSION_ENTRANCES, MISSION_ROOMS } from './missions';
-import { REGION_ROOMS, REGION_SPAWN_PATCHES, REGION_UNLOCKS } from './regions';
+import { REGION_ENTRANCES, REGION_ROOMS, REGION_SPAWN_PATCHES, REGION_UNLOCKS } from './regions';
 import { FRONTIER_TEXT, LANDMARK_TEXT } from './landmarkText';
 
 // Overworld rooms. Every coordinate is in the source painting's pixel space,
@@ -157,6 +157,8 @@ export const ROOMS: Record<string, RoomDef> = {
     spawns: {
       fromPlaza: { at: [760, 900], dir: 'up' },
       fromOutskirts: { at: [1195, 40], dir: 'down' },
+      fromAzurelakeHarborRoad: { at: [52, 389], dir: 'right' },
+      fromAzurelakeEastRoad: { at: [1618, 651], dir: 'left' },
     },
     triggers: [{ id: 'gate_sign', rect: [520, 760, 460, 160], once: 'gateSign' }],
     exits: [
@@ -332,6 +334,14 @@ for (const e of MISSION_ENTRANCES) {
 // The regions through the old frontiers (Giant Mangal's upper floors, Ringfeld, South Earlsome);
 // their entry exits already exist and open on the flags tools/gen_regions.py names.
 for (const r of REGION_ROOMS) ROOMS[r.id] = r;
+// Entrances into region rooms from rooms whose blocked exit pointed nowhere (e.g. the West Gate's side roads).
+for (const e of REGION_ENTRANCES) {
+  const r = ROOMS[e.room];
+  if (!r || !ROOMS[e.to]) continue;
+  const ov = (a: number[], b: number[]) => a[0] < b[0] + b[2] && b[0] < a[0] + a[2] && a[1] < b[1] + b[3] && b[1] < a[1] + a[3];
+  const x = r.exits.find((x) => ov(x.rect, e.rect));
+  if (x) Object.assign(x, { to: e.to, spawn: e.spawn, locked: 'never' });
+}
 for (const p of REGION_SPAWN_PATCHES) if (ROOMS[p.room] && !ROOMS[p.room].spawns[p.name]) ROOMS[p.room].spawns[p.name] = p.spawn;
 for (const u of REGION_UNLOCKS) {
   if (!ROOMS[u.exitTo]) continue;

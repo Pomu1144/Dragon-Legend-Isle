@@ -55,11 +55,11 @@ for a, b in zip(mis_now['quests'], mis['quests']):
 replace_payload(os.path.join(data, 'story.ts'), 'STORY', load('main'))
 replace_payload(os.path.join(data, 'expansion.ts'), 'EXPANSION_STORY', load('expansion'))
 replace_payload(os.path.join(data, 'missions.ts'), 'MISSIONS', mis)
-replace_payload(os.path.join(data, 'regions.ts'), 'REGION_STORY', load('regions'))
+replace_payload(os.path.join(data, 'region_frontiers1.ts'), 'REGION_STORY', load('regions'))
 
 # Landmarks: { room: { thing id: lines } } and frontier lines in exit order.
 # Frontier lines were extracted in source order of each room's 'never' exits; key them by destination.
-gen_rooms = {r['id']: r for f, v in (('expansion.ts', 'EXPANSION_ROOMS'), ('missions.ts', 'MISSION_ROOMS'), ('regions.ts', 'REGION_ROOMS')) for r in current(os.path.join(data, f), v)}
+gen_rooms = {r['id']: r for f, v in (('expansion.ts', 'EXPANSION_ROOMS'), ('missions.ts', 'MISSION_ROOMS'), ('region_frontiers1.ts', 'REGION_ROOMS')) for r in current(os.path.join(data, f), v)}
 things, frontiers = {}, {}
 for n in ('things_original', 'things_generated'):
     for room, v in load(n).items():
