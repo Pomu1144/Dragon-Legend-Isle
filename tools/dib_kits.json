@@ -7063,7 +7063,7 @@
     "original": true,
     "wiki": {
      "number": "F01",
-     "stars": 6.5,
+     "stars": 8,
      "element": "Fire",
      "image_url": "",
      "image_size": [
@@ -7114,7 +7114,7 @@
      "flier": false
     },
     "battle": {
-     "check": "* BLOODGALE - FIRE - 6.5 STARS.\n* Two rogues, one shape. One blade bleeds; the other carries the wind.",
+     "check": "* BLOODGALE - FIRE - 8 STARS.\n* Two rogues, one shape. One blade bleeds; the other carries the wind.",
      "intro": "* The wind turns red. Bloodgale steps out of it.",
      "idle": [
       "* Torn white cloth lifts in a wind you cannot feel.",
