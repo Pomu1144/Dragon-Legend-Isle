@@ -2,6 +2,7 @@ import { DIB_KITS } from './dibCreatures';
 import { EXPANSION_ROOMS, WAYSTONE_EXITS, WAYSTONE_SPAWNS } from './expansion';
 import { MISSION_ENTRANCES, MISSION_ROOMS } from './missions';
 import { REGION_ROOMS, REGION_SPAWN_PATCHES, REGION_UNLOCKS } from './regions';
+import { FRONTIER_TEXT, LANDMARK_TEXT } from './landmarkText';
 
 // Overworld rooms. Every coordinate is in the source painting's pixel space,
 // so the painting is drawn 1:1 and these polygons describe where feet can go.
@@ -340,6 +341,12 @@ for (const u of REGION_UNLOCKS) {
         e.locked = u.requires || undefined;
         if (u.lockedText.length) e.lockedText = u.lockedText;
       }
+}
+
+// Landmark examine-text and barred-road lines from the story pass (tools/apply_story.py).
+for (const r of Object.values(ROOMS)) {
+  for (const t of r.things ?? []) t.lines = LANDMARK_TEXT[r.id]?.[t.id] ?? t.lines;
+  for (const e of r.exits) if (e.locked === 'never' && FRONTIER_TEXT[r.id]?.[e.to]) e.lockedText = FRONTIER_TEXT[r.id][e.to];
 }
 
 // Dark Mage and Dark Priest come later in the story; keep them out of the wild for now.
