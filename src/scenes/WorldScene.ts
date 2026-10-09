@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import { Sound } from '../audio/Sound';
 import { ROOMS, RoomDef, Dir, Pt, rollGroup } from '../data/rooms';
 import { loadRoomArt } from '../assets';
+import { sweptMove } from '../world/sweptMove';
 import { State } from '../state';
 import { Dialogue, Line } from '../ui/Dialogue';
 import { Controls } from '../ui/input';
@@ -155,7 +156,14 @@ export class WorldScene extends Phaser.Scene {
     else if (data.spawn && R.spawns[data.spawn]) {
       at = R.spawns[data.spawn].at;
       dir = R.spawns[data.spawn].dir;
+    } else if (data.debug && data.room) {
+      // ?room=... debug links must not reuse save coordinates from another map.
+      const first = Object.values(R.spawns)[0];
+      if (first) { at = first.at; dir = first.dir; }
     }
+    // Existing save slots might land on scenery after a walk-map revision.
+    // Repair that landing once, rather than trapping Kael inside a new blocker.
+    at = this.safeEntry(at);
     this.dir = dir;
     this.lastSafe = [at[0], at[1]];
 
@@ -349,14 +357,35 @@ export class WorldScene extends Phaser.Scene {
     return true;
   }
 
+  private safeEntry(at: Pt): Pt {
+    if (this.canStand(...at)) return at;
+    for (let radius = 12; radius <= 180; radius += 12)
+      for (let a = 0; a < 16; a++) {
+        const x = at[0] + Math.cos(a * Math.PI / 8) * radius;
+        const y = at[1] + Math.sin(a * Math.PI / 8) * radius;
+        if (this.canStand(x, y)) return [Math.round(x), Math.round(y)];
+      }
+    const first = Object.values(this.room.spawns).find((s) => this.canStand(...s.at));
+    return first ? [first.at[0], first.at[1]] : at;
+  }
+
   private canStand(x: number, y: number) {
-    const hw = 10 * (this.scaleAt(y) / 0.45);
+    // The sprite is taller than its feet: only its small ground footprint collides.
+    // Footprint sampling also prevents the body from clipping narrow painted edges.
+    const factor = this.scaleAt(y) / 0.45;
+    const hw = 10 * factor, hd = 6 * factor;
     for (const n of this.room.npcs ?? []) {
-      const dx = (x - n.at[0]) / 30;
-      const dy = (y - n.at[1]) / 14;
+      const dx = (x - n.at[0]) / 34;
+      const dy = (y - n.at[1]) / 17;
       if (dx * dx + dy * dy < 1) return false;
     }
-    return this.walkable(x, y) && this.walkable(x - hw, y) && this.walkable(x + hw, y) && this.walkable(x, y - 4);
+    // Save candles are real placed props, not part of the walkable floor.
+    for (const c of this.room.candles ?? [])
+      if (Math.abs(x - c.at[0]) < 15 * factor && Math.abs(y - c.at[1]) < 10 * factor) return false;
+    return [
+      [0, 0], [-hw, 0], [hw, 0], [0, -hd], [0, hd],
+      [-hw * 0.65, -hd * 0.65], [hw * 0.65, -hd * 0.65],
+    ].every(([ox, oy]) => this.walkable(x + ox, y + oy));
   }
 
   private resetEncounter() {
@@ -434,16 +463,7 @@ export class WorldScene extends Phaser.Scene {
       const dx = (ax.x / len) * speed * (dt / 1000);
       const dy = (ax.y / len) * speed * (dt / 1000);
       const p = this.player;
-      let nx = p.x;
-      let ny = p.y;
-      if (this.canStand(p.x + dx, p.y + dy)) {
-        nx = p.x + dx;
-        ny = p.y + dy;
-      } else if (dx && this.canStand(p.x + dx, p.y)) {
-        nx = p.x + dx;
-      } else if (dy && this.canStand(p.x, p.y + dy)) {
-        ny = p.y + dy;
-      }
+      const [nx, ny] = sweptMove(p.x, p.y, dx, dy, (x, y) => this.canStand(x, y));
       const moved = Math.hypot(nx - p.x, ny - p.y);
       p.setPosition(nx, ny);
       if (moved > 0) this.lastSafe = [nx, ny];
@@ -1076,9 +1096,15 @@ export class WorldScene extends Phaser.Scene {
       return;
     }
     const g = this.add.graphics().setDepth(8000);
+    // Filled collision overlay: green road, red solid props, blue room transitions.
+    // The tint makes geometry errors obvious against the actual painted objects.
+    g.fillStyle(0x00ff00, 0.12);
+    for (const p of this.room.walk) g.fillPoints(p.map(([x, y]) => new Phaser.Math.Vector2(x, y)), true);
     g.lineStyle(2, 0x00ff00, 1);
     for (const p of this.room.walk) g.strokePoints(p.map(([x, y]) => new Phaser.Math.Vector2(x, y)), true);
-    g.lineStyle(2, 0xff0000, 1);
+    g.fillStyle(0xff3040, 0.38);
+    for (const p of this.room.block) g.fillPoints(p.map(([x, y]) => new Phaser.Math.Vector2(x, y)), true);
+    g.lineStyle(2, 0xff3040, 1);
     for (const p of this.room.block) g.strokePoints(p.map(([x, y]) => new Phaser.Math.Vector2(x, y)), true);
     g.fillStyle(0x0080ff, 0.4);
     for (const e of this.room.exits) g.fillRect(...e.rect);

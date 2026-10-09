@@ -48,6 +48,30 @@ and `tools/story/BIBLE.SPOILERS.json` explains all of it. `tools/apply_story.py`
 after any generator re-runs.
 
 
+
+### Painted-world collision and traversal
+
+The artwork is **not** the collision map. New locations use a separately authored geometry layer in
+`src/data/paintedCollision.ts` (image-space coordinates at 1670×944). Each room specifies:
+
+- A road contour assembled from left/right edge samples at multiple depths.
+- Solid polygon footprints around wells, lantern posts, bridge parapets, stalls, and other physical props.
+- Accessible entrance/exit rectangles, safe spawn feet positions, and NPC/candle placement.
+- Optional tall-object overlays for correct foreground overlap.
+
+`WorldScene` now checks a *ground-footprint*, including NPCs and save candles, and samples movement
+in steps of at most four map pixels (`src/world/sweptMove.ts`). Running and diagonal movement slide
+along solid edges without jumping through thin scenery between frames. Previously saved positions
+that fall inside new collision shapes are moved to the nearest safe walkable position.
+
+**Collision inspection:** press F3 to see translucent green walkable ground, red blocked props,
+and blue room transitions painted over the actual artwork. Debug URLs without an explicit spawn
+pick a valid room entrance instead of reusing coordinates from a different save.
+
+`node tools/validate_westguard_wesing.cjs` runs walk-path, blocked-prop, NPC, save-candle,
+landmark-access, doorway, and fast-motion regression tests. Always rerun it after generating or
+moving environmental objects, then check all six rooms in the browser before merging.
+
 ## Westguard and Wesing world expansion
 
 Two new playable paths continue existing frontiers without replacing any current room:

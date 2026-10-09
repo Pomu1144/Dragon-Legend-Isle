@@ -1,29 +1,23 @@
 import type { Pt, RoomDef } from './rooms';
 import type { RegionStory } from './regionTypes';
+import { PAINTED_COLLISION, roadPolygon } from './paintedCollision';
 
 /** Six hand-painted, navigable rooms expanding the broken Westguard and Wesing roads. */
 interface PaintedRoom {
   id: string;
   name: string;
-  walk: Pt[];
-  bottom: Pt;
-  top: Pt;
-  bottomExit: [number, number, number, number];
-  topExit: [number, number, number, number];
   music: string;
   fireflies: number;
   lights: NonNullable<RoomDef['lights']>;
   things: NonNullable<RoomDef['things']>;
   npcs?: RoomDef['npcs'];
-  candle?: Pt;
 }
 const L = 0xffc179, M = 0x9bc8eb;
 const P: PaintedRoom[][] = [
   [
     {
       id: 'azurelake_coast_road', name: 'Azurelake Coast — The Tidal Shelf',
-      walk: [[490,944],[525,790],[610,645],[640,500],[725,360],[760,230],[805,130],[785,0],[1060,0],[1050,135],[1020,265],[955,405],[865,545],[850,675],[925,800],[960,944]],
-      bottom: [725,875], top: [920,90], bottomExit: [560,928,380,16], topExit: [780,0,280,20],
+
       music: 'field', fireflies: 8,
       lights: [{at:[660,700],r:125,color:L,flicker:true},{at:[930,240],r:140,color:M}],
       things: [
@@ -33,8 +27,7 @@ const P: PaintedRoom[][] = [
     },
     {
       id:'westguard_watchpath',name:'Westguard — The Beacon Approach',
-      walk:[[580,944],[655,760],[710,565],[725,350],[730,160],[745,0],[1030,0],[1010,175],[975,360],[1000,560],[1040,760],[1060,944]],
-      bottom:[830,874],top:[875,92],bottomExit:[600,925,450,19],topExit:[750,0,280,26],
+
       music:'town',fireflies:10,
       lights:[{at:[710,660],r:145,color:L,flicker:true},{at:[1020,420],r:130,color:L,flicker:true},{at:[850,130],r:130,color:M}],
       things:[
@@ -44,9 +37,8 @@ const P: PaintedRoom[][] = [
     },
     {
       id:'westguard_square',name:'Westguard — Beacon Square',
-      walk:[[620,944],[640,770],[640,595],[700,420],[660,240],[705,0],[1020,0],[1010,215],[1070,450],[1120,610],[1150,944]],
-      bottom:[880,874],top:[860,80],bottomExit:[635,926,510,18],topExit:[725,0,285,20],
-      music:'town',fireflies:8,candle:[965,730],
+
+      music:'town',fireflies:8,
       npcs:[
         {id:'westguard_warden',at:[1020,510],sprite:'hunter_idle',name:'Beacon Warden Ivor',portrait:'hunter_portrait'},
         {id:'westguard_netmaker',at:[760,680],sprite:'innkeeper_idle',name:'Netmaker Mira',portrait:'innkeeper_portrait'},
@@ -61,8 +53,7 @@ const P: PaintedRoom[][] = [
   [
     {
       id:'wesing_long_road',name:'Wesing Road — The Upper Ford',
-      walk:[[390,944],[480,780],[580,590],[640,420],[700,260],[755,120],[745,0],[1010,0],[1015,150],[965,330],[925,495],[880,640],[850,780],[945,944]],
-      bottom:[670,875],top:[850,88],bottomExit:[410,926,535,18],topExit:[745,0,265,25],
+
       music:'field',fireflies:25,
       lights:[{at:[645,720],r:110,color:L,flicker:true},{at:[840,225],r:125,color:M}],
       things:[
@@ -72,8 +63,7 @@ const P: PaintedRoom[][] = [
     },
     {
       id:'wesing_millbridge',name:'Wesing — The Old Millbridge',
-      walk:[[600,944],[640,800],[690,650],[720,520],[745,380],[760,220],[765,0],[1045,0],[1045,195],[1020,360],[990,535],[1035,720],[1090,944]],
-      bottom:[830,878],top:[860,88],bottomExit:[620,927,440,17],topExit:[765,0,280,22],
+
       music:'town',fireflies:24,
       lights:[{at:[715,650],r:130,color:L,flicker:true},{at:[1015,575],r:135,color:L,flicker:true}],
       things:[
@@ -83,9 +73,8 @@ const P: PaintedRoom[][] = [
     },
     {
       id:'wesing_square',name:'Wesing — Willow Market',
-      walk:[[620,944],[680,775],[720,600],[690,430],[710,245],[715,0],[1050,0],[1030,230],[1100,420],[1120,635],[1130,805],[1165,944]],
-      bottom:[870,880],top:[860,82],bottomExit:[630,927,500,17],topExit:[715,0,315,20],
-      music:'town',fireflies:18,candle:[965,760],
+
+      music:'town',fireflies:18,
       npcs:[
         {id:'wesing_courier',at:[1040,520],sprite:'hunter_idle',name:'Courier Sela',portrait:'hunter_portrait'},
         {id:'wesing_miller',at:[770,690],sprite:'innkeeper_idle',name:'Miller Tomas',portrait:'innkeeper_portrait'},
@@ -108,20 +97,25 @@ const pascal = (s: string) => s.split('_').map((w) => w.charAt(0).toUpperCase() 
 export const REGION_ROOMS: RoomDef[] = P.flatMap((route, region) => route.map((v, i): RoomDef => {
   const prev = route[i - 1]?.id ?? anchors[region];
   const next = route[i + 1]?.id ?? frontiers[region];
+  const col = PAINTED_COLLISION[v.id];
+  if (!col) throw new Error('No painted collision layer for ' + v.id);
   return {
-    id:v.id,name:v.name,bg:'bg_'+v.id,size:[1670,944],
-    walk:[v.walk],block:[],
-    spawns:{
-      ['from'+pascal(prev)]:{at:v.bottom,dir:'up'},
-      ['from'+pascal(next)]:{at:v.top,dir:'down'},
+    id: v.id, name: v.name, bg: 'bg_' + v.id, size: [1670, 944],
+    walk: [roadPolygon(col.road)], block: col.block, occluders: col.occluders,
+    spawns: {
+      ['from' + pascal(prev)]: { at: col.bottom, dir: 'up' },
+      ['from' + pascal(next)]: { at: col.top, dir: 'down' },
     },
-    exits:[
-      {rect:v.bottomExit,to:prev,spawn:'from'+pascal(v.id)},
-      {rect:v.topExit,to:next,spawn:'from'+pascal(v.id), ...(i===route.length-1?{locked:'never',lockedText:frontierText[region]}:{})},
+    exits: [
+      { rect: col.bottomExit, to: prev, spawn: 'from' + pascal(v.id) },
+      { rect: col.topExit, to: next, spawn: 'from' + pascal(v.id),
+        ...(i === route.length - 1 ? { locked: 'never', lockedText: frontierText[region] } : {}) },
     ],
-    scale:[0.31,0.49],music:v.music,fireflies:v.fireflies,
-    lights:v.lights,things:v.things,npcs:v.npcs,
-    ...(v.candle?{candles:[{id:v.id,at:v.candle,kind:'candle_tall' as const}]}:{}),
+    scale: [0.31, 0.49], music: v.music, fireflies: v.fireflies,
+    lights: v.lights,
+    things: v.things.map((t) => ({ ...t, ...(col.thingChanges?.[t.id] ?? {}) })),
+    npcs: v.npcs?.map((n) => ({ ...n, at: col.npcChanges?.[n.id] ?? n.at })),
+    ...(col.candle ? { candles: [{ id: v.id, at: col.candle, kind: 'candle_tall' as const }] } : {}),
   };
 }));
 
