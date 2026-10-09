@@ -3,8 +3,9 @@ import type { RoomDef } from './rooms';
 import type { RegionStory } from './regionTypes';
 import * as frontiers1 from './region_frontiers1';
 import * as frontiers2 from './region_frontiers2';
+import * as westguardWesing from './region_westguard_wesing';
 
-const BATCHES = [frontiers1, frontiers2];
+const BATCHES = [frontiers1, frontiers2, westguardWesing];
 
 export const REGION_ROOMS: RoomDef[] = BATCHES.flatMap((b) => b.REGION_ROOMS);
 export const REGION_UNLOCKS: { exitTo: string; requires: string; lockedText: string[] }[] = BATCHES.flatMap((b) => b.REGION_UNLOCKS);

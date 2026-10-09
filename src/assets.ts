@@ -52,9 +52,15 @@ export function queueAll(load: Phaser.Loader.LoaderPlugin) {
 }
 
 /** Queue the paintings a scene needs and free the ones no longer in use. Call from a scene's preload(). */
+const AVIF_ROOM_BGS = new Set(['azurelake_coast_road', 'westguard_watchpath', 'westguard_square', 'wesing_long_road', 'wesing_millbridge', 'wesing_square']);
+
 export function loadRoomArt(scene: Phaser.Scene, keys: string[]) {
   const want = new Set(keys);
-  for (const k of keys) if (!scene.textures.exists(k) && k.startsWith('bg_')) scene.load.image(k, `assets/bg/${k.slice(3)}.jpg`);
+  for (const k of keys) {
+    if (!k.startsWith('bg_') || scene.textures.exists(k)) continue;
+    const id = k.slice(3);
+    scene.load.image(k, `assets/bg/${id}.${AVIF_ROOM_BGS.has(id) ? 'avif' : 'jpg'}`);
+  }
   scene.load.once('complete', () => {
     for (const k of scene.textures.getTextureKeys())
       if (k.startsWith('bg_') && k !== 'bg_plaza' && !want.has(k)) scene.textures.remove(k);
