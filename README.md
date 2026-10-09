@@ -46,3 +46,24 @@ The story is meant to be discovered by playing. Everything under `tools/story/` 
 `src/data/` (`story.ts`, `expansion.ts`, `missions.ts`, `regions.ts`, `landmarkText.ts`) contains the plot,
 and `tools/story/BIBLE.SPOILERS.json` explains all of it. `tools/apply_story.py` re-applies the story text
 after any generator re-runs.
+
+
+## Westguard and Wesing world expansion
+
+Two new playable paths continue existing frontiers without replacing any current room:
+
+- **Coast:** Azurelake's Drowned Harbor → Tidal Shelf → Westguard Beacon Approach → **Westguard Beacon Square**. Follow the lanterns below the collapsed cliff. Talk to Warden Ivor and Netmaker Mira and light the village save candle.
+- **River:** Azurelake's Ashfall Ford → Wesing Upper Ford → Old Millbridge → **Wesing Willow Market**. Ask Courier Sela and Miller Tomas about the guild waybills; save at the village candle. The old millbridge bypasses the broken long-road bridge.
+
+The coastal connection requires the Waystone guardian's defeat; the east road from Azurelake still requires its existing Archelon progression flag. The two formerly self-looping West Gate side passages now lead into their original harbor/east roads and obey those existing unlock flags. Both village squares have deliberately barred onward frontiers for future expansions.
+
+The six room backgrounds are Higgsfield-painted from the existing game's room art references, stored locally as 1670×944 AVIF images in `public/assets/bg/`. The loader uses AVIF only for these rooms, leaving legacy JPEG rooms untouched. The room geometry, interactables, NPC dialogue, new world-map text, and encounters are in `src/data/region_westguard_wesing.ts`.
+
+Check the build and geometry:
+
+```bash
+npm run build
+node tools/validate_westguard_wesing.cjs
+```
+
+Quick in-game debug visits: `?room=westguard_square` and `?room=wesing_square`. The validator checks paths between exits, in-bounds spawn points, reciprocal transitions, and the presence of every painted asset.

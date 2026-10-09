@@ -397,7 +397,7 @@ const KIT_IDS = new Set(DIB_KITS.map((k) => k.id as string));
 for (const [room, table] of Object.entries(REGION_TABLES)) FOREST[room] = table;
 for (const [room, table] of Object.entries(FOREST)) {
   const t = table.filter((e) => KIT_IDS.has(e.id));
-  if (t.length && ROOMS[room]) ROOMS[room].encounters = { table: t, budget: BUDGET[room] };
+  if (t.length && ROOMS[room]) ROOMS[room].encounters = { table: t, budget: BUDGET[room] ?? ROOMS[room].encounters?.budget ?? 3 };
 }
 for (const k of DIB_KITS) {
   if (k.role !== 'encounter' || LATER.has(k.id)) continue;
